@@ -43,14 +43,6 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
     NSString* path = [[NSBundle mainBundle] pathForResource:@"uploadMain" ofType:@"plist"];
     _dataArray = [NSMutableArray arrayWithContentsOfFile:path];
     
-    NSString *accessKey = [_dataArray[0] valueForKey:@"value"];
-    NSString *decodeAK = [self base64DecodedString:accessKey];
-    [_dataArray[0] setValue:decodeAK forKey:@"value"];
-    
-    NSString *secretKey = [_dataArray[1] valueForKey:@"value"];
-    NSString *decodeSK = [self base64DecodedString:secretKey];
-    [_dataArray[1] setValue:decodeSK forKey:@"value"];
-    
     //设置有效的业务相关id
     [QHVCUploader setUserId:@"110"];
     [QHVCUploader setChannelId:@"demo_1"];
@@ -74,13 +66,6 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
         [self.logsUploader cancel];
         self.logsUploader = nil;
     }
-}
-
-- (NSString *)base64DecodedString:(NSString *)encodeStr
-{
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:encodeStr options:0];
-    NSString *decodeStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    return  decodeStr;
 }
 
 #pragma mark UITableView
@@ -132,7 +117,7 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
 - (IBAction)start:(UIButton *)sender
 {
     if (![self fetchUploadInfo]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"参数异常" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"请输入正确的AK、SK,如无该信息官网注册申请" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }

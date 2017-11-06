@@ -34,7 +34,9 @@
     
     UIButton *playPauseButton;
     UILabel *totalTimeSingleLabel;
+    UIButton *downloadSingleButton;
     QHVCSlider *slider;
+    UIButton *downloadButton;
     
     CAGradientLayer *topGradientLayer;
     CAGradientLayer *bottomGradientLayer;
@@ -70,6 +72,7 @@
 - (void)setItemDetail:(NSDictionary *)item
 {
     currentItem = item;
+    [title setText:[item valueForKey:@"title"]];
     [defaultImageView sd_setImageWithURL:[NSURL URLWithString:[item valueForKey:@"imageUrl"]]];
     [playCount setTitle:[item valueForKey:@"playCount"] forState:UIControlStateNormal];
     [totalTimeSingleLabel setText:[item valueForKey:@"totalTime"]];
@@ -95,6 +98,7 @@
     slider.hidden = YES;
     playCount.hidden = YES;
     totalTimeSingleLabel.hidden = YES;
+    downloadSingleButton.hidden = YES;
     
     backButton.hidden = !_isFullScreen;
     frontButton.hidden = !_isFullScreen;
@@ -136,6 +140,7 @@
     
     playCount.hidden = NO;
     totalTimeSingleLabel.hidden = NO;
+    downloadSingleButton.hidden = NO;
     playPauseButton.selected = NO;
     frontButton.selected = NO;
     
@@ -230,7 +235,7 @@
     NSString *minStr = [NSString stringWithFormat:@"%ld", (long)minute];
     if (minute < 10)
     {
-        minStr = [NSString stringWithFormat:@"0%ld", minute];
+        minStr = [NSString stringWithFormat:@"0%ld", (long)minute];
     }
     int second = (int)timeDuration % 60;
     formatedString = [NSString stringWithFormat:@"%@:%02d",minStr,second];
@@ -449,6 +454,7 @@
     slider.hidden = YES;
     playCount.hidden = YES;
     totalTimeSingleLabel.hidden = YES;
+    downloadSingleButton.hidden = YES;
     
     if (_delegate && [_delegate respondsToSelector:@selector(playPause:)])
     {
@@ -467,6 +473,14 @@
     if (_delegate && [_delegate respondsToSelector:@selector(fullScreen)])
     {
         [_delegate fullScreen];
+    }
+}
+
+- (void)downloadButtonAction:(UIButton *)button
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(download:)])
+    {
+        [_delegate download:_index];
     }
 }
 
@@ -551,7 +565,7 @@
     
     if (_isFullScreen == YES)
     {
-        playerSlider = [[QHVCSlider alloc] initWithFrame:CGRectMake(60, 0, SCREEN_SIZE.width - 80 - 15, 60)];
+        playerSlider = [[QHVCSlider alloc] initWithFrame:CGRectMake(60, 0, SCREEN_SIZE.width - 60 - 60, 60)];
         playerSlider.trackImage = [UIImage imageNamed:@"progressBar"];
         playerSlider.delegate = self;
         [view addSubview:playerSlider];
@@ -577,13 +591,18 @@
         }];
         
         [totalTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-16);
+            make.right.equalTo(fullScreenButton.mas_left);
             make.top.bottom.equalTo(bottomView);
+        }];
+        
+        [downloadButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.top.bottom.equalTo(bottomView);
+            make.width.equalTo(@40);
         }];
     }
     else
     {
-        playerSlider = [[QHVCSlider alloc] initWithFrame:CGRectMake(40, 0, SCREEN_SIZE.width - 80 - 20, 60)];
+        playerSlider = [[QHVCSlider alloc] initWithFrame:CGRectMake(40, 0, SCREEN_SIZE.width - 40 - 40 - 40 - 15, 60)];
         playerSlider.trackImage = [UIImage imageNamed:@"progressBar"];
         playerSlider.delegate = self;
         [view addSubview:playerSlider];
@@ -609,8 +628,14 @@
         }];
         
         [totalTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(fullScreenButton.mas_left);
+            make.right.equalTo(downloadButton.mas_left);
             make.top.bottom.equalTo(bottomView);
+        }];
+        
+        [downloadButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(fullScreenButton.mas_left).offset(10);
+            make.top.bottom.equalTo(bottomView);
+            make.width.equalTo(@40);
         }];
     }
 
@@ -720,8 +745,8 @@
     bottomGradientLayer.locations = @[@(0.0f), @(1.0f)];
     
     frontButton = [UIButton new];
-    [frontButton setImage:[UIImage imageNamed:@"playerPlay"] forState:UIControlStateNormal];
-    [frontButton setImage:[UIImage imageNamed:@"playerPause"] forState:UIControlStateSelected];
+    [frontButton setImage:[UIImage imageNamed:@"fullScreenPlay"] forState:UIControlStateNormal];
+    [frontButton setImage:[UIImage imageNamed:@"fullScreenPause"] forState:UIControlStateSelected];
     frontButton.hidden = YES;
     [frontButton addTarget:self action:@selector(playPauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:frontButton];
@@ -732,7 +757,7 @@
     
     currentTimeLabel = [UILabel new];
     currentTimeLabel.textColor = [UIColor whiteColor];
-    currentTimeLabel.font = [UIFont systemFontOfSize:10];
+    currentTimeLabel.font = [UIFont systemFontOfSize:12];
     currentTimeLabel.textAlignment = NSTextAlignmentCenter;
     currentTimeLabel.text = @"00:00";
     [bottomView addSubview:currentTimeLabel];
@@ -742,7 +767,7 @@
     }];
     
     fullScreenButton = [UIButton new];
-    [fullScreenButton setImage:[UIImage imageNamed:@"fullScreen"] forState:UIControlStateNormal];
+    [fullScreenButton setImage:[UIImage imageNamed:@"localServerFullScreen"] forState:UIControlStateNormal];
     [fullScreenButton addTarget:self action:@selector(fullScreenButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:fullScreenButton];
     [fullScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -750,9 +775,18 @@
         make.width.equalTo(@40);
     }];
     
+    downloadButton = [UIButton new];
+    [downloadButton setImage:[UIImage imageNamed:@"download"] forState:UIControlStateNormal];
+    [downloadButton addTarget:self action:@selector(downloadButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:downloadButton];
+    [downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.bottom.equalTo(bottomView);
+        make.width.equalTo(@40);
+    }];
+    
     totalTimeLabel = [UILabel new];
     totalTimeLabel.textColor = [UIColor whiteColor];
-    totalTimeLabel.font = [UIFont systemFontOfSize:10];
+    totalTimeLabel.font = [UIFont systemFontOfSize:12];
     totalTimeLabel.textAlignment = NSTextAlignmentCenter;
     [bottomView addSubview:totalTimeLabel];
     [totalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -769,7 +803,7 @@
     [self addSubview:playCount];
     [playCount mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10);
-        make.bottom.equalTo(self).offset(-10);
+        make.bottom.equalTo(self).offset(-20);
         make.height.equalTo(@20);
         make.width.equalTo(@60);
     }];
@@ -784,7 +818,19 @@
     totalTimeSingleLabel.textColor = [UIColor whiteColor];
     [self addSubview:totalTimeSingleLabel];
     [totalTimeSingleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.equalTo(self).offset(-10);
+        make.bottom.equalTo(self).offset(-20);
+        make.right.equalTo(self).offset(-35);
+        make.height.equalTo(@20);
+        make.width.equalTo(@40);
+    }];
+    
+    downloadSingleButton = [UIButton new];
+    [downloadSingleButton setImage:[UIImage imageNamed:@"download"] forState:UIControlStateNormal];
+    [downloadSingleButton addTarget:self action:@selector(downloadButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:downloadSingleButton];
+    [downloadSingleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(-20);
+        make.right.equalTo(self);
         make.height.equalTo(@20);
         make.width.equalTo(@40);
     }];
@@ -817,7 +863,6 @@
 - (void)setIndex:(NSInteger)index
 {
     _index = index;
-    title.text = [NSString stringWithFormat:@"小视频(%li)", (long)index];
 }
 
 - (void)dealloc

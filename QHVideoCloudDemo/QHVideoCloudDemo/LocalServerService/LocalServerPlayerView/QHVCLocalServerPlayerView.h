@@ -18,6 +18,7 @@
 - (void)playPause:(QHVCLocalServerPlayerView *)view;
 - (void)next;
 - (void)previous;
+- (void)download:(NSInteger)index;
 
 @end
 

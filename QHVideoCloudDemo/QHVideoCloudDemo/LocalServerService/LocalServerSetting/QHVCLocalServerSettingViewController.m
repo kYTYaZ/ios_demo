@@ -9,6 +9,7 @@
 #import "QHVCLocalServerSettingViewController.h"
 #import "QHVCLocalServerSettingCell.h"
 #import <QHVCLocalServerKit/QHVCLocalServerKit.h>
+#import "QHVCLocalServerDownloadViewController.h"
 
 @interface QHVCLocalServerSettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -129,6 +130,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 3)
     {
+        [self cacheManagerAction];
+    }
+    else if (indexPath.row == 4)
+    {
         [self deleteAction];
     }
 }
@@ -170,6 +175,7 @@
                         @"localServer",
                         @"暂停时继续缓存",
                         @"非WIFI网络预缓存",
+                        @"下载管理",
                         @"清理缓存"
                         ];
     }
@@ -200,6 +206,12 @@
         [[QHVCLocalServerKit sharedInstance] clearCache];
     }];
     [alertOne addAction:certain];
+}
+
+- (void)cacheManagerAction
+{
+    QHVCLocalServerDownloadViewController *sdvc = [[QHVCLocalServerDownloadViewController alloc] init];
+    [self.navigationController pushViewController:sdvc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

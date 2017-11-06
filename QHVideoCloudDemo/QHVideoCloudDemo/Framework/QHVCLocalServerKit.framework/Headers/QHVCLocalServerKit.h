@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, QHVCLocalServerLogLevel)
 
 - (void)onStart:(NSString *)rid;
 
-- (void)onProgress:(NSString *)rid position:(long)position total:(long)total speed:(double)speed;
+- (void)onProgress:(NSString *)rid position:(long long)position total:(long long)total speed:(double)speed;
 
 - (void)onSuccess:(NSString *)rid;
 
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, QHVCLocalServerLogLevel)
 
 #pragma mark CachePersistence
 /**
- * 重建某个缓存的持久化任务
+ * 重建某个缓存的持久化任务（默认暂停状态，需要开始，调用resumeCachePersistence）
  *
  * @param rid 资源的唯一标识，由于url在加防盗链时是可变的，所以需要一个唯一标识来匹配缓存文件
  * @param url 资源的链接

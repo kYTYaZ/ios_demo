@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D090D061FB05019004D8EE4 /* QHVCLocalServerCachedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CF11FB05019004D8EE4 /* QHVCLocalServerCachedCell.m */; };
+		0D090D071FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CF31FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m */; };
+		0D090D081FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CF51FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m */; };
+		0D090D091FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CF71FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m */; };
+		0D090D0A1FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CF91FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m */; };
+		0D090D0B1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CFC1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m */; };
+		0D090D0C1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090CFE1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m */; };
+		0D090D0D1FB05019004D8EE4 /* QHVCLocalServerSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D011FB05019004D8EE4 /* QHVCLocalServerSettingCell.m */; };
+		0D090D0E1FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D031FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m */; };
+		0D090D0F1FB05019004D8EE4 /* QHVCLocalServerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D051FB05019004D8EE4 /* QHVCLocalServerViewController.mm */; };
 		0D13BD7B1F8CBE5F0076CDE3 /* QHVCHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD791F8CBE5F0076CDE3 /* QHVCHUDManager.m */; };
 		0D13BD7E1F8CBECC0076CDE3 /* QHVCLiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD7D1F8CBECC0076CDE3 /* QHVCLiveListViewController.m */; };
-		0D13BD9B1F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD911F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.m */; };
-		0D13BD9C1F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD931F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.m */; };
-		0D13BD9D1F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD961F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.m */; };
-		0D13BD9E1F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD981F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.m */; };
-		0D13BD9F1F8CC2C20076CDE3 /* QHVCLocalServerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD9A1F8CC2C20076CDE3 /* QHVCLocalServerViewController.mm */; };
 		0D13BDA11F8CC3460076CDE3 /* QHVCLocalServerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D13BDA01F8CC3460076CDE3 /* QHVCLocalServerKit.framework */; };
 		0D5AE0581F54247D002C4812 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0571F54247D002C4812 /* main.m */; };
 		0D5AE05B1F54247D002C4812 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE05A1F54247D002C4812 /* AppDelegate.m */; };
@@ -73,20 +78,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D090CF01FB05019004D8EE4 /* QHVCLocalServerCachedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerCachedCell.h; sourceTree = "<group>"; };
+		0D090CF11FB05019004D8EE4 /* QHVCLocalServerCachedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerCachedCell.m; sourceTree = "<group>"; };
+		0D090CF21FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerDownloadingCell.h; sourceTree = "<group>"; };
+		0D090CF31FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerDownloadingCell.m; sourceTree = "<group>"; };
+		0D090CF41FB05019004D8EE4 /* QHVCLocalServerDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerDownloadManager.h; sourceTree = "<group>"; };
+		0D090CF51FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerDownloadManager.m; sourceTree = "<group>"; };
+		0D090CF61FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerDownloadViewController.h; sourceTree = "<group>"; };
+		0D090CF71FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerDownloadViewController.m; sourceTree = "<group>"; };
+		0D090CF81FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerLocalFileManager.h; sourceTree = "<group>"; };
+		0D090CF91FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerLocalFileManager.m; sourceTree = "<group>"; };
+		0D090CFB1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerPlayerCell.h; sourceTree = "<group>"; };
+		0D090CFC1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerPlayerCell.m; sourceTree = "<group>"; };
+		0D090CFD1FB05019004D8EE4 /* QHVCLocalServerPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerPlayerView.h; sourceTree = "<group>"; };
+		0D090CFE1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerPlayerView.m; sourceTree = "<group>"; };
+		0D090D001FB05019004D8EE4 /* QHVCLocalServerSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerSettingCell.h; sourceTree = "<group>"; };
+		0D090D011FB05019004D8EE4 /* QHVCLocalServerSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerSettingCell.m; sourceTree = "<group>"; };
+		0D090D021FB05019004D8EE4 /* QHVCLocalServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerSettingViewController.h; sourceTree = "<group>"; };
+		0D090D031FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerSettingViewController.m; sourceTree = "<group>"; };
+		0D090D041FB05019004D8EE4 /* QHVCLocalServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerViewController.h; sourceTree = "<group>"; };
+		0D090D051FB05019004D8EE4 /* QHVCLocalServerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QHVCLocalServerViewController.mm; sourceTree = "<group>"; };
 		0D13BD791F8CBE5F0076CDE3 /* QHVCHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCHUDManager.m; sourceTree = "<group>"; };
 		0D13BD7A1F8CBE5F0076CDE3 /* QHVCHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCHUDManager.h; sourceTree = "<group>"; };
 		0D13BD7C1F8CBECB0076CDE3 /* QHVCLiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveListViewController.h; sourceTree = "<group>"; };
 		0D13BD7D1F8CBECC0076CDE3 /* QHVCLiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveListViewController.m; sourceTree = "<group>"; };
-		0D13BD901F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerPlayerCell.h; sourceTree = "<group>"; };
-		0D13BD911F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerPlayerCell.m; sourceTree = "<group>"; };
-		0D13BD921F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerPlayerView.h; sourceTree = "<group>"; };
-		0D13BD931F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerPlayerView.m; sourceTree = "<group>"; };
-		0D13BD951F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerSettingCell.h; sourceTree = "<group>"; };
-		0D13BD961F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerSettingCell.m; sourceTree = "<group>"; };
-		0D13BD971F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerSettingViewController.h; sourceTree = "<group>"; };
-		0D13BD981F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerSettingViewController.m; sourceTree = "<group>"; };
-		0D13BD991F8CC2C20076CDE3 /* QHVCLocalServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerViewController.h; sourceTree = "<group>"; };
-		0D13BD9A1F8CC2C20076CDE3 /* QHVCLocalServerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QHVCLocalServerViewController.mm; sourceTree = "<group>"; };
 		0D13BDA01F8CC3460076CDE3 /* QHVCLocalServerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCLocalServerKit.framework; path = QHVideoCloudDemo/Framework/QHVCLocalServerKit.framework; sourceTree = "<group>"; };
 		0D5AE0531F54247D002C4812 /* QHVideoCloudDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QHVideoCloudDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D5AE0571F54247D002C4812 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -173,35 +188,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D13BD8E1F8CC2C20076CDE3 /* LocalServerService */ = {
+		0D090CEE1FB05019004D8EE4 /* LocalServerService */ = {
 			isa = PBXGroup;
 			children = (
-				0D13BD8F1F8CC2C20076CDE3 /* LocalServerPlayerView */,
-				0D13BD941F8CC2C20076CDE3 /* LocalServerSetting */,
-				0D13BD991F8CC2C20076CDE3 /* QHVCLocalServerViewController.h */,
-				0D13BD9A1F8CC2C20076CDE3 /* QHVCLocalServerViewController.mm */,
+				0D090CEF1FB05019004D8EE4 /* LocalServerDownload */,
+				0D090CFA1FB05019004D8EE4 /* LocalServerPlayerView */,
+				0D090CFF1FB05019004D8EE4 /* LocalServerSetting */,
+				0D090D041FB05019004D8EE4 /* QHVCLocalServerViewController.h */,
+				0D090D051FB05019004D8EE4 /* QHVCLocalServerViewController.mm */,
 			);
 			path = LocalServerService;
 			sourceTree = "<group>";
 		};
-		0D13BD8F1F8CC2C20076CDE3 /* LocalServerPlayerView */ = {
+		0D090CEF1FB05019004D8EE4 /* LocalServerDownload */ = {
 			isa = PBXGroup;
 			children = (
-				0D13BD901F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.h */,
-				0D13BD911F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.m */,
-				0D13BD921F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.h */,
-				0D13BD931F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.m */,
+				0D090CF01FB05019004D8EE4 /* QHVCLocalServerCachedCell.h */,
+				0D090CF11FB05019004D8EE4 /* QHVCLocalServerCachedCell.m */,
+				0D090CF21FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.h */,
+				0D090CF31FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m */,
+				0D090CF41FB05019004D8EE4 /* QHVCLocalServerDownloadManager.h */,
+				0D090CF51FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m */,
+				0D090CF61FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.h */,
+				0D090CF71FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m */,
+				0D090CF81FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.h */,
+				0D090CF91FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m */,
+			);
+			path = LocalServerDownload;
+			sourceTree = "<group>";
+		};
+		0D090CFA1FB05019004D8EE4 /* LocalServerPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				0D090CFB1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.h */,
+				0D090CFC1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m */,
+				0D090CFD1FB05019004D8EE4 /* QHVCLocalServerPlayerView.h */,
+				0D090CFE1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m */,
 			);
 			path = LocalServerPlayerView;
 			sourceTree = "<group>";
 		};
-		0D13BD941F8CC2C20076CDE3 /* LocalServerSetting */ = {
+		0D090CFF1FB05019004D8EE4 /* LocalServerSetting */ = {
 			isa = PBXGroup;
 			children = (
-				0D13BD951F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.h */,
-				0D13BD961F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.m */,
-				0D13BD971F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.h */,
-				0D13BD981F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.m */,
+				0D090D001FB05019004D8EE4 /* QHVCLocalServerSettingCell.h */,
+				0D090D011FB05019004D8EE4 /* QHVCLocalServerSettingCell.m */,
+				0D090D021FB05019004D8EE4 /* QHVCLocalServerSettingViewController.h */,
+				0D090D031FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m */,
 			);
 			path = LocalServerSetting;
 			sourceTree = "<group>";
@@ -227,7 +260,7 @@
 		0D5AE0551F54247D002C4812 /* QHVideoCloudDemo */ = {
 			isa = PBXGroup;
 			children = (
-				0D13BD8E1F8CC2C20076CDE3 /* LocalServerService */,
+				0D090CEE1FB05019004D8EE4 /* LocalServerService */,
 				0D5AE0781F542798002C4812 /* PlayerService */,
 				BB8976031F90993300D5E3BE /* UploadingService */,
 				0D5AE0951F542798002C4812 /* Tool */,
@@ -544,35 +577,40 @@
 			files = (
 				0D5AE0761F5426A6002C4812 /* QHVCNavigationController.m in Sources */,
 				0D5AE0A01F542798002C4812 /* QHVCPlayingTableViewCellThree.m in Sources */,
+				0D090D0A1FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m in Sources */,
 				BB8976111F90993300D5E3BE /* QHVCUploadingViewController.mm in Sources */,
-				0D13BD9C1F8CC2C20076CDE3 /* QHVCLocalServerPlayerView.m in Sources */,
 				0D5AE0AD1F542798002C4812 /* QHVCSessionManager.m in Sources */,
-				0D13BD9E1F8CC2C20076CDE3 /* QHVCLocalServerSettingViewController.m in Sources */,
 				0D5AE0AB1F542798002C4812 /* QHVCHTTPSession.m in Sources */,
 				0D5AE05B1F54247D002C4812 /* AppDelegate.m in Sources */,
 				BB8976161F90993300D5E3BE /* QHVCUploadProgressView.m in Sources */,
 				0D5AE0A61F542798002C4812 /* QHVCLivePlayingViewController.m in Sources */,
+				0D090D0D1FB05019004D8EE4 /* QHVCLocalServerSettingCell.m in Sources */,
 				0D5AE0A11F542798002C4812 /* QHVCPlayingTableViewCellTwo.m in Sources */,
 				0D5AE0A31F542798002C4812 /* QHVCSegmentView.m in Sources */,
 				0D13BD7E1F8CBECC0076CDE3 /* QHVCLiveListViewController.m in Sources */,
+				0D090D061FB05019004D8EE4 /* QHVCLocalServerCachedCell.m in Sources */,
 				0D5AE0B71F54299C002C4812 /* ViewController.m in Sources */,
+				0D090D081FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m in Sources */,
 				0D5AE0AC1F542798002C4812 /* QHVCInterfaceRequest.m in Sources */,
 				0D13BD7B1F8CBE5F0076CDE3 /* QHVCHUDManager.m in Sources */,
+				0D090D0F1FB05019004D8EE4 /* QHVCLocalServerViewController.mm in Sources */,
 				0D5AE0AA1F542798002C4812 /* md5.cpp in Sources */,
 				0D5AE09E1F542798002C4812 /* QHVCPlayerInfoTableViewCell.m in Sources */,
 				BB89761D1F909A6600D5E3BE /* QHVCLiveMainCellOne.m in Sources */,
+				0D090D0E1FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m in Sources */,
+				0D090D0C1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m in Sources */,
 				0D5AE0581F54247D002C4812 /* main.m in Sources */,
 				0D5AE0A21F542798002C4812 /* QHVCPlayerInfoTextView.m in Sources */,
-				0D13BD9F1F8CC2C20076CDE3 /* QHVCLocalServerViewController.mm in Sources */,
+				0D090D091FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m in Sources */,
+				0D090D0B1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m in Sources */,
 				0D5AE0A41F542798002C4812 /* QHVCSlider.m in Sources */,
 				0D5AE0A51F542798002C4812 /* QHVCGeneralPlayingViewController.m in Sources */,
+				0D090D071FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m in Sources */,
 				BB8976141F90993300D5E3BE /* QHVCUploadFinishView.m in Sources */,
 				0D5AE09F1F542798002C4812 /* QHVCPlayingTableViewCellOne.m in Sources */,
 				0D5AE0F01F54325D002C4812 /* QHVCTabTableViewCell.m in Sources */,
 				0D5AE0A71F542798002C4812 /* QHVCPlayerViewController.mm in Sources */,
-				0D13BD9D1F8CC2C20076CDE3 /* QHVCLocalServerSettingCell.m in Sources */,
 				0D5AE0A81F542798002C4812 /* QHVCPlayerServiceViewController.m in Sources */,
-				0D13BD9B1F8CC2C20076CDE3 /* QHVCLocalServerPlayerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import <QHVCLocalServerKit/QHVCLocalServerKit.h>
 #import "QHVCLocalServerSettingViewController.h"
 #import "AFNetworkReachabilityManager.h"
+#import "QHVCLocalServerDownloadManager.h"
 
 @interface QHVCLocalServerViewController ()<UITableViewDelegate, UITableViewDataSource, QHVCLocalServerPlayerViewDelegate, QHVCPlayerDelegate, QHVCPlayerAdvanceDelegate>
 {
@@ -26,6 +27,7 @@
     QHVCPlayer *_player;
     UIView *_playerView;
     BOOL isChangingItem;
+    NSString *defaultPath;
 }
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -66,7 +68,7 @@
         make.edges.equalTo(_currrentPlayerView);
     }];
     [_player prepare];
-    [QHVCPlayer setLogLevel:QHVCPlayerLogLevelError];//注意要在player初始化之后设置
+    [QHVCPlayer setLogLevel:QHVCPlayerLogLevelInfo];//注意要在player初始化之后设置
 }
 
 - (void)stopPlayer
@@ -89,7 +91,13 @@
     [self startNotify];
     [self startSetting];
     hudManager = [QHVCHUDManager new];
-    [[QHVCLocalServerKit sharedInstance] setLogLevel:QHVC_LOCALSERVER_LOG_LEVEL_FATAL detailInfo:0 callback:^(const char *buf, size_t buf_size) {
+    defaultPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"downloadVideo"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:defaultPath])
+    {
+        [fileManager createDirectoryAtPath:defaultPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    [[QHVCLocalServerKit sharedInstance] setLogLevel:QHVC_LOCALSERVER_LOG_LEVEL_INFO detailInfo:0 callback:^(const char *buf, size_t buf_size) {
         NSLog(@"-----:%@", [NSString stringWithUTF8String:buf]);
     }];
 }
@@ -277,6 +285,16 @@
         return;
     }
     [self changeItem:@(-1)];
+}
+
+- (void)download:(NSInteger)index
+{
+    NSDictionary *item = _dataSource[index];
+    NSString *title = [item valueForKey:@"title"];
+    NSString *rid = [item valueForKey:@"rid"];
+    NSString *url = [item valueForKey:@"playUrl"];
+    NSString *path = [defaultPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", title]];
+    [[QHVCLocalServerDownloadManager sharedInstance] startDownload:rid url:url path:path title:title];
 }
 
 - (void)changeItem:(NSNumber *)accumulate
@@ -573,6 +591,7 @@
     if (!_dataSource)
     {
         _dataSource = @[@{
+                            @"title":@"小视频(0)",
                             @"rid":@"QHVC_Demo_video0",
                             @"playUrl":@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/59127791/img_0.png",
@@ -580,6 +599,7 @@
                             @"totalTime":@"03:17"
                             },
                         @{
+                            @"title":@"小视频(1)",
                             @"rid":@"QHVC_Demo_video1",
                             @"playUrl":@"http://video.mp.sj.360.cn/vod_zhushou/vod-shouzhu-bj/93f5f7529bf85bb0ed7b156f7a24eaed.mp4",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/59127791/img_1.png",
@@ -587,6 +607,7 @@
                             @"totalTime":@"56:02"
                             },
                         @{
+                            @"title":@"小视频(2)",
                             @"rid":@"QHVC_Demo_video2",
                             @"playUrl":@"http://video.mp.sj.360.cn/vod_zhushou/vod-shouzhu-bj/1f212d18f71c15a07414de5ae49acb22.mp4",
                             @"imageUrl":@"http://p6.qhimg.com/d/inn/59127791/img_2.png",
@@ -594,6 +615,7 @@
                             @"totalTime":@"04:25"
                             },
                         @{
+                            @"title":@"小视频(3)",
                             @"rid":@"QHVC_Demo_video3",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNy8zNzY3MmYzYjhjMzYyNGVmZTdlYzdiZDMxMTQ0ZDkzMS5tcDQ%3D",
                             @"imageUrl":@"http://p0.qhimg.com/d/inn/59127791/img_3.png",
@@ -601,6 +623,7 @@
                             @"totalTime":@"00:13"
                             },
                         @{
+                            @"title":@"小视频(4)",
                             @"rid":@"QHVC_Demo_video4",
                             @"playUrl":@"http://video.mp.sj.360.cn/vod_zhushou/vod-shouzhu-bj/b9d245e8e09cc0dd56f9b60152d09793.mp4",
                             @"imageUrl":@"http://p0.qhimg.com/d/inn/59127791/img_4.png",
@@ -608,41 +631,42 @@
                             @"totalTime":@"00:17"
                             },
                         @{
-                            @"rid":@"QHVC_Demo_video5",
+                            @"title":@"小视频(5)",                            @"rid":@"QHVC_Demo_video5",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNy9jYjc2NGE0Y2ViMjc2YjM0ZDc4YTFiY2ExYmY1ZWMxMy5tcDQ%3D",
                             @"imageUrl":@"http://p1.qhimg.com/d/inn/17bc0a81/img_5.png",
                             @"playCount":@"2.6万",
                             @"totalTime":@"00:15"
                             },
                         @{
-                            @"rid":@"QHVC_Demo_video6",
+                            @"title":@"小视频(6)",                            @"rid":@"QHVC_Demo_video6",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNy8zZmViYWU4NzkzYzAzYzQyZjEzNjg2OTBhZjhiNmE2OC5tcDQ%3D",
                             @"imageUrl":@"http://p7.qhimg.com/d/inn/17bc0a81/img_6.png",
                             @"playCount":@"2.3万",
                             @"totalTime":@"00:15"
                             },
                         @{
-                            @"rid":@"QHVC_Demo_video7",
+                            @"title":@"小视频(7)",                            @"rid":@"QHVC_Demo_video7",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9lMzEwMDNjOTUxZjJhOWNlNDNkNmUzZjg5MjVkNDcyZS5tcDQ%3D",
                             @"imageUrl":@"http://p1.qhimg.com/d/inn/17bc0a81/img_7.png",
                             @"playCount":@"2.3万",
                             @"totalTime":@"00:09"
                             },
                         @{
-                            @"rid":@"QHVC_Demo_video8",
+                            @"title":@"小视频(8)",                            @"rid":@"QHVC_Demo_video8",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNy84NTRkOGVmN2RjM2FlMGMzMTA0YTZhZmMwODAzZTZjMi5tcDQ%3D",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/17bc0a81/img_8.png",
                             @"playCount":@"2.8万",
                             @"totalTime":@"00:15"
                             },
                         @{
-                            @"rid":@"QHVC_Demo_video9",
+                            @"title":@"小视频(9)",                            @"rid":@"QHVC_Demo_video9",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi8yZjI3MWMzNDAxNWE1MThiNDdkNzBiN2U0MmY4ZWNkNC5tcDQ%3D",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/17bc0a81/img_9.png",
                             @"playCount":@"2.7万",
                             @"totalTime":@"00:15"
                             },
                         @{
+                            @"title":@"小视频(10)",
                             @"rid":@"QHVC_Demo_video10",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9kODAyMmVmZTNlNGVhMjFlMjE2NDZhMWVlMjNiMmIwZi5tcDQ%3D",
                             @"imageUrl":@"http://p0.qhimg.com/d/inn/17bc0a81/img_10.png",
@@ -650,6 +674,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(11)",
                             @"rid":@"QHVC_Demo_video11",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi84YjAwYmZjZDA4YTFhN2VkN2VmZmRiYWQ5M2YyMWY3YS5tcDQ%3D",
                             @"imageUrl":@"http://p5.qhimg.com/d/inn/cea3d896/img_11.png",
@@ -657,6 +682,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(12)",
                             @"rid":@"QHVC_Demo_video12",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi83OWM5ZTk4ZGUxZjM2OTMwZGJmMDgxZDNjNDk5ODNkYS5tcDQ%3D",
                             @"imageUrl":@"http://p1.qhimg.com/d/inn/cea3d896/img_12.png",
@@ -664,6 +690,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(13)",
                             @"rid":@"QHVC_Demo_video13",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9iMWFhMzNiYmZiNDYyNDJlN2QyZjMyZGFkMTE0ZjViYi5tcDQ%3D",
                             @"imageUrl":@"http://p3.qhimg.com/d/inn/cea3d896/img_13.png",
@@ -671,6 +698,7 @@
                             @"totalTime":@"00:15"
                             },
                         @{
+                            @"title":@"小视频(14)",
                             @"rid":@"QHVC_Demo_video14",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9iMDIyNzhkM2M0ZGU1NzBmNjZjZGYxMDViZGNlYmFmMC5tcDQ%3D",
                             @"imageUrl":@"http://p1.qhimg.com/d/inn/cea3d896/img_14.png",
@@ -678,6 +706,7 @@
                             @"totalTime":@"00:08"
                             },
                         @{
+                            @"title":@"小视频(15)",
                             @"rid":@"QHVC_Demo_video15",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9kYjc3MzZlYmExMTJkODI4OWQ4OWUzYjhjZmY0MGQ2My5tcDQ%3D",
                             @"imageUrl":@"http://p7.qhimg.com/d/inn/cea3d896/img_15.png",
@@ -685,6 +714,7 @@
                             @"totalTime":@"00:15"
                             },
                         @{
+                            @"title":@"小视频(16)",
                             @"rid":@"QHVC_Demo_video16",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9iMGJlMmNmNThiZWEyYTIzODc0NDQxNWJkMGE2NzEwNS5tcDQ%3D",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/b2a8f96f/img_16.png",
@@ -692,6 +722,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(17)",
                             @"rid":@"QHVC_Demo_video17",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9lYWI5ZTcxOGI2ZjZmMzQyMTA1M2YwZDg4MDZkZmE5Ni5tcDQ%3D",
                             @"imageUrl":@"http://p2.qhimg.com/d/inn/b2a8f96f/img_17.png",
@@ -699,6 +730,7 @@
                             @"totalTime":@"00:15"
                             },
                         @{
+                            @"title":@"小视频(18)",
                             @"rid":@"QHVC_Demo_video18",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi84ZWZlYzNlZjE3ZWFkNzBhYjZkOWJlZmMzY2Q4YmE2Ni5tcDQ%3D",
                             @"imageUrl":@"http://p9.qhimg.com/d/inn/b2a8f96f/img_18.png",
@@ -706,6 +738,7 @@
                             @"totalTime":@"00:15"
                             },
                         @{
+                            @"title":@"小视频(19)",
                             @"rid":@"QHVC_Demo_video19",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi80MDE4MjA1ODIyZjU0ZjRjYjBiNzIzNTk3YTM1ZWMxNC5tcDQ%3D",
                             @"imageUrl":@"http://p5.qhimg.com/d/inn/b2a8f96f/img_19.png",
@@ -713,6 +746,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(20)",
                             @"rid":@"QHVC_Demo_video20",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi8zMjhjZDliM2Y3OGU0NGIyYThkNjJmMGMyMjQ3OTc0Yy5tcDQ%3D",
                             @"imageUrl":@"http://p0.qhimg.com/d/inn/b2a8f96f/img_20.png",
@@ -720,6 +754,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(21)",
                             @"rid":@"QHVC_Demo_video21",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi9lNGEyYjdjOGU0ZGYxZTIzNDdjYjVjMmMxNWRkMjU2NS5tcDQ%3D",
                             @"imageUrl":@"http://p6.qhimg.com/d/inn/b2a8f96f/img_21.png",
@@ -727,6 +762,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(22)",
                             @"rid":@"QHVC_Demo_video22",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi85OTE0N2NkYmIxYTg2ZmI4ZGExNWExZTQ2NjA0MzI1Zi5tcDQ%3D",
                             @"imageUrl":@"http://p0.qhimg.com/d/inn/b2a8f96f/img_22.png",
@@ -734,6 +770,7 @@
                             @"totalTime":@"00:14"
                             },
                         @{
+                            @"title":@"小视频(23)",
                             @"rid":@"QHVC_Demo_video23",
                             @"playUrl":@"http://tf.play.360kan.com/Object.access/toffee-source-src/L3JlbC92aWRlby9lbi8yMDE3MDYwNi80YjA3Njc0ZWFkMWExYjY2MzU5NGJmYTM4MDZmMmM4NC5tcDQ%3D",
                             @"imageUrl":@"http://p4.qhimg.com/d/inn/b2a8f96f/img_23.png",

@@ -251,7 +251,7 @@ typedef struct
  */
 static __inline const char *transport_version(void)
 {
-    return "1.0.6.11";
+    return "1.0.6.14";
 }
 
 #ifdef __cplusplus

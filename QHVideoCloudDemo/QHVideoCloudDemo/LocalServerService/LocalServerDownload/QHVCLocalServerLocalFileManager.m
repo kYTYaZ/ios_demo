@@ -33,6 +33,7 @@ static NSString *fileListKey = @"fileList";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:array forKey:fileListKey];
+    [defaults setObject:[dic valueForKey:@"rid"] forKey:[dic valueForKey:@"rid"]];
     
     [defaults synchronize];
 }
@@ -57,9 +58,11 @@ static NSString *fileListKey = @"fileList";
         [fileManager removeItemAtPath:path error:nil];
     }
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults removeObjectForKey:[array[index] valueForKey:@"rid"]];
     [array removeObjectAtIndex:index];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:array forKey:fileListKey];
     
     [defaults synchronize];
@@ -72,6 +75,17 @@ static NSString *fileListKey = @"fileList";
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager fileExistsAtPath:path];
+}
+
+- (BOOL)downloadCompleted:(NSString *)rid
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL flag = NO;
+    if ([defaults objectForKey:rid])
+    {
+        flag = YES;
+    }
+    return flag;
 }
 
 @end

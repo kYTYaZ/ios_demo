@@ -22,7 +22,6 @@
     BOOL isFullScreen;
     NSInteger currentPlayIndex;
     UIButton *settingButton;
-    QHVCHUDManager *hudManager;
    
     QHVCPlayer *_player;
     UIView *_playerView;
@@ -34,6 +33,7 @@
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) QHVCLocalServerPlayerView *currrentPlayerView;
 @property (nonatomic, strong) NSMutableArray *preloadArray;
+@property (nonatomic, strong) QHVCHUDManager *hudManager;
 
 @end
 
@@ -75,6 +75,7 @@
 {
     [_player closeNetStats];
     [_player stop];
+    _player = nil;
     currentPlayIndex = -1;
     [_currrentPlayerView unCurrentStyle];
     [_currrentPlayerView stop];
@@ -90,7 +91,7 @@
     // Do any additional setup after loading the view.
     [self startNotify];
     [self startSetting];
-    hudManager = [QHVCHUDManager new];
+    _hudManager = [QHVCHUDManager new];
     defaultPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"downloadVideo"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:defaultPath])
@@ -99,6 +100,10 @@
     }
     [[QHVCLocalServerKit sharedInstance] setLogLevel:QHVC_LOCALSERVER_LOG_LEVEL_INFO detailInfo:0 callback:^(const char *buf, size_t buf_size) {
         NSLog(@"-----:%@", [NSString stringWithUTF8String:buf]);
+    }];
+    __weak typeof(self) weakSelf = self;
+    [[QHVCLocalServerDownloadManager sharedInstance] msgCallBack:^(NSString *msg) {
+        [weakSelf.hudManager showTextOnlyAlertViewOnView:weakSelf.view message:msg hideFlag:YES];
     }];
 }
 
@@ -271,7 +276,7 @@
 {
     if (currentPlayIndex == _dataSource.count - 1)
     {
-        [hudManager showTextOnlyAlertViewOnView:self.view message:@"已经是最后一个" hideFlag:YES];
+        [_hudManager showTextOnlyAlertViewOnView:self.view message:@"已经是最后一个" hideFlag:YES];
         return;
     }
     [self changeItem:@(1)];
@@ -281,7 +286,7 @@
 {
     if (currentPlayIndex == 0)
     {
-        [hudManager showTextOnlyAlertViewOnView:self.view message:@"已经是第一个" hideFlag:YES];
+        [_hudManager showTextOnlyAlertViewOnView:self.view message:@"已经是第一个" hideFlag:YES];
         return;
     }
     [self changeItem:@(-1)];
@@ -386,7 +391,7 @@
  */
 - (void)onPlayerFirstFrameRender:(NSDictionary *)mediaInfo player:(QHVCPlayer *)player
 {
-    
+    [_tableView reloadData];
 }
 
 /**
@@ -476,7 +481,7 @@
  */
 - (void)onPlayerInfo:(QHVCPlayerStatus)info extra:(NSString *)extraInfo player:(QHVCPlayer *)player
 {
-    [_tableView reloadData];
+    [_currrentPlayerView setPlayStatus:extraInfo];
 }
 
 - (void)onPlayerSwitchResolutionSuccess:(int)index player:(QHVCPlayer *)player
@@ -486,7 +491,7 @@
 
 - (void)onPlayerSwitchResolutionFailed:(NSString *)errorMsg player:(QHVCPlayer *)player
 {
-    [hudManager showTextOnlyAlertViewOnView:_playerView message:[NSString stringWithFormat:@"切换分辨率失败:%@", errorMsg] hideFlag:YES];
+    [_hudManager showTextOnlyAlertViewOnView:_playerView message:[NSString stringWithFormat:@"切换分辨率失败:%@", errorMsg] hideFlag:YES];
 }
 
 #pragma mark TableViewDelegate

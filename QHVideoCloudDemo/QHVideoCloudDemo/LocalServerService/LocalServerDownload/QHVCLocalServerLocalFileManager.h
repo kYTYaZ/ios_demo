@@ -17,5 +17,6 @@
 - (void)deleteFile:(NSUInteger)index;
 
 - (BOOL)fileExitAtFilePath:(NSString *)path;
+- (BOOL)downloadCompleted:(NSString *)rid;
 
 @end

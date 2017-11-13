@@ -163,6 +163,20 @@
     [self playPauseButtonAction:playPauseButton];
 }
 
+- (void)setPlayStatus:(NSString *)playing
+{
+    if ([playing isEqualToString:@"play"])
+    {
+        playPauseButton.selected = YES;
+        frontButton.selected = YES;
+    }
+    else if ([playing isEqualToString:@"pause"])
+    {
+        playPauseButton.selected = NO;
+        frontButton.selected = NO;
+    }
+}
+
 - (void)stop
 {
     

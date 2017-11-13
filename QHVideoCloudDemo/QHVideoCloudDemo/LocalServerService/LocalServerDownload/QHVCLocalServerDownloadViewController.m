@@ -15,9 +15,8 @@
 @interface QHVCLocalServerDownloadViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSArray *sectionTitleArray;
-
+@property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSMutableArray *cacheArray;
 
 @end

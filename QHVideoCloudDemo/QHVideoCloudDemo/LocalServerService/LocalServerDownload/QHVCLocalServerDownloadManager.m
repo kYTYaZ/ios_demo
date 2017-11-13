@@ -14,6 +14,7 @@
 {
     ReloadBlock reloadBlock;
     ReloadTable reloadTable;
+    MsgBlock msgBlock;
 }
 
 @property (nonatomic, strong) NSMutableArray *tasksArray;
@@ -49,18 +50,40 @@
 
 - (void)startDownload:(NSString *)rid url:(NSString *)url path:(NSString *)path title:(NSString *)title
 {
-    if (![_indexArray containsObject:@"rid"])
+    if (![self isContainObject:_indexArray object:rid])
     {
+        if ([[QHVCLocalServerLocalFileManager sharedInstance] fileExitAtFilePath:path] && [[QHVCLocalServerLocalFileManager sharedInstance] downloadCompleted:rid])
+        {
+            if (msgBlock)
+            {
+                msgBlock(@"文件已存在");
+            }
+            return;
+        }
+        
         [_indexArray addObject:rid];
         
         NSMutableDictionary *temp = [NSMutableDictionary new];
         [temp setObject:title forKey:@"title"];
         [temp setObject:@"0" forKey:@"progress"];
         [temp setObject:@"" forKey:@"completeScale"];
+        [temp setObject:rid forKey:@"rid"];
         
         [_tasksArray addObject:temp];
         
         [[QHVCLocalServerKit sharedInstance] cachePersistence:rid url:url path:path];
+        
+        if (msgBlock)
+        {
+            msgBlock(@"加入下载队列");
+        }
+    }
+    else
+    {
+        if (msgBlock)
+        {
+            msgBlock(@"已经在下载队列中");
+        }
     }
 }
 
@@ -106,6 +129,11 @@
     reloadTable = block;
 }
 
+- (void)msgCallBack:(MsgBlock)block
+{
+    msgBlock = block;
+}
+
 - (NSUInteger)realIndex:(NSString *)rid
 {
     int i = 0;
@@ -120,6 +148,17 @@
     return i;
 }
 
+- (BOOL)isContainObject:(NSArray *)data object:(NSString *)string
+{
+    for (NSString *obj in data)
+    {
+        if (obj == string)
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 #pragma mark QHVCLocalServerDownloadDelegate
 - (void)onStart:(NSString *)rid
 {

@@ -10,6 +10,7 @@
 
 typedef void(^ReloadBlock)(NSUInteger index);
 typedef void(^ReloadTable)(NSUInteger index);
+typedef void(^MsgBlock)(NSString *msg);
 
 @interface QHVCLocalServerDownloadManager : NSObject
 
@@ -24,5 +25,6 @@ typedef void(^ReloadTable)(NSUInteger index);
 
 - (void)reloadData:(ReloadBlock)block;//刷新单条回调
 - (void)reloadTable:(ReloadTable)block;//刷新表单回调
+- (void)msgCallBack:(MsgBlock)block;//状态回调
 
 @end

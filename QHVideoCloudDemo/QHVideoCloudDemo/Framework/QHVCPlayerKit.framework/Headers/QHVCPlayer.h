@@ -27,6 +27,16 @@ typedef NS_ENUM(NSInteger, QHVCStreamType)
 };
 
 /**
+ 播放器渲染模式
+ */
+typedef NS_ENUM(NSInteger, QHVCPlayerRenderMode)
+{
+    QHVCPlayerRenderModeIn   = 0,//默认，窗口内缩放，不填充屏幕
+    QHVCPlayerRenderModeOut  = 1,//填充整个屏幕，可能丢失显示内容，但不会变形
+    QHVCPlayerRenderModeFull = 2,//全屏显示，可能会变形
+};
+
+/**
  定义播放器错误信息
  */
 typedef NS_ENUM(NSInteger, QHVCPlayerError)
@@ -252,6 +262,12 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
                                   playType:(QHVCPlayType)playType
                                    options:(NSDictionary *_Nullable)options;
 
+/**
+ 设置播放器填充模式
+
+ @param mode 默认，窗口内缩放，不填充屏幕
+ */
+- (void)setRenderMode:(QHVCPlayerRenderMode)mode;
 
 /**
  切换码率

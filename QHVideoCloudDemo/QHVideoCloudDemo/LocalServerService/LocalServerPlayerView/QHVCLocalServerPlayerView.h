@@ -45,6 +45,7 @@
 - (void)showNoNetwork;
 
 - (void)setItemDetail:(NSDictionary *)item;
+- (void)setPlayStatus:(NSString *)playing;
 
 
 @end

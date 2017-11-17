@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define QHVCUPLOAD_DEPRECATED               __attribute__((deprecated))
+
 typedef NS_ENUM(NSInteger, QHVCUploadTaskType) {
     QHVCUploadTaskTypeUnknow = 0,
     QHVCUploadTaskTypeForm,//表单
@@ -118,29 +120,42 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setUploadDomain:(NSString *)domain;
 
 //统计相关，请正确设置，利于排查线上问题，在上传前设置
-/**
- *  @功能 用户id
- *  @参数 userId  第三方用户id
- */
-+ (void)setUserId:(NSString *)userId;
 
 /**
- *  @功能 设置第三方渠道号
+ *  @功能 设置统计信息
+ *  @参数 info 
+ @{@"businessId":@"",
+ @"channelId":@"",
+ @"userId":@"",
+ @"deviceId":@"",
+ @"appVersion":@""
+ };
+ */
++ (void)setStatisticsInfo:(NSDictionary *)info;
+
+/**
+ *  @功能 用户id    setStatisticsInfo代替
+ *  @参数 userId  第三方用户id
+ */
++ (void)setUserId:(NSString *)userId QHVCUPLOAD_DEPRECATED;
+
+/**
+ *  @功能 设置第三方渠道号    setStatisticsInfo代替
  *  @参数 channelId   渠道号
  */
 
-+ (void)setChannelId:(NSString *)channelId;
++ (void)setChannelId:(NSString *)channelId QHVCUPLOAD_DEPRECATED;
 /**
- *  @功能 设置第三方业务版本号
+ *  @功能 设置第三方业务版本号  setStatisticsInfo代替
  *  @参数 appVersion   版本号
  */
-+ (void)setAppVersion:(NSString *)appVersion;
++ (void)setAppVersion:(NSString *)appVersion QHVCUPLOAD_DEPRECATED;
 
 /**
- *  @功能 设置设备id
+ *  @功能 设置设备id  setStatisticsInfo代替
  *  @参数 deviceId   设备id
  */
-+ (void)setDeviceId:(NSString *)deviceId;
++ (void)setDeviceId:(NSString *)deviceId QHVCUPLOAD_DEPRECATED;
 
 /**
  * 开启日志（debug阶段辅助开发调试，根据实际情况使用）

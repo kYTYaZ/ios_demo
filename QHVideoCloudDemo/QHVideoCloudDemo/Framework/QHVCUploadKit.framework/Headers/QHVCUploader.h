@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define QHVCUPLOAD_DEPRECATED               __attribute__((deprecated))
-
 typedef NS_ENUM(NSInteger, QHVCUploadTaskType) {
     QHVCUploadTaskTypeUnknow = 0,
     QHVCUploadTaskTypeForm,//表单
@@ -88,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @参数 filePath 待上传文件本地路径
  *  @参数 data    待上传内存数据
  *  @参数 fileName    本地文件/内存数据上传到服务器后的文件名
- *  @参数 token 表单/分片任务计算规则略有差别
+ *  @参数 token 表单/分片任务计算规则略有差别 在服务器计算
  */
 - (void)uploadFile:(NSString *)filePath fileName:(NSString *)fileName token:(NSString *)token;
 - (void)uploadData:(NSData *)data fileName:(NSString *)fileName token:(NSString *)token;
@@ -137,25 +135,25 @@ NS_ASSUME_NONNULL_BEGIN
  *  @功能 用户id    setStatisticsInfo代替
  *  @参数 userId  第三方用户id
  */
-+ (void)setUserId:(NSString *)userId QHVCUPLOAD_DEPRECATED;
++ (void)setUserId:(NSString *)userId DEPRECATED_ATTRIBUTE;
 
 /**
  *  @功能 设置第三方渠道号    setStatisticsInfo代替
  *  @参数 channelId   渠道号
  */
 
-+ (void)setChannelId:(NSString *)channelId QHVCUPLOAD_DEPRECATED;
++ (void)setChannelId:(NSString *)channelId DEPRECATED_ATTRIBUTE;
 /**
  *  @功能 设置第三方业务版本号  setStatisticsInfo代替
  *  @参数 appVersion   版本号
  */
-+ (void)setAppVersion:(NSString *)appVersion QHVCUPLOAD_DEPRECATED;
++ (void)setAppVersion:(NSString *)appVersion DEPRECATED_ATTRIBUTE;
 
 /**
  *  @功能 设置设备id  setStatisticsInfo代替
  *  @参数 deviceId   设备id
  */
-+ (void)setDeviceId:(NSString *)deviceId QHVCUPLOAD_DEPRECATED;
++ (void)setDeviceId:(NSString *)deviceId DEPRECATED_ATTRIBUTE;
 
 /**
  * 开启日志（debug阶段辅助开发调试，根据实际情况使用）

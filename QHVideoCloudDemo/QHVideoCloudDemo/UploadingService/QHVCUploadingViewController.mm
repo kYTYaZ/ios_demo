@@ -44,11 +44,14 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
     _dataArray = [NSMutableArray arrayWithContentsOfFile:path];
     
     //设置有效的业务相关id
-    [QHVCUploader setUserId:@"110"];
-    [QHVCUploader setChannelId:@"demo_1"];
-    [QHVCUploader setDeviceId:@"0123456789"];
-    [QHVCUploader setAppVersion:@"3.0.0"];
-
+    [QHVCUploader setStatisticsInfo:@{@"businessId":@"demo",
+                                      @"channelId":@"demo_1",
+                                      @"userId":@"110",
+                                      @"deviceId":@"0123456789",
+                                      @"appVersion":@"3.0.0"
+                                      }];
+    NSLog(@"sdk ver %@",[QHVCUploader sdkVersion]);
+    
     //debug阶段辅助开发调试，根据实际情况使用
 //    [QHVCUploader openLogWithLevel:QHVCUploadLogLevelDebug];
 //    [QHVCUploader setLogOutputCallBack:^(int loggerID, QHVCUploadLogLevel level, const char * _Nonnull data) {
@@ -154,13 +157,17 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
     QHVCUploadTaskType type = [_uploader uploadTaskType:size];
     if (type == QHVCUploadTaskTypeParallel) {
         NSInteger num = [_uploader parallelQueueNum];
-        NSString *token = [self generateParallelTaskToken:num filesize:size fileName:[filePath lastPathComponent]];
+        NSString *token = [self generateParallelTaskToken:num filesize:size fileName:[filePath lastPathComponent]];//token在服务器计算（此处仅供demo层模拟）
         [_uploader uploadFile:filePath fileName:[filePath lastPathComponent] token:token];
     }
     else if(type == QHVCUploadTaskTypeForm)
     {
         NSString *token = [self generateFormTaskToken:[filePath lastPathComponent]];//filename 唯一
         [_uploader uploadFile:filePath fileName:[filePath lastPathComponent] token:token];
+    }
+    else
+    {
+        NSLog(@"Invalid file");
     }
 }
 
@@ -265,7 +272,8 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
             if (status == QHVCUploadStatusUploadSucceed) {
                 [self showFinishView:YES];
             }
-            else if (status == QHVCUploadStatusUploadFail)
+            else if (status == QHVCUploadStatusUploadFail||
+                     status == QHVCUploadStatusUploadError)
             {
                 [self showFinishView:NO];
             }

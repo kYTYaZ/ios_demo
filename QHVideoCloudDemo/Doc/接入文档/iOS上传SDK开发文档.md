@@ -111,28 +111,16 @@
 ```
 //统计相关，请正确设置，利于排查线上问题，在上传前设置
 /**
- *  @功能 用户id
- *  @参数 userId  第三方用户id
+ *  @功能 设置统计信息
+ *  @参数 info 
+ @{@"businessId":@"",
+ @"channelId":@"",
+ @"userId":@"",
+ @"deviceId":@"",
+ @"appVersion":@""
+ };
  */
-+ (void)setUserId:(NSString *)userId;
-
-/**
- *  @功能 设置第三方渠道号
- *  @参数 channelId   渠道号
- */
-
-+ (void)setChannelId:(NSString *)channelId;
-/**
- *  @功能 设置第三方业务版本号
- *  @参数 appVersion   版本号
- */
-+ (void)setAppVersion:(NSString *)appVersion;
-
-/**
- *  @功能 设置设备id
- *  @参数 deviceId   设备id
- */
-+ (void)setDeviceId:(NSString *)deviceId;
++ (void)setStatisticsInfo:(NSDictionary *)info;
 ```
 ###回调
 ```

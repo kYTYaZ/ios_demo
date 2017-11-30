@@ -223,6 +223,6 @@ typedef struct
  * @return 0:成功  onInfo回调收到{@link ILiveCloudPlayer.Info.PLAYER_MSG_RECORD_SUCCESS}消息时，视频保存成功<br>
  *        <0: 失败
  */
-- (int)stopRecorde;
+- (int)stopRecorder;
 
 @end

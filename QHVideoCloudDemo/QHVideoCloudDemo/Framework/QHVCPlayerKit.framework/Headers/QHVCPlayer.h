@@ -320,7 +320,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 
 /**
  播放过程中改变进度操作,直播场景无效
- *  @param positionByMS 点播视频位置，单位毫秒(millisecond)
+ *  @param positionByMS 点播视频位置，单位秒(millisecond)
  *  @return 成功：YES，失败：NO
  */
 - (BOOL)seekTo:(NSTimeInterval)positionByMS;
@@ -328,14 +328,14 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 /**
  点播视频当前播放时间
 
- @return 点播视频场景下获取当前播放时间，单位毫秒
+ @return 点播视频场景下获取当前播放时间，单位秒
  */
 - (NSTimeInterval)getCurrentPosition;
 
 /**
  点播视频总时长
 
- @return 点播视频总时长，直播时调用无效，单位毫秒
+ @return 点播视频总时长，直播时调用无效，单位秒
  */
 - (NSTimeInterval)getDuration;
 
@@ -344,7 +344,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  
  @return <0失败， >0成功
  */
-- (long)getDownloadProgress;
+- (double)getDownloadProgress;
 
 /**
  设置音量

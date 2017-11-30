@@ -831,7 +831,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 - (void)stopRecord
 {
     isRecording = NO;
-    [_player stopRecorde];
+    [_player stopRecorder];
     [recordButton setTitle:@"录制" forState: UIControlStateNormal];
     [recordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

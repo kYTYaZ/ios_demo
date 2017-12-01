@@ -285,6 +285,13 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (void)setAutomaticallySwitchResolution:(BOOL)isAutomatically;
 
 /**
+ 创建播放器渲染playerView
+
+ @return playerView
+ */
+- (UIView *_Nonnull)createPlayerViewWithFrame:(CGRect)frame;
+
+/**
  创建播放器渲染playerView(add在传入的view上)
 
  @param view playerView
@@ -361,6 +368,10 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (float)getVolume;
 
+- (void)setMute:(BOOL)mute;
+
+- (BOOL)isMute;
+
 /**
  设置日志级别
 
@@ -374,5 +385,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param logOutput 接收日志block
  */
 + (void)setLogOutputBlock:(void (^_Nonnull)(int loggerID, QHVCPlayerLogLevel level, const char * _Nonnull data))logOutput;
+
++ (NSString *_Nonnull)getVersion;
 
 @end

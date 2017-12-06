@@ -224,7 +224,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
  */
 - (void)onPlayerFirstFrameRender:(NSDictionary *)mediaInfo player:(QHVCPlayer *)player
 {
-    NSString *version = [NSString stringWithUTF8String:(char *)QHVCPlayerKitVersionString];//版本号
+    NSString *version = [QHVCPlayer getVersion];//版本号
     NSString *url = testUrl;//播放url
     NSString *resolution = [NSString stringWithFormat:@"%@*%@", [mediaInfo valueForKey:@"width"], [mediaInfo valueForKey:@"height"]];//分辨率
     NSString *bitRate = [mediaInfo valueForKey:@"bitrate"];//码率
@@ -347,7 +347,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 {
     if (isTableViewSlide)
         return;
-    NSString *version = [NSString stringWithUTF8String:(char *)QHVCPlayerKitVersionString];//版本号
+    NSString *version = [QHVCPlayer getVersion];//版本号
     NSString *url = testUrl;//播放url
     NSString *resolution = [NSString stringWithFormat:@"%@*%@", [mediaInfo valueForKey:@"width"], [mediaInfo valueForKey:@"height"]];//码率
     NSString *bitRate = [NSString stringWithFormat:@"%ld", _bitrate];//码率

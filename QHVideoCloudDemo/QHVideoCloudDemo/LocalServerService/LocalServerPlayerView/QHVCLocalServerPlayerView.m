@@ -9,7 +9,7 @@
 #import "QHVCLocalServerPlayerView.h"
 #import "QHVCHUDManager.h"
 #import "QHVCSlider.h"
-#import <QHVCPlayerKit/QHVCPlayer+Advance.h>
+#import <QHVCPlayerKit/QHVCPlayerKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QHVCLocalServerKit/QHVCLocalServerKit.h>
 
@@ -314,7 +314,7 @@
             fileTotalSize = totalSize;
         }];
     }
-    double download = [_player getDownloadProgress]/1000.0;
+    double download = [_player getDownloadProgress];
     NSString *rid = [currentItem valueForKey:@"rid"];
     NSString *url = [currentItem valueForKey:@"playUrl"];
     long long pro = [[QHVCLocalServerKit sharedInstance] getFileAvailedSize:rid url:url  offset:[_player getCurrentPosition] * fileTotalSize/[_player getDuration]];
@@ -531,7 +531,7 @@
             fileTotalSize = totalSize;
         }];
     }
-    double download = [_player getDownloadProgress]/1000.0;
+    double download = [_player getDownloadProgress];
     if (fileTotalSize != 0)
     {
         NSString *rid = [currentItem valueForKey:@"rid"];

@@ -11,7 +11,7 @@
 #import "QHVCLocalServerPlayerView.h"
 #import "QHVCHUDManager.h"
 #import "AppDelegate.h"
-#import <QHVCPlayerKit/QHVCPlayer+Advance.h>
+#import <QHVCPlayerKit/QHVCPlayerKit.h>
 #import <QHVCLocalServerKit/QHVCLocalServerKit.h>
 #import "QHVCLocalServerSettingViewController.h"
 #import "AFNetworkReachabilityManager.h"
@@ -34,6 +34,7 @@
 @property (nonatomic, strong) QHVCLocalServerPlayerView *currrentPlayerView;
 @property (nonatomic, strong) NSMutableArray *preloadArray;
 @property (nonatomic, strong) QHVCHUDManager *hudManager;
+@property (nonatomic, assign) BOOL hasNet;
 
 @end
 
@@ -98,7 +99,7 @@
     {
         [fileManager createDirectoryAtPath:defaultPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    [[QHVCLocalServerKit sharedInstance] setLogLevel:QHVC_LOCALSERVER_LOG_LEVEL_INFO detailInfo:0 callback:^(const char *buf, size_t buf_size) {
+    [[QHVCLocalServerKit sharedInstance] setLogLevel:QHVC_LOCALSERVER_LOG_LEVEL_DEBUG detailInfo:0 callback:^(const char *buf, size_t buf_size) {
         NSLog(@"-----:%@", [NSString stringWithUTF8String:buf]);
     }];
     __weak typeof(self) weakSelf = self;
@@ -128,21 +129,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignAction:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     __weak typeof(self) weakSelf = self;
+    
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusUnknown:
                 NSLog(@"未知网络");
+                weakSelf.hasNet = NO;
                 break;
             case AFNetworkReachabilityStatusNotReachable:
                 NSLog(@"没有网络");
                 [weakSelf.currrentPlayerView showNoNetwork];
+                weakSelf.hasNet = NO;
                 break;
             case AFNetworkReachabilityStatusReachableViaWWAN:
                 NSLog(@"移动网络");
+                weakSelf.hasNet = YES;
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi:
                 NSLog(@"WIFI");
+                weakSelf.hasNet = YES;
                 break;
         }
     }];
@@ -294,6 +300,11 @@
 
 - (void)download:(NSInteger)index
 {
+    if (!_hasNet)
+    {
+        [_hudManager showTextOnlyAlertViewOnView:self.view message:@"无网状态下无法下载" hideFlag:YES];
+        return;
+    }
     NSDictionary *item = _dataSource[index];
     NSString *title = [item valueForKey:@"title"];
     NSString *rid = [item valueForKey:@"rid"];
@@ -583,7 +594,11 @@
 
 - (void)becomeActive:(NSNotification *)notification
 {
-    
+    [_tableView reloadData];
+    if (currentPlayIndex >= 0 && isFullScreen)
+    {
+        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayIndex inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -796,7 +811,6 @@
 {
     [settingButton removeFromSuperview];
     [self cancelPreload];
-    [[QHVCLocalServerKit sharedInstance] stopServer];
     NSLog(@"%s", __FUNCTION__);
 }
 

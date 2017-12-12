@@ -199,6 +199,13 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (void)onPlayerAnchorInBackground:(QHVCPlayer *_Nonnull)player;
 
+/**
+ 系统音量回调
+
+ @param volume 系统音量
+ */
+- (void)onPlayerSystemVolume:(float)volume;
+
 @end
 
 @interface QHVCPlayer : NSObject
@@ -227,6 +234,21 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
                                userId:(NSString * _Nullable)userId//内部默认值
                              playType:(QHVCPlayType)playType;
 
+
+/**
+ 通知栏辅助进程初始化播放器
+ 
+ @param URL 需要播放到URL
+ @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
+ @param userId 用户ID，用户标识，唯一标识（需要详细说明）
+ @param playType 播放类型，直播、点播、本地
+ @return 成功：播放器对象, 失败：nil
+ */
+- (QHVCPlayer * _Nullable)initWithAssistProcessURL:(NSURL * _Nonnull)URL
+                                         channelId:(NSString * _Nullable)channelId//内部默认值
+                                            userId:(NSString * _Nullable)userId//内部默认值
+                                          playType:(QHVCPlayType)playType;
+
 /**
  初始化播放器(若需要设置解码类型、流类型用如下初始化接口，更多设置请用Advance内部初始化接口)
  
@@ -234,7 +256,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"QHVCStreamType",@"hardDecode":@"boolValue"}
+ @param options @{@"streamType":@"QHVCStreamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithURL:(NSURL * _Nonnull)URL
@@ -252,7 +274,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"QHVCStreamType",@"bUseHW":@"boolValue"}
+ @param options @{@"streamType":@"QHVCStreamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray<NSURL *> *_Nullable)urlArray
@@ -354,6 +376,20 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (double)getDownloadProgress;
 
 /**
+ 回调系统音量
+
+ @param callback 是否回调
+ */
+- (void)setSystemVolumeCallback:(BOOL)callback;
+
+/**
+ 隐藏系统音量视图
+
+ @param hidden 是否隐藏
+ */
+- (void)setSystemVolumeViewHidden:(BOOL)hidden;
+
+/**
  设置音量
 
  @param volume 音量范围 0.0~1.0 （1.0最大）
@@ -368,9 +404,26 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (float)getVolume;
 
+/**
+ 设置静音
+
+ @param mute 是否静音
+ */
 - (void)setMute:(BOOL)mute;
 
+/**
+ 是否静音
+
+ @return yes or no
+ */
 - (BOOL)isMute;
+
+/**
+ 视频边缘模糊化
+
+ @param edgeBlur yes:打开 or no:关闭
+ */
+- (void)setEdgeBlur:(BOOL)edgeBlur;
 
 /**
  设置日志级别
@@ -386,6 +439,11 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 + (void)setLogOutputBlock:(void (^_Nonnull)(int loggerID, QHVCPlayerLogLevel level, const char * _Nonnull data))logOutput;
 
+/**
+ 版本号
+
+ @return 版本号
+ */
 + (NSString *_Nonnull)getVersion;
 
 @end

@@ -15,8 +15,6 @@
 #import "AFNetworkReachabilityManager.h"
 #import "QHVCHUDManager.h"
 
-#define NotificationLock CFSTR("com.apple.springboard.lockcomplete")
-
 static NSString * const APP_SIGN = @"";
 
 @interface QHVCPlayerViewController ()<QHVCPlayerDelegate, QHVCPlayerAdvanceDelegate, QHVCSliderDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
@@ -71,16 +69,6 @@ static NSString * const APP_SIGN = @"";
 @property (nonatomic, strong) NSArray *dataSource;
 
 @end
-
-static void screenLockStateChanged(CFNotificationCenterRef center,void* observer,CFStringRef name,const void* object,CFDictionaryRef userInfo)
-{
-    NSString* lockstate = (__bridge NSString*)name;
-    if ([lockstate isEqualToString:(__bridge  NSString*)NotificationLock])
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationWillResignActiveNotification object:nil];
-        NSLog(@"screen locked.");
-    }
-}
 
 @implementation QHVCPlayerViewController
 
@@ -164,18 +152,20 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     else
     {
         type = QHVCPlayTypeVod;
-        _player = [[QHVCPlayer alloc] initWithUrlArray:@[
-                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_63210ceb9d88b-5bab-4051-b6dc-a37669b4d5d5.mp4"],
-                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632084cad6efa-eb1f-41c0-a1f5-f2ea5000d75e.mp4"],
-                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4"]
-                                                         ]
-                                             playIndex:0 channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
+//        _player = [[QHVCPlayer alloc] initWithUrlArray:@[
+//                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_63210ceb9d88b-5bab-4051-b6dc-a37669b4d5d5.mp4"],
+//                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632084cad6efa-eb1f-41c0-a1f5-f2ea5000d75e.mp4"],
+//                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4"]
+//                                                         ]
+//                                             playIndex:0 channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
     }
-//    _player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:type];
+    _player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:type options:@{@"position":@(1)}];
     _player.playerDelegate = self;
     _player.playerAdvanceDelegate = self;
     playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.width * SCREEN_SCALE)];
     [_player createPlayerView:playerView];
+    [_player setSystemVolumeCallback:YES];
+    [_player setSystemVolumeViewHidden:YES];
     [_player prepare];
     resolutionIndex = 3;
     multipleRateIndex = 3;
@@ -184,7 +174,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 
 - (void)initLivePlayer
 {
-    _player = [[QHVCPlayer alloc] initWithSN:sn channelId:cid userId:nil uSign:[self generateSign:APP_SIGN] options:nil];
+    _player = [[QHVCPlayer alloc] initWithSN:sn channelId:cid userId:nil uSign:[self generateSign:APP_SIGN] options:@{@"previewDuration":@"3000",@"previewLoopCount":@"3"}];
     _player.playerDelegate = self;
     _player.playerAdvanceDelegate = self;
     playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.width * SCREEN_SCALE)];
@@ -205,6 +195,11 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     _downstreamTraffic = dvbps + dabps;
     _fps = fps;
     _bitrate = bitrate/1024;
+}
+
+- (void)onPlayerPreviewFinished:(QHVCPlayer *)player
+{
+    NSLog(@"previewFinished");
 }
 
 #pragma mark PlayerDelegate
@@ -259,8 +254,8 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 - (void)onPlayerFinish:(QHVCPlayer *)player
 {
     [_player seekTo:0];
-    [_player pause];
     playPauseButton.selected = NO;
+    [_player pause];
     if (topView.hidden)
     {
         [self hideTopBottomView:NO];
@@ -412,6 +407,11 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 - (void)onPlayerSwitchResolutionFailed:(NSString *)errorMsg player:(QHVCPlayer *)player
 {
     [hudManager showTextOnlyAlertViewOnView:playerView message:[NSString stringWithFormat:@"切换码率失败:%@", errorMsg] hideFlag:YES];
+}
+
+- (void)onPlayerSystemVolume:(float)volume
+{
+    NSLog(@"volume:%f", volume);
 }
 
 #pragma mark SliderDelegate
@@ -857,7 +857,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"mp4" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         path = [path stringByAppendingPathComponent:@"test.mp4"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MP4 recordConfig:NULL] == 0)
+        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MP4 recordConfig:NULL])
         {
             isRecording = YES;
             [button setTitle:@"结束" forState: UIControlStateNormal];
@@ -866,7 +866,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"mov" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         path = [path stringByAppendingPathComponent:@"test.mov"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MOV recordConfig:NULL] == 0)
+        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MOV recordConfig:NULL])
         {
             isRecording = YES;
             [button setTitle:@"结束" forState: UIControlStateNormal];
@@ -875,7 +875,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"gif" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         path = [path stringByAppendingPathComponent:@"test.gif"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_GIF recordConfig:NULL] == 0)
+        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_GIF recordConfig:NULL])
         {
             isRecording = YES;
             [button setTitle:@"结束" forState: UIControlStateNormal];
@@ -1064,7 +1064,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
 
 - (void)loadProgressTimerFire:(id)userinfo
 {
-    double download = [_player getDownloadProgress]/1000.0;
+    double download = [_player getDownloadProgress];
     double current = [_player getCurrentPosition];
     double total = [_player getDuration];
     if (download < 0 || total <= 0)
@@ -1153,7 +1153,7 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     NSString *minStr = [NSString stringWithFormat:@"%ld", (long)minute];
     if (minute < 10)
     {
-        minStr = [NSString stringWithFormat:@"0%ld", (long)minute];
+        minStr = [NSString stringWithFormat:@"0%ld", minute];
     }
     int second = (int)timeDuration % 60;
     formatedString = [NSString stringWithFormat:@"%@:%02d",minStr,second];
@@ -1207,9 +1207,8 @@ static void screenLockStateChanged(CFNotificationCenterRef center,void* observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignAction:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, screenLockStateChanged, NotificationLock, NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
     
-    [QHVCPlayer setLogLevel:QHVCPlayerLogLevelError];
+    [QHVCPlayer setLogLevel:QHVCPlayerLogLevelInfo];
     
     __weak typeof(self) weakSelf = self;
     __weak typeof(QHVCHUDManager) *weakHud = hudManager;

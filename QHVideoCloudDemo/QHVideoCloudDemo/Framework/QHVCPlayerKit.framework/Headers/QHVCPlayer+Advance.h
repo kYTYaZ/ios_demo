@@ -40,10 +40,10 @@ typedef struct
     int audio_bitrate;
     int samplerate;
     int channels;
-    
+    int fps;
+
     //for gif
     int sampleInterval;//源视频多长时间(ms)挑选一帧，默认0，全部帧
-    int fps;
 }QHVCRecordConfig;
 
 /**
@@ -89,6 +89,11 @@ typedef struct
  @param errorCode errorCode
  */
 - (void)onPlayerDecodingType:(QHVCPlayerDecodingType)decodingType sn:(NSString *_Nullable)sn errorCode:(int)errorCode player:(QHVCPlayer *_Nonnull)player;
+
+/**
+ 直播预览指定次数结束回调
+ */
+- (void)onPlayerPreviewFinished:(QHVCPlayer *_Nonnull)player;
 
 @end
 
@@ -143,6 +148,7 @@ typedef struct
  @"playMode", @QHVCPlayMode//设置播放器播放模式，流畅/低延时
  @"mute", @"boolValue"//开始播放的时候是否静音0/1
  @"previewDuration", @"NSString int"//视频预览时长(毫秒)
+ @"previewLoopCount", @"NSString int"//视频预览指定次数结束
  @"streamType", @"QHVCStreamType"//流类型
  }
  
@@ -213,16 +219,15 @@ typedef struct
  * @param filePath 录像存储路径（确保有读写权限）
  * @param recorderFormat 存储格式
  * @param config   配置
- * @return 0:成功  <0: 失败
+ * @return yes:成功  no: 失败
  */
-- (int)startRecorder:(NSString *_Nonnull)filePath recorderFormat:(QHVCRecorderFormat)recorderFormat recordConfig:(QHVCRecordConfig *_Nullable)config;
+- (BOOL)startRecorder:(NSString *_Nonnull)filePath recorderFormat:(QHVCRecorderFormat)recorderFormat recordConfig:(QHVCRecordConfig *_Nullable)config;
 
 /**
  * 结束录制(异步接口)
  *
- * @return 0:成功  onInfo回调收到{@link ILiveCloudPlayer.Info.PLAYER_MSG_RECORD_SUCCESS}消息时，视频保存成功<br>
- *        <0: 失败
+ * @return yes:成功  no: 失败
  */
-- (int)stopRecorder;
+- (BOOL)stopRecorder;
 
 @end

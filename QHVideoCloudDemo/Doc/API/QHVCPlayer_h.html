@@ -346,6 +346,16 @@ typedef NS_ENUM(NSInteger, QHVCStreamType)
 };
 
 /**
+ 播放器渲染模式
+ */
+typedef NS_ENUM(NSInteger, QHVCPlayerRenderMode)
+{
+    QHVCPlayerRenderModeIn   = 0,//默认，窗口内缩放，不填充屏幕
+    QHVCPlayerRenderModeOut  = 1,//填充整个屏幕，可能丢失显示内容，但不会变形
+    QHVCPlayerRenderModeFull = 2,//全屏显示，可能会变形
+};
+
+/**
  定义播放器错误信息
  */
 typedef NS_ENUM(NSInteger, QHVCPlayerError)
@@ -464,7 +474,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 /**
  测试用
 
- @param mediaInfo 视频详细参数(点播专用)
+ @param mediaInfo 视频详细参数
  */
 - (void)onplayerPlayingUpdatingMediaInfo:(NSDictionary *_Nullable)mediaInfo player:(QHVCPlayer *_Nonnull)player;
 
@@ -508,6 +518,13 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (void)onPlayerAnchorInBackground:(QHVCPlayer *_Nonnull)player;
 
+/**
+ 系统音量回调
+
+ @param volume 系统音量
+ */
+- (void)onPlayerSystemVolume:(float)volume;
+
 @end
 
 @interface QHVCPlayer : NSObject
@@ -536,6 +553,21 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
                                userId:(NSString * _Nullable)userId//内部默认值
                              playType:(QHVCPlayType)playType;
 
+
+/**
+ 通知栏辅助进程初始化播放器
+ 
+ @param URL 需要播放到URL
+ @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
+ @param userId 用户ID，用户标识，唯一标识（需要详细说明）
+ @param playType 播放类型，直播、点播、本地
+ @return 成功：播放器对象, 失败：nil
+ */
+- (QHVCPlayer * _Nullable)initWithAssistProcessURL:(NSURL * _Nonnull)URL
+                                         channelId:(NSString * _Nullable)channelId//内部默认值
+                                            userId:(NSString * _Nullable)userId//内部默认值
+                                          playType:(QHVCPlayType)playType;
+
 /**
  初始化播放器(若需要设置解码类型、流类型用如下初始化接口，更多设置请用Advance内部初始化接口)
  
@@ -543,7 +575,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;}
+ @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2PUpload&quot;:@&quot;boolValue&quot;}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithURL:(NSURL * _Nonnull)URL
@@ -561,7 +593,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;bUseHW&quot;:@&quot;boolValue&quot;}
+ @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2PUpload&quot;:@&quot;boolValue&quot;}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray&lt;NSURL *&gt; *_Nullable)urlArray
@@ -571,6 +603,12 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
                                   playType:(QHVCPlayType)playType
                                    options:(NSDictionary *_Nullable)options;
 
+/**
+ 设置播放器填充模式
+
+ @param mode 默认，窗口内缩放，不填充屏幕
+ */
+- (void)setRenderMode:(QHVCPlayerRenderMode)mode;
 
 /**
  切换码率
@@ -586,6 +624,13 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param isAutomatically yes or no
  */
 - (void)setAutomaticallySwitchResolution:(BOOL)isAutomatically;
+
+/**
+ 创建播放器渲染playerView
+
+ @return playerView
+ */
+- (UIView *_Nonnull)createPlayerViewWithFrame:(CGRect)frame;
 
 /**
  创建播放器渲染playerView(add在传入的view上)
@@ -623,7 +668,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 
 /**
  播放过程中改变进度操作,直播场景无效
- *  @param positionByMS 点播视频位置，单位毫秒(millisecond)
+ *  @param positionByMS 点播视频位置，单位秒(millisecond)
  *  @return 成功：YES，失败：NO
  */
 - (BOOL)seekTo:(NSTimeInterval)positionByMS;
@@ -631,14 +676,14 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 /**
  点播视频当前播放时间
 
- @return 点播视频场景下获取当前播放时间，单位毫秒
+ @return 点播视频场景下获取当前播放时间，单位秒
  */
 - (NSTimeInterval)getCurrentPosition;
 
 /**
  点播视频总时长
 
- @return 点播视频总时长，直播时调用无效，单位毫秒
+ @return 点播视频总时长，直播时调用无效，单位秒
  */
 - (NSTimeInterval)getDuration;
 
@@ -647,7 +692,21 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  
  @return &lt;0失败， &gt;0成功
  */
-- (long)getDownloadProgress;
+- (double)getDownloadProgress;
+
+/**
+ 回调系统音量
+
+ @param callback 是否回调
+ */
+- (void)setSystemVolumeCallback:(BOOL)callback;
+
+/**
+ 隐藏系统音量视图
+
+ @param hidden 是否隐藏
+ */
+- (void)setSystemVolumeViewHidden:(BOOL)hidden;
 
 /**
  设置音量
@@ -665,6 +724,27 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (float)getVolume;
 
 /**
+ 设置静音
+
+ @param mute 是否静音
+ */
+- (void)setMute:(BOOL)mute;
+
+/**
+ 是否静音
+
+ @return yes or no
+ */
+- (BOOL)isMute;
+
+/**
+ 视频边缘模糊化
+
+ @param edgeBlur yes:打开 or no:关闭
+ */
+- (void)setEdgeBlur:(BOOL)edgeBlur;
+
+/**
  设置日志级别
 
  @param level 日志级别
@@ -676,7 +756,14 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 
  @param logOutput 接收日志block
  */
-+ (void)setLogOutputBlock:(void (^_Nonnull)(int loggerID, QHVCPlayerLogLevel level, const char * _Nonnull data))logOutput;</code></pre></div>
++ (void)setLogOutputBlock:(void (^_Nonnull)(int loggerID, QHVCPlayerLogLevel level, const char * _Nonnull data))logOutput;
+
+/**
+ 版本号
+
+ @return 版本号
+ */
++ (NSString *_Nonnull)getVersion;</code></pre></div>
 
 
 

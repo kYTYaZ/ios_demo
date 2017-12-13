@@ -831,7 +831,6 @@ static NSString * const APP_SIGN = @"";
 - (void)stopRecord
 {
     isRecording = NO;
-    [_player stopRecorder];
     [recordButton setTitle:@"录制" forState: UIControlStateNormal];
     [recordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
@@ -845,47 +844,47 @@ static NSString * const APP_SIGN = @"";
         return;
     }
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"录制" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
-    __block NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    path = [path stringByAppendingPathComponent:@"recordVideo"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:path])
-    {
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-
-    [alertController addAction:[UIAlertAction actionWithTitle:@"mp4" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        path = [path stringByAppendingPathComponent:@"test.mp4"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MP4 recordConfig:NULL])
-        {
-            isRecording = YES;
-            [button setTitle:@"结束" forState: UIControlStateNormal];
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        }
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"mov" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        path = [path stringByAppendingPathComponent:@"test.mov"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MOV recordConfig:NULL])
-        {
-            isRecording = YES;
-            [button setTitle:@"结束" forState: UIControlStateNormal];
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        }
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"gif" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        path = [path stringByAppendingPathComponent:@"test.gif"];
-        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_GIF recordConfig:NULL])
-        {
-            isRecording = YES;
-            [button setTitle:@"结束" forState: UIControlStateNormal];
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        }
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    [self presentViewController:alertController animated:YES completion:nil];
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"录制" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    __block NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    path = [path stringByAppendingPathComponent:@"recordVideo"];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if (![fileManager fileExistsAtPath:path])
+//    {
+//        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
+//
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"mp4" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        path = [path stringByAppendingPathComponent:@"test.mp4"];
+//        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MP4 recordConfig:NULL])
+//        {
+//            isRecording = YES;
+//            [button setTitle:@"结束" forState: UIControlStateNormal];
+//            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        }
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"mov" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        path = [path stringByAppendingPathComponent:@"test.mov"];
+//        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_MOV recordConfig:NULL])
+//        {
+//            isRecording = YES;
+//            [button setTitle:@"结束" forState: UIControlStateNormal];
+//            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        }
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"gif" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        path = [path stringByAppendingPathComponent:@"test.gif"];
+//        if ([_player startRecorder:path recorderFormat:QHVCRecorderFormat_GIF recordConfig:NULL])
+//        {
+//            isRecording = YES;
+//            [button setTitle:@"结束" forState: UIControlStateNormal];
+//            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        }
+//    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        
+//    }]];
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)playPauseButtonAction:(UIButton *)button

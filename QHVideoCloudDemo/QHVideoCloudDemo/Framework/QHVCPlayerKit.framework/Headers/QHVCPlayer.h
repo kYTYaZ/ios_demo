@@ -21,8 +21,8 @@ typedef NS_ENUM(NSInteger, QHVCPlayType)
 //直播用
 typedef NS_ENUM(NSInteger, QHVCStreamType)
 {
-    QHVCStreamTypeOnlyAudio = 0,//仅视频
-    QHVCStreamTypeOnlyVideo = 1,//仅音频
+    QHVCStreamTypeOnlyAudio = 0,//仅音频
+    QHVCStreamTypeOnlyVideo = 1,//仅视频
     QHVCStreamTypeDefault = 2,//默认方式（音、视频）
 };
 
@@ -234,6 +234,20 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
                                userId:(NSString * _Nullable)userId//内部默认值
                              playType:(QHVCPlayType)playType;
 
+/**
+ 初始化播放器
+ 
+ @param URL 需要播放到UrlString
+ @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
+ @param userId 用户ID，用户标识，唯一标识（需要详细说明）
+ @param playType 播放类型，直播、点播、本地
+ @return 成功：播放器对象, 失败：nil
+ */
+- (QHVCPlayer * _Nullable)initWithUrlString:(NSString * _Nonnull)URL
+                                  channelId:(NSString * _Nullable)channelId//内部默认值
+                                     userId:(NSString * _Nullable)userId//内部默认值
+                                   playType:(QHVCPlayType)playType;
+
 
 /**
  通知栏辅助进程初始化播放器
@@ -256,7 +270,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"QHVCStreamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
+ @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithURL:(NSURL * _Nonnull)URL
@@ -274,7 +288,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"QHVCStreamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
+ @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray<NSURL *> *_Nullable)urlArray

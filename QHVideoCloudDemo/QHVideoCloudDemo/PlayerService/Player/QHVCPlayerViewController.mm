@@ -158,8 +158,8 @@ static NSString * const APP_SIGN = @"";
 //                                                         [NSURL URLWithString:@"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4"]
 //                                                         ]
 //                                             playIndex:0 channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
+        _player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:type options:@{@"position":@(1)}];
     }
-    _player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:type options:@{@"position":@(1)}];
     _player.playerDelegate = self;
     _player.playerAdvanceDelegate = self;
     playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.width * SCREEN_SCALE)];
@@ -845,7 +845,7 @@ static NSString * const APP_SIGN = @"";
     }
     
 //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"录制" message:nil preferredStyle:UIAlertControllerStyleAlert];
-//    
+//
 //    __block NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 //    path = [path stringByAppendingPathComponent:@"recordVideo"];
 //    NSFileManager *fileManager = [NSFileManager defaultManager];

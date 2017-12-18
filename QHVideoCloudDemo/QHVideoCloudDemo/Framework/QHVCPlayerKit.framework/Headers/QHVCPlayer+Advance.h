@@ -212,22 +212,22 @@ typedef struct
  */
 - (void)setPlayBackRate:(float)rate;
 
-///**
-// * 开始录制
-// * 注意：不支持暂停时录制
-// *
-// * @param filePath 录像存储路径（确保有读写权限）
-// * @param recorderFormat 存储格式
-// * @param config   配置
-// * @return yes:成功  no: 失败
-// */
-//- (BOOL)startRecorder:(NSString *_Nonnull)filePath recorderFormat:(QHVCRecorderFormat)recorderFormat recordConfig:(QHVCRecordConfig *_Nullable)config;
-//
-///**
-// * 结束录制(异步接口)
-// *
-// * @return yes:成功  no: 失败
-// */
-//- (BOOL)stopRecorder;
+/**
+ * 开始录制
+ * 注意：不支持暂停时录制
+ *
+ * @param filePath 录像存储路径（确保有读写权限）
+ * @param recorderFormat 存储格式
+ * @param config   配置
+ * @return yes:成功  no: 失败
+ */
+- (BOOL)startRecorder:(NSString *_Nonnull)filePath recorderFormat:(QHVCRecorderFormat)recorderFormat recordConfig:(QHVCRecordConfig *_Nullable)config;
+
+/**
+ * 结束录制(异步接口)
+ *
+ * @return yes:成功  no: 失败
+ */
+- (BOOL)stopRecorder;
 
 @end

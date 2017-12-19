@@ -28,7 +28,6 @@ typedef NS_ENUM(NSInteger, QHVCRecorderFormat)
 {
     QHVCRecorderFormat_MP4   = 0,
     QHVCRecorderFormat_MOV   = 1,
-    QHVCRecorderFormat_GIF   = 2
 };
 
 typedef struct
@@ -41,9 +40,6 @@ typedef struct
     int samplerate;
     int channels;
     int fps;
-
-    //for gif
-    int sampleInterval;//源视频多长时间(ms)挑选一帧，默认0，全部帧
 }QHVCRecordConfig;
 
 /**
@@ -229,5 +225,16 @@ typedef struct
  * @return yes:成功  no: 失败
  */
 - (BOOL)stopRecorder;
+
+
+/**
+ 视频转gif
+
+ @param inputPath 视频路径
+ @param outputPath gif路径
+ @param sampleInterval 画面取帧间隔
+ @param callback 进度状态回调
+ */
++ (void)createGifWithVideo:(NSString *_Nonnull)inputPath outPutPath:(NSString *_Nonnull)outputPath sampleInterval:(NSUInteger)sampleInterval callback:(void (^_Nonnull)(float progress, BOOL completed))callback;
 
 @end

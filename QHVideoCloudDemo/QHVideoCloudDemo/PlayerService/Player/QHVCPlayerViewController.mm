@@ -209,6 +209,7 @@ static NSString * const APP_SIGN = @"";
  */
 - (void)onPlayerPrepared:(QHVCPlayer *)player
 {
+    [totalTimeLabel setText:[self formatedTime:[_player getDuration]]];
     [_player play];
     playPauseButton.selected = YES;
     [_player openNetStats:5];
@@ -296,7 +297,6 @@ static NSString * const APP_SIGN = @"";
  */
 - (void)onPlayerBufferingBegin:(QHVCPlayer *)player
 {
-    [totalTimeLabel setText:[self formatedTime:[_player getDuration]]];
     [hudManager showLoadingProgressOnView:playerView message:@"loading..."];
 }
 

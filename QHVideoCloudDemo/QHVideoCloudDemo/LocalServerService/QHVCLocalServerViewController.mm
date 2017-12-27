@@ -57,7 +57,7 @@
     {
         urlString = url;
     }
-    _player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:urlString] channelId:@"demo" userId:nil playType:QHVCPlayTypeVod];
+    _player = [[QHVCPlayer alloc] initWithURL:urlString channelId:@"demo" userId:nil playType:QHVCPlayTypeVod];
     _player.playerDelegate = self;
     _player.playerAdvanceDelegate = self;
     _currrentPlayerView.player = _player;

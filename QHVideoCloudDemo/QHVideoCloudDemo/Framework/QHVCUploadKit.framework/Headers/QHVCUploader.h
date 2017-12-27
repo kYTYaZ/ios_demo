@@ -64,6 +64,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol QHVCRecorderDelegate <NSObject>
+
+@end
+
 @interface QHVCUploader : NSObject
 
 /**
@@ -114,6 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  @功能 第三方设置上传域名，上传前设置
  *  @参数 domain 有效的域名
+ * （北京上传地址：up-beijing.oss.yunpan.360.cn
+ *  上海上传地址：up-shanghai.oss.yunpan.360.cn）
  */
 + (void)setUploadDomain:(NSString *)domain;
 

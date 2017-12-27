@@ -76,7 +76,7 @@ QHVCBase.framework
 ```
 ##### 如果需要配置解码类型、流类型用如下初始化接口
 ```
-player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
+player = [[QHVCPlayer alloc] initWithURL:testUrl channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
 ```
 ##### 如果需要走调度调用如下初始化接口
 ```
@@ -104,7 +104,7 @@ player = [[QHVCPlayer alloc] initWithSN:sn channelId:cid userId:nil uSign:[self 
 #### 代码对接
 ###### 1、初始化播放器
 ```
-player = [[QHVCPlayer alloc] initWithURL:[NSURL URLWithString:testUrl] channelId:cid userId:nil playType:QHVCPlayTypeVod];
+player = [[QHVCPlayer alloc] initWithURL:testUrl channelId:cid userId:nil playType:QHVCPlayTypeVod];
 ```
 如下提供两个url测试用
 

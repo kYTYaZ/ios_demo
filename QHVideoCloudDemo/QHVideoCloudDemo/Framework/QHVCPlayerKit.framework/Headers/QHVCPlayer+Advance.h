@@ -209,6 +209,13 @@ typedef struct
 - (void)setPlayBackRate:(float)rate;
 
 /**
+ 获取播放倍速
+
+ @return 倍速值
+ */
+- (float)getPlayBackRate;
+
+/**
  * 开始录制
  * 注意：不支持暂停时录制
  *

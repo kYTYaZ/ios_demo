@@ -64,10 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol QHVCRecorderDelegate <NSObject>
-
-@end
-
 @interface QHVCUploader : NSObject
 
 /**

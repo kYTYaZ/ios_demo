@@ -64,6 +64,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol QHVCRecorderDelegate <NSObject>
+
+/**
+ *  @功能 保存持久化上传信息
+ *  @参数 key 持久化记录key
+ *  @参数 data 上传信息
+ */
+- (void)setRecorder:(NSString *)key data:(NSData *)data;
+
+/**
+ *  @功能 获取上传信息
+ *  @参数 key 持久化记录key
+ *  @返回值 存储的上传信息
+ */
+- (NSData *)fetchRecorder:(NSString *)key;
+
+/**
+ *  @功能 删除上传信息（上传成功、信息过期）
+ *  @参数 key 持久化记录key
+ */
+- (void)deleteRecorder:(NSString *)key;
+
+@end
+
 @interface QHVCUploader : NSObject
 
 /**
@@ -80,6 +104,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  @返回值 分片上传队列数
  */
 - (NSInteger)parallelQueueNum;
+
+/**
+ *  @功能 分片上传续传
+ *  @参数 key 通过key管理上传信息
+ */
+- (BOOL)setUploadRecorderKey:(NSString *)key;
 
 /**
  *  @功能 两种上传方式，数据在本地uploadFile:，数据在内存中uploadData:
@@ -109,53 +139,38 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUploaderDelegate:(nullable id<QHVCUploaderDelegate>)uploaderDelegate;
 - (nullable id<QHVCUploaderDelegate>)uploaderDelegate;
 
+- (void)setRecorderDelegate:(nullable id<QHVCRecorderDelegate>)recorderDelegate;
+- (nullable id<QHVCRecorderDelegate>)recorderDelegate;
+
 #pragma mark Common
 
 /**
- *  @功能 第三方设置上传域名，上传前设置
+ *  @功能 第三方设置上传域名，上传前设置(必填)
  *  @参数 domain 有效的域名
- * （北京上传地址：up-beijing.oss.yunpan.360.cn
- *  上海上传地址：up-shanghai.oss.yunpan.360.cn）
+ * （bucket北京地区-上传地址：up-beijing.oss.yunpan.360.cn
+ *  bucket上海地区-上传地址：up-shanghai.oss.yunpan.360.cn）
  */
 + (void)setUploadDomain:(NSString *)domain;
+
+/**
+ *  @功能 设置上传速度 默认不限速（根据实际业务需求选择使用）
+ *  @参数 speed kbps
+ */
++ (void)setUploadSpeed:(NSInteger)speed;
 
 //统计相关，请正确设置，利于排查线上问题，在上传前设置
 
 /**
  *  @功能 设置统计信息
  *  @参数 info 
- @{@"businessId":@"",
- @"channelId":@"",
- @"userId":@"",
- @"deviceId":@"",
- @"appVersion":@""
+ @{@"businessId":@"",//设置第三方业务ID
+ @"channelId":@"",//设置第三方渠道号
+ @"userId":@"",//设置第三方用户id
+ @"deviceId":@"",//设置设备id
+ @"appVersion":@""//设置第三方业务版本号
  };
  */
 + (void)setStatisticsInfo:(NSDictionary *)info;
-
-/**
- *  @功能 用户id    setStatisticsInfo代替
- *  @参数 userId  第三方用户id
- */
-+ (void)setUserId:(NSString *)userId DEPRECATED_ATTRIBUTE;
-
-/**
- *  @功能 设置第三方渠道号    setStatisticsInfo代替
- *  @参数 channelId   渠道号
- */
-
-+ (void)setChannelId:(NSString *)channelId DEPRECATED_ATTRIBUTE;
-/**
- *  @功能 设置第三方业务版本号  setStatisticsInfo代替
- *  @参数 appVersion   版本号
- */
-+ (void)setAppVersion:(NSString *)appVersion DEPRECATED_ATTRIBUTE;
-
-/**
- *  @功能 设置设备id  setStatisticsInfo代替
- *  @参数 deviceId   设备id
- */
-+ (void)setDeviceId:(NSString *)deviceId DEPRECATED_ATTRIBUTE;
 
 /**
  * 开启日志（debug阶段辅助开发调试，根据实际情况使用）
@@ -171,7 +186,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  @功能 获取上传sdk版本号
- *  @返回值 sdk版本号（e.g. 2.0.0）
+ *  @返回值 sdk版本号（e.g. 2.0.0.0）
  */
 + (NSString *)sdkVersion;
 

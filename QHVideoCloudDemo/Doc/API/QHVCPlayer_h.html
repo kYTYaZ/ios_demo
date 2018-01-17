@@ -340,8 +340,8 @@ typedef NS_ENUM(NSInteger, QHVCPlayType)
 //直播用
 typedef NS_ENUM(NSInteger, QHVCStreamType)
 {
-    QHVCStreamTypeOnlyAudio = 0,//仅视频
-    QHVCStreamTypeOnlyVideo = 1,//仅音频
+    QHVCStreamTypeOnlyAudio = 0,//仅音频
+    QHVCStreamTypeOnlyVideo = 1,//仅视频
     QHVCStreamTypeDefault = 2,//默认方式（音、视频）
 };
 
@@ -548,11 +548,10 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param playType 播放类型，直播、点播、本地
  @return 成功：播放器对象, 失败：nil
  */
-- (QHVCPlayer * _Nullable)initWithURL:(NSURL * _Nonnull)URL
+- (QHVCPlayer * _Nullable)initWithURL:(NSString * _Nonnull)URL
                             channelId:(NSString * _Nullable)channelId//内部默认值
                                userId:(NSString * _Nullable)userId//内部默认值
                              playType:(QHVCPlayType)playType;
-
 
 /**
  通知栏辅助进程初始化播放器
@@ -563,7 +562,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param playType 播放类型，直播、点播、本地
  @return 成功：播放器对象, 失败：nil
  */
-- (QHVCPlayer * _Nullable)initWithAssistProcessURL:(NSURL * _Nonnull)URL
+- (QHVCPlayer * _Nullable)initWithAssistProcessURL:(NSString * _Nonnull)URL
                                          channelId:(NSString * _Nullable)channelId//内部默认值
                                             userId:(NSString * _Nullable)userId//内部默认值
                                           playType:(QHVCPlayType)playType;
@@ -575,10 +574,10 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2PUpload&quot;:@&quot;boolValue&quot;}
+ @param options @{@&quot;streamType&quot;:@&quot;streamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2pUpload&quot;:@&quot;boolValue&quot;}
  @return 成功：播放器对象, 失败：nil
  */
-- (QHVCPlayer * _Nullable)initWithURL:(NSURL * _Nonnull)URL
+- (QHVCPlayer * _Nullable)initWithURL:(NSString * _Nonnull)URL
                             channelId:(NSString * _Nullable)channelId//内部默认值
                                userId:(NSString * _Nullable)userId//内部默认值
                              playType:(QHVCPlayType)playType
@@ -593,10 +592,10 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@&quot;streamType&quot;:@&quot;QHVCStreamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2PUpload&quot;:@&quot;boolValue&quot;}
+ @param options @{@&quot;streamType&quot;:@&quot;streamType&quot;,@&quot;hardDecode&quot;:@&quot;boolValue&quot;,@&quot;position&quot;:@&quot;longValue&quot;,@&quot;mute&quot;:@&quot;boolValue&quot;,@&quot;forceP2p&quot;:@&quot;boolValue&quot;,@&quot;useP2PUpload&quot;:@&quot;boolValue&quot;}
  @return 成功：播放器对象, 失败：nil
  */
-- (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray&lt;NSURL *&gt; *_Nullable)urlArray
+- (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray&lt;NSString *&gt; *_Nullable)urlArray
                                  playIndex:(int)playIndex
                                  channelId:(NSString * _Nullable)channelId//内部默认值
                                     userId:(NSString * _Nullable)userId//内部默认值
@@ -693,6 +692,8 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @return &lt;0失败， &gt;0成功
  */
 - (double)getDownloadProgress;
+
+- (nullable NSDictionary *)getP2pInfo;
 
 /**
  回调系统音量

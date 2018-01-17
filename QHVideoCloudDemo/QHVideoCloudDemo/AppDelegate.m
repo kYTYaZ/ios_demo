@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <QHLCBase/core_entry.h>
+#import <QHVCCommonKit/QHVCCommonCoreEntry.h>
 #import "QHVCNavigationController.h"
 #import "ViewController.h"
 
@@ -32,11 +32,12 @@
 
 - (void)notifyAppStart
 {
-    NSString *bid = @"demo_bid";
-    NSString *Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
-    core_on_app_start([bid UTF8String], [@"ios" UTF8String], [[[Version stringByAppendingString:@"-"]stringByAppendingString:build] UTF8String], [@"ios8.4" UTF8String],[@"deviceUDID-kdkkdkdkdkd333" UTF8String],  "iphonemodel", NULL);
+    NSString *bid = @"demo";
+    [QHVCCommonCoreEntry coreOnAppStart:bid
+                                 appVer:@"3.0.0"
+                               deviceId:@"deviceUDID-kdkkdkdkdkd333"
+                                  model:@"iPhone x"
+                         optionalParams:nil];
 }
 
 -(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window

@@ -385,6 +385,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol QHVCRecorderDelegate &lt;NSObject&gt;
+
+/**
+ *  @功能 保存持久化上传信息
+ *  @参数 key 持久化记录key
+ *  @参数 data 上传信息
+ */
+- (void)setRecorder:(NSString *)key data:(NSData *)data;
+
+/**
+ *  @功能 获取上传信息
+ *  @参数 key 持久化记录key
+ *  @返回值 存储的上传信息
+ */
+- (NSData *)fetchRecorder:(NSString *)key;
+
+/**
+ *  @功能 删除上传信息（上传成功、信息过期）
+ *  @参数 key 持久化记录key
+ */
+- (void)deleteRecorder:(NSString *)key;
+
+@end
+
 @interface QHVCUploader : NSObject
 
 /**
@@ -401,6 +425,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  @返回值 分片上传队列数
  */
 - (NSInteger)parallelQueueNum;
+
+/**
+ *  @功能 分片上传续传
+ *  @参数 key 通过key管理上传信息
+ */
+- (BOOL)setUploadRecorderKey:(NSString *)key;
 
 /**
  *  @功能 两种上传方式，数据在本地uploadFile:，数据在内存中uploadData:
@@ -430,24 +460,35 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUploaderDelegate:(nullable id&lt;QHVCUploaderDelegate&gt;)uploaderDelegate;
 - (nullable id&lt;QHVCUploaderDelegate&gt;)uploaderDelegate;
 
+- (void)setRecorderDelegate:(nullable id&lt;QHVCRecorderDelegate&gt;)recorderDelegate;
+- (nullable id&lt;QHVCRecorderDelegate&gt;)recorderDelegate;
+
 #pragma mark Common
 
 /**
- *  @功能 第三方设置上传域名，上传前设置
+ *  @功能 第三方设置上传域名，上传前设置(必填)
  *  @参数 domain 有效的域名
+ * （北京上传地址：up-beijing.oss.yunpan.360.cn
+ *  上海上传地址：up-shanghai.oss.yunpan.360.cn）
  */
 + (void)setUploadDomain:(NSString *)domain;
+
+/**
+ *  @功能 设置上传速度 默认不限速（根据实际业务需求选择使用）
+ *  @参数 speed kbps
+ */
++ (void)setUploadSpeed:(NSInteger)speed;
 
 //统计相关，请正确设置，利于排查线上问题，在上传前设置
 
 /**
  *  @功能 设置统计信息
  *  @参数 info 
- @{@&quot;businessId&quot;:@&quot;&quot;,
- @&quot;channelId&quot;:@&quot;&quot;,
- @&quot;userId&quot;:@&quot;&quot;,
- @&quot;deviceId&quot;:@&quot;&quot;,
- @&quot;appVersion&quot;:@&quot;&quot;
+ @{@&quot;businessId&quot;:@&quot;&quot;,//设置第三方业务ID
+ @&quot;channelId&quot;:@&quot;&quot;,//设置第三方渠道号
+ @&quot;userId&quot;:@&quot;&quot;,//设置第三方用户id
+ @&quot;deviceId&quot;:@&quot;&quot;,//设置设备id
+ @&quot;appVersion&quot;:@&quot;&quot;//设置第三方业务版本号
  };
  */
 + (void)setStatisticsInfo:(NSDictionary *)info;
@@ -466,9 +507,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  @功能 获取上传sdk版本号
- *  @返回值 sdk版本号（e.g. 2.0.0）
+ *  @返回值 sdk版本号（e.g. 2.0.0.0）
  */
 + (NSString *)sdkVersion;
+
+@end
+
 </code></pre></div>
 
 

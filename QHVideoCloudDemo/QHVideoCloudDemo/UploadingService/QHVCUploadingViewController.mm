@@ -18,7 +18,7 @@ static NSString * const FILE_EXT = @"mp4";
 
 static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
 
-@interface QHVCUploadingViewController ()<UITableViewDelegate,UITableViewDataSource,QHVCUploaderDelegate>
+@interface QHVCUploadingViewController ()<UITableViewDelegate,UITableViewDataSource,QHVCUploaderDelegate,QHVCRecorderDelegate>
 {
     __weak IBOutlet UITableView *generalTableView;
     NSMutableArray *_dataArray;
@@ -39,7 +39,7 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //注：直播云sdk需要在app启动时调用core_on_app_start方法，sdk才可正常执行，可参考demo中AppDelegate
+    //注：直播云sdk需要在app启动时调用coreOnAppStart方法，sdk才可正常执行，可参考demo中AppDelegate.m中的实现
     NSString* path = [[NSBundle mainBundle] pathForResource:@"uploadMain" ofType:@"plist"];
     _dataArray = [NSMutableArray arrayWithContentsOfFile:path];
     
@@ -52,11 +52,16 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
                                       }];
     NSLog(@"sdk ver %@",[QHVCUploader sdkVersion]);
     
+//    业务根据在官网申请bucket时选择的地区设置，上传前设置(必填)
+//     （选择北京地区上传地址：up-beijing.oss.yunpan.360.cn
+//      选择上海地区上传地址：up-shanghai.oss.yunpan.360.cn）
+    [QHVCUploader setUploadDomain:@"up-beijing.oss.yunpan.360.cn"];
+    
     //debug阶段辅助开发调试，根据实际情况使用
-//    [QHVCUploader openLogWithLevel:QHVCUploadLogLevelDebug];
-//    [QHVCUploader setLogOutputCallBack:^(int loggerID, QHVCUploadLogLevel level, const char * _Nonnull data) {
-//        NSLog(@"log %@", [NSString stringWithUTF8String:data]);
-//    }];
+    [QHVCUploader openLogWithLevel:QHVCUploadLogLevelDebug];
+    [QHVCUploader setLogOutputCallBack:^(int loggerID, QHVCUploadLogLevel level, const char * _Nonnull data) {
+        NSLog(@"log %@", [NSString stringWithUTF8String:data]);
+    }];
 }
 
 - (void)dealloc
@@ -153,23 +158,28 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
     }
     _uploader =  [[QHVCUploader alloc]init];
     [_uploader setUploaderDelegate:self];
-    
+//    [_uploader setRecorderDelegate:self];//分片断点续传，根据实际业务需求选择使用
     QHVCUploadTaskType type = [_uploader uploadTaskType:size];
+    if (type == QHVCUploadTaskTypeUnknow) {
+        NSLog(@"invalid file");
+        return;
+    }
+    NSString *token;
     if (type == QHVCUploadTaskTypeParallel) {
         NSInteger num = [_uploader parallelQueueNum];
-        NSString *token = [self generateParallelTaskToken:num filesize:size fileName:[filePath lastPathComponent]];//token在服务器计算（此处仅供demo层模拟）
-        [_uploader uploadFile:filePath fileName:[filePath lastPathComponent] token:token];
+        token = [self generateParallelTaskToken:num filesize:size fileName:[filePath lastPathComponent]];//token在服务器计算（此处仅供demo层模拟）
     }
     else if(type == QHVCUploadTaskTypeForm)
     {
-        NSString *token = [self generateFormTaskToken:[filePath lastPathComponent]];//filename 唯一
-        [_uploader uploadFile:filePath fileName:[filePath lastPathComponent] token:token];
+        token = [self generateFormTaskToken:[filePath lastPathComponent]];//filename 唯一
     }
-    else
-    {
-        NSLog(@"Invalid file");
-    }
+//    NSString *recorderKey = [self generateRecorderKey:[filePath lastPathComponent]];
+//    if (recorderKey) {
+//        [_uploader setUploadRecorderKey:recorderKey];
+//    }
+    [_uploader uploadFile:filePath fileName:[filePath lastPathComponent] token:token];
 }
+
 
 - (void)showProgressView
 {
@@ -294,6 +304,58 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
             [_progress updateProgress:progress];
         });
     }
+}
+
+#pragma mark QHVCRecorderDelegate
+//上传信息需要持久化缓存，缓存形式根据实际情况选择使用（数据库、文件...）
+- (void)setRecorder:(NSString *)key data:(NSData *)data
+{
+    NSString *dir = [self recorderDir];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dir isDirectory:nil])
+    {
+        BOOL isSucess = [[NSFileManager defaultManager] createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+        if (!isSucess) {
+            return ;
+        }
+    }
+    BOOL status = [data writeToFile:[dir stringByAppendingPathComponent:key] atomically:NO];
+    if (!status) {
+        NSLog(@"write fail!");
+    }
+}
+
+- (NSData *)fetchRecorder:(NSString *)key
+{
+    NSString *dir = [self recorderDir];
+    NSData *data = [NSData dataWithContentsOfFile:[dir stringByAppendingPathComponent:key]];
+    return data;
+}
+
+- (void)deleteRecorder:(NSString *)key
+{
+    NSString *dir = [self recorderDir];
+    NSError *error;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[dir stringByAppendingPathComponent:key] isDirectory:nil])
+    {
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:[dir stringByAppendingPathComponent:key] error:&error];
+        if (!success) {
+            NSLog(@"delete fail!");
+        }
+    }
+}
+
+- (NSString *)recorderDir
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachesDir = [paths objectAtIndex:0];
+    NSString *cacheFilePath = [cachesDir stringByAppendingPathComponent:@"upload"];
+    return cacheFilePath;
+}
+
+- (NSString *)generateRecorderKey:(NSString *)filePath
+{
+    //分片断点续传,key的生成方式根据实际业务情况生成,每个key对应一个上传任务信息
+    return [self md5String:filePath];
 }
 
 - (void)didReceiveMemoryWarning

@@ -25,8 +25,6 @@
 		0D5AE05B1F54247D002C4812 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE05A1F54247D002C4812 /* AppDelegate.m */; };
 		0D5AE0631F54247D002C4812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5AE0621F54247D002C4812 /* Assets.xcassets */; };
 		0D5AE0661F54247D002C4812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D5AE0641F54247D002C4812 /* LaunchScreen.storyboard */; };
-		0D5AE06F1F5425CE002C4812 /* QHLCBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5AE06D1F5425CE002C4812 /* QHLCBase.framework */; };
-		0D5AE0701F5425CE002C4812 /* QHLCBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5AE06D1F5425CE002C4812 /* QHLCBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5AE0711F5425CE002C4812 /* QHVCPlayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5AE06E1F5425CE002C4812 /* QHVCPlayerKit.framework */; };
 		0D5AE0721F5425CE002C4812 /* QHVCPlayerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5AE06E1F5425CE002C4812 /* QHVCPlayerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D5AE0761F5426A6002C4812 /* QHVCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0751F5426A6002C4812 /* QHVCNavigationController.m */; };
@@ -47,6 +45,8 @@
 		0D5AE0AC1F542798002C4812 /* QHVCInterfaceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE09B1F542798002C4812 /* QHVCInterfaceRequest.m */; };
 		0D5AE0AD1F542798002C4812 /* QHVCSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE09D1F542798002C4812 /* QHVCSessionManager.m */; };
 		0D5AE0B71F54299C002C4812 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0B61F54299C002C4812 /* ViewController.m */; };
+		0D981783200F3B9600AD1451 /* QHVCCommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D981781200F3B8B00AD1451 /* QHVCCommonKit.framework */; };
+		0D981784200F3B9600AD1451 /* QHVCCommonKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0D981781200F3B8B00AD1451 /* QHVCCommonKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB8976021F90983A00D5E3BE /* QHVCUploadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8976011F90983A00D5E3BE /* QHVCUploadKit.framework */; };
 		BB8976111F90993300D5E3BE /* QHVCUploadingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB8976051F90993300D5E3BE /* QHVCUploadingViewController.mm */; };
 		BB8976121F90993300D5E3BE /* QHVCUploadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8976061F90993300D5E3BE /* QHVCUploadingViewController.xib */; };
@@ -69,8 +69,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0D981784200F3B9600AD1451 /* QHVCCommonKit.framework in Embed Frameworks */,
 				0D5AE0721F5425CE002C4812 /* QHVCPlayerKit.framework in Embed Frameworks */,
-				0D5AE0701F5425CE002C4812 /* QHLCBase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,7 +112,6 @@
 		0D5AE0621F54247D002C4812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D5AE0651F54247D002C4812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D5AE0671F54247D002C4812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D5AE06D1F5425CE002C4812 /* QHLCBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHLCBase.framework; path = QHVideoCloudDemo/Framework/QHLCBase.framework; sourceTree = "<group>"; };
 		0D5AE06E1F5425CE002C4812 /* QHVCPlayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCPlayerKit.framework; path = QHVideoCloudDemo/Framework/QHVCPlayerKit.framework; sourceTree = "<group>"; };
 		0D5AE0741F5426A6002C4812 /* QHVCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCNavigationController.h; sourceTree = "<group>"; };
 		0D5AE0751F5426A6002C4812 /* QHVCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCNavigationController.m; sourceTree = "<group>"; };
@@ -150,6 +149,7 @@
 		0D5AE09D1F542798002C4812 /* QHVCSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCSessionManager.m; sourceTree = "<group>"; };
 		0D5AE0B51F54299C002C4812 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0D5AE0B61F54299C002C4812 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0D981781200F3B8B00AD1451 /* QHVCCommonKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCCommonKit.framework; path = QHVideoCloudDemo/Framework/QHVCCommonKit.framework; sourceTree = "<group>"; };
 		4459D8E4E43FFA7C4D60952A /* Pods-QHVideoCloudDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QHVideoCloudDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QHVideoCloudDemo/Pods-QHVideoCloudDemo.release.xcconfig"; sourceTree = "<group>"; };
 		47B62BEB1FE908424C1BB457 /* libPods-QHVideoCloudDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QHVideoCloudDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E07FDE447B8B248679997E1 /* Pods-QHVideoCloudDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QHVideoCloudDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QHVideoCloudDemo/Pods-QHVideoCloudDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 				BB8976241F909AC000D5E3BE /* libz.tbd in Frameworks */,
 				0D13BDA11F8CC3460076CDE3 /* QHVCLocalServerKit.framework in Frameworks */,
 				E3A83D9042DC4A1B2017DF9F /* libPods-QHVideoCloudDemo.a in Frameworks */,
+				0D981783200F3B9600AD1451 /* QHVCCommonKit.framework in Frameworks */,
 				0D5AE0711F5425CE002C4812 /* QHVCPlayerKit.framework in Frameworks */,
-				0D5AE06F1F5425CE002C4812 /* QHLCBase.framework in Frameworks */,
 				BB8976021F90983A00D5E3BE /* QHVCUploadKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,10 +435,10 @@
 		C004C847F49D30CE02375B1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D981781200F3B8B00AD1451 /* QHVCCommonKit.framework */,
 				BB8976231F909AC000D5E3BE /* libz.tbd */,
 				BB8976011F90983A00D5E3BE /* QHVCUploadKit.framework */,
 				0D13BDA01F8CC3460076CDE3 /* QHVCLocalServerKit.framework */,
-				0D5AE06D1F5425CE002C4812 /* QHLCBase.framework */,
 				0D5AE06E1F5425CE002C4812 /* QHVCPlayerKit.framework */,
 				47B62BEB1FE908424C1BB457 /* libPods-QHVideoCloudDemo.a */,
 			);

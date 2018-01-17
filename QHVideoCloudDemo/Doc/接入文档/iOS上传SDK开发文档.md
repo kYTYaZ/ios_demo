@@ -69,6 +69,12 @@
 - (NSInteger)parallelQueueNum;
 
 /**
+ *  @功能 分片上传续传
+ *  @参数 key 通过key管理上传信息
+ */
+- (BOOL)setUploadRecorderKey:(NSString *)key;
+
+/**
  *  @功能 两种上传方式，数据在本地uploadFile:，数据在内存中uploadData:
  *  @参数 filePath 待上传文件本地路径
  *  @参数 data    待上传内存数据
@@ -83,12 +89,19 @@
  */
 - (void)cancel;
 
-直播云上传域名由云控参数确定，业务方可以调用以下接口修改上传域名。
 /**
- *  @功能 第三方设置上传域名，上传前设置
+ *  @功能 第三方设置上传域名，上传前设置(必填)
  *  @参数 domain 有效的域名
+ * （bucket北京地区-上传地址：up-beijing.oss.yunpan.360.cn
+ *  bucket上海地区-上传地址：up-shanghai.oss.yunpan.360.cn）
  */
 + (void)setUploadDomain:(NSString *)domain;
+
+/**
+ *  @功能 设置上传速度 默认不限速（根据实际业务需求选择使用）
+ *  @参数 speed kbps
+ */
++ (void)setUploadSpeed:(NSInteger)speed;
 ```
 
 ### 日志相关
@@ -124,6 +137,7 @@
 ```
 ###回调
 ```
+QHVCUploaderDelegate：
 /**
  *  @功能 回调上传状态 成功、失败
  *  @参数 uploader
@@ -138,6 +152,27 @@
  *  @参数 progress 上传进度（0.0-1.0）
  */
 - (void)didUpload:(QHVCUploader *)uploader progress:(float)progress;
+
+QHVCRecorderDelegate：
+/**
+ *  @功能 保存持久化上传信息
+ *  @参数 key 持久化记录key
+ *  @参数 data 上传信息
+ */
+- (void)setRecorder:(NSString *)key data:(NSData *)data;
+
+/**
+ *  @功能 获取上传信息
+ *  @参数 key 持久化记录key
+ *  @返回值 存储的上传信息
+ */
+- (NSData *)fetchRecorder:(NSString *)key;
+
+/**
+ *  @功能 删除上传信息（上传成功、信息过期）
+ *  @参数 key 持久化记录key
+ */
+- (void)deleteRecorder:(NSString *)key;
 ```
 
 ## 错误码说明

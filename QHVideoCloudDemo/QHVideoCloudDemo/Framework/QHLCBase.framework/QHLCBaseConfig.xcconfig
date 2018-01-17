@@ -1,9 +1,0 @@
-//
-//  QHLCBaseConfig.xcconfig
-//  QHLCBase
-//
-//  Created by yinchaoyu on 2017/11/7.
-//  Copyright © 2017年 qihoo 360. All rights reserved.
-//
-//GCC_PREPROCESSOR_DEFINITIONS = $(inherited) __NO_WEBRTC__
-

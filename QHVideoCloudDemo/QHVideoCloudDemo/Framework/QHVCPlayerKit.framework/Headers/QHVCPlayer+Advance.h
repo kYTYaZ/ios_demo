@@ -9,6 +9,9 @@
 #import <CoreMedia/CoreMedia.h>
 #import "QHVCPlayer.h"
 
+/**
+ 直播资源编码类型
+ */
 typedef NS_ENUM(NSInteger, QHVCPlayerDecodingType)
 {
     QHVCMediaInfoDecodeFormateH264    = 0,//正在解码的是h264

@@ -55,7 +55,7 @@
 
 下载链接：https://github.com/360livecloud/iOS_demo.git
 >* QHVCPlayerKit.framework
->* QHLCBase.framework
+>* QHVCCommonKit.framework
 
 ####函数及配置说明
 #####添加依赖库
@@ -63,16 +63,12 @@ TARGETS->General->Embed Binaries
 
 QHVCPLayerKit.framework
 
-QHVCBase.framework
+QHVCCommonKit.framework
 
 
 ##### 引入头文件
 ```
-//只需引用一次
 #import <QHVCPlayerKit/QHVCPlayerKit.h>
-
-//如果多个文件用到SDK，请引用单个文件入QHVCPlayer.h
-#import <QHVCPlayerKit/QHVCPlayer.h>
 ```
 ##### 如果需要配置解码类型、流类型用如下初始化接口
 ```
@@ -135,7 +131,7 @@ playerView = [_player createPlayerView:CGRectMake(0, 0, 100, 100)];
 ```
 ### SDK集成注意事项：
 ```
-QHVCPLayerKit.framework与QHVCBase.framework均是动态库，一定要在TARGETS->General->Embed Binaries下引入
+QHVCPlayerKit.framework与QHVCCommonKit.framework均是动态库，一定要在TARGETS->General->Embed Binaries下引入
 ```
 ```
 播放器置空之前确保调用[player stop];否则无法停止播放，而且调用stop之后，player将无法继续工作。必须重新初始化
@@ -344,9 +340,9 @@ urlString = url;
 
 1. 上传功能提供两个framework：
 
-	QHVCUploadKit.framework该库为静态库（Build Phases->Link Binary With Libraries-> +）
+QHVCUploadKit.framework该库为静态库（Build Phases->Link Binary With Libraries-> +）
 
-	QHLCBase.framework该库为动态库（Build Phases->Embed Frameworks-> +）
+QHVCCommonKit.framework该库为动态库（Build Phases->Embed Frameworks-> +）
 
 
 
@@ -362,47 +358,47 @@ urlString = url;
 
 ` _uploader =  [[QHVCUploader alloc]init];`
 
-   ` [_uploader setUploaderDelegate:self];`
-    
-    
+` [_uploader setUploaderDelegate:self];`
+
+
 
 ```
 
 /**
- *  @功能 获取上传类型，目前有表单和分片两种形式，具体使用哪种形式由服务器返回的配置信息决定
- *  如果是分片上传，需要调用parallelQueueNum获得队列数，用于计算token
- *  如果是表单上传，无需调用parallelQueueNum，计算token不需要此参数
- *  @参数 size 待上传任务数据大小，单位：字节
- *  @返回值 详见QHVCUploadTaskType
- */
+*  @功能 获取上传类型，目前有表单和分片两种形式，具体使用哪种形式由服务器返回的配置信息决定
+*  如果是分片上传，需要调用parallelQueueNum获得队列数，用于计算token
+*  如果是表单上传，无需调用parallelQueueNum，计算token不需要此参数
+*  @参数 size 待上传任务数据大小，单位：字节
+*  @返回值 详见QHVCUploadTaskType
+*/
 - (QHVCUploadTaskType)uploadTaskType:(uint64_t)size;
 
 /**
- *  @功能 获取分片上传队列数，用于业务计算token
- *  @返回值 分片上传队列数
- */
+*  @功能 获取分片上传队列数，用于业务计算token
+*  @返回值 分片上传队列数
+*/
 - (NSInteger)parallelQueueNum;
 
 /**
- *  @功能 两种上传方式，数据在本地uploadFile:，数据在内存中uploadData:
- *  @参数 filePath 待上传文件本地路径
- *  @参数 data    待上传内存数据
- *  @参数 fileName    本地文件/内存数据上传到服务器后的文件名
- *  @参数 token 表单/分片任务计算规则略有差别
- */
+*  @功能 两种上传方式，数据在本地uploadFile:，数据在内存中uploadData:
+*  @参数 filePath 待上传文件本地路径
+*  @参数 data    待上传内存数据
+*  @参数 fileName    本地文件/内存数据上传到服务器后的文件名
+*  @参数 token 表单/分片任务计算规则略有差别
+*/
 - (void)uploadFile:(NSString *)filePath fileName:(NSString *)fileName token:(NSString *)token;
 - (void)uploadData:(NSData *)data fileName:(NSString *)fileName token:(NSString *)token;
 
 /**
- *  @功能 取消当前上传任务
- */
+*  @功能 取消当前上传任务
+*/
 - (void)cancel;
 
 直播云上传域名由云控参数确定，业务方可以调用以下接口修改上传域名。
 /**
- *  @功能 第三方设置上传域名，上传前设置
- *  @参数 domain 有效的域名
- */
+*  @功能 第三方设置上传域名，上传前设置
+*  @参数 domain 有效的域名
+*/
 + (void)setUploadDomain:(NSString *)domain;
 ```
 
@@ -411,59 +407,59 @@ urlString = url;
 
 ```
 /**
- * 打开上传日志
- * @参数 level 日志等级
- */
+* 打开上传日志
+* @参数 level 日志等级
+*/
 + (void)openLogWithLevel:(QHVCUploadLogLevel)level;
 
 /**
- * 设置日志输出callback
- * @参数 callback 回调block
- */
+* 设置日志输出callback
+* @参数 callback 回调block
+*/
 + (void)setLogOutputCallBack:(void(^)(int loggerID, QHVCUploadLogLevel level, const char *data))callback
 ```
 ###统计相关
 ```
 //统计相关，请正确设置，利于排查线上问题，在上传前设置
 /**
- *  @功能 用户id
- *  @参数 userId  第三方用户id
- */
+*  @功能 用户id
+*  @参数 userId  第三方用户id
+*/
 + (void)setUserId:(NSString *)userId;
 
 /**
- *  @功能 设置第三方渠道号
- *  @参数 channelId   渠道号
- */
+*  @功能 设置第三方渠道号
+*  @参数 channelId   渠道号
+*/
 
 + (void)setChannelId:(NSString *)channelId;
 /**
- *  @功能 设置第三方业务版本号
- *  @参数 appVersion   版本号
- */
+*  @功能 设置第三方业务版本号
+*  @参数 appVersion   版本号
+*/
 + (void)setAppVersion:(NSString *)appVersion;
 
 /**
- *  @功能 设置设备id
- *  @参数 deviceId   设备id
- */
+*  @功能 设置设备id
+*  @参数 deviceId   设备id
+*/
 + (void)setDeviceId:(NSString *)deviceId;
 ```
 ###回调
 ```
 /**
- *  @功能 回调上传状态 成功、失败
- *  @参数 uploader
- *  @参数 status 上传状态
- */
+*  @功能 回调上传状态 成功、失败
+*  @参数 uploader
+*  @参数 status 上传状态
+*/
 - (void)didUpload:(QHVCUploader *)uploader status:(QHVCUploadStatus)status error:(nullable NSError *)error;
 
 @optional
 /**
- *  @功能 上传进度
- *  @参数 uploader
- *  @参数 progress 上传进度（0.0-1.0）
- */
+*  @功能 上传进度
+*  @参数 uploader
+*  @参数 progress 上传进度（0.0-1.0）
+*/
 - (void)didUpload:(QHVCUploader *)uploader progress:(float)progress;
 ```
 

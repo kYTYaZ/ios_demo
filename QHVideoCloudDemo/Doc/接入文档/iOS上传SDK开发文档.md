@@ -31,7 +31,7 @@
 
 	QHVCUploadKit.framework该库为静态库（Build Phases->Link Binary With Libraries-> +）
 
-	QHLCBase.framework该库为动态库（Build Phases->Embed Frameworks-> +）
+	QHVCCommonKit.framework该库为动态库（Build Phases->Embed Frameworks-> +）
 
 
 

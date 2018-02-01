@@ -33,4 +33,6 @@
  */
 + (NSDictionary *)fetchUploadCCInfo;
 
++ (NSDictionary *)fetchCommonCCInfo;
+
 @end

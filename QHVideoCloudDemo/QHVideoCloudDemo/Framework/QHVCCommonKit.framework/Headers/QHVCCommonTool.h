@@ -21,5 +21,6 @@
 #import "QHVCToolRC4.h"
 #import "QHVCToolReachability.h"
 #import "QHVCToolZipArchive.h"
+#import "QHVCToolNetworking.h"
 
 #endif /* QHVCCommonTool_h */

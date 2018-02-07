@@ -792,6 +792,7 @@ static NSString * const APP_SIGN = @"";
         [self killHideTimer];
         [_player closeNetStats];
         [_player stop];
+        _player = nil;
         [_downloadProgressTimer invalidate];
         _downloadProgressTimer = nil;
         

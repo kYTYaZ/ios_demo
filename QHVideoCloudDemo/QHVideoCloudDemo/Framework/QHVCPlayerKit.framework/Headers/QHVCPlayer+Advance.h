@@ -205,14 +205,6 @@ typedef struct
 - (void)playerGPSZoneLonLat:(double)lon latitude:(double)lat;
 
 /**
- * 设置视频画质增强filter属性
- * @param brightness 亮度  取值范围(-0.2f, 0.35f)
- * @param contrast 对比度 取值范围(0.9f, 1.6f)
- * @param saturation 饱和度 取值范围(0.15f, 2f)
- */
-- (void)enhancedImageQuality:(float)brightness contrast:(float)contrast saturation:(float)saturation;
-
-/**
  * 倍速播放
  *
  * @param rate 播放速度，取值1~n（建议n<=5）

@@ -38,8 +38,8 @@ static NSString *KCellTypeThree = @"IdenitiferCellThree";
     _decode = @"1";
     _bid = @"demo_bid";
     _cid = @"demo";
-//    _url = @"http://static.s3.huajiao.com/Object.access/hj-video/NTg1NzY5ODgxNDgxNjM2MzM5OTUxMjcwNjg1MDUzNy5tcDQ=";
-    _url = @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15575_6260627c3759e-38a7-4a6c-8d81-a200f1c8ff2d.mp4";
+    _url = @"http://static.s3.huajiao.com/Object.access/hj-video/NTg1NzY5ODgxNDgxNjM2MzM5OTUxMjcwNjg1MDUzNy5tcDQ=";
+//    _url = @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15575_6260627c3759e-38a7-4a6c-8d81-a200f1c8ff2d.mp4";
     [self.view addSubview:self.tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);

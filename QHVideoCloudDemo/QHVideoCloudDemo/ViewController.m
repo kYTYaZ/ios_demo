@@ -11,6 +11,7 @@
 #import "QHVCPlayerServiceViewController.h"
 #import "QHVCLocalServerViewController.h"
 #import "QHVCUploadingViewController.h"
+#import "QHVCEditViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -161,6 +162,10 @@
     {
         viewController = [[QHVCUploadingViewController alloc]initWithNibName:@"QHVCUploadingViewController" bundle:nil];
     }
+    else if (indexPath.row == 3)
+    {
+        viewController = [[QHVCEditViewController alloc]initWithNibName:@"QHVCEditViewController" bundle:nil];
+    }
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -187,6 +192,11 @@
                         @{
                             @"leftImage":@"tab_upload",
                             @"title":@"上传",
+                            @"rightImage":@"jiantou"
+                            },
+                        @{
+                            @"leftImage":@"tab_videoEdit",
+                            @"title":@"剪辑",
                             @"rightImage":@"jiantou"
                             }
                         ];

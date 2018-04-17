@@ -181,7 +181,7 @@
  * @param ctx 上下文
  */
 + (void)rtcStreamStatus:(NSString *)sessionId
-                 kvList:(NSDictionary *)kvList
+                 kvList:(NSString *)kvList
             rtcCallback:(rtc_notify_cb)cb
                     ctx:(void *)ctx;
 
@@ -193,7 +193,7 @@
  * @param ctx 上下文
  */
 + (void)rtcMergeStreamStatus:(NSString *)sessionId
-                      kvList:(NSDictionary *)kvList
+                      kvList:(NSString *)kvList
                  rtcCallback:(rtc_notify_cb)cb
                          ctx:(void *)ctx;
 
@@ -255,7 +255,7 @@
         businessSubID:(NSString *)businessSubID
                 stage:(int)stage
                 error:(int)error
-               kvList:(NSDictionary *)kvList;
+               kvList:(NSString *)kvList;
 
 /**
  * 获取服务器时间与本地时间的差

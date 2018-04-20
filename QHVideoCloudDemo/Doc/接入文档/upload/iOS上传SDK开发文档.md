@@ -21,7 +21,7 @@
 详细信息请参考：[云存储-用户手册-编程模型](https://live.360.cn/index/doc?type=s3&id=189)。
 
 ## SDK集成
-### 下载SDK
+### demo地址
 
 下载链接：[https://github.com/360livecloud/ios_demo.git](https://github.com/360livecloud/ios_demo.git)
 
@@ -126,11 +126,8 @@
 /**
  *  @功能 设置统计信息
  *  @参数 info 
- @{@"businessId":@"",
- @"channelId":@"",
- @"userId":@"",
- @"deviceId":@"",
- @"appVersion":@""
+ @{@"channelId":@"",
+ @"userId":@""
  };
  */
 + (void)setStatisticsInfo:(NSDictionary *)info;

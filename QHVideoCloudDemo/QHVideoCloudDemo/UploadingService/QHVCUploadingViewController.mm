@@ -43,12 +43,11 @@ static NSString *LiveMainCellOneCellIdenitifer = @"QHVCLiveMainCellOne";
     NSString* path = [[NSBundle mainBundle] pathForResource:@"uploadMain" ofType:@"plist"];
     _dataArray = [NSMutableArray arrayWithContentsOfFile:path];
     
+    NSLog(@"sdk ver %@",[QHVCUploader sdkVersion]);
+    
     //设置有效的业务相关id
-    [QHVCUploader setStatisticsInfo:@{@"businessId":@"demo",
-                                      @"channelId":@"demo_1",
-                                      @"userId":@"110",
-                                      @"deviceId":@"0123456789",
-                                      @"appVersion":@"3.0.0"
+    [QHVCUploader setStatisticsInfo:@{@"channelId":@"demo_1",
+                                      @"userId":@"110"
                                       }];
     NSLog(@"sdk ver %@",[QHVCUploader sdkVersion]);
     

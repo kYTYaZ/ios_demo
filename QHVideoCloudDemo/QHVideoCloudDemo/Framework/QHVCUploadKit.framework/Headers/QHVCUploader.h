@@ -7,86 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSInteger, QHVCUploadTaskType) {
-    QHVCUploadTaskTypeUnknow = 0,
-    QHVCUploadTaskTypeForm,//表单
-    QHVCUploadTaskTypeParallel//分片
-};
-
-typedef NS_ENUM(NSInteger, QHVCUploadStatus) {
-    QHVCUploadStatusUploadSucceed = 3,
-    QHVCUploadStatusUploadFail,
-    QHVCUploadStatusUploadError,
-    QHVCUploadStatusUploadCancel
-};
-
-typedef NS_ENUM(NSInteger, QHVCUploadError) {
-    QHVCUploadErrorNull = 0,//
-    QHVCUploadErrorResponse = 20,//上传返回值解析异常
-    QHVCUploadErrorInvalidToken = -111,//Token为空
-    QHVCUploadErrorInvalidData = -112,//上传的内存数据是空
-    QHVCUploadErrorInvalidFile = -113,//上传的文件0字节
-    QHVCUploadErrorFileIsDir = -108,//指定FILE是文件夹
-    QHVCUploadErrorFileNoExist = -105,//文件不存在
-};
-
-typedef NS_ENUM(NSInteger, QHVCUploadLogLevel) {
-    QHVCUploadLogLevelTrace = 0,
-    QHVCUploadLogLevelDebug = 1,
-    QHVCUploadLogLevelInfo  = 2,
-    QHVCUploadLogLevelWarn  = 3,
-    QHVCUploadLogLevelError = 4,
-    QHVCUploadLogLevelAlarm = 5,
-    QHVCUploadLogLevelFatal = 6,
-};
+#import <QHVCCommonKit/QHVCCommonUploadStatusDefine.h>
+#import <QHVCCommonKit/QHVCCommonUploadDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class QHVCUploader;
-
-@protocol QHVCUploaderDelegate <NSObject>
-
-/**
- *  @功能 回调上传状态 成功、失败
- *  @参数 uploader
- *  @参数 status 上传状态
- */
-- (void)didUpload:(QHVCUploader *)uploader status:(QHVCUploadStatus)status error:(nullable NSError *)error;
-
-@optional
-/**
- *  @功能 上传进度
- *  @参数 uploader
- *  @参数 progress 上传进度（0.0-1.0）
- */
-- (void)didUpload:(QHVCUploader *)uploader progress:(float)progress;
-
-@end
-
-@protocol QHVCRecorderDelegate <NSObject>
-
-/**
- *  @功能 保存持久化上传信息
- *  @参数 key 持久化记录key
- *  @参数 data 上传信息
- */
-- (void)setRecorder:(NSString *)key data:(NSData *)data;
-
-/**
- *  @功能 获取上传信息
- *  @参数 key 持久化记录key
- *  @返回值 存储的上传信息
- */
-- (NSData *)fetchRecorder:(NSString *)key;
-
-/**
- *  @功能 删除上传信息（上传成功、信息过期）
- *  @参数 key 持久化记录key
- */
-- (void)deleteRecorder:(NSString *)key;
-
-@end
 
 @interface QHVCUploader : NSObject
 
@@ -147,8 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  @功能 第三方设置上传域名，上传前设置(必填)
  *  @参数 domain 有效的域名
- * （北京上传地址：up-beijing.oss.yunpan.360.cn
- *  上海上传地址：up-shanghai.oss.yunpan.360.cn）
+ * （bucket北京地区-上传地址：up-beijing.oss.yunpan.360.cn
+ *  bucket上海地区-上传地址：up-shanghai.oss.yunpan.360.cn）
  */
 + (void)setUploadDomain:(NSString *)domain;
 
@@ -163,11 +87,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  @功能 设置统计信息
  *  @参数 info 
- @{@"businessId":@"",//设置第三方业务ID
- @"channelId":@"",//设置第三方渠道号
+ @{@"channelId":@"",//设置第三方渠道号
  @"userId":@"",//设置第三方用户id
- @"deviceId":@"",//设置设备id
- @"appVersion":@""//设置第三方业务版本号
  };
  */
 + (void)setStatisticsInfo:(NSDictionary *)info;

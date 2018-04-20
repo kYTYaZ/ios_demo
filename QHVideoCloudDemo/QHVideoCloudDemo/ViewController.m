@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "QHVCTabTableViewCell.h"
+#import "QHVCEditViewController.h"
 #import "QHVCPlayerServiceViewController.h"
 #import "QHVCLocalServerViewController.h"
 #import "QHVCUploadingViewController.h"
-#import "QHVCEditViewController.h"
+#import "QHVCInteractiveViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -164,6 +165,10 @@
     }
     else if (indexPath.row == 3)
     {
+        viewController = [QHVCInteractiveViewController new];
+    }
+    else if (indexPath.row == 4)
+    {
         viewController = [[QHVCEditViewController alloc]initWithNibName:@"QHVCEditViewController" bundle:nil];
     }
     [self.navigationController pushViewController:viewController animated:YES];
@@ -192,6 +197,11 @@
                         @{
                             @"leftImage":@"tab_upload",
                             @"title":@"上传",
+                            @"rightImage":@"jiantou"
+                            },
+                        @{
+                            @"leftImage":@"tab_interactive",
+                            @"title":@"互动直播",
                             @"rightImage":@"jiantou"
                             },
                         @{

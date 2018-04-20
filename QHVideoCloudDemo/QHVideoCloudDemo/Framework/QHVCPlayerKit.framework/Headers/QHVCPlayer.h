@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2pUpload":@"boolValue"}
+ @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithURL:(NSString * _Nonnull)URL
@@ -273,7 +273,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"useP2PUpload":@"boolValue"}
+ @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray<NSString *> *_Nullable)urlArray
@@ -318,6 +318,12 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param view playerView
  */
 - (void)createPlayerView:(UIView *_Nonnull)view;
+
+/**
+ 创建播放器渲染playerView(add在传入的view上)
+ @param view playerView
+ */
+- (void)createPlayerConstraintView:(UIView *_Nonnull)view;
 
 /**
  释放player时候是否移除playerView
@@ -425,6 +431,21 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param edgeBlur yes:打开 or no:关闭
  */
 - (void)setEdgeBlur:(BOOL)edgeBlur;
+
+
+/**
+ 截图
+ @param callback 回调
+ @return yes 成功 no 失败
+ */
+- (BOOL)snapshotImage:(void (^_Nonnull)(UIImage * _Nullable image))callback;
+
+/**
+ 设置p2p上传开关是否打开
+ 
+ @param enableUpload yes:允许上传 or no:禁止上传 默认值为no
+ */
++ (void)setP2pUploadStatus:(BOOL)enableUpload;
 
 /**
  设置日志级别

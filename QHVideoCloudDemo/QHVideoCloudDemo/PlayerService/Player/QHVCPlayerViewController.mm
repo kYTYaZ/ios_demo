@@ -152,12 +152,12 @@ static NSString * const APP_SIGN = @"";
     else
     {
         type = QHVCPlayTypeVod;
-//        _player = [[QHVCPlayer alloc] initWithUrlArray:@[
-//                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_63210ceb9d88b-5bab-4051-b6dc-a37669b4d5d5.mp4",
-//                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632084cad6efa-eb1f-41c0-a1f5-f2ea5000d75e.mp4",
-//                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4"
-//                                                         ]
-//                                             playIndex:0 channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
+        _player = [[QHVCPlayer alloc] initWithUrlArray:@[
+                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_63210ceb9d88b-5bab-4051-b6dc-a37669b4d5d5.mp4",
+                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632084cad6efa-eb1f-41c0-a1f5-f2ea5000d75e.mp4",
+                                                         @"http://q3.v.k.360kan.com/vod-xinxiliu-tv-q3-bj/15726_632071bae2f98-5190-4a82-be2a-23772d9583b0.mp4"
+                                                         ]
+                                             playIndex:0 channelId:cid userId:nil playType:QHVCPlayTypeVod options:@{@"hardDecode":@(isHardDecode)}];
         _player = [[QHVCPlayer alloc] initWithURL:testUrl channelId:cid userId:nil playType:type options:@{@"position":@(1)}];
     }
     _player.playerDelegate = self;

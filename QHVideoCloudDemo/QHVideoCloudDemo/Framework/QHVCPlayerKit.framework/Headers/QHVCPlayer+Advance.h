@@ -160,17 +160,6 @@ typedef struct
                             options:(NSDictionary * _Nullable)optionsDict;
 
 /**
- * @abstract 视频截图
- * @return 视频帧图像
- */
-- (UIImage *_Nullable)snapshotImage:(NSString * _Nonnull)path;
-
-/**
- 用于解决播放器audioSession被占用的场景
- */
-+ (void)cleanAudioSession;
-
-/**
  打开播放器流量统计
 
  @param intervalBySecond 统计计算周期，单位：秒
@@ -203,6 +192,20 @@ typedef struct
  * @param lat 纬度
  */
 - (void)playerGPSZoneLonLat:(double)lon latitude:(double)lat;
+
+/**
+ 画质增强开关（本地控制模式时生效，控制模式由云端控制）
+ @param enable 开启：YES，关闭：NO
+ */
+- (void)enableImageEnhanced:(BOOL)enable;
+
+/**
+ * 设置视频画质增强filter属性
+ * @param brightness 亮度  取值范围(-0.2f, 0.35f)
+ * @param contrast 对比度 取值范围(0.9f, 1.6f)
+ * @param saturation 饱和度 取值范围(0.15f, 2f)
+ */
+- (void)enhancedImageQuality:(float)brightness contrast:(float)contrast saturation:(float)saturation;
 
 /**
  * 倍速播放

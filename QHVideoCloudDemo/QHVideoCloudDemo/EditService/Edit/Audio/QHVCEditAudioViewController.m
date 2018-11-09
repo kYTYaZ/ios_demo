@@ -12,13 +12,20 @@
 #import "QHVCEditPrefs.h"
 #import "QHVCEditAudioItem.h"
 #import "QHVCEditCommandManager.h"
+#import "AudioWaveForm.h"
+#import "EZAudioFloatData.h"
 
-@interface QHVCEditAudioViewController ()
+#define MAX_VALUE 32768.0
+
+@interface QHVCEditAudioViewController () <QHVCEditAudioProducerDelegate>
 {
     QHVCEditFrameView *_frameView;
     QHVCEditAddAudioView *_audioView;
     QHVCEditFrameStatus _viewType;
     float _originAudioVolume;
+    float _musicAudioVolume;
+    QHVCEditAudioProducer *_audioProducer;
+    EZAudioFloatData *_waveformData;
 }
 @property (nonatomic, strong) QHVCEditAudioItem *currentAudioItem;
 @property (nonatomic, strong) NSMutableArray<QHVCEditAudioItem *> *audiosArray;
@@ -34,6 +41,7 @@
     self.titleLabel.text = @"音乐";
     [self.nextBtn setTitle:@"确定" forState:UIControlStateNormal];
     _originAudioVolume = [QHVCEditPrefs sharedPrefs].originAudioVolume;
+    _musicAudioVolume = [QHVCEditPrefs sharedPrefs].musicAudioVolume;
     _audiosArray = [NSMutableArray array];
     _audioInfos = [NSMutableArray arrayWithArray:[QHVCEditPrefs sharedPrefs].audioTimestamp];
 }
@@ -48,7 +56,7 @@
 - (void)createFrameView
 {
     _frameView = [[NSBundle mainBundle] loadNibNamed:[[QHVCEditFrameView class] description] owner:self options:nil][0];
-    _frameView.frame = CGRectMake(0, kScreenHeight - 160, kScreenWidth, 160);
+    _frameView.frame = CGRectMake(0, kScreenHeight - 210, kScreenWidth, 210);
     _frameView.duration = self.durationMs;
     _frameView.timeStamp = [QHVCEditPrefs sharedPrefs].audioTimestamp;
     _viewType = QHVCEditFrameStatusAdd;
@@ -80,6 +88,8 @@
     _audioView = [[NSBundle mainBundle] loadNibNamed:[[QHVCEditAddAudioView class] description] owner:self options:nil][0];
     _audioView.frame = CGRectMake(0, kScreenHeight - 200, kScreenWidth, 200);
     _audioView.audioItem = self.currentAudioItem;
+    _audioView.audioSelectBlock = ^(QHVCEditAudioItem *audioItem) {
+    };
     [self.view addSubview:_audioView];
 }
 
@@ -133,6 +143,9 @@
     {
         if (_currentAudioItem.audiofile.length > 0) {
             _audioView.hidden = YES;
+            _originAudioVolume = [QHVCEditPrefs sharedPrefs].originAudioVolume;
+            _musicAudioVolume = [QHVCEditPrefs sharedPrefs].musicAudioVolume;
+            _currentAudioItem.volume = _musicAudioVolume;
             
             [self updateViewType:QHVCEditFrameStatusDone];
         }
@@ -147,6 +160,7 @@
                 [_audiosArray addObject:_currentAudioItem];
             }
             [[QHVCEditCommandManager manager] addAudios:@[_currentAudioItem]];
+            [[QHVCEditCommandManager manager] adjustMainVolume:_originAudioVolume];
             [self resetPlayer:[_frameView fetchCurrentTimeStampMs]];
         }
     }
@@ -162,7 +176,10 @@
             [_audiosArray addObject:_currentAudioItem];
         }
         [[QHVCEditCommandManager manager] addAudios:@[_currentAudioItem]];
+        [[QHVCEditCommandManager manager] adjustMainVolume:_originAudioVolume];
         [self resetPlayer:[_frameView fetchCurrentTimeStampMs]];
+        
+        [self addWaveFormView];
     }
     else
     {
@@ -171,6 +188,10 @@
                 self.confirmCompletion(QHVCEditPlayerStatusReset);
             }
             [[QHVCEditCommandManager manager] updateAudios];
+        }
+        if (_audioProducer) {
+            [_audioProducer stopProducer];
+            _audioProducer = nil;
         }
         [self releasePlayerVC];
     }
@@ -196,8 +217,9 @@
     {
         if ([QHVCEditPrefs sharedPrefs].originAudioVolume != _originAudioVolume) {
             QHVCEditAudioItem *item = [[QHVCEditAudioItem alloc] init];
-            item.volume = _originAudioVolume;
+            item.volume = _musicAudioVolume;
             [[QHVCEditCommandManager manager] addAudios:@[item]];
+            [[QHVCEditCommandManager manager] adjustMainVolume:_originAudioVolume];
             [QHVCEditPrefs sharedPrefs].originAudioVolume = _originAudioVolume;
         }
         if (_audiosArray.count > 0) {
@@ -205,6 +227,10 @@
         }
         [QHVCEditPrefs sharedPrefs].audioTimestamp = _audioInfos;
         [self releasePlayerVC];
+    }
+    if (_audioProducer) {
+        [_audioProducer stopProducer];
+        _audioProducer = nil;
     }
 }
 
@@ -223,5 +249,100 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)addWaveFormView
+{
+    NSArray *audios = [[QHVCEditCommandManager manager] getAudios];
+    if (audios && [audios count] > 0) {
+        _audioProducer = [[QHVCEditAudioProducer alloc] initWithCommandFactory:[[QHVCEditCommandManager manager] commandFactory]];
+        QHVCEditCommandAudio *cmd = (QHVCEditCommandAudio *)audios[0][@"object"];
+        _audioProducer.overlayCommandId = (int)cmd.commandId;
+        _audioProducer.startTime = 0;
+        _audioProducer.endTime = cmd.endTime;
+        _audioProducer.delegate = self;
+        [_audioProducer startProducer];
+    }
+}
+
+#pragma mark - <QHVCEditAudioProducerDelegate>
+
+- (void)onPCMData:(unsigned char *)pcm size:(int)size
+{
+    [self dataWithNumberOfPoints:1024 data:pcm length:size];
+    AudioWaveForm* waveForm = [AudioWaveForm sharedManager];
+    EZAudioPlot* audioPlot = [waveForm generateWave:_waveformData frame:CGRectMake(0, 0, kScreenWidth, 50)];
+    
+    [_frameView addSubview:audioPlot];
+}
+
+- (void)onProducerStatus:(QHVCEditAudioProducerStatus)status
+{
+    NSLog(@"onProducerStatus status[%lu]", (unsigned long)status);
+}
+
+- (EZAudioFloatData *)dataWithNumberOfPoints:(UInt32)numberOfPoints data:(unsigned char *)audioData length:(NSInteger)length
+{
+    UInt32 channels = 2;
+    if (channels == 0)
+    {
+        return nil;
+    }
+    int16_t *audioData16 = (int16_t *)audioData;
+    
+    float **data = (float **)malloc( sizeof(float*) * channels );
+    for (int i = 0; i < channels; i++)
+    {
+        data[i] = (float *)malloc( sizeof(float) * numberOfPoints );
+    }
+    
+    // calculate the required number of frames per buffer
+    SInt64 totalFrames = length/2;//两个unsigned char 为一个声音数据
+    SInt64 framesPerBuffer = ((SInt64) totalFrames / numberOfPoints);//包含全部交叉存储声道数据
+    SInt64 framesPerChannel = framesPerBuffer / channels;
+    
+    // read through file and calculate rms at each point
+    for (SInt64 i = 0; i < numberOfPoints; i++)
+    {
+        int16_t *buffer = &audioData16[framesPerBuffer*i];
+        for (int channel = 0; channel < channels; channel++)
+        {
+            float channelData[framesPerChannel];
+            for (int frame = 0; frame < framesPerChannel; frame++)
+            {
+                channelData[frame] = buffer[frame * channels + channel]/MAX_VALUE;
+            }
+            float rms = [[self class] RMS:channelData length:framesPerChannel];
+            data[channel][i] = rms;
+        }
+    }
+    
+    _waveformData = [EZAudioFloatData dataWithNumberOfChannels:channels
+                                                      buffers:(float **)data
+                                                   bufferSize:numberOfPoints];
+    
+    // cleanup
+    for (int i = 0; i < channels; i++)
+    {
+        free(data[i]);
+    }
+    free(data);
+    
+    return _waveformData;
+}
+
++ (float)RMS:(float *)buffer length:(SInt64)bufferSize
+{
+    float sum = 0.0;
+    for(int i = 0; i < bufferSize; i++)
+    {
+        sum += buffer[i] * buffer[i];
+    }
+    
+    float val = sqrtf( sum / bufferSize);
+    
+    return val;
+}
+
+
 
 @end

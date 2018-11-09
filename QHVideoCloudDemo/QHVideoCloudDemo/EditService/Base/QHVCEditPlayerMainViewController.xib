@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +18,9 @@
                 <outlet property="_seek" destination="gTM-ua-nbd" id="39a-9x-4yo"/>
                 <outlet property="_sliderContainerView" destination="AMz-2A-cEO" id="Rrh-8M-KSA"/>
                 <outlet property="_sliderViewBottom" destination="Kea-S4-H1c" id="F7z-hk-Z8a"/>
+                <outlet property="previewHeightConstraint" destination="EWg-gv-x5j" id="pbZ-sj-vAY"/>
+                <outlet property="previewLeftConstraint" destination="KjU-WD-2iX" id="Sxl-z3-G70"/>
+                <outlet property="previewRightConstraint" destination="PQe-yQ-kog" id="Ryb-Zz-Zki"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,8 +33,11 @@
                     <rect key="frame" x="0.0" y="60" width="375" height="507"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9G-jf-tJh" userLabel="preview">
-                            <rect key="frame" x="60" y="5" width="255" height="447"/>
+                            <rect key="frame" x="60" y="30" width="255" height="447"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="447" id="EWg-gv-x5j"/>
+                            </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9am-wg-juk" userLabel="play">
                             <rect key="frame" x="167" y="233" width="40" height="40"/>
@@ -90,15 +96,15 @@
                     </subviews>
                     <color key="backgroundColor" red="0.1529411765" green="0.1450980392" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="w9G-jf-tJh" firstAttribute="centerY" secondItem="EoZ-IJ-SX9" secondAttribute="centerY" id="31B-oN-A9U"/>
                         <constraint firstItem="9am-wg-juk" firstAttribute="centerY" secondItem="EoZ-IJ-SX9" secondAttribute="centerY" id="4tL-Q9-yyi"/>
-                        <constraint firstItem="w9G-jf-tJh" firstAttribute="top" secondItem="EoZ-IJ-SX9" secondAttribute="top" constant="5" id="5zw-9x-a8k"/>
-                        <constraint firstAttribute="bottom" secondItem="w9G-jf-tJh" secondAttribute="bottom" constant="55" id="Gfj-OW-a0c"/>
                         <constraint firstAttribute="bottom" secondItem="AMz-2A-cEO" secondAttribute="bottom" id="Kea-S4-H1c"/>
+                        <constraint firstItem="w9G-jf-tJh" firstAttribute="leading" secondItem="EoZ-IJ-SX9" secondAttribute="leading" constant="60" id="KjU-WD-2iX"/>
+                        <constraint firstAttribute="trailing" secondItem="w9G-jf-tJh" secondAttribute="trailing" constant="60" id="PQe-yQ-kog"/>
                         <constraint firstAttribute="trailing" secondItem="AMz-2A-cEO" secondAttribute="trailing" id="Rd1-I3-pI0"/>
+                        <constraint firstItem="w9G-jf-tJh" firstAttribute="centerX" secondItem="EoZ-IJ-SX9" secondAttribute="centerX" id="Ypf-BO-W2i"/>
                         <constraint firstItem="AMz-2A-cEO" firstAttribute="leading" secondItem="EoZ-IJ-SX9" secondAttribute="leading" id="j55-n7-9Eb"/>
                         <constraint firstItem="9am-wg-juk" firstAttribute="centerX" secondItem="EoZ-IJ-SX9" secondAttribute="centerX" id="ovw-xD-IcM"/>
-                        <constraint firstItem="w9G-jf-tJh" firstAttribute="leading" secondItem="EoZ-IJ-SX9" secondAttribute="leading" constant="60" id="qjF-2z-OLn"/>
-                        <constraint firstAttribute="trailing" secondItem="w9G-jf-tJh" secondAttribute="trailing" constant="60" id="wCb-3E-T0I"/>
                     </constraints>
                 </view>
             </subviews>

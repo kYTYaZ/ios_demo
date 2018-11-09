@@ -36,20 +36,20 @@
     
     _thumbImageView.image = item.thumbnail;
     _beginLabel.text = [QHVCEditPrefs timeFormatMs:item.segmentStartTime];
-    _endLabel.text = item.transferType == QHVCEditTransferTypeAdd?[QHVCEditPrefs timeFormatMs:item.segmentEndTime]:@"";
+    _endLabel.text = item.transferIndex > 0 ? [QHVCEditPrefs timeFormatMs:item.segmentEndTime]:@"";
     
-    if (item.transferType == QHVCEditTransferTypeAdd) {
+    if (item.transferIndex > 0) {
         [_transferBtn setImage:[UIImage imageNamed:@"edit_transfer_add"] forState:UIControlStateNormal];
     }
     else
     {
         NSString *imageName = nil;
         if (isHighlight) {
-            imageName = [NSString stringWithFormat:@"%@%@_h",kTransferStyle,@(item.transferType)];
+            imageName = [NSString stringWithFormat:@"%@%@_h",kTransferStyle,@(item.transferIndex)];
         }
         else
         {
-            imageName = [NSString stringWithFormat:@"%@%@",kTransferStyle,@(item.transferType)];
+            imageName = [NSString stringWithFormat:@"%@%@",kTransferStyle,@(item.transferIndex)];
         }
         [_transferBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     }

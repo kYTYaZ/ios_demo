@@ -11,6 +11,8 @@
 #import "QHVCEditCommand.h"
 #import "QHVCEditThumbnail.h"
 #import "QHVCEditMaker.h"
+#import "QHVCEditAudioProducer.h"
+#import "QHVCEditReverseMaker.h"
 
 //! Project version number for QHVCEditKit.
 FOUNDATION_EXPORT double QHVCEditKitVersionNumber;

@@ -12,6 +12,11 @@ namespace agora
 namespace media
 {
 
+enum MEDIA_SOURCE_TYPE {
+    AUDIO_PLAYOUT_SOURCE = 0,
+    AUDIO_RECORDING_SOURCE = 1,
+};
+
 class IAudioFrameObserver
 {
 public:
@@ -39,7 +44,6 @@ class IVideoFrameObserver
 public:
   enum VIDEO_FRAME_TYPE {
     FRAME_TYPE_YUV420 = 0,  //YUV 420 format
-    FRAME_TYPE_RGBA = 1, //RGBA
   };
   struct VideoFrame {
     VIDEO_FRAME_TYPE type;
@@ -55,11 +59,8 @@ public:
     int64_t renderTimeMs;
   };
 public:
-  IVideoFrameObserver () { mPreferFormat = FRAME_TYPE_YUV420; mPreferRotationNone = false; }
   virtual bool onCaptureVideoFrame(VideoFrame& videoFrame) = 0;
   virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame& videoFrame) = 0;
-  VIDEO_FRAME_TYPE mPreferFormat;
-  bool mPreferRotationNone; // no rotation
 };
 
 class IVideoFrame
@@ -170,6 +171,7 @@ public:
   virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;
   virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;
   virtual int registerVideoRenderFactory(IExternalVideoRenderFactory* factory) = 0;
+  virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame *frame, bool wrap = false){ return -1; }
 };
 
 } //media

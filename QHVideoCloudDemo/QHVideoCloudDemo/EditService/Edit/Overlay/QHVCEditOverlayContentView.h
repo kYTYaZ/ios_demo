@@ -10,7 +10,7 @@
 
 @class QHVCEditMatrixItem;
 typedef void(^OverlayTapAction)(QHVCEditMatrixItem* item);
-typedef void(^PlayerNeedRefreshAction)();
+typedef void(^PlayerNeedRefreshAction)(BOOL forceRefresh);
 
 @interface QHVCEditOverlayContentView : UIView
 

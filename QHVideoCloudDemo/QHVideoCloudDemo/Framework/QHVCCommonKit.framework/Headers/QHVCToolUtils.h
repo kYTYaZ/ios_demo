@@ -30,6 +30,4 @@
 
 + (NSData *)dataUseZLibCompressWithData:(NSData *)data;
 
-+ (NSString *)currentDateStr;
-
 @end

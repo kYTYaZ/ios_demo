@@ -20,6 +20,7 @@
 #import "QHVCEditOverlayChromakeyView.h"
 #import "QHVCEditAudioItem.h"
 #import "QHVCEditOverlayItemPreview.h"
+#import "QHVCEditOverlayBlendView.h"
 
 static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
 
@@ -31,6 +32,7 @@ static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
 @property (nonatomic, retain) QHVCEditOverlaySpeedView* speedView;
 @property (nonatomic, retain) QHVCEditOverlayVolumeView* volumeView;
 @property (nonatomic, retain) QHVCEditOverlayChromakeyView* chromakeyView;
+@property (nonatomic, retain) QHVCEditOverlayBlendView* blendView;
 
 @end
 
@@ -53,7 +55,12 @@ static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
                               @[@"置顶", @"edit_overlay_top"],
                               @[@"置底", @"edit_overlay_bottom"],
                               @[@"删除", @"edit_overlay_delete"],
-                              @[@"抠图", @"edit_overlay_chromakey"]];
+                              @[@"抠图", @"edit_overlay_chromakey"],
+                              @[@"淡入淡出", @"edit_overlay_fade"],
+                              @[@"滑入滑出", @"edit_overlay_fade"],
+                              @[@"弹入弹出", @"edit_overlay_fade"],
+                              @[@"旋入旋出", @"edit_overlay_fade"],
+                              @[@"混合模式", @"edit_overlay_blend"]];
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -148,6 +155,36 @@ static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
             [self clickedChromaKeyItem];
             break;
         }
+        case 12:
+        {
+            //淡入淡出
+            [self clickedFadeInOutItem];
+            break;
+        }
+        case 13:
+        {
+            //滑入滑出
+            [self clickedMoveInOutItem];
+            break;
+        }
+        case 14:
+        {
+            //弹入弹出
+            [self clickedJumpInOutItem];
+            break;
+        }
+        case 15:
+        {
+            //旋入旋出
+            [self clickedRotateInOutItem];
+            break;
+        }
+        case 16:
+        {
+            //混合模式
+            [self clickedBlendItem];
+            break;
+        }
         default:
             break;
     }
@@ -175,9 +212,10 @@ static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
         item.filePath = filePath;
         item.startMs = self.item.startTimestampMs;
         item.endMs = self.item.endTiemstampMs;
-        [[QHVCEditPhotoManager manager] writeAssetsToSandbox:@[item]];
-        [[QHVCEditCommandManager manager] updateOverlayFile:item overlayId:self.item.overlayCommandId];
-        SAFE_BLOCK(self.resetPlayerAction);
+        [[QHVCEditPhotoManager manager] writeAssetsToSandbox:@[item] complete:^{
+            [[QHVCEditCommandManager manager] updateOverlayFile:item overlayId:self.item.overlayCommandId];
+            SAFE_BLOCK(self.resetPlayerAction);
+        }];
     }];
 }
 
@@ -329,6 +367,74 @@ static NSString* freedomItemCellIdentifier = @"QHVCEditFreedomItemCell";
     [self.item.preview showColorPicker];
     [self.item.preview updateChromakey:25 extend:0];
     [self addSubview:self.chromakeyView];
+}
+
+- (void)clickedFadeInOutItem
+{
+    if (self.item.overlayCommandId == kMainTrackId)
+    {
+        [self makeToast:@"主视频不能设置淡入淡出"];
+        return;
+    }
+    
+    [[QHVCEditCommandManager manager] addOverlayFadeInOut:self.item.overlayCommandId];
+    SAFE_BLOCK(self.refreshPlayerAction);
+}
+
+- (void)clickedMoveInOutItem
+{
+    if (self.item.overlayCommandId == kMainTrackId)
+    {
+        [self makeToast:@"主视频不能设置滑入滑出"];
+        return;
+    }
+    
+    [[QHVCEditCommandManager manager] addOverlayMoveInOut:self.item.overlayCommandId];
+}
+
+- (void)clickedJumpInOutItem
+{
+    if (self.item.overlayCommandId == kMainTrackId)
+    {
+        [self makeToast:@"主视频不能设置弹入弹出"];
+        return;
+    }
+    
+    [[QHVCEditCommandManager manager] addOverlayJumpInOut:self.item.overlayCommandId];
+}
+
+- (void)clickedRotateInOutItem
+{
+    if (self.item.overlayCommandId == kMainTrackId)
+    {
+        [self makeToast:@"主视频不能设置旋入旋出"];
+        return;
+    }
+    
+    [[QHVCEditCommandManager manager] addOverlayRotateInOut:self.item.overlayCommandId];
+}
+
+- (void)clickedBlendItem
+{
+    if (self.item.overlayCommandId == kMainTrackId)
+    {
+        [self makeToast:@"主视频不能设置混合模式"];
+        return;
+    }
+    
+    if (!self.blendView)
+    {
+        self.blendView = [[NSBundle mainBundle] loadNibNamed:[[QHVCEditOverlayBlendView class] description] owner:self options:nil][0];
+        WEAK_SELF
+        [self.blendView setBlendAction:^(NSInteger modeIndex, CGFloat progress)
+        {
+            STRONG_SELF
+            [[QHVCEditCommandManager manager] addOverlayBlendMode:self.item.overlayCommandId blendMode:modeIndex progres:progress];
+            SAFE_BLOCK(self.refreshPlayerAction);
+        }];
+    }
+    
+    [self addSubview:self.blendView];
 }
 
 @end

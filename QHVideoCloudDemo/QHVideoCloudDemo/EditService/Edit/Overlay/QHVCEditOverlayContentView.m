@@ -48,11 +48,19 @@
     NSArray<QHVCEditMatrixItem *> *items = [[QHVCEditPrefs sharedPrefs].matrixItems filteredArrayUsingPredicate:predicate];
     if ([items count] == 0)
     {
+        CGRect rect = [self createRandomRect:CGSizeMake(kDefaultWidth, kDefaultHeight)];
+        CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+        CGFloat scaleW = outputSize.width/CGRectGetWidth(self.frame);
+        CGFloat scaleH = outputSize.height/CGRectGetHeight(self.frame);
+        CGRect renderRect = CGRectMake(CGRectGetMinX(rect) * scaleW,
+                                       CGRectGetMinY(rect) * scaleH,
+                                       CGRectGetWidth(rect) * scaleW,
+                                       CGRectGetHeight(rect) * scaleH);
+        
         QHVCEditMatrixItem* matrixItem = [[QHVCEditMatrixItem alloc] init];
         matrixItem.overlayCommandId = kMainTrackId;
-        matrixItem.renderRect = [self createRandomRect:CGSizeMake(kDefaultWidth, kDefaultHeight)];
-        matrixItem.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:matrixItem.renderRect];
-        matrixItem.preview.overlayCommandId = kMainTrackId;
+        matrixItem.renderRect = renderRect;
+        matrixItem.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:rect overlayCommandId:kMainTrackId];
         matrixItem.outputParams = outputParams;
         matrixItem.zOrder = zOrderIndex;
         zOrderIndex++;
@@ -67,6 +75,31 @@
             STRONG_SELF
             [self overlayTapped:weakItem];
         }];
+        
+        [matrixItem.preview setRotateGestureAction:^(BOOL isEnd)
+        {
+            STRONG_SELF
+            weakItem.renderRect = [self rectToOutputRect:weakItem];
+            weakItem.previewRadian = weakItem.preview.radian;
+            [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+            SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+        }];
+        
+        [matrixItem.preview setMoveGestureAction:^(BOOL isEnd)
+        {
+            STRONG_SELF
+            weakItem.renderRect = [self rectToOutputRect:weakItem];
+            [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+            SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+        }];
+        
+        [matrixItem.preview setPinchGestureAction:^(BOOL isEnd)
+        {
+            STRONG_SELF
+            weakItem.renderRect = [self rectToOutputRect:weakItem];
+            [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+            SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+        }];
     }
     else
     {
@@ -76,8 +109,16 @@
             CGRect rect = CGRectZero;
             if (CGRectGetWidth(matrixItem.renderRect) == 0)
             {
-                matrixItem.renderRect = [self createRandomRect:CGSizeMake(kDefaultWidth, kDefaultHeight)];
-                rect = matrixItem.renderRect;
+                rect = [self createRandomRect:CGSizeMake(kDefaultWidth, kDefaultHeight)];
+                CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+                CGFloat scaleW = outputSize.width/CGRectGetWidth(self.frame);
+                CGFloat scaleH = outputSize.height/CGRectGetHeight(self.frame);
+                CGRect renderRect = CGRectMake(CGRectGetMinX(rect) * scaleW,
+                                               CGRectGetMinY(rect) * scaleH,
+                                               CGRectGetWidth(rect) * scaleW,
+                                               CGRectGetHeight(rect) * scaleH);
+                
+                matrixItem.renderRect = renderRect;
                 matrixItem.outputParams = outputParams;
                 matrixItem.zOrder = zOrderIndex;
                 zOrderIndex++;
@@ -85,10 +126,8 @@
             else
             {
                 rect = [self rectToViewRect:matrixItem.renderRect];
-                matrixItem.renderRect = rect;
             }
-            matrixItem.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:rect];
-            matrixItem.preview.overlayCommandId = kMainTrackId;
+            matrixItem.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:rect overlayCommandId:kMainTrackId];
             [matrixItem.preview setRadian:matrixItem.previewRadian];
             [[QHVCEditCommandManager manager] updateMatrix:matrixItem];
         }
@@ -101,6 +140,31 @@
             STRONG_SELF
             [self overlayTapped:weakItem];
         }];
+        
+        [matrixItem.preview setRotateGestureAction:^(BOOL isEnd)
+         {
+             STRONG_SELF
+             weakItem.renderRect = [self rectToOutputRect:weakItem];
+             weakItem.previewRadian = weakItem.preview.radian;
+             [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+             SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+         }];
+        
+        [matrixItem.preview setMoveGestureAction:^(BOOL isEnd)
+         {
+             STRONG_SELF
+             weakItem.renderRect = [self rectToOutputRect:weakItem];
+             [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+             SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+         }];
+        
+        [matrixItem.preview setPinchGestureAction:^(BOOL isEnd)
+         {
+             STRONG_SELF
+             weakItem.renderRect = [self rectToOutputRect:weakItem];
+             [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+             SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+         }];
     }
     
     //叠加文件
@@ -114,11 +178,22 @@
                 CGRect rect = CGRectZero;
                 if (CGRectGetWidth(obj.renderRect) == 0)
                 {
-                    CGFloat scale = kDefaultWidth/CGRectGetWidth(obj.originRect);
+                    CGFloat scaleW = kDefaultWidth/CGRectGetWidth(obj.originRect);
+                    CGFloat scaleH = kDefaultHeight/CGRectGetHeight(obj.originRect);
+                    CGFloat scale = MIN(scaleW, scaleH);
                     int width = CGRectGetWidth(obj.originRect)*scale;
                     int height = CGRectGetHeight(obj.originRect)*scale;
-                    obj.renderRect = [self createRandomRect:CGSizeMake(width, height)];
-                    rect = obj.renderRect;
+                    rect = [self createRandomRect:CGSizeMake(width, height)];
+                    
+                    CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+                    scaleW = outputSize.width/CGRectGetWidth(self.frame);
+                    scaleH = outputSize.height/CGRectGetHeight(self.frame);
+                    CGRect renderRect = CGRectMake(CGRectGetMinX(rect) * scaleW,
+                                                   CGRectGetMinY(rect) * scaleH,
+                                                   CGRectGetWidth(rect) * scaleW,
+                                                   CGRectGetHeight(rect) * scaleH);
+
+                    obj.renderRect = renderRect;
                     obj.outputParams = outputParams;
                     obj.zOrder = zOrderIndex;
                     zOrderIndex++;
@@ -126,10 +201,8 @@
                 else
                 {
                     rect = [self rectToViewRect:obj.renderRect];
-                    obj.renderRect = rect;
                 }
-                obj.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:rect];
-                obj.preview.overlayCommandId = obj.overlayCommandId;
+                obj.preview = [[QHVCEditOverlayItemPreview alloc] initWithFrame:rect overlayCommandId:obj.overlayCommandId];
                 obj.preview.startTimestampMs = obj.startTimestampMs;
                 obj.preview.endTimestampMs = obj.endTiemstampMs;
                 [obj.preview setRadian:obj.previewRadian];
@@ -145,10 +218,36 @@
                 [self overlayTapped:weakItem];
             }];
             
-            [obj.preview setPlayerNeedRefreshAction:^{
+            [obj.preview setPlayerNeedRefreshAction:^(BOOL forceRefresh)
+            {
                 STRONG_SELF
-                SAFE_BLOCK(self.playerNeedRefreshAction);
+                SAFE_BLOCK(self.playerNeedRefreshAction, forceRefresh);
             }];
+            
+            [obj.preview setRotateGestureAction:^(BOOL isEnd)
+             {
+                 STRONG_SELF
+                 weakItem.renderRect = [self rectToOutputRect:weakItem];
+                 weakItem.previewRadian = weakItem.preview.radian;
+                 [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+                 SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+             }];
+            
+            [obj.preview setMoveGestureAction:^(BOOL isEnd)
+             {
+                 STRONG_SELF
+                 weakItem.renderRect = [self rectToOutputRect:weakItem];
+                 [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+                 SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+             }];
+            
+            [obj.preview setPinchGestureAction:^(BOOL isEnd)
+             {
+                 STRONG_SELF
+                 weakItem.renderRect = [self rectToOutputRect:weakItem];
+                 [[QHVCEditCommandManager manager] updateMatrix:weakItem];
+                 SAFE_BLOCK(self.playerNeedRefreshAction, isEnd ? YES:NO);
+             }];
         }
     }];
     
@@ -271,8 +370,9 @@
 - (CGRect)createRandomRect:(CGSize)size
 {
     CGRect rect = CGRectZero;
-    CGFloat x = [self getRandomNumber:0 to:CGRectGetWidth(self.frame) - size.width];
-    CGFloat y = [self getRandomNumber:0 to:CGRectGetHeight(self.frame) - size.height];
+    CGFloat x = [self getRandomNumber:0 to:(CGRectGetWidth(self.frame) - size.width)];
+    CGFloat y = [self getRandomNumber:0 to:(CGRectGetHeight(self.frame) - size.height)];
+    
     rect.origin.x = x;
     rect.origin.y = y;
     rect.size.width = size.width;
@@ -291,6 +391,28 @@
     CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
     CGFloat scaleW = CGRectGetWidth(self.frame)/outputSize.width;
     CGFloat scaleH = CGRectGetHeight(self.frame)/outputSize.height;
+    
+    CGFloat x = rect.origin.x * scaleW;
+    CGFloat y = rect.origin.y * scaleH;
+    CGFloat w = rect.size.width * scaleW;
+    CGFloat h = rect.size.height * scaleH;
+    
+    CGRect newRect = CGRectMake(x, y, w, h);
+    return newRect;
+}
+
+//view尺寸转为画布尺寸
+- (CGRect)rectToOutputRect:(QHVCEditMatrixItem *)item
+{
+    UIView* view = item.preview;
+    CGRect rect = view.frame;
+    view.transform = CGAffineTransformRotate(view.transform, -item.preview.radian);
+    rect = CGRectMake(rect.origin.x, rect.origin.y, view.frame.size.width, view.frame.size.height);
+    view.transform = CGAffineTransformRotate(view.transform, item.preview.radian);
+    
+    CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+    CGFloat scaleW = outputSize.width/CGRectGetWidth(self.frame);
+    CGFloat scaleH = outputSize.height/CGRectGetHeight(self.frame);
     
     CGFloat x = rect.origin.x * scaleW;
     CGFloat y = rect.origin.y * scaleH;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "QHVCEditSegmentCell.h"
+#import <QHVCEditKit/QHVCEditCommand.h>
 
 @interface QHVCEditSegmentItem : NSObject
 
@@ -16,7 +17,9 @@
 @property (nonatomic, assign) NSInteger segmentStartTime; //片段开始时间点，相对物理文件
 @property (nonatomic, assign) NSInteger segmentEndTime;   //片段结束时间点，相对物理文件
 @property (nonatomic, strong) UIImage*  thumbnail; //缩略图
-@property (nonatomic, assign) QHVCEditTransferType transferType;;
+@property (nonatomic, assign) NSInteger transferIndex;
+@property (nonatomic, strong) NSString* transferName;
 @property (nonatomic, assign) NSInteger segmentIndex;
+@property (nonatomic, strong) NSArray<QHVCEditSlowMotionVideoInfo *>* slowMotionVideoInfos;
 
 @end

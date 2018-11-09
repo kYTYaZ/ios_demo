@@ -53,7 +53,7 @@ static NSString * const segmentCellIdentifier = @"QHVCEditSegmentCell";
 
 - (void)updateSegmentIndex:(QHVCEditSegmentItem *)item
 {
-    if (item.transferType == QHVCEditTransferTypeAdd) {
+    if (item.transferIndex > 0) {
         if (self.addCompletion) {
             self.addCompletion();
         }
@@ -94,7 +94,7 @@ static NSString * const segmentCellIdentifier = @"QHVCEditSegmentCell";
         };
         QHVCEditSegmentItem *item = _segments[indexPath.row];
         if (indexPath.row == _segments.count - 1) {
-            item.transferType = QHVCEditTransferTypeAdd;
+//            item.transferType = QHVCEditTransferTypeAdd;
         }
         [cell updateCell:item isHighlight:_segmentIndex == indexPath.row];
         return cell;
@@ -125,8 +125,9 @@ static NSString * const segmentCellIdentifier = @"QHVCEditSegmentCell";
     if (collectionView == _effectCollectionView) {
         if (_segmentIndex >= 0) {
             QHVCEditSegmentItem *item = _segments[_segmentIndex];
-            if (item.transferType != indexPath.row) {
-                item.transferType = indexPath.row;
+            if (item.transferIndex != indexPath.row) {
+                item.transferIndex = indexPath.row;
+                item.transferName = _effects[indexPath.row][2];
                 [_segmentCollectionView reloadData];
                 if (self.transferCompletion) {
                     self.transferCompletion();

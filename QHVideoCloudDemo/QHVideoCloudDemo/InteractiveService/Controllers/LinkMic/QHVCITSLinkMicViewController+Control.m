@@ -12,7 +12,6 @@
 #import <QHVCCommonKit/QHVCCommonKit.h>
 #import <QHVCInteractiveKit/QHVCInteractiveKit.h>
 
-
 static NSString * const actionCellIdentifier = @"QHVCITSActionCell";
 
 @implementation QHVCITSLinkMicViewController(Control)

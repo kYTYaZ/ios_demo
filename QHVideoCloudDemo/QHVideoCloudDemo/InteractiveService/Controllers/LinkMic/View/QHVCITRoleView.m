@@ -9,6 +9,7 @@
 #import "QHVCITRoleView.h"
 #import "UIViewAdditions.h"
 #import "QHVCConfig.h"
+#import "QHVCITSUserSystem.h"
 
 @interface QHVCITRoleView()
 {
@@ -29,33 +30,43 @@
         _preview = [[UIView alloc]initWithFrame:self.bounds];
         [self addSubview:_preview];
         
-        if (self.width < [UIScreen mainScreen].bounds.size.width && self.height < [UIScreen mainScreen].bounds.size.height)
+        if ([QHVCITSUserSystem sharedInstance].roomInfo.roomType == QHVCITS_Room_Type_Party) {
+            [self createTitleLabel];
+            return self;
+        }
+        if (self.width < [UIScreen mainScreen].bounds.size.width &&
+            self.height < [UIScreen mainScreen].bounds.size.height)
         {
-//            UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-//            imageView.image = [UIImage imageNamed:@"room_default_user"];
-//            imageView.contentMode = UIViewContentModeCenter;
-//            [self addSubview:imageView];
             self.layer.borderColor = [UIColor blackColor].CGColor;
             self.layer.borderWidth = 1.0;
             
-            _titleLabel = [[UILabel alloc]initWithFrame: CGRectMake(0, self.height - 20, self.width, 20)];
-            _titleLabel.backgroundColor = [UIColor blackColor];
-            _titleLabel.text = _userId;
-            _titleLabel.font = [UIFont systemFontOfSize:11.0];
-            _titleLabel.textColor = [UIColor whiteColor];
-            [self addSubview:_titleLabel];
-            
-            UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateGesture:)];
-            [self addGestureRecognizer:rotateGesture];
-            
-            UIPanGestureRecognizer *moveGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveGesture:)];
-            [self addGestureRecognizer:moveGesture];
-            
-            UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGesture:)];
-            [self addGestureRecognizer:pinchGesture];
+            [self createTitleLabel];
+            [self createGesture];
         }
     }
     return self;
+}
+
+- (void)createGesture
+{
+    UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateGesture:)];
+    [self addGestureRecognizer:rotateGesture];
+    
+    UIPanGestureRecognizer *moveGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveGesture:)];
+    [self addGestureRecognizer:moveGesture];
+    
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGesture:)];
+    [self addGestureRecognizer:pinchGesture];
+}
+
+- (void)createTitleLabel
+{
+    _titleLabel = [[UILabel alloc]initWithFrame: CGRectMake(0, self.height - 20, self.width, 20)];
+    _titleLabel.backgroundColor = [UIColor blackColor];
+    _titleLabel.text = _userId;
+    _titleLabel.font = [UIFont systemFontOfSize:11.0];
+    _titleLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_titleLabel];
 }
 
 -(void)moveGesture:(UIPanGestureRecognizer *)recognizer

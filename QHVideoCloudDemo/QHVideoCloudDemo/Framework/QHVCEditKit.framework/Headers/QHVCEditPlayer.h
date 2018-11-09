@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, QHVCEditPlayerErrorInfo)
     QHVCEditPlayerErrorInfo_NoError             = 1, //无错误
     QHVCEditPlayerErrorInfo_CommandFactoryError = 2, //edit handle错误
     QHVCEditPlayerErrorInfo_PlayerHandleError   = 3, //播放器handle错误
+    QHVCEditPlayerErrorInfo_ConnectFailed       = 4, //连接错误
+    QHVCEditPlayerErrorInfo_OpenFailed          = 5, //打开失败
 };
 
 typedef NS_ENUM(NSUInteger, QHVCEditPlayerPreviewFillMode)
@@ -85,6 +87,15 @@ typedef NS_ENUM(NSUInteger, QHVCEditPlayerPreviewFillMode)
 
 
 /**
+ 关闭播放器
+
+ @param complete 关闭完成回调
+ @return 是否调用成功
+ */
+- (QHVCEditPlayerError)free:(void(^)(void))complete;
+
+
+/**
  播放器是否处于播放状态
 
  @return 是否处于播放状态
@@ -130,14 +141,23 @@ typedef NS_ENUM(NSUInteger, QHVCEditPlayerPreviewFillMode)
  */
 - (QHVCEditPlayerError)resetPlayer:(NSTimeInterval)seekTimestampMs;
 
-
 /**
  刷新播放器
  若播放器初始化之后有效果添加需刷新播放器（字幕、贴纸、水印、滤镜、画质等）
  
- @return 是否设置成功
+ @return 是否调用成功
  */
-- (QHVCEditPlayerError)refreshPlayer;
+- (QHVCEditPlayerError)refreshPlayerWithCompletion:(void(^)(void))completion;
+
+/**
+ 刷新播放器
+ 若播放器初始化之后有效果添加需刷新播放器（字幕、贴纸、水印、滤镜、画质等）
+ 此接口多用于需要频繁刷新播放器的场景，频繁刷新过程中旋转非强制刷新，频繁刷新结束时强制刷新
+
+ @param forceRefresh 是否强制刷新
+ @return 是否调用成功
+ */
+- (QHVCEditPlayerError)refreshPlayerWithForceRefresh:(BOOL)forceRefresh completion:(void(^)(void))completion;
 
 /**
  播放
@@ -197,6 +217,52 @@ typedef void(^QHVCEditPlayerSeekCallback)(NSTimeInterval currentTime);
  @return 视频帧
  */
 - (UIImage *)getCurrentFrame;
+
+
+/**
+ 获取当前时间点某个文件的视频帧，带添加到该文件的所有效果
+
+ @param overlayCommandId 文件指令id
+ @return 视频帧
+ */
+- (UIImage *)getCurrentFrameOfOverlayCommandId:(NSInteger)overlayCommandId;
+
+
+/**
+ 获取当前时间点某个文件的视频帧，带添加到文件的所有效果，支持排除某些效果
+
+ @param overlayCommandId 文件指令id
+ @param excludeCommandIds 排除的指令数组
+ @return 视频帧
+ */
+- (UIImage *)getCurrentFrameOfOverlayCommandId:(NSInteger)overlayCommandId excludeEffectCommandIds:(NSArray<NSNumber *> *)excludeCommandIds;
+
+/**
+ 批量获取主视频当前视频帧按某些效果处理后对应的缩略图，回调接口
+
+ @param thumbnails 缩略图对象数组
+ @param clutImagePaths 查色图路径数组
+ */
+typedef void(^QHVCEditCLUTFilterThumbnailsCallback)(NSArray<UIImage *>* thumbnails, NSArray<NSString *>* clutImagePaths);
+
+/**
+ 批量获取主视频当前视频帧按某些效果处理后对应的缩略图
+
+ @param clutImageInfo 查色图信息数组，image和path同时存在优先读取path，image和path均为空（@“”）时返回不带任何特效的缩略图
+ 例如：
+ @[
+ @{
+ @"path":path,
+ @"image":image,
+ @"progress":@1.0,
+ }];
+ @param size 生成缩略图尺寸
+ @param block 数据回调
+ @return 返回值
+ */
+- (QHVCEditPlayerError)generateCLUTFilterThumbnails:(NSArray<NSDictionary *>*)clutImageInfo
+                                             toSize:(CGSize)size
+                                           callback:(QHVCEditCLUTFilterThumbnailsCallback)block;
 
 @end
 

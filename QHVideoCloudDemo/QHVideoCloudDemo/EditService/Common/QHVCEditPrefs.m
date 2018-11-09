@@ -31,7 +31,11 @@ static QHVCEditPrefs *_sharedInstance = nil;
         _renderMode = QHVCEditPlayerPreviewFillMode_AspectFit;
         _renderColor = @"FF4B4B4B";
         _editSpeed = 1.0;
-        _qualitys = [NSMutableArray arrayWithObjects:@(0),@(0),@(0),@(0),@(0),@(0),nil];
+        _qualitys = [[NSMutableArray alloc] initWithCapacity:0];
+        for (int i = 0; i < 29; i++)
+        {
+            [_qualitys addObject:@(0)];
+        }
         _filterIndex = 0;
         _originAudioVolume = 100;
         _audioTimestamp = [NSMutableArray array];

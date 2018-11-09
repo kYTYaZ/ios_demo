@@ -21,7 +21,7 @@
 
 - (void)fetchImageForAsset:(QHVCEditPhotoItem *)item options:(PHImageRequestOptions *)options completion:(void (^)(void))completion;
 
-- (void)writeAssetsToSandbox:(NSArray<QHVCEditPhotoItem *> *)items;
+- (void)writeAssetsToSandbox:(NSArray<QHVCEditPhotoItem *> *)items complete:(void(^)())complete;
 - (void)saveVideoToAlbum:(NSString *)sourcePath;
 
 - (NSString *)videoTempDir;

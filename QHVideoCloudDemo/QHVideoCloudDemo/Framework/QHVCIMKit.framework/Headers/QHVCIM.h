@@ -21,7 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (QHVCIM *)sharedInstance;
 
-- (BOOL)initWithChannelId:(NSString *)channelId;
+- (BOOL)setChannelId:(NSString *)channelId;
+
+- (BOOL)setIMContexts:(NSDictionary *)context;
 
 /**
  *  @功能 设置当前登录用户的用户信息

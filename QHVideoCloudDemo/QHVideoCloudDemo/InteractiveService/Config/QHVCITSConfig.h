@@ -81,11 +81,18 @@ typedef NS_ENUM(NSInteger, QHVCITSRoomLifeCycle)
 
 #define QHVCITS_HTTP_TIMEOUT_INTERTVAL               30//网络请求超时时间（秒）
 #define QHVCITS_HEART_TIME_INTERTVAL                 10//心跳上报时间间隔（秒）
-#define QHVCITS_ROOMLIST_TIME_INTERTVAL              2//房间列表时间间隔（秒）
+#define QHVCITS_ROOMLIST_TIME_INTERTVAL              5//房间列表时间间隔（秒）
 
 #pragma mark - 日志参数配置
 #define QHVCITS_INTERACTIVE_LOG_ID                   @"interactiveLive_log_id"//互动直播日志ID
 #define QHVCITS_INTERACTIVE_LOG_PATH                 @"/com.qihoo.demo/log/interactiveLive/"//互动直播日志保存路径
+
+#pragma mark - 配置文件名
+#define QHVCITS_INTERACTIVE_VIDEO_PROFILE_FILE       @"InteractiveVideoProfile"
+#define QHVCITS_INTERACTIVE_ACCOUNT_FILE             @"QHVCITLMain"
+#define QHVCITS_INTERACTIVE_USER_SETTING_FILE        @"InteractiveSetting"
+#define QHVCITS_INTERACTIVE_ACCOUNT_SAVE_PATH        @"/InteractiveAccountCache.plist"
+#define QHVCITS_INTERACTIVE_USER_SETTING_SAVE_PATH   @"/InteractiveSettingCache.plist"
 
 #pragma mark - 连麦推流默认配置
 #define QHVCITS_VIDEO_WIDTH                          360
@@ -126,8 +133,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger mergeVideoCanvasWidth;//合流画布的宽
 @property (nonatomic, assign) NSInteger mergeVideoCanvasHeight;//合流画布的高
 
-
-@property (nonatomic, strong, nullable) NSMutableArray<NSMutableDictionary *> *settings; //主播、嘉宾、观众 音视频相关设置
+@property (nonatomic, strong, nullable) NSMutableArray<NSMutableDictionary *> *accountSettings; //账号相关设置
+@property (nonatomic, strong, nullable) NSMutableArray<NSMutableDictionary *> *userSettings; //主播、嘉宾、观众 音视频相关用户设置
 @property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *videoProfiles;
 
 #pragma mark - 网络队请求列量 -
@@ -140,6 +147,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nonnull instancetype)sharedInstance;
 
 - (void) setEnableTestEnvironment:(BOOL)enableTestEnvironment;
+- (void) readAccountSetting;//读取账号设置
+- (void) readUserSetting;//读取用户设置
 
 @end
 

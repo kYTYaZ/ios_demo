@@ -219,6 +219,7 @@ struct BaseSettings
     void *frame_context; ///< 数据回调函数上下文
 
     int retry_max; ///< 连接断开后重连尝试次数(私有)或尝试的时间(公有)
+    int retry_maxTime; ///< 最长重试连接时间，默认180s
 };
 
 typedef struct
@@ -252,6 +253,8 @@ typedef struct
 // 一些可选参数
 typedef struct
 {
+    char brand[20];
+    char sysver[20];
 } OptionalParams;
 
 /**

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) QHVCEditOverlayContentView* overlayContentView;
 @property (nonatomic, assign) NSInteger totalDurationMs;
 @property (nonatomic, retain) UIButton* playBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewWidthConstraint;
 
 @end
 
@@ -87,25 +88,10 @@
     }
 }
 
+
 - (void)processWhenLeave
 {
     [self freePlayer];
-    
-    NSArray<QHVCEditMatrixItem *> *items = [QHVCEditPrefs sharedPrefs].matrixItems;
-    WEAK_SELF
-    [items enumerateObjectsUsingBlock:^(QHVCEditMatrixItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         STRONG_SELF
-         [self updateMatrixItem:obj];
-     }];
-}
-
-- (void)updateMatrixItem:(QHVCEditMatrixItem *)item
-{
-    item.renderRect = [self rectToOutputRect:item];
-    item.previewRadian = item.preview.radian;
-    item.preview = nil;
-    [[QHVCEditCommandManager manager] updateMatrix:item];
 }
 
 - (CGRect)rectToOutputRect:(QHVCEditMatrixItem *)item
@@ -199,8 +185,13 @@
 
 - (void)createOverlayContentView
 {
+    CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+    CGFloat scale = outputSize.width / outputSize.height;
+    CGFloat width = CGRectGetHeight(_playerView.frame) * scale;
+    [self.previewWidthConstraint setConstant:width];
+    
     UIColor* bgColor = [QHVCEditPrefs colorARGBHex:[QHVCEditPrefs sharedPrefs].renderColor];
-    self.overlayContentView = [[QHVCEditOverlayContentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.playerView.frame), CGRectGetHeight(self.playerView.frame))];
+    self.overlayContentView = [[QHVCEditOverlayContentView alloc] initWithFrame:CGRectMake(0, 0, width, CGRectGetHeight(self.playerView.frame))];
     [self.overlayContentView setBackgroundColor:bgColor];
     [self.playerView addSubview:self.overlayContentView];
     
@@ -217,14 +208,18 @@
          [self playerStop];
     }];
     
-    [self.overlayContentView setPlayerNeedRefreshAction:^{
+    [self.overlayContentView setPlayerNeedRefreshAction:^(BOOL forceRefresh)
+    {
         STRONG_SELF
-        [self refreshPlayer];
+        [self refreshPlayer:forceRefresh];
     }];
 }
 
 - (void)clickedPlayerBtn
 {
+//    //获取视频帧，test
+//    UIImage* image = [_player getCurrentFrameOfOverlayCommandId:2];
+    
     if ([self isPlaying])
     {
         [self playerStop];

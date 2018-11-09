@@ -17,8 +17,7 @@
 @property (nonatomic, strong, nullable) NSString* nickName;
 @property (nonatomic, strong, nullable) NSString* portraint;//肖像
 @property (nonatomic, assign) NSInteger gender;//0女性，1男性
-@property (nonatomic, strong, nullable) NSString* imContext;
-@property (nonatomic, strong, nullable) NSString* userSign;
+@property (nonatomic, strong, nullable) NSDictionary* imContext;
 
 @property (nonatomic, assign) QHVCITSIdentity identity;//角色身份
 

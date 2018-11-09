@@ -36,6 +36,7 @@
 |调节文件音量						|
 |音视频分离						|
 |文件变速							|
+|文件变调                  |
 
 4.添加特效
 
@@ -47,9 +48,16 @@
 |添加水印、二维码				|
 |画面旋转							|
 |画面水平、垂直镜像				|
-|调整画质（曝光度、伽马值、饱和度、亮度、对比度、色相）|
+|调整画质（亮度、对比度、曝光度、gamma补偿、色温、色调、饱和度、色相、振动、暗角、色散、褪色、高光减弱、阴影补偿）|
 |添加转场							|
 |色键抠图							|
+|美颜（嫩肤、美白）          |
+|特效                      |
+|音频淡入淡出               |
+|视频、贴纸、字幕、水印淡入淡出 |
+|画中画混合模式             |
+|马赛克                    |
+|去水印							|
 	
 5.实时预览
 
@@ -62,6 +70,7 @@
 |重置播放器						|
 |获取当前播放时间				|
 |获取当前视频帧					|
+|获取主视频当前视频帧按某种滤镜处理后对应的缩略图 |
 	
 6.合成
 
@@ -69,6 +78,13 @@
 |-------------------------|
 |开始合成							|
 |支持取消正在进行的合成操作		|
+
+7.音频波形图生成器
+
+|功能列表							|
+|-------------------------|
+|开始生成                  |
+|停止使用                  |
 	
 ### 系统范围：
 | 系统特性 | 支持范围       |
@@ -344,8 +360,7 @@ command.endTimestampMs = self.curEndTimestampMs;
 ```Objective-C
 //画质指令
 QHVCEditCommandQualityFilter *q = [[QHVCEditCommandQualityFilter alloc] initCommand:self.commandFactory];
-q.qualityType = type;
-q.qualityValue = value;
+q.brightnessValue = 0.5; //调节亮度
 q.startTimestampMs = start;
 q.endTimestampMs = q.startTimestampMs +cmd.endTimestampMs;
 
@@ -363,7 +378,7 @@ q.endTimestampMs = q.startTimestampMs +cmd.endTimestampMs;
 //转场指令
 QHVCEditCommandTransition *transferCommand = [[QHVCEditCommandTransition alloc]initCommand:self.commandFactory];
 transferCommand.overlayCommandId = overlaySegment.commandId;
-transferCommand.transitionType = (QHVCEditTransitionType)item.transferType;
+transferCommand.transitionName = @"transition_1";
 transferCommand.startTimestampMs = MIN(originalSegment.segmentStartTime - kTransferDuration, 0) ;
 transferCommand.endTimestampMs = originalSegment.segmentStartTime;
 
@@ -381,9 +396,8 @@ transferCommand.endTimestampMs = originalSegment.segmentStartTime;
 //色键抠图
 QHVCEditCommandChromakey* cmd = [[QHVCEditCommandChromakey alloc] initCommand:self.commandFactory];
 cmd.overlayCommandId = overlayCommandId;
-cmd.minHueAngle = minHue;
-cmd.maxHueAngle = maxHue;
-cmd.extend = extend;
+cmd.color = @"FFFFFFFF";
+cmd.threshold = 20;
 cmd.startTimestampMs = startTimestampMs;
 cmd.endTimestampMs = endTimestampMs;
 
@@ -395,6 +409,70 @@ cmd.endTimestampMs = endTimestampMs;
 
 //删除
 //[cmd deleteCommand];
+```
+
+```Objective-C
+//添加特效
+QHVCEditCommandEffectFilter* cmd = [[QHVCEditCommandEffectFilter alloc] initCommand:self.commandFactory];
+cmd.effecName = @"effect_6";
+cmd.color = @"FFFFFFFF";
+cmd.threshold = 20;
+cmd.startTimestampMs = startTimestampMs;
+cmd.endTimestampMs = endTimestampMs;
+
+//添加
+[cmd addCommand];
+
+//修改
+//[cmd editCommand];
+
+//删除
+//[cmd deleteCommand];
+```
+
+```Objective-C
+//添加美颜效果
+QHVCEditCommandBeauty* cmd = [[QHVCEditCommandBeauty alloc] initCommand:self.commandFactory];
+cmd.softLevel = 1.0;
+cmd.whiteLevel = 1.0;
+cmd.startTimestampMs = startTimestampMs;
+cmd.endTimestampMs = endTimestampMs;
+
+//添加
+[cmd addCommand];
+
+//修改
+//[cmd editCommand];
+
+//删除
+//[cmd deleteCommand];
+```
+
+```Objective-C
+//添加马赛克效果
+QHVCEditCommandMosaic* cmd = [[QHVCEditCommandMosaic alloc] initCommand:self.commandFactory];
+cmd.degree = 0.5;
+cmd.region = CGRectMake(0, 0, 100, 100);
+cmd.startTimestampMs = startTimestampMs;
+cmd.endTimestampMs = endTimestampMs;
+
+//添加
+[cmd addCommand];
+
+//修改
+//[cmd editCommand];
+
+//删除
+//[cmd deleteCommand];
+```
+
+```Objective-C
+//添加去水印效果
+QHVCEditCommandDelogo* f = [[QHVCEditCommandDelogo alloc] initCommand:self.commandFactory];
+f.startTimestampMs = start;
+f.endTimestampMs = f.startTimestampMs + 2000;
+f.region = CGRectMake(0, 0, 100, 100);
+[f addCommand];
 ```
 
 #### 实时预览
@@ -555,6 +633,31 @@ QHVCEditCommandMakeFile* command = [[QHVCEditCommandMakeFile alloc] initCommand:
 - (void)onMakerProcessing:(QHVCEditMakerStatus)status progress:(int)progress;
 ```
 
+#### 获取音频波形图
+
+- 初始化
+
+```Objective-C
+_audioProducer = [[QHVCEditAudioProducer alloc] initWithCommandFactory:[[QHVCEditCommandManager manager] commandFactory]];
+_audioProducer.fileIndex = 0;
+_audioProducer.startTime = 0;
+_audioProducer.endTime = cmd.endTime;
+_audioProducer.delegate = self;
+```
+
+- 开始生成
+
+```Objective-C
+[_audioProducer startProducer];
+```
+
+- 停止使用
+
+```Objective-C
+[_audioProducer stopProducer];
+```
+
+
 # API部分
 ## 指令
 ### 指令工厂初始化
@@ -615,8 +718,10 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 @property (nonatomic, assign) NSTimeInterval startTimestampMs; //起始时间点，相对物理文件时间(单位：毫秒),文件为图片时此值无效
 @property (nonatomic, assign) NSTimeInterval endTimestampMs;   //结束时间点，相对物理文件时间(单位：毫秒),文件为图片时此值无效
 @property (nonatomic, assign) BOOL mute;                       //是否舍弃音频
-@property (nonatomic, assign) int volume;                      //音量0~100
+@property (nonatomic, assign) int volume;                      //音量0~200
 @property (nonatomic, assign) float speed;                     //0.25~4
+@property (nonatomic, assign) int pitch;                       //音调，-12~12
+@property (nonatomic, retain) NSArray<QHVCEditSlowMotionVideoInfo *>* slowMotionVideoInfos;  //慢视频物理文件倍速信息
 
 @end
 
@@ -665,7 +770,7 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 @property (nonatomic, strong) NSString* filePath;               //音频文件路径
 @property (nonatomic, assign) NSTimeInterval insertTimeStampMs; //插入时间点, 相对所有文件所在时间轴(单位：毫秒)
 @property (nonatomic, assign) NSTimeInterval endTimeStampMs;    //插入结束时间点, 相对所有文件所在时间轴（单位：毫秒）
-@property (nonatomic, assign) NSInteger volume;                 //音频音量(0~100)
+@property (nonatomic, assign) NSInteger volume;                 //音频音量(0~200)
 @property (nonatomic, assign) BOOL loop;                        //是否循环播放
 
 @end
@@ -678,8 +783,10 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 @property (nonatomic, assign) NSTimeInterval endTime;             //音频文件结束时间，相对素材（单位：毫秒）
 @property (nonatomic, assign) NSTimeInterval insertStartTime;     //音频文件混音相对于所有文件所在的时间轴的开始时间（单位：毫秒）
 @property (nonatomic, assign) NSTimeInterval insertEndTime;       //音频文件混音相对于所有文件所在的时间轴的结束时间 (单位：毫秒)
-@property (nonatomic, assign) int volume;                         //音频音量(0~100)
+@property (nonatomic, assign) int volume;                         //音频音量(0~200)
 @property (nonatomic, assign) BOOL loop;                          //是否循环播放
+@property (nonatomic, assign) int pitch;                          //音调（-12~12）
+@property (nonatomic, assign) int speed;                          //变速（1/8~8）
 
 @end
 
@@ -687,9 +794,53 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 
 @interface QHVCEditCommandAlterVolume : QHVCEditCommand
 @property (nonatomic, assign) NSInteger fileIndex;           //文件序列号
-@property (nonatomic, assign) int volume;                    //音量0~100
+@property (nonatomic, assign) int volume;                    //音量0~200
 
 @end
+
+
+#pragma mark - 声音淡入淡出
+
+typedef NS_ENUM(NSUInteger, QHVCEditCommandAudioFilterType)
+{
+    QHVCEditAudioFilterNone,
+    QHVCEditAudioFilterFadeIn,              //淡入
+    QHVCEditAudioFilterFadeOut,             //淡出
+};
+
+typedef NS_ENUM(NSInteger, QHVCEditCommandAudioFadeType)
+{
+    QHVCEditAudioFadeTri,                    //线性
+    QHVCEditAudioFadeQsin,                   //正弦波
+    QHVCEditAudioFadeEsin,                   //指数正弦
+    QHVCEditAudioFadeHsin,                   //正弦波的一半
+    QHVCEditAudioFadeLog,                    //对数
+    QHVCEditAudioFadeIpar,                   //倒抛物线
+    QHVCEditAudioFadeQua,                    //二次方
+    QHVCEditAudioFadeCub,                    //立方
+    QHVCEditAudioFadeSqu,                    //平方根
+    QHVCEditAudioFadeCbr,                    //立方根
+    QHVCEditAudioFadePar,                    //抛物线
+    QHVCEditAudioFadeExp,                    //指数
+    QHVCEditAudioFadeIqsin,                  //正弦波反季
+    QHVCEditAudioFadeIhsin,                  //倒一半的正弦波
+    QHVCEditAudioFadeDese,                   //双指数差值
+    QHVCEditAudioFadeDesi,                   //双指数S弯曲
+};
+
+@interface QHVCEditCommandAudioFadeInOut : QHVCEditEditableCommand
+@property (nonatomic, assign) NSInteger mainIndex;                              //主轴文件
+@property (nonatomic, assign) NSInteger overlayCommandId;                       //视频overlay
+@property (nonatomic, assign) NSInteger audioOverlayCommandId;                  //音频overlay
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;                  //起始时间点，相对于文件的时间（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;                    //结束时间点，相对于文件的时间（单位：毫秒）
+@property (nonatomic, assign) NSInteger gainMin;                                //淡入淡出声音最小值，默认0
+@property (nonatomic, assign) NSInteger gainMax;                                //淡入淡出声音最大值， 默认100
+@property (nonatomic, assign) QHVCEditCommandAudioFilterType audioFilterType;   //淡入、淡出类型
+@property (nonatomic, assign) QHVCEditCommandAudioFadeType fadeType;            //变化曲线类型
+
+@end
+
 
 #pragma mark -  文件变速
 
@@ -699,6 +850,13 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 
 @end
 
+#pragma mark - 变调
+@interface QHVCEditCommandAlterPitch : QHVCEditEditableCommand
+@property (nonatomic, assign) NSInteger fileIndex;            //文件序列号
+@property (nonatomic, assign) int pitch;                      //音调（-12~12）
+@end
+
+
 #pragma mark - 叠加片段
 
 @interface QHVCEditCommandOverlaySegment : QHVCEditEditableCommand
@@ -707,12 +865,56 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 @property (nonatomic, assign) NSTimeInterval startTimestampMs;    //素材相对于物理文件的起始时间，单位毫秒，对于图片文件开始时间为0
 @property (nonatomic, assign) NSTimeInterval endTimestampMs;      //素材相对于物理文件的结束时间，单位毫秒，对于图片文件结束时间为0
 @property (nonatomic, assign) NSTimeInterval insertTimestampMs;   //叠加片段插入时间点，相对所有文件所在时间轴（单位：毫秒）
-@property (nonatomic, assign) NSInteger volume;                   //音量值（0-100，默认为100）
+@property (nonatomic, assign) NSInteger volume;                   //音量值（0-200，默认为100）
 @property (nonatomic, assign) CGFloat speed;                      //速率（0.25~4）
+@property (nonatomic, assign) int pitch;                          //音调（-12~12）
+@property (nonatomic, retain) NSArray<QHVCEditSlowMotionVideoInfo *>* slowMotionVideoInfos;  //慢视频物理文件倍速信息
 
 @end
 
+#pragma mark - 动画（和画中画、字幕、贴纸、水印组合使用）
+
+typedef NS_ENUM(NSUInteger, QHVCEditCommandAnimationType)
+{
+    QHVCEditCommandAnimationType_Alpha,     //透明度（0-1），默认1.0
+    QHVCEditCommandAnimationType_Scale,     //缩放，默认1.0
+    QHVCEditCommandAnimationType_OffsetX,   //x方向相对位移，默认0
+    QHVCEditCommandAnimationType_OffsetY,   //y方向相对位移，默认0
+    QHVCEditCommandAnimationType_Radian,    //旋转弧度值，默认0
+};
+
+typedef NS_ENUM(NSUInteger, QHVCEditCommandAnimationCurveType)
+{
+    QHVCEditCommandAnimationCurveType_Linear,    //线性
+    QHVCEditCommandAnimationCurveType_Curve,    //曲线
+};
+
+@interface QHVCEditCommandAnimation : NSObject
+@property (nonatomic, assign) QHVCEditCommandAnimationType animationType;   //动画参数类型
+@property (nonatomic, assign) QHVCEditCommandAnimationCurveType curveType;  //曲线类型
+@property (nonatomic, assign) CGFloat startValue;    //初始值
+@property (nonatomic, assign) CGFloat endValue;      //结束值
+@property (nonatomic, assign) NSInteger startTime;   //初始时间，为相对特效的相对时间，单位：毫秒
+@property (nonatomic, assign) NSInteger endTime;     //结束时间，为相对特效的相对时间，单位：毫秒
+@end
+
 #pragma mark - 矩阵操作
+
+typedef NS_ENUM(NSUInteger, QHVCEditBlendType)
+{
+    QHVCEditBlendType_Normal,           //正常
+    QHVCEditBlendType_Overlay,          //叠加
+    QHVCEditBlendType_Multiply,         //多倍
+    QHVCEditBlendType_Screen,           //屏幕
+    QHVCEditBlendType_SoftLight,        //柔光
+    QHVCEditBlendType_HardLight,        //强光
+    QHVCEditBlendType_Darken,           //变暗
+    QHVCEditBlendType_ColorBurn,        //颜色加深
+    QHVCEditBlendType_Lighten,          //变亮
+    QHVCEditBlendType_LinearDodge,      //更亮
+    QHVCEditBlendType_LinearBurn,       //更暗
+    QHVCEditBlendType_BlackBg = 100,    //黑色背景，只显示画中画
+};
 
 @interface QHVCEditCommandMatrixFilter : QHVCEditEditableCommand
 
@@ -728,7 +930,22 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 @property (nonatomic, strong) UIView* preview;                          //渲染窗口，可为空
 @property (nonatomic, strong) QHVCEditOutputParams* outputParams;       //输出渲染样式，可为空，默认同CommandFactory defaultOutputParams
 @property (nonatomic, assign) NSTimeInterval startTimestampMs;          //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-@property (nonatomic, assign) NSTimeInterval endTimestampMs;            //结束时间点，相对所有文件所在时间轴，开始时间和结束不能跨片段（单位：毫秒
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;            //结束时间点，相对所有文件所在时间轴，开始时间和结束不能跨片段（单位：毫秒）
+
+/**
+ 关键帧动画
+ */
+@property (nonatomic, retain) NSArray<QHVCEditCommandAnimation *>* animation;
+
+/**
+ 混合模式
+ */
+@property (nonatomic, assign) QHVCEditBlendType blendType;
+
+/**
+混合程度（0-1），默认为1，当混合程度为0时，不可见
+ */
+@property (nonatomic, assign) CGFloat blendProgress;
 
 @end
 
@@ -738,51 +955,20 @@ typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments
 
 //指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
 @property (nonatomic, assign) NSInteger overlayCommandId;
-@property (nonatomic, strong) UIImage* image;                  //贴图
-@property (nonatomic, strong) NSString* imagePath;             //贴图物理路径，路径和贴图都存在时优先读取路径
-@property (nonatomic, assign) CGFloat destinationX;            //绘制点x坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationY;            //绘制点y坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationWidth;        //绘制点宽度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationHeight;       //绘制点高度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationRotateAngle;  //绘制旋转弧度值，例如，90° = π/2
-@property (nonatomic, assign) NSTimeInterval startTimestampMs; //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-@property (nonatomic, assign) NSTimeInterval endTimestampMs;   //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, strong) UIImage* image;                   //贴图
+@property (nonatomic, strong) NSString* imagePath;              //贴图物理路径，路径和贴图都存在时优先读取路径
+@property (nonatomic, assign) CGFloat destinationX;             //绘制点x坐标，相对目标画布
+@property (nonatomic, assign) CGFloat destinationY;             //绘制点y坐标，相对目标画布
+@property (nonatomic, assign) CGFloat destinationWidth;         //绘制点宽度，相对目标画布
+@property (nonatomic, assign) CGFloat destinationHeight;        //绘制点高度，相对目标画布
+@property (nonatomic, assign) CGFloat destinationRotateAngle;   //绘制旋转弧度值，例如，90° = π/2
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;  //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;    //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 
-@end
-
-#pragma mark - 字幕操作
-
-@interface QHVCEditCommandSubtitle : QHVCEditEditableCommand
-
-//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
-@property (nonatomic, assign) NSInteger overlayCommandId;
-@property (nonatomic, strong) UIImage* image;                  //字幕图
-@property (nonatomic, strong) NSString* imagePath;             //字幕图物理路径，路径和贴图都存在时优先读取路径
-@property (nonatomic, assign) CGFloat destinationX;            //绘制点x坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationY;            //绘制点y坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationWidth;        //绘制点宽度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationHeight;       //绘制点高度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationRotateAngle;  //绘制旋转旋转弧度值，例如，90° = π/2
-@property (nonatomic, assign) NSTimeInterval startTimestampMs; //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-@property (nonatomic, assign) NSTimeInterval endTimestampMs;   //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-
-@end
-
-#pragma mark - 水印操作
-
-@interface QHVCEditCommandWaterMark : QHVCEditEditableCommand
-
-//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
-@property (nonatomic, assign) NSInteger overlayCommandId;
-@property (nonatomic, strong) UIImage* image;                  //水印图
-@property (nonatomic, strong) NSString* imagePath;             //水印图物理路径，路径和贴图都存在时优先读取路径
-@property (nonatomic, assign) CGFloat destinationX;            //绘制点x坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationY;            //绘制点y坐标，相对目标画布
-@property (nonatomic, assign) CGFloat destinationWidth;        //绘制点宽度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationHeight;       //绘制点高度，相对目标画布
-@property (nonatomic, assign) CGFloat destinationRotateAngle;  //绘制旋转旋转弧度值，例如，90° = π/2
-@property (nonatomic, assign) NSTimeInterval startTimestampMs; //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-@property (nonatomic, assign) NSTimeInterval endTimestampMs;   //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+/**
+ 关键帧动画
+ */
+@property (nonatomic, retain) NSArray<QHVCEditCommandAnimation *>* animation;
 
 @end
 
@@ -800,7 +986,21 @@ typedef NS_ENUM(NSUInteger, QHVCEditAuxFilterType)
 @property (nonatomic, assign) NSInteger overlayCommandId;
 @property (nonatomic, assign) QHVCEditAuxFilterType auxFilterType; //滤镜类型
 @property (nonatomic, retain) NSString* auxFilterInfo;             //滤镜信息。滤镜类型为color时，为填充背景色 (16进制值, ARGB)；滤镜类型为CLUT时，为查色图路径
+@property (nonatomic, retain) UIImage* clutImage;                  //查色图，auxFilterInfo和clutImage同时存在时，优先读取auxFilterInfo
 @property (nonatomic, assign) CGFloat progress;                    //滤镜程度(0-1)，默认为1
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;     //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;       //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+
+@end
+
+#pragma mark - 特效
+
+@interface QHVCEditCommandEffectFilter : QHVCEditEditableCommand
+
+//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
+@property (nonatomic, assign) NSInteger overlayCommandId;
+@property (nonatomic, retain) NSString* effectName;                 //特效名称（目前支持15种，命名为 effect_1 ... effect_15）
+@property (nonatomic, retain) NSDictionary* effectInfo;            //某些特效需要额外参数 (effect_7、15需要额外参数，暂不支持)
 @property (nonatomic, assign) NSTimeInterval startTimestampMs;     //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 @property (nonatomic, assign) NSTimeInterval endTimestampMs;       //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 
@@ -808,22 +1008,24 @@ typedef NS_ENUM(NSUInteger, QHVCEditAuxFilterType)
 
 #pragma mark - 画质操作
 
-typedef NS_ENUM(NSUInteger, QHVCEditQualityType)
-{
-    QHVCEditQualityType_exposure,       //曝光度
-    QHVCEditQualityType_gamma,          //伽马值
-    QHVCEditQualityType_saturation,     //饱和度
-    QHVCEditQualityType_brightness,     //亮度
-    QHVCEditQualityType_contrast,       //对比度
-    QHVCEditQualityType_hue,            //色相
-};
-
 @interface QHVCEditCommandQualityFilter : QHVCEditEditableCommand
 
 //指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
 @property (nonatomic, assign) NSInteger overlayCommandId;
-@property (nonatomic, assign) QHVCEditQualityType qualityType; //画质类型
-@property (nonatomic, assign) CGFloat qualityValue;            //画质值（-1~1，默认为0）
+@property (nonatomic, assign) NSInteger brightnessValue;       //亮度 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger contrastValue;         //对比度 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger exposureValue;         //曝光度 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger gammaOffsetValue;      //gamma补偿 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger temperatureValue;      //色温 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger tintValue;             //色调 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger saturationValue;       //饱和度 (参数范围-100~100)
+@property (nonatomic, assign) NSInteger hueValue;              //色相 (参数范围-180~180)
+@property (nonatomic, assign) NSInteger vibranceValue;         //振动（自然饱和度）(参数范围-100~100)
+@property (nonatomic, assign) NSInteger vignetteValue;         //暗角 (参数范围0~100)
+@property (nonatomic, assign) NSInteger prismValue;            //色散 (参数范围0~100)
+@property (nonatomic, assign) NSInteger fadeValue;             //褪色 (参数范围0~100)
+@property (nonatomic, assign) NSInteger highlightValue;        //高光减弱 (参数范围0~100)
+@property (nonatomic, assign) NSInteger shadowValue;           //阴影补偿 (参数范围0~100)
 @property (nonatomic, assign) NSTimeInterval startTimestampMs; //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 @property (nonatomic, assign) NSTimeInterval endTimestampMs;   //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 
@@ -831,26 +1033,11 @@ typedef NS_ENUM(NSUInteger, QHVCEditQualityType)
 
 #pragma mark - 转场操作
 
-typedef NS_ENUM(NSUInteger, QHVCEditTransitionType)
-{
-    QHVCEditTransitionType_dissolution,     //溶解
-    QHVCEditTransitionType_aperture,        //光圈
-    QHVCEditTransitionType_swipeToRight,    //向右轻擦
-    QHVCEditTransitionType_swipeToLeft,     //向左轻擦
-    QHVCEditTransitionType_swipeToTop,      //向上轻擦
-    QHVCEditTransitionType_swipeToBottom,   //向下轻擦
-    QHVCEditTransitionType_moveToRight,     //向右滑动
-    QHVCEditTransitionType_moveToLeft,      //向左滑动
-    QHVCEditTransitionType_moveToTop,       //向上滑动
-    QHVCEditTransitionType_moveToBottom,    //向下滑动
-    QHVCEditTransitionType_fade,            //淡化
-};
-
 @interface QHVCEditCommandTransition : QHVCEditEditableCommand
-@property (nonatomic, assign) NSInteger overlayCommandId;                   //需指定叠加片段的commandId
-@property (nonatomic, assign) QHVCEditTransitionType transitionType;        //转场类型
-@property (nonatomic, assign) NSTimeInterval startTimestampMs;              //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
-@property (nonatomic, assign) NSTimeInterval endTimestampMs;                //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSInteger overlayCommandId;        //需指定叠加片段的commandId
+@property (nonatomic, strong) NSString* transitionName;          //转场类型 （目前支持67种，命名为 transition_1 ... transition_67）
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;   //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;     //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 
 @end
 
@@ -860,14 +1047,49 @@ typedef NS_ENUM(NSUInteger, QHVCEditTransitionType)
 
 //指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
 @property (nonatomic, assign) NSInteger overlayCommandId;
-@property (nonatomic, assign) int minHueAngle;                              //最小色调值(0-360)
-@property (nonatomic, assign) int maxHueAngle;                              //最大色调值(0-360)
-@property (nonatomic, assign) int extend;                                   //扩展（0-10）,在最大、最小色调区间外再扩展一定范围的过度区间，让抠图效果更自然
+@property (nonatomic, retain) NSString* color;                              //抠去的颜色, 16进制ARGB值
+@property (nonatomic, assign) int threshold;                                //微调，基于抠去的颜色的波动范围，微调越大抠色范围越大, 0-100
 @property (nonatomic, assign) NSTimeInterval startTimestampMs;              //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 @property (nonatomic, assign) NSTimeInterval endTimestampMs;                //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
 
 @end
+
+#pragma mark - 美颜
+
+@interface QHVCEditCommandBeauty : QHVCEditEditableCommand
+
+//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
+@property (nonatomic, assign) NSInteger overlayCommandId;
+@property (nonatomic, assign) CGFloat softLevel;                            //嫩肤程度（0-1）
+@property (nonatomic, assign) CGFloat whiteLevel;                           //美白程度（0-1）
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;              //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;                //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+
+#pragma mark - 马赛克
+
+@interface QHVCEditCommandMosaic : QHVCEditEditableCommand
+
+//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
+@property (nonatomic, assign) NSInteger overlayCommandId;
+@property (nonatomic, assign) CGFloat degree;                               //模糊程度（0-1, 0为没有马赛克效果）
+@property (nonatomic, assign) CGRect region;                                //马赛克区域，相对输出画布
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;              //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;                //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+
+@end
+
+#pragma mark - 去水印
+
+@interface QHVCEditCommandDelogo : QHVCEditEditableCommand
+
+//指定特效添加层级。添加给某个叠加片段，需指定叠加文件的commandId; 只添加给主片段列表，=0; 默认为-1，生效于主片段和所有叠加片段
+@property (nonatomic, assign) NSInteger overlayCommandId;
+@property (nonatomic, assign) CGRect region;                                //去水印区域，相对输出画布
+@property (nonatomic, assign) NSTimeInterval startTimestampMs;              //起始时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@property (nonatomic, assign) NSTimeInterval endTimestampMs;                //结束时间点，相对所有文件所在时间轴，开始时间和结束时间不能跨片段（单位：毫秒）
+@end
 ```
+
 ## 实时预览
 
 ```Objective-C
@@ -1010,6 +1232,33 @@ typedef void(^QHVCEditPlayerSeekCallback)(NSTimeInterval currentTime);
  */
 - (UIImage *)getCurrentFrame;
 
+/**
+ 批量获取主视频当前视频帧按某些效果处理后对应的缩略图，回调接口
+
+ @param thumbnails 缩略图对象数组
+ @param clutImagePaths 查色图路径数组
+ */
+typedef void(^QHVCEditCLUTFilterThumbnailsCallback)(NSArray<UIImage *>* thumbnails, NSArray<NSString *>* clutImagePaths);
+
+/**
+ 批量获取主视频当前视频帧按某些效果处理后对应的缩略图
+
+ @param clutImageInfo 查色图信息数组，image和path同时存在优先读取path，image和path均为空（@“”）时返回不带任何特效的缩略图
+ 例如：
+ @[
+ @{
+ @"path":path,
+ @"image":image,
+ @"progress":@1.0,
+ }];
+ @param size 生成缩略图尺寸
+ @param block 数据回调
+ @return 返回值
+ */
+- (QHVCEditPlayerError)generateCLUTFilterThumbnails:(NSArray<NSDictionary *>*)clutImageInfo
+                                             toSize:(CGSize)size
+                                           callback:(QHVCEditCLUTFilterThumbnailsCallback)block;
+
 
 //播放器回调
 @protocol QHVCEditPlayerDelegate <NSObject>
@@ -1141,7 +1390,46 @@ typedef void(^QHVCEditThumbnailCallback)(NSArray<QHVCEditThumbnailItem*>* thumbn
 
 ```
 
+## 音频波形图生成器
+
+``` Objective-C
+@property (nonatomic, weak) id<QHVCEditAudioProducerDelegate> delegate;
+@property (nonatomic, assign) int fileIndex;
+@property (nonatomic, assign) int overlayCommandId;
+@property (nonatomic, assign) NSInteger startTime;
+@property (nonatomic, assign) NSInteger endTime;
+
+/**
+ 初始化合成器
+ 
+ @param commandFactory 指令工厂
+ @return 合成器实例对象
+ */
+- (instancetype)initWithCommandFactory:(QHVCEditCommandFactory *)commandFactory;
+
+/**
+ 开始读取pcm
+ */
+- (QHVCEditAudioProducerError)startProducer;
+
+/**
+ 停止
+ */
+- (QHVCEditAudioProducerError)stopProducer;
+
+//回调接口
+@protocol QHVCEditAudioProducerDelegate <NSObject>
+
+- (void)onPCMData:(unsigned char *)pcm size:(int)size;
+
+@optional
+- (void)onProducerStatus:(QHVCEditAudioProducerStatus)status;
+
+@end
+```
+
 ## 日志
+
 ``` Objective-C
 typedef NS_ENUM(NSUInteger, QHVCEditLogLevel)
 {
@@ -1154,11 +1442,68 @@ typedef NS_ENUM(NSUInteger, QHVCEditLogLevel)
 @interface QHVCEditLog : NSObject
 
 /**
- 设置日志级别
-
- @param level 日志级别
+ 获取版本号
  */
-+ (void)setLogLevel:(QHVCEditLogLevel)level;
++ (NSString *)getVersion;
+
+/**
+ 设置SDK日志控制台输出级别
+
+ @param level SDK日志控制台输出级别
+ */
++ (void)setSDKLogLevel:(QHVCEditLogLevel)level;
+
+/**
+ 设置SDK日志写文件级别
+
+ @param level SDK日志写文件级别
+ */
++ (void)setSDKLogLevelForFile:(QHVCEditLogLevel)level;
+
+/**
+ 设置用户自定义日志控制台输出级别
+
+ @param level 用户自定义控制台输出级别
+ */
++ (void)setUserLogLevel:(QHVCEditLogLevel)level;
+
+/**
+ 设置用户自定义日志写文件级别
+
+ @param level 用户自定义日志写文件级别
+ */
++ (void)setUserLogLevelForFile:(QHVCEditLogLevel)level;
+
+/**
+ 输出用户自定义日志，若开启了写文件，则日志同时写入文件
+ 
+ @param level 日志级别
+ @param prefix 用户自定义日志前缀
+ @param content 日志内容
+ */
++ (void)printUserLog:(QHVCEditLogLevel)level prefix:(NSString*)prefix content:(NSString *)content;
+
+/**
+ 设置日志存放路径，默认存于Library/Caches/com.qihoo.videocloud/QHVCEdit/Log/”
+ 
+ @param path 日志存放路径
+ */
++ (void)setLogFilePath:(NSString *)path;
+
+/**
+ 日志是否写文件
+
+ @param writeToLocal 是否写文件
+ */
++ (void)writeLogToLocal:(BOOL)writeToLocal;
+
+/**
+ 设置日志文件相关参数
+
+ @param singleSize 单个日志文件最大大小（单位MB），默认1M
+ @param count 日志文件循环写入文件，文件个数，默认3个
+ */
++ (void)setLogFileParams:(NSInteger)singleSize count:(NSInteger)count;
 
 @end
 ```
@@ -1224,5 +1569,40 @@ QHVCEditMakerError （合成基本错误类型）
 |   1   | QHVCEditMakerError_NoError      | 无错误      |
 |   2   | QHVCEditMakerError_FactoryError | 指令工厂错误 |
 |   3   | QHVCEditMakerError_InitError    | 初始化失败   |
+
+QHVCEditAudioProducerError（音频波形图生成器错误类型）
+
+| 状态码 | 字段                                    | 注释          |
+|:-----:|----------------------------------------|---------------|
+|   1   | QHVCEditAudioProducerError_NoError     | 无错误         |
+|   2   | QHVCEditAudioProducerError_ParamError  | 参数错误       |
+|   3   | QHVCEditAudioProducerError_InitError   | 初始化失败      |
+|   4   | QHVCEditAudioProducerError_ReadPCMError| PCM数据读取失败 |
+
+详细错误码
+
+| 状态码 | 注释        |
+|:-----:|------------|
+| -999  | 内存分配失败 |
+| -998  | 文件打开失败 |
+| -997  | 文件内容不对 |
+| -996  | 背景音乐不存在 |
+| -995  | 特效已存在 |
+| -994  | 特效不存在 |
+| -899  | 输入参数错误 |
+| -799  | 合成中，不能操作参数配置 |
+| -798  | 参数配置为空就开始合成（主轴没有视频）|
+| -797  | 视频流不存在 |
+| -796  | 音频流不存在 |
+| -795  | 创建流失败   |
+| -794  | 没有合适的解码器 |
+| -793  | 解码器打开失败 |
+| -792  | 编码器打开失败 |
+| -791  | 编码失败 |
+| -790  | 解码失败 |
+| -789  | 创建特效失败 |
+| -788  | ffmpeg seek失败 |
+| -787  | 写文件失败 |
+| -786  | 填充音频失败 |
 
 

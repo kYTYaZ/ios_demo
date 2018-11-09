@@ -35,18 +35,13 @@ static NSString *SettingCellStyleThreeIdenitifer = @"QHVCSettingCellStyleThree";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     [self initData];
 }
 
 - (void)initData
 {
-    if ([QHVCITSConfig sharedInstance].settings.count <= 0) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"InteractiveSetting" ofType:@"plist"];
-        [QHVCITSConfig sharedInstance].settings = [NSMutableArray arrayWithContentsOfFile:path];
-    }
-    _dataArray = [NSMutableArray arrayWithArray:[QHVCITSConfig sharedInstance].settings];
+    _dataArray = [NSMutableArray arrayWithArray:[QHVCITSConfig sharedInstance].userSettings];
 }
 
 #pragma mark UITableView
@@ -193,22 +188,13 @@ static NSString *SettingCellStyleThreeIdenitifer = @"QHVCSettingCellStyleThree";
 
 - (IBAction)clickedBack:(id)sender
 {
+    [[QHVCITSConfig sharedInstance] readUserSetting];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)reset:(id)sender
 {
-    [QHVCITSConfig sharedInstance].settings = nil;
-    [self initData];
-    
-    [generalTableView reloadData];
-    
-    [QHVCToast makeToast:@"重置成功！"];
-}
-
-- (IBAction)save:(id)sender
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"操作成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确定重置" preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alert animated:YES completion:nil];
     
     __weak typeof(self) weakSelf = self;
@@ -216,9 +202,26 @@ static NSString *SettingCellStyleThreeIdenitifer = @"QHVCSettingCellStyleThree";
     [alert addAction:cancel];
     
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [QHVCITSConfig sharedInstance].settings = [NSMutableArray arrayWithArray:weakSelf.dataArray];
-        [weakSelf freshLinkmicConfig];
-        [weakSelf clickedBack:nil];
+        [weakSelf resetData];
+        [weakSelf writeDataToFile];
+        [generalTableView reloadData];
+        [QHVCToast makeToast:@"重置成功！"];
+    }];
+    [alert addAction:confirm];
+}
+
+- (IBAction)save:(id)sender
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确定保存" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:cancel];
+    
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf writeDataToFile];
+        [QHVCToast makeToast:@"保存成功！"];
     }];
     [alert addAction:confirm];
 }
@@ -235,34 +238,22 @@ static NSString *SettingCellStyleThreeIdenitifer = @"QHVCSettingCellStyleThree";
     [generalTableView reloadData];
 }
 
-- (void)freshLinkmicConfig
+- (void)writeDataToFile
 {
-    NSArray *debugConfig = [QHVCITSConfig sharedInstance].settings[0][@"config"];
-    NSString *debug = [[debugConfig lastObject] objectForKey:@"index"];
-    [[QHVCITSConfig sharedInstance] setEnableTestEnvironment:[debug boolValue]];
-    
-    NSString *anchorVideoProfile = [QHVCITSConfig sharedInstance].settings[1][@"index"];
-    NSString *anchorProfileIndex = [QHVCITSConfig sharedInstance].videoProfiles[anchorVideoProfile.integerValue][@"profileIndex"];
-    [QHVCITSConfig sharedInstance].videoEncoderProfile = anchorProfileIndex.integerValue;
-    
-    NSString *guestVideoProfile = [QHVCITSConfig sharedInstance].settings[2][@"index"];
-    NSString *guestProfileIndex = [QHVCITSConfig sharedInstance].videoProfiles[guestVideoProfile.integerValue][@"profileIndex"];
-    [QHVCITSConfig sharedInstance].videoEncoderProfileForGuest = guestProfileIndex.integerValue;
+    NSURL *path = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    NSString* userSettingCachePath = [path.relativePath stringByAppendingString:QHVCITS_INTERACTIVE_USER_SETTING_SAVE_PATH];
+    [_dataArray writeToFile:userSettingCachePath atomically:YES];
+}
+
+- (void)resetData
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:QHVCITS_INTERACTIVE_USER_SETTING_FILE ofType:@"plist"];
+    _dataArray = [NSMutableArray arrayWithArray:[NSMutableArray arrayWithContentsOfFile:path]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

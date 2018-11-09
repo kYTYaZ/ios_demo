@@ -27,7 +27,16 @@
 - (void)updateCell:(NSDictionary *)item filterIndex:(NSInteger)index
 {
     _title.text = item[@"title"];
-    _maskView.backgroundColor = [QHVCEditPrefs colorHex:item[@"color"]];
+    NSInteger type = [item[@"type"] integerValue];
+    if (type == 0)
+    {
+        _maskView.backgroundColor = [QHVCEditPrefs colorHex:item[@"color"]];
+    }
+    else
+    {
+        _maskView.backgroundColor = [UIColor clearColor];
+    }
+    
     if (index == [QHVCEditPrefs sharedPrefs].filterIndex) {
         _selectedView.hidden = NO;
     }

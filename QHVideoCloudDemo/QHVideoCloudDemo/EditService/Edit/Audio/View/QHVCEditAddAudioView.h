@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QHVCEditCommandManager.h"
+
+typedef void (^AudioSelectBlock)(QHVCEditAudioItem *audioItem);
 
 @class QHVCEditAudioItem;
 
 @interface QHVCEditAddAudioView : UIView
 
 @property (nonatomic, strong) QHVCEditAudioItem *audioItem;
+@property (nonatomic, copy) AudioSelectBlock audioSelectBlock;
 
 @end

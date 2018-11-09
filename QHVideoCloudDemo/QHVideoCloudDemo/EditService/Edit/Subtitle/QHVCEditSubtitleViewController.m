@@ -124,6 +124,10 @@
     _sticker.subtitle.text = item.subtitleText;
     _sticker.subtitle.font = [UIFont systemFontOfSize:item.fontValue];
     _sticker.subtitle.textColor = [QHVCEditPrefs colorHex:_colorsArray[item.colorIndex][1]];
+    
+    [self deleteSubtitleCommand:_sticker];
+    [self addSubtitleCommand:_sticker];
+    [self refreshPlayer];
 }
 
 - (void)addSticker:(QHVCEditSubtitleItem *)item
@@ -132,18 +136,79 @@
     CGFloat y = [QHVCEditPrefs randomNum:0 to:_preview.height - 100];
     
     _sticker = [[QHVCEditStickerIconView alloc] initWithFrame:CGRectMake(x, y, 100, 100)];
-    [self updateSticker:item];
+    _sticker.sticker.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",kStylesName,@(item.styleIndex)]];
+    _sticker.subtitle.text = item.subtitleText;
+    _sticker.subtitle.font = [UIFont systemFontOfSize:item.fontValue];
+    _sticker.subtitle.textColor = [QHVCEditPrefs colorHex:_colorsArray[item.colorIndex][1]];
     
-    __weak typeof(self) weakSelf = self;
+    WEAK_SELF
     _sticker.deleteCompletion = ^(QHVCEditStickerIconView *sticker) {
-        [weakSelf handleDeleteAction];
+        STRONG_SELF
+        [self handleDeleteAction];
+        [self refreshPlayer];
     };
+    
+    _sticker.pinchAction = ^(BOOL isEnd, QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self updateSubtitleCommand:sticker];
+        [self refreshPlayer:isEnd];
+    };
+    
+    _sticker.moveAction = ^(BOOL isEnd, QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self updateSubtitleCommand:sticker];
+        [self refreshPlayer:isEnd];
+    };
+    
+    _sticker.rotateAction = ^(BOOL isEnd, QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self updateSubtitleCommand:sticker];
+        [self refreshPlayer:isEnd];
+    };
+    
+    _sticker.fadeInOutAction = ^(QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self addFadeInOutAnimation:sticker];
+        [self refreshPlayer];
+    };
+    
+    _sticker.moveInOutAction = ^(QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self addMoveInOutAnimation:sticker];
+        [self refreshPlayer];
+    };
+    
+    _sticker.jumpInOutAction = ^(QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self addJumpInOutAnimation:sticker];
+        [self refreshPlayer];
+    };
+    
+    _sticker.rotateInOutAction = ^(QHVCEditStickerIconView *sticker)
+    {
+        STRONG_SELF
+        [self addRotateInOutAnimation:sticker];
+        [self refreshPlayer];
+    };
+    
     [_preview addSubview:_sticker];
+    [_sticker.sticker setHidden:YES];
+    [_sticker.subtitle setHidden:YES];
+    
+    [self addSubtitleCommand:_sticker];
+    [self refreshPlayer];
 }
 
 - (void)handleDeleteAction
 {
     [_subtitleView resetView];
+    [self deleteSubtitleCommand:_sticker];
 }
 
 - (void)handleDoneAction:(NSTimeInterval)insertEndMs
@@ -219,8 +284,6 @@
         _currentSubtitleItem.composeImage = composeImage;
         _currentSubtitleItem.insertEndTimeMs = [_frameView fetchCurrentTimeStampMs];
         
-        [[QHVCEditCommandManager manager] addSubtitles:@[_currentSubtitleItem] views:@[_sticker]];
-        
         [_sticker removeFromSuperview];
         _sticker = nil;
         
@@ -233,7 +296,6 @@
             if (self.confirmCompletion) {
                 self.confirmCompletion(QHVCEditPlayerStatusReset);
             }
-            [[QHVCEditCommandManager manager] updateSubtitles];
         }
         [self releasePlayerVC];
     }
@@ -261,7 +323,6 @@
     else
     {
         if (_hasChange) {
-            [[QHVCEditCommandManager manager] deleteSubtitles];
         }
         [QHVCEditPrefs sharedPrefs].subtitleTimestamp = _subtitleInfos;
         [self releasePlayerVC];
@@ -312,14 +373,102 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - command methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)addSubtitleCommand:(QHVCEditStickerIconView *)sticker
+{
+    [_sticker.sticker setHidden:NO];
+    [_sticker.subtitle setHidden:NO];
+    UIImage *image = [QHVCEditPrefs convertViewToImage:sticker.sticker];
+    [_sticker.sticker setHidden:YES];
+    [_sticker.subtitle setHidden:YES];
+    
+    if (image && sticker)
+    {
+        CGRect rect = [self rectToOutputRect:sticker];
+        QHVCEditCommandImageFilter* cmd = [[QHVCEditCommandManager manager] addImageFilter:image renderRect:rect radian:sticker.rotateAngle];
+        [sticker setUserData:(__bridge void *)(cmd)];
+    }
 }
-*/
+
+- (void)updateSubtitleCommand:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (sticker && filter)
+    {
+        CGRect rect = [self rectToOutputRect:sticker];
+        [[QHVCEditCommandManager manager] updateImageFilter:filter renderRect:rect radian:sticker.rotateAngle];
+    }
+}
+
+- (void)deleteSubtitleCommand:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (filter)
+    {
+        [[QHVCEditCommandManager manager] deleteImageFilter:filter];
+    }
+}
+
+- (void)addFadeInOutAnimation:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (filter)
+    {
+        [[QHVCEditCommandManager manager] addImageFadeInOut:filter];
+    }
+}
+
+- (void)addMoveInOutAnimation:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (filter)
+    {
+        [[QHVCEditCommandManager manager] addImageMoveInOut:filter];
+    }
+}
+
+- (void)addJumpInOutAnimation:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (filter)
+    {
+        [[QHVCEditCommandManager manager] addImageJumpInOut:filter];
+    }
+}
+
+- (void)addRotateInOutAnimation:(QHVCEditStickerIconView *)sticker
+{
+    QHVCEditCommandImageFilter* filter = (__bridge QHVCEditCommandImageFilter *)[sticker userData];
+    if (filter)
+    {
+        [[QHVCEditCommandManager manager] addImageRotateInOut:filter];
+    }
+}
+
+//view尺寸转为画布尺寸
+- (CGRect)rectToOutputRect:(QHVCEditStickerIconView *)view
+{
+    CGRect rect = view.frame;
+    CGFloat radian = view.rotateAngle;
+    view.transform = CGAffineTransformRotate(view.transform, -radian);
+    rect = CGRectMake(rect.origin.x + view.sticker.frame.origin.x,
+                      rect.origin.y + view.sticker.frame.origin.y,
+                      view.sticker.frame.size.width,
+                      view.sticker.frame.size.height);
+    view.transform = CGAffineTransformRotate(view.transform, radian);
+    
+    CGSize outputSize = [QHVCEditPrefs sharedPrefs].outputSize;
+    CGFloat scaleW = outputSize.width/CGRectGetWidth(_preview.frame);
+    CGFloat scaleH = outputSize.height/CGRectGetHeight(_preview.frame);
+    
+    CGFloat x = rect.origin.x * scaleW;
+    CGFloat y = rect.origin.y * scaleH;
+    CGFloat w = rect.size.width * scaleW;
+    CGFloat h = rect.size.height * scaleH;
+    
+    CGRect newRect = CGRectMake(x, y, w, h);
+    return newRect;
+}
 
 @end

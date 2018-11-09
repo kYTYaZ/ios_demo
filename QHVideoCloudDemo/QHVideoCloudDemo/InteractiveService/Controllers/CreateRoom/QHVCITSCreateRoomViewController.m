@@ -64,7 +64,7 @@
     [QHVCToolUtils setStringToDictionary:createRoomDict key:QHVCITS_KEY_ROOM_NAME value:_nameTextField.text];
     [QHVCToolUtils setIntToDictionary:createRoomDict key:QHVCITS_KEY_ROOM_TYPE value:_roomType];
     [QHVCToolUtils setIntToDictionary:createRoomDict key:QHVCITS_KEY_TALK_TYPE value:_talkType];
-    [QHVCToolUtils setIntToDictionary:createRoomDict key:QHVCITS_KEY_ROOM_LIFE_TYPE value:1];
+    [QHVCToolUtils setIntToDictionary:createRoomDict key:QHVCITS_KEY_ROOM_LIFE_TYPE value:(_roomType == QHVCITS_Room_Type_Party)?2:1];//1、绑定到主播    2、绑定到房间
     [QHVCToolUtils setIntToDictionary:createRoomDict key:QHVCITS_KEY_MAX_NUMBER value:_numTextField.text.intValue];
     
     WEAK_SELF_LINKMIC
@@ -86,8 +86,9 @@
         NSDictionary* roomDataDict = [QHVCToolUtils getObjectFromDictionary:dict key:QHVCITS_KEY_DATA defaultValue:nil];
         QHVCITSRoomModel* roomInfo = [QHVCITSRoomModel new];
         [roomInfo parseServerData:roomDataDict];
+        roomInfo.roomType = self.roomType;
         [[QHVCITSUserSystem sharedInstance] setRoomInfo:roomInfo];
-        [[QHVCITSUserSystem sharedInstance] userInfo].identity = QHVCITS_Identity_Audience;
+        [[QHVCITSUserSystem sharedInstance] userInfo].identity = QHVCITS_Identity_Anchor;
         //页面跳转
         QHVCITSLinkMicViewController *vc = [[QHVCITSLinkMicViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -108,10 +109,10 @@
             [QHVCToast makeToast:@"请输入有效的房间名称"];
             return NO;
         }
-//        if ([roomName containsString:@"&"]) {
-//            [self.view makeToast:@"存在非法字符"];
-//            return NO;
-//        }
+        if ([roomName containsString:@"&"]) {
+            [QHVCToast makeToast:@"房间名称不支持&字符"];
+            return NO;
+        }
         if(roomName.length > 20)
         {
             [QHVCToast makeToast:@"房间名称长度（1-20）"];

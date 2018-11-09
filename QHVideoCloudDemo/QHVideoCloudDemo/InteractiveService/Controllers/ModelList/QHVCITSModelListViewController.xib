@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,26 +40,15 @@
                                 <action selector="clickedBack:" destination="-1" eventType="touchUpInside" id="OtF-FZ-h9D"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grP-3p-G0o" userLabel="setting">
-                            <rect key="frame" x="330" y="15" width="40" height="59"/>
-                            <state key="normal" image="live_setting"/>
-                            <connections>
-                                <action selector="setting:" destination="-1" eventType="touchUpInside" id="zlg-Nr-JVD"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.46666666670000001" green="0.7725490196" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="grP-3p-G0o" firstAttribute="width" secondItem="jfm-gH-t5Y" secondAttribute="width" id="4H3-tf-wiD"/>
                         <constraint firstItem="fGM-hP-9yD" firstAttribute="top" secondItem="EUt-i3-KhK" secondAttribute="top" constant="15" id="5ci-o6-ghU"/>
                         <constraint firstItem="jfm-gH-t5Y" firstAttribute="leading" secondItem="EUt-i3-KhK" secondAttribute="leading" constant="5" id="8Er-I2-kVe"/>
-                        <constraint firstItem="grP-3p-G0o" firstAttribute="top" secondItem="jfm-gH-t5Y" secondAttribute="top" id="CCP-U3-V2Q"/>
                         <constraint firstAttribute="height" constant="74" id="GyO-4H-3DQ"/>
                         <constraint firstItem="jfm-gH-t5Y" firstAttribute="top" secondItem="EUt-i3-KhK" secondAttribute="top" constant="15" id="PFV-aO-vV7"/>
                         <constraint firstAttribute="bottom" secondItem="jfm-gH-t5Y" secondAttribute="bottom" id="TuX-sf-Zxq"/>
-                        <constraint firstItem="grP-3p-G0o" firstAttribute="height" secondItem="jfm-gH-t5Y" secondAttribute="height" id="XCl-fe-OyI"/>
                         <constraint firstAttribute="trailing" secondItem="fGM-hP-9yD" secondAttribute="trailing" id="cOl-Il-EXW"/>
-                        <constraint firstAttribute="trailing" secondItem="grP-3p-G0o" secondAttribute="trailing" constant="5" id="dp5-ta-Pbe"/>
                         <constraint firstAttribute="bottom" secondItem="fGM-hP-9yD" secondAttribute="bottom" constant="5" id="rjR-na-oHu"/>
                         <constraint firstItem="fGM-hP-9yD" firstAttribute="leading" secondItem="EUt-i3-KhK" secondAttribute="leading" id="xLl-1U-Ba6"/>
                     </constraints>
@@ -132,7 +121,6 @@
     </objects>
     <resources>
         <image name="interactive_user" width="18" height="19"/>
-        <image name="live_setting" width="21" height="21"/>
         <image name="nav_back" width="10" height="18"/>
     </resources>
 </document>

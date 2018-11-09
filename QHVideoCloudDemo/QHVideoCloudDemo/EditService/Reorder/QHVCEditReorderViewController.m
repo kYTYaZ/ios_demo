@@ -14,6 +14,7 @@
 #import "QHVCEditClipView.h"
 #import "UIViewAdditions.h"
 #import "QHVCEditPrefs.h"
+#import <QHVCCommonKit/QHVCCommonKit.h>
 
 #define kThumbCount 8
 
@@ -36,6 +37,7 @@ typedef NS_ENUM(NSInteger, QHVCEditShiftDirection) {
 @property (nonatomic, weak) IBOutlet UICollectionView *clipCollectionView;
 @property (nonatomic, weak) IBOutlet UIView *confirmView;
 @property (nonatomic, assign) BOOL hasChange;
+@property (nonatomic, assign) BOOL autoPlay;
 
 @end
 
@@ -54,20 +56,21 @@ static NSString * const frameCellIdentifier = @"QHVCEditFrameCell";
     _selectedIndex = 0;
     _hasChange = NO;
     
-    [self writeAssetsToSandbox];
-    [self updateShiftBtnStatus:_selectedIndex];
-    
     [[QHVCEditCommandManager manager] initCommandFactory];
-    [[QHVCEditCommandManager manager] addFiles:self.resourceArray];
     
-    [self createPlayer:_playerView];
-    [self fetchThumbs];
+    [self writeAssetsToSandbox:^{
+        [self updateShiftBtnStatus:_selectedIndex];
+        [[QHVCEditCommandManager manager] addFiles:self.resourceArray];
+        
+        [self createPlayer:_playerView];
+        [self fetchThumbs];
+        self.autoPlay = YES;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self play];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -76,9 +79,18 @@ static NSString * const frameCellIdentifier = @"QHVCEditFrameCell";
     [self stop];
 }
 
-- (void)writeAssetsToSandbox
+- (void)playerRenderFirstFrame
 {
-    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:self.resourceArray];
+    if (self.autoPlay)
+    {
+        [self play];
+        self.autoPlay = NO;
+    }
+}
+
+- (void)writeAssetsToSandbox:(void(^)())complete
+{
+    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:self.resourceArray complete:complete];
 }
 
 - (void)fetchThumbs
@@ -90,13 +102,23 @@ static NSString * const frameCellIdentifier = @"QHVCEditFrameCell";
     }
     __weak typeof(self) weakSelf = self;
     QHVCEditPhotoItem *item = self.resourceArray[_selectedIndex];
-    [[QHVCEditCommandManager manager] fetchThumbs:item.filePath start:0 end:item.durationMs frameCnt:15 thumbSize:CGSizeMake(100, 200) completion:^(NSArray<QHVCEditThumbnailItem *> *thumbnails) {
-        item.thumbs = [NSMutableArray arrayWithArray:thumbnails];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.clipCollectionView reloadData];
-            [weakSelf updateClipView];
-        });
-    }];
+    if (![QHVCToolUtils isNullString:item.photoFileIdentifier]) {
+        [[QHVCEditCommandManager manager] fetchPhotoFileThumbs:item.photoFileIdentifier start:0 end:item.durationMs frameCnt:15 thumbSize:CGSizeMake(100, 200) completion:^(NSArray<QHVCEditThumbnailItem *> *thumbnails) {
+            item.thumbs = [NSMutableArray arrayWithArray:thumbnails];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.clipCollectionView reloadData];
+                [weakSelf updateClipView];
+            });
+        }];
+    } else {
+        [[QHVCEditCommandManager manager] fetchThumbs:item.filePath start:0 end:item.durationMs frameCnt:15 thumbSize:CGSizeMake(100, 200) completion:^(NSArray<QHVCEditThumbnailItem *> *thumbnails) {
+            item.thumbs = [NSMutableArray arrayWithArray:thumbnails];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.clipCollectionView reloadData];
+                [weakSelf updateClipView];
+            });
+        }];
+    }
 }
 
 - (void)updateClipView

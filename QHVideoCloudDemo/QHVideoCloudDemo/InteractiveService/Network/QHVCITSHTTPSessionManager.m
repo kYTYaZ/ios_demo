@@ -73,7 +73,7 @@
 {
     if ([QHVCToolUtils isNullString:URLString])
     {
-        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:[NSString stringWithFormat:@"%s URLString is nil",__FUNCTION__] dict:parameterDict];
+        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:@"requestDataWithGet URLString is nil" dict:parameterDict];
         return nil;
     }
     //合并参数并签名构成完成的URL地址
@@ -83,10 +83,10 @@
     NSString* sign = [QHVCToolUtils getStringFromDictionary:urlDict key:QHVCITS_KEY_SIGN defaultValue:nil];
     if ([QHVCToolUtils isNullString:sign])
     {
-        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:[NSString stringWithFormat:@"%s sign is nil",__FUNCTION__] dict:urlDict];
+        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:@"requestDataWithGet sign is nil" dict:urlDict];
         return nil;
     }
-    [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_INFO content:[NSString stringWithFormat:@"%s",__FUNCTION__] dict:urlDict];
+    [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_DEBUG content:@"requestDataWithGet" dict:urlDict];
     //设置请求头
     [[_httpSessionManager requestSerializer] setValue:sign forHTTPHeaderField:@"Authorization"];
     NSString* requestUrl = [NSString stringWithFormat:@"%@%@",[config interactiveServerUrl], url];
@@ -134,7 +134,7 @@
 {
     if ([QHVCToolUtils isNullString:URLString])
     {
-        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:[NSString stringWithFormat:@"%s URLString is nil",__FUNCTION__] dict:parameterDict];
+        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:@"requestDataWithPost URLString is nil" dict:parameterDict];
         return nil;
     }
     //合并参数并签名构成完成的URL地址
@@ -145,10 +145,10 @@
     NSString* sign = [QHVCToolUtils getStringFromDictionary:urlDict key:QHVCITS_KEY_SIGN defaultValue:nil];
     if ([QHVCToolUtils isNullString:sign])
     {
-        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:[NSString stringWithFormat:@"%s sign is nil",__FUNCTION__] dict:urlDict];
+        [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_ERROR content:@"requestDataWithPost sign is nil" dict:urlDict];
         return nil;
     }
-    [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_INFO content:[NSString stringWithFormat:@"%s",__FUNCTION__] dict:urlDict];
+    [QHVCITSLog printLogger:QHVCITS_LOG_LEVEL_DEBUG content:@"requestDataWithPost" dict:urlDict];
     //设置请求头
     [[_httpSessionManager requestSerializer] setValue:sign forHTTPHeaderField:@"Authorization"];
     NSString* requestUrl = [NSString stringWithFormat:@"%@%@",[config interactiveServerUrl], url];

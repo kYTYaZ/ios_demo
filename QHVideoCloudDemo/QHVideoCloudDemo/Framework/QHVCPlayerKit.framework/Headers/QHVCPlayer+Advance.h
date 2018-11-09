@@ -94,6 +94,12 @@ typedef struct
  */
 - (void)onPlayerPreviewFinished:(QHVCPlayer *_Nonnull)player;
 
+/**
+ 播放实时回调音频buffer
+ @param sampleBuffer 音频buffer
+ */
+- (void)onPlayerAudioDataCallback:(CMSampleBufferRef _Nonnull)sampleBuffer;
+
 @end
 
 @interface QHVCPlayer (Advance)
@@ -149,6 +155,9 @@ typedef struct
  @"previewDuration", @"NSString int"//视频预览时长(毫秒)
  @"previewLoopCount", @"NSString int"//视频预览指定次数结束
  @"streamType", @"QHVCStreamType"//流类型
+ @"notificationBarPlay", @"NSString bool"//通知栏播放
+ @"audioSessionCategory"：@"intValue"
+ @"setPreferredIOBufferDuration"：@"boolValue"
  }
  
  @return 播放器对象
@@ -222,7 +231,13 @@ typedef struct
 - (float)getPlayBackRate;
 
 /**
- * 开始录制
+ 设置音频数据回调(注意：只能在onPlayerPrepared之后调用)
+ @param isOutput yes输出 no不输出
+ */
+- (void)setAudioDataOutput:(BOOL)isOutput;
+
+/**
+ * 开始录制(注意：此接口与setAudioDataOutput冲突，先设置的生效)
  * 注意：不支持暂停时录制
  *
  * @param filePath 录像存储路径（确保有读写权限）

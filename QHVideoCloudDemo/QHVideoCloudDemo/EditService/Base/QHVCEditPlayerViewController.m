@@ -58,7 +58,15 @@
 - (void)refreshPlayer
 {
     if (_player) {
-        [_player refreshPlayer];
+        [_player refreshPlayerWithCompletion:nil];
+    }
+}
+
+- (void)refreshPlayer:(BOOL)forceRefresh
+{
+    if (_player)
+    {
+        [_player refreshPlayerWithForceRefresh:forceRefresh completion:nil];
     }
 }
 

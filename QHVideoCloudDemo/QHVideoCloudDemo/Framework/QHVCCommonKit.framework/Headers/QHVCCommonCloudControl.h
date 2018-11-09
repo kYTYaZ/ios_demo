@@ -35,4 +35,10 @@
 
 + (NSDictionary *)fetchCommonCCInfo;
 
+/**
+ * 获取互动直播云控相关信息
+ * @返回值 返回值为nil 使用默认值
+ */
++ (NSDictionary *)fetchInteractCCInfo;
+
 @end

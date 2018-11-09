@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, QHVCEditMakerStatus)
  @param status 当前合成状态
  @param progress 当前合成进度（0-100）
  */
-- (void)onMakerProcessing:(QHVCEditMakerStatus)status progress:(int)progress;
+- (void)onMakerProcessing:(QHVCEditMakerStatus)status progress:(float)progress;
 
 @end
 

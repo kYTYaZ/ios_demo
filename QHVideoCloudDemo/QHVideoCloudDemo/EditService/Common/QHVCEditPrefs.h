@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QHVCEditKit/QHVCEditKit.h>
+
 #import "QHVCEditAudioItem.h"
 #import "QHVCEditMatrixItem.h"
 #import "QHVCConfig.h"
@@ -57,12 +58,16 @@ block(__VA_ARGS__);\
 @property (nonatomic, retain) NSMutableArray<QHVCEditMatrixItem *>* matrixItems;
 
 @property (nonatomic, assign) float originAudioVolume;
+@property (nonatomic, assign) float musicAudioVolume;
 @property (nonatomic, strong) NSMutableArray<NSMutableArray *> *audioTimestamp;
 
 @property (nonatomic, assign) NSInteger renderMode;
 @property (nonatomic, strong) NSString *renderColor;
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray *> *subtitleTimestamp;
+@property (nonatomic, retain) QHVCEditCommandImageFilter* watermaskFilter;
+
+@property (nonatomic, assign) BOOL isEnableDynamicSubtitle;
 
 + (QHVCEditPrefs *)sharedPrefs;
 

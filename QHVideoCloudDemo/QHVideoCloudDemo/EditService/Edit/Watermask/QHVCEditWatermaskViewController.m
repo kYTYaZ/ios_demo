@@ -47,13 +47,13 @@
     if ([QHVCEditPrefs sharedPrefs].isEnableWatermsk) {
         [_watermaskBtn setTitle:@"开启水印" forState:UIControlStateNormal];
         [QHVCEditPrefs sharedPrefs].isEnableWatermsk = NO;
-        [[QHVCEditCommandManager manager] deleteWatermask];
+        [self deleteWatermaskCommand];
     }
     else
     {
         [_watermaskBtn setTitle:@"关闭水印" forState:UIControlStateNormal];
         [QHVCEditPrefs sharedPrefs].isEnableWatermsk = YES;
-        [[QHVCEditCommandManager manager] addWatermask:[UIImage imageNamed:@"edit_watermask"]];
+        [self addWatermaskCommand];
     }
     [self refreshPlayer];
 }
@@ -70,14 +70,8 @@
 
 - (void)backAction:(UIButton *)btn
 {
-    if (_watermaskStatus != [QHVCEditPrefs sharedPrefs].isEnableWatermsk) {
-        if (_watermaskStatus) {
-            [[QHVCEditCommandManager manager] addWatermask:[UIImage imageNamed:@"edit_watermask"]];
-        }
-        else
-        {
-            [[QHVCEditCommandManager manager] deleteWatermask];
-        }
+    if (_watermaskStatus != [QHVCEditPrefs sharedPrefs].isEnableWatermsk)
+    {
         [QHVCEditPrefs sharedPrefs].isEnableWatermsk = _watermaskStatus;
     }
     [self releasePlayerVC];
@@ -88,14 +82,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - command methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)addWatermaskCommand
+{
+    UIImage* image = [UIImage imageNamed:@"edit_watermask"];
+    QHVCEditCommandImageFilter* filter = [[QHVCEditCommandManager manager] addImageFilter:image
+                                                                               renderRect:CGRectMake(10, 10, 200, 30)
+                                                                                   radian:0];
+    [[QHVCEditPrefs sharedPrefs] setWatermaskFilter:filter];
 }
-*/
+
+- (void)deleteWatermaskCommand
+{
+    QHVCEditCommandImageFilter* filter = [[QHVCEditPrefs sharedPrefs] watermaskFilter];
+    [[QHVCEditCommandManager manager] deleteImageFilter:filter];
+}
 
 @end

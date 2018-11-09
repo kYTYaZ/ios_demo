@@ -39,6 +39,7 @@ static NSString * const audioCellIdentifier = @"QHVCEditAddAudioCell";
     _audiosArray = @[@[@"edit_audio_none",@"",@""],@[@"edit_audio_fresh",@"Forever",@"153000"],@[@"edit_audio_recall",@"Disco",@"181000"]];
     [_collectionView registerNib:[UINib nibWithNibName:audioCellIdentifier bundle:nil] forCellWithReuseIdentifier:audioCellIdentifier];
     _originSlider.value = [QHVCEditPrefs sharedPrefs].originAudioVolume;
+    _audioSlider.value = [QHVCEditPrefs sharedPrefs].musicAudioVolume;
 }
 
 - (IBAction)originAction:(UISlider *)sender
@@ -48,7 +49,7 @@ static NSString * const audioCellIdentifier = @"QHVCEditAddAudioCell";
 
 - (IBAction)audioAction:(UISlider *)sender
 {
-
+    [QHVCEditPrefs sharedPrefs].musicAudioVolume = sender.value;
 }
 
 #pragma mark UICollectionViewDataSource
@@ -88,6 +89,9 @@ static NSString * const audioCellIdentifier = @"QHVCEditAddAudioCell";
     self.audioItem.audioDuration = [_audiosArray[_audioIndex][2] doubleValue];
     self.audioItem.volume = (indexPath.row == 0)?_originSlider.value:_audioSlider.value;
     [_collectionView reloadData];
+    if (_audioSelectBlock) {
+        _audioSelectBlock(self.audioItem);
+    }
 }
 
 @end

@@ -62,11 +62,11 @@
 
 #pragma mark QHVCEditMakerDelegate
 
-- (void)onMakerProcessing:(QHVCEditMakerStatus)status progress:(int)progress
+- (void)onMakerProcessing:(QHVCEditMakerStatus)status progress:(float)progress
 {
-    NSLog(@"progress %@",@(progress));
+    NSLog(@"progress %.2f", progress);
     dispatch_async(dispatch_get_main_queue(), ^{
-        _loading.text = [NSString stringWithFormat:@"%@%%",@(progress)];
+        _loading.text = [NSString stringWithFormat:@"%.2f%%",progress];
         if (progress >= 100) {
             _loading.hidden = YES;
             [self play];

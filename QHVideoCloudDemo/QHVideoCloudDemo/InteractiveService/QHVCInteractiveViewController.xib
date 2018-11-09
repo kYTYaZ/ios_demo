@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,13 +39,26 @@
                                 <action selector="clickedBack:" destination="-1" eventType="touchUpInside" id="W3j-M0-rtG"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag9-Ob-YWa" userLabel="setting">
+                            <rect key="frame" x="335" y="15" width="40" height="59"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Ii4-Lf-y2U"/>
+                                <constraint firstAttribute="height" constant="59" id="em9-sK-U2t"/>
+                            </constraints>
+                            <state key="normal" image="localServerSet"/>
+                            <connections>
+                                <action selector="setting:" destination="-1" eventType="touchUpInside" id="xyt-ek-UXf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.46666666670000001" green="0.7725490196" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ag9-Ob-YWa" secondAttribute="trailing" id="TOu-yH-yi8"/>
                         <constraint firstAttribute="height" constant="74" id="U2H-6C-F05"/>
                         <constraint firstAttribute="trailing" secondItem="1Up-3O-u2M" secondAttribute="trailing" id="VNy-e1-iSh"/>
                         <constraint firstItem="uwI-PC-d3t" firstAttribute="top" secondItem="Pfz-OL-TfV" secondAttribute="top" constant="15" id="YtM-Aa-tKn"/>
                         <constraint firstItem="1Up-3O-u2M" firstAttribute="leading" secondItem="Pfz-OL-TfV" secondAttribute="leading" id="avb-gb-ugC"/>
+                        <constraint firstAttribute="bottom" secondItem="Ag9-Ob-YWa" secondAttribute="bottom" id="dp3-7O-7gU"/>
                         <constraint firstAttribute="bottom" secondItem="1Up-3O-u2M" secondAttribute="bottom" constant="5" id="lwP-oF-TCn"/>
                         <constraint firstItem="uwI-PC-d3t" firstAttribute="leading" secondItem="Pfz-OL-TfV" secondAttribute="leading" constant="5" id="ppY-QJ-pJK"/>
                         <constraint firstItem="1Up-3O-u2M" firstAttribute="top" secondItem="Pfz-OL-TfV" secondAttribute="top" constant="15" id="ptm-R8-FqS"/>
@@ -99,6 +112,7 @@
         </view>
     </objects>
     <resources>
+        <image name="localServerSet" width="21" height="21"/>
         <image name="nav_back" width="10" height="18"/>
     </resources>
 </document>

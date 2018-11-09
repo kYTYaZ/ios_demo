@@ -10,6 +10,16 @@
 
 @implementation QHVCEditPhotoItem
 
+- (instancetype)init
+{
+    if (!(self = [super init]))
+    {
+        return nil;
+    }
+    
+    return self;
+}
+
 - (id)copyWithZone:(nullable NSZone *)zone
 {
     return nil;

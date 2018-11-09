@@ -14,6 +14,7 @@
 @interface QHVCEditStickerIconView()
 {
     UIButton *_delete;
+    void* _userData;
 }
 @property (nonatomic, weak) UIView *menuView;
 
@@ -25,20 +26,20 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIView *borderView = [[UIView alloc]initWithFrame:CGRectMake(0, 9, self.width - 8, self.width - 8)];
+        UIView *borderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width - 2, self.width - 2)];
         borderView.backgroundColor = [UIColor clearColor];
         borderView.layer.borderWidth = 1.0;
         borderView.layer.borderColor = [QHVCEditPrefs colorHighlight].CGColor;
         [self addSubview:borderView];
         
-        _sticker = [[UIImageView alloc]initWithFrame:CGRectMake(1, 10, self.width - 10, self.width - 10)];
+        _sticker = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.width)];
         [self addSubview:_sticker];
         
         _subtitle = [[UILabel alloc]initWithFrame: _sticker.bounds];
         _subtitle.backgroundColor = [UIColor clearColor];
         [_sticker addSubview:_subtitle];
         
-        _delete = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 18, 0, 18, 18)];
+        _delete = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 18, -9, 18, 18)];
         [_delete setImage:[UIImage imageNamed:@"edit_selected_delete"] forState:UIControlStateNormal];
         [_delete addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_delete];
@@ -63,6 +64,16 @@
     [_sticker setImageWithURL:[NSURL URLWithString:imageUrl]];
 }
 
+- (void)setUserData:(void *)userData
+{
+    _userData = userData;
+}
+
+- (void *)userData
+{
+    return _userData;
+}
+
 - (void)delete:(UIButton *)sender
 {
     [self removeFromSuperview];
@@ -81,9 +92,21 @@
 
         NSString *bottomTitle = @"置底";
         UIMenuItem *bottom = [[UIMenuItem alloc] initWithTitle:bottomTitle action:@selector(bottomAction:)];
+        
+        NSString *fadeTitle = @"淡入淡出";
+        UIMenuItem *fadeAction = [[UIMenuItem alloc] initWithTitle:fadeTitle action:@selector(fadeAction:)];
+        
+        NSString *moveTitle = @"滑入滑出";
+        UIMenuItem *moveAction = [[UIMenuItem alloc] initWithTitle:moveTitle action:@selector(moveAction:)];
+        
+        NSString *jumpTitle = @"弹入弹出";
+        UIMenuItem *jumpAction = [[UIMenuItem alloc] initWithTitle:jumpTitle action:@selector(jumpAction:)];
+        
+        NSString *rotateTitle = @"旋入旋出";
+        UIMenuItem *rotateAction = [[UIMenuItem alloc] initWithTitle:rotateTitle action:@selector(rotateAction:)];
 
         UIMenuController *menuController = [UIMenuController sharedMenuController];
-        [menuController setMenuItems:@[top,bottom]];
+        [menuController setMenuItems:@[top, bottom, fadeAction, moveAction, jumpAction, rotateAction]];
         [menuController update];
         CGPoint location = [gestureRecognizer locationInView:[gestureRecognizer view]];
         CGRect menuLocation = CGRectMake(location.x, location.y, 0, 0);
@@ -101,7 +124,11 @@
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if(action == @selector(topAction:)||
-       action == @selector(bottomAction:))
+       action == @selector(bottomAction:)||
+       action == @selector(fadeAction:)||
+       action == @selector(moveAction:)||
+       action == @selector(jumpAction:)||
+       action == @selector(rotateAction:))
     {
         return YES;
     }
@@ -120,17 +147,51 @@
     }
 }
 
+- (void)fadeAction:(UIMenuController *)controller
+{
+    //淡入淡出
+    SAFE_BLOCK(self.fadeInOutAction, self);
+}
+
+- (void)moveAction:(UIMenuController *)controller
+{
+    //滑入滑出
+    SAFE_BLOCK(self.moveInOutAction, self);
+}
+
+- (void)jumpAction:(UIMenuController *)controller
+{
+    //弹入弹出
+    SAFE_BLOCK(self.jumpInOutAction, self);
+}
+
+- (void)rotateAction:(UIMenuController *)controller
+{
+    //旋入旋出
+    SAFE_BLOCK(self.rotateInOutAction, self);
+}
+
 -(void)moveGesture:(UIPanGestureRecognizer *)recognizer
 {
     UIView *piece = [recognizer view];
     
     [self adjustAnchorPointForGestureRecognizer:recognizer];
     
-    if ([recognizer state] == UIGestureRecognizerStateBegan || [recognizer state] == UIGestureRecognizerStateChanged) {
+    if ([recognizer state] == UIGestureRecognizerStateBegan || [recognizer state] == UIGestureRecognizerStateChanged)
+    {
         CGPoint translation = [recognizer translationInView:[piece superview]];
         
         [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
         [recognizer setTranslation:CGPointZero inView:[piece superview]];
+        SAFE_BLOCK(self.moveAction, NO, self);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        CGPoint translation = [recognizer translationInView:[piece superview]];
+        
+        [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
+        [recognizer setTranslation:CGPointZero inView:[piece superview]];
+        SAFE_BLOCK(self.moveAction, YES, self);
     }
 }
 
@@ -138,10 +199,19 @@
 {
     [self adjustAnchorPointForGestureRecognizer:recognizer];
     
-    if ([recognizer state] == UIGestureRecognizerStateBegan || [recognizer state] == UIGestureRecognizerStateChanged) {
+    if ([recognizer state] == UIGestureRecognizerStateBegan || [recognizer state] == UIGestureRecognizerStateChanged)
+    {
         [recognizer view].transform = CGAffineTransformRotate([[recognizer view] transform], [recognizer rotation]);
-        _rotateAngle = [recognizer rotation];
+        _rotateAngle += [recognizer rotation];
         [recognizer setRotation:0];
+        SAFE_BLOCK(self.rotateAction, NO, self);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        [recognizer view].transform = CGAffineTransformRotate([[recognizer view] transform], [recognizer rotation]);
+        _rotateAngle += [recognizer rotation];
+        [recognizer setRotation:0];
+        SAFE_BLOCK(self.rotateAction, YES, self);
     }
 }
 
@@ -152,6 +222,13 @@
     if ([recognizer state] == UIGestureRecognizerStateBegan || [recognizer state] == UIGestureRecognizerStateChanged) {
         [recognizer view].transform = CGAffineTransformScale([[recognizer view] transform], [recognizer scale], [recognizer scale]);
         [recognizer setScale:1];
+        SAFE_BLOCK(self.pinchAction, NO, self);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        [recognizer view].transform = CGAffineTransformScale([[recognizer view] transform], [recognizer scale], [recognizer scale]);
+        [recognizer setScale:1];
+        SAFE_BLOCK(self.pinchAction, YES, self);
     }
 }
 

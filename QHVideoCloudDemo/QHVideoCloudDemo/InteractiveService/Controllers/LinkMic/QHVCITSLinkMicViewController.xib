@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,6 +16,7 @@
                 <outlet property="_audioOnlyImageView" destination="WxI-JN-ptE" id="kC3-Rw-CfE"/>
                 <outlet property="_controlView" destination="T9M-SX-wwh" id="Muf-jp-OLi"/>
                 <outlet property="_existFullScreenBtn" destination="rz7-r9-hDA" id="Osq-00-DAU"/>
+                <outlet property="_hongpaTableView" destination="cnB-M9-3ot" id="wAi-hf-70P"/>
                 <outlet property="_infoTextView" destination="B9I-EP-fbr" id="3VC-vb-bQy"/>
                 <outlet property="_interactiveBtn" destination="lOe-9u-D0f" id="b1N-OM-6Rr"/>
                 <outlet property="_onlineCount" destination="dXa-Uw-hCG" id="Pv1-Bp-Iec"/>
@@ -39,6 +40,14 @@
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="room_audio_only" translatesAutoresizingMaskIntoConstraints="NO" id="WxI-JN-ptE" userLabel="audio_only">
                             <rect key="frame" x="140" y="315" width="94" height="72"/>
                         </imageView>
+                        <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cnB-M9-3ot" userLabel="hongpa_tableview">
+                            <rect key="frame" x="0.0" y="130" width="375" height="467"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="rcl-7l-lEh"/>
+                                <outlet property="delegate" destination="-1" id="UYP-Tt-Iqm"/>
+                            </connections>
+                        </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9M-SX-wwh" userLabel="control_view">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
@@ -57,17 +66,17 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvP-ak-cDL" userLabel="anchor_id">
-                                    <rect key="frame" x="63" y="61" width="35.5" height="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvP-ak-cDL" userLabel="anchor_id">
+                                    <rect key="frame" x="63" y="61" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="room_online_num" translatesAutoresizingMaskIntoConstraints="NO" id="SQG-BV-BI3" userLabel="online_imageView">
-                                    <rect key="frame" x="108.5" y="61" width="15" height="15"/>
+                                    <rect key="frame" x="73" y="61" width="15" height="15"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXa-Uw-hCG" userLabel="online_cnt">
-                                    <rect key="frame" x="128.5" y="61" width="35.5" height="17"/>
+                                    <rect key="frame" x="93" y="61" width="35.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -167,13 +176,17 @@
                     <color key="backgroundColor" red="0.1764705882352941" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="aQQ-is-JR1" secondAttribute="bottom" constant="270" id="3jm-Kj-CSS"/>
+                        <constraint firstItem="cnB-M9-3ot" firstAttribute="top" secondItem="8Mz-3w-XbW" secondAttribute="top" constant="130" id="6aA-Dw-SVH"/>
                         <constraint firstAttribute="bottom" secondItem="T9M-SX-wwh" secondAttribute="bottom" id="CwU-9A-zfZ"/>
                         <constraint firstItem="T9M-SX-wwh" firstAttribute="top" secondItem="8Mz-3w-XbW" secondAttribute="top" id="Mhz-Db-ncm"/>
+                        <constraint firstItem="cnB-M9-3ot" firstAttribute="leading" secondItem="8Mz-3w-XbW" secondAttribute="leading" id="SOe-Hv-KIk"/>
                         <constraint firstItem="T9M-SX-wwh" firstAttribute="leading" secondItem="8Mz-3w-XbW" secondAttribute="leading" id="ZAQ-3f-QJh"/>
+                        <constraint firstAttribute="bottom" secondItem="cnB-M9-3ot" secondAttribute="bottom" constant="70" id="e7b-gG-dUd"/>
                         <constraint firstItem="WxI-JN-ptE" firstAttribute="centerX" secondItem="8Mz-3w-XbW" secondAttribute="centerX" id="fB9-RM-bX0"/>
                         <constraint firstAttribute="trailing" secondItem="T9M-SX-wwh" secondAttribute="trailing" id="jW4-4Z-tDQ"/>
                         <constraint firstItem="aQQ-is-JR1" firstAttribute="centerX" secondItem="8Mz-3w-XbW" secondAttribute="centerX" id="rh5-QJ-wUG"/>
                         <constraint firstAttribute="bottom" secondItem="WxI-JN-ptE" secondAttribute="bottom" constant="280" id="w3Z-hY-7Na"/>
+                        <constraint firstAttribute="trailing" secondItem="cnB-M9-3ot" secondAttribute="trailing" id="wqL-E8-5Fl"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32e-bI-QbK" userLabel="close_btn">

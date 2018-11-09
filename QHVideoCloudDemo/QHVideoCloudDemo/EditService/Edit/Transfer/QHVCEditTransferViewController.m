@@ -33,18 +33,28 @@
     self.titleLabel.text = @"转场";
     [self.nextBtn setTitle:@"确定" forState:UIControlStateNormal];
     
-    _transferEffects = @[@[@"无",@"edit_transfer_un"],
-                   @[@"溶解",@"edit_transfer_dissolution"],
-                   @[@"光圈",@"edit_transfer_aperture"],
-                   @[@"向右轻擦",@"edit_transfer_swipeToRight"],
-                   @[@"向左轻擦",@"edit_transfer_swipeToLeft"],
-                   @[@"向上轻擦",@"edit_transfer_swipeToTop"],
-                   @[@"向下轻擦",@"edit_transfer_swipeToBottom"],
-                   @[@"向右滑动",@"edit_transfer_moveToRight"],
-                   @[@"向左滑动",@"edit_transfer_moveToLeft"],
-                   @[@"向上滑动",@"edit_transfer_moveToTop"],
-                   @[@"向下滑动",@"edit_transfer_moveToBottom"],
-                   @[@"淡化",@"edit_transfer_fade"]];
+    _transferEffects = @[@[@"无",@"edit_transfer_un", @"none"],
+                         @[@"效果1",@"edit_transfer_dissolution", @"transition_1"],
+                         @[@"效果2",@"edit_transfer_aperture", @"transition_2"],
+                         @[@"效果3",@"edit_transfer_swipeToRight", @"transition_3"],
+                         @[@"效果4",@"edit_transfer_swipeToLeft", @"transition_4"],
+                         @[@"效果5",@"edit_transfer_swipeToTop", @"transition_5"],
+                         @[@"效果6",@"edit_transfer_swipeToBottom", @"transition_6"],
+                         @[@"效果7",@"edit_transfer_moveToRight", @"transition_7"],
+                         @[@"效果8",@"edit_transfer_moveToLeft", @"transition_8"],
+                         @[@"效果9",@"edit_transfer_moveToTop", @"transition_9"],
+                         @[@"效果10",@"edit_transfer_moveToBottom", @"transition_10"]];
+//                   @[@"溶解",@"edit_transfer_dissolution"],
+//                   @[@"光圈",@"edit_transfer_aperture"],
+//                   @[@"向右轻擦",@"edit_transfer_swipeToRight"],
+//                   @[@"向左轻擦",@"edit_transfer_swipeToLeft"],
+//                   @[@"向上轻擦",@"edit_transfer_swipeToTop"],
+//                   @[@"向下轻擦",@"edit_transfer_swipeToBottom"],
+//                   @[@"向右滑动",@"edit_transfer_moveToRight"],
+//                   @[@"向左滑动",@"edit_transfer_moveToLeft"],
+//                   @[@"向上滑动",@"edit_transfer_moveToTop"],
+//                   @[@"向下滑动",@"edit_transfer_moveToBottom"],
+//                   @[@"淡化",@"edit_transfer_fade"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -69,19 +79,22 @@
 {
     __weak typeof(self) weakSelf = self;
     [[QHVCEditCommandManager manager] fetchSegmentInfo:^(NSArray<QHVCEditSegmentInfo *> *segments, NSInteger totalDurationMs) {
-        [weakSelf handleSegmentInfo:segments];
+//        [weakSelf handleSegmentInfo:segments];
         weakSelf.durationMs = totalDurationMs;
     }];
+    
+    NSArray<QHVCEditCommandAddFileSegment *>* segments = [[QHVCEditCommandManager manager] getFileSegments];
+    [self handleSegmentInfo:segments];
 }
 
-- (void)handleSegmentInfo:(NSArray<QHVCEditSegmentInfo *> *)segments
+- (void)handleSegmentInfo:(NSArray<QHVCEditCommandAddFileSegment *> *)segments
 {
     if (!_segments) {
         _segments = [NSMutableArray array];
     }
     __block NSMutableArray<QHVCEditThumbnailItem *> *thumbs = [NSMutableArray array];
 
-    for (QHVCEditSegmentInfo *item in segments) {
+    for (QHVCEditCommandAddFileSegment *item in segments) {
         [[QHVCEditCommandManager manager] fetchThumbs:item.filePath start:0.0 end:1000 frameCnt:1 thumbSize:CGSizeMake(200, 100) completion:^(NSArray<QHVCEditThumbnailItem *> *thumbnails) {
             
             [thumbs addObject:thumbnails[0]];
@@ -92,7 +105,7 @@
     }
 }
 
-- (void)handleThumbsInfo:(NSArray<QHVCEditThumbnailItem *> *)thumbs segments:(NSArray<QHVCEditSegmentInfo *> *)segments
+- (void)handleThumbsInfo:(NSArray<QHVCEditThumbnailItem *> *)thumbs segments:(NSArray<QHVCEditCommandAddFileSegment *> *)segments
 {
     NSTimeInterval start = 0;
     NSInteger i = 0;
@@ -104,15 +117,16 @@
             i++;
             continue;
         }
-        NSArray<QHVCEditSegmentInfo *> *segs = [segments filteredArrayUsingPredicate:apredicate];
+        NSArray<QHVCEditCommandAddFileSegment *> *segs = [segments filteredArrayUsingPredicate:apredicate];
         if (segs.count > 0) {
-            QHVCEditSegmentItem *item = [[QHVCEditSegmentItem alloc]init];
+            QHVCEditSegmentItem *item = [[QHVCEditSegmentItem alloc] init];
             item.filePath = segs[0].filePath;
-            item.fileDuration = segs[0].fileDuration;
+            item.fileDuration = segs[0].endTimestampMs - segs[0].startTimestampMs;
             item.segmentStartTime = start;
             item.segmentEndTime = item.segmentStartTime + item.fileDuration;
             item.thumbnail = thumb.thumbnail;
             item.segmentIndex = i;
+            item.slowMotionVideoInfos = segs[0].slowMotionVideoInfos;
             [_segments addObject:item];
             start = item.segmentEndTime;
             i++;
@@ -155,18 +169,18 @@
     if (!_photoList) {
         _photoList = [NSMutableArray arrayWithArray:[QHVCEditPrefs sharedPrefs].photosList];
     }
-    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:items];
-    [_photoList addObjectsFromArray:items];
-    [[QHVCEditCommandManager manager] appendFiles:items];
-    
-    QHVCEditSegmentItem *item = [_segments lastObject];
-    item.transferType = QHVCEditTransferTypeNone;
-    
-    [self fetchSegmentInfos];
-    [_transferView updateView:_transferEffects segments:_segments];
-    
-    [self freshDurationView];
-    [self resetPlayer:0.0];
+    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:items complete:^{
+        [_photoList addObjectsFromArray:items];
+        [[QHVCEditCommandManager manager] appendFiles:items];
+        
+        QHVCEditSegmentItem *item = [_segments lastObject];
+        
+        [self fetchSegmentInfos];
+        [_transferView updateView:_transferEffects segments:_segments];
+        
+        [self freshDurationView];
+        [self resetPlayer:0.0];
+    }];
 }
 
 - (void)handleStopPlayer

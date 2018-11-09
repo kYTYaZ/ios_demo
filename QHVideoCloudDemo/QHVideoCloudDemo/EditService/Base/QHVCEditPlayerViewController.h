@@ -23,6 +23,7 @@
 - (void)seekTo:(NSTimeInterval)pointMs complete:(void(^)())complete;
 
 - (void)refreshPlayer;
+- (void)refreshPlayer:(BOOL)forceRefresh;
 - (void)resetPlayer:(NSTimeInterval)seekTo;
 - (NSTimeInterval)playerTime;
 

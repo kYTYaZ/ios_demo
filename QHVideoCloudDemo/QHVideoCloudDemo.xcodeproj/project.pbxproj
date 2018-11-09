@@ -18,7 +18,6 @@
 		0D090D0D1FB05019004D8EE4 /* QHVCLocalServerSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D011FB05019004D8EE4 /* QHVCLocalServerSettingCell.m */; };
 		0D090D0E1FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D031FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m */; };
 		0D090D0F1FB05019004D8EE4 /* QHVCLocalServerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D090D051FB05019004D8EE4 /* QHVCLocalServerViewController.mm */; };
-		0D13BD7B1F8CBE5F0076CDE3 /* QHVCHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD791F8CBE5F0076CDE3 /* QHVCHUDManager.m */; };
 		0D13BD7E1F8CBECC0076CDE3 /* QHVCLiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13BD7D1F8CBECC0076CDE3 /* QHVCLiveListViewController.m */; };
 		0D13BDA11F8CC3460076CDE3 /* QHVCLocalServerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D13BDA01F8CC3460076CDE3 /* QHVCLocalServerKit.framework */; };
 		0D5AE0581F54247D002C4812 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0571F54247D002C4812 /* main.m */; };
@@ -40,18 +39,43 @@
 		0D5AE0A71F542798002C4812 /* QHVCPlayerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0911F542798002C4812 /* QHVCPlayerViewController.mm */; };
 		0D5AE0A81F542798002C4812 /* QHVCPlayerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0931F542798002C4812 /* QHVCPlayerServiceViewController.m */; };
 		0D5AE0A91F542798002C4812 /* QHVCPlayerServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D5AE0941F542798002C4812 /* QHVCPlayerServiceViewController.xib */; };
-		0D5AE0AA1F542798002C4812 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0961F542798002C4812 /* md5.cpp */; };
-		0D5AE0AB1F542798002C4812 /* QHVCHTTPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0991F542798002C4812 /* QHVCHTTPSession.m */; };
-		0D5AE0AC1F542798002C4812 /* QHVCInterfaceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE09B1F542798002C4812 /* QHVCInterfaceRequest.m */; };
-		0D5AE0AD1F542798002C4812 /* QHVCSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE09D1F542798002C4812 /* QHVCSessionManager.m */; };
 		0D5AE0B71F54299C002C4812 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5AE0B61F54299C002C4812 /* ViewController.m */; };
+		9F1BB1A421918E150083BFAA /* QHVCEditMainNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB19F21918E140083BFAA /* QHVCEditMainNavView.xib */; };
+		9F1BB1A521918E150083BFAA /* QHVCEditMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1A121918E140083BFAA /* QHVCEditMainViewController.m */; };
+		9F1BB1A621918E150083BFAA /* QHVCEditMainNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1A321918E150083BFAA /* QHVCEditMainNavView.m */; };
+		9F1BB1B9219195080083BFAA /* test.ass in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1AD219195070083BFAA /* test.ass */; };
+		9F1BB1BA219195080083BFAA /* QHVCEditDynamicSubtitleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1AE219195070083BFAA /* QHVCEditDynamicSubtitleVC.m */; };
+		9F1BB1BB219195080083BFAA /* QHVCEditKenburnsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1B1219195070083BFAA /* QHVCEditKenburnsVC.m */; };
+		9F1BB1BC219195080083BFAA /* QHVCEditKenburnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1B2219195070083BFAA /* QHVCEditKenburnsView.m */; };
+		9F1BB1BD219195080083BFAA /* QHVCEditKenburnsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1B3219195070083BFAA /* QHVCEditKenburnsView.xib */; };
+		9F1BB1BE219195080083BFAA /* QHVCEditReverseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1B7219195070083BFAA /* QHVCEditReverseManager.m */; };
+		9F1BB204219195AD0083BFAA /* QHVCSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1D8219195AD0083BFAA /* QHVCSessionManager.m */; };
+		9F1BB205219195AD0083BFAA /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1DE219195AD0083BFAA /* AFURLConnectionOperation.m */; };
+		9F1BB206219195AD0083BFAA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1DF219195AD0083BFAA /* AFHTTPRequestOperationManager.m */; };
+		9F1BB207219195AD0083BFAA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1E0219195AD0083BFAA /* AFHTTPRequestOperation.m */; };
+		9F1BB208219195AD0083BFAA /* QHVCHTTPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1E1219195AD0083BFAA /* QHVCHTTPSession.m */; };
+		9F1BB209219195AD0083BFAA /* QHVCInterfaceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1E4219195AD0083BFAA /* QHVCInterfaceRequest.m */; };
+		9F1BB20A219195AD0083BFAA /* QHVCLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1E6219195AD0083BFAA /* QHVCLogger.m */; };
+		9F1BB20B219195AD0083BFAA /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1E9219195AD0083BFAA /* md5.cpp */; };
+		9F1BB20C219195AD0083BFAA /* QHVCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1EB219195AD0083BFAA /* QHVCTool.m */; };
+		9F1BB20D219195AD0083BFAA /* QHVCToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1EE219195AD0083BFAA /* QHVCToast.m */; };
+		9F1BB20E219195AD0083BFAA /* QHVCLiveSettingCellOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1F2219195AD0083BFAA /* QHVCLiveSettingCellOne.xib */; };
+		9F1BB20F219195AD0083BFAA /* QHVCLiveMainCellOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1F3219195AD0083BFAA /* QHVCLiveMainCellOne.xib */; };
+		9F1BB210219195AD0083BFAA /* QHVCLiveMainCellOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1F4219195AD0083BFAA /* QHVCLiveMainCellOne.m */; };
+		9F1BB211219195AD0083BFAA /* QHVCLiveSettingCellOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1F6219195AD0083BFAA /* QHVCLiveSettingCellOne.m */; };
+		9F1BB212219195AD0083BFAA /* QHVCLiveSettingCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1F8219195AD0083BFAA /* QHVCLiveSettingCellTwo.m */; };
+		9F1BB213219195AD0083BFAA /* QHVCLiveMainCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1FA219195AD0083BFAA /* QHVCLiveMainCellTwo.m */; };
+		9F1BB214219195AD0083BFAA /* QHVCLiveMainCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1FC219195AD0083BFAA /* QHVCLiveMainCellTwo.xib */; };
+		9F1BB215219195AD0083BFAA /* QHVCLiveSettingCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1BB1FD219195AD0083BFAA /* QHVCLiveSettingCellTwo.xib */; };
+		9F1BB216219195AD0083BFAA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB1FF219195AD0083BFAA /* UIViewAdditions.m */; };
+		9F1BB217219195AD0083BFAA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB200219195AD0083BFAA /* UIView+Toast.m */; };
+		9F1BB218219195AD0083BFAA /* QHVCHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB203219195AD0083BFAA /* QHVCHUDManager.m */; };
+		9F1BB23A2191AFC90083BFAA /* QHVCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BB2382191AFC90083BFAA /* QHVCFileManager.m */; };
 		9F4F7F492088498B0066A2B2 /* QHVCEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E842088498A0066A2B2 /* QHVCEditViewController.m */; };
 		9F4F7F4A2088498B0066A2B2 /* QHVCEditReorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E862088498A0066A2B2 /* QHVCEditReorderViewController.m */; };
 		9F4F7F4B2088498B0066A2B2 /* QHVCEditReorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7E872088498A0066A2B2 /* QHVCEditReorderViewController.xib */; };
 		9F4F7F4C2088498B0066A2B2 /* QHVCEditClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E8A2088498B0066A2B2 /* QHVCEditClipView.m */; };
 		9F4F7F4D2088498B0066A2B2 /* QHVCEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7E8C2088498B0066A2B2 /* QHVCEditViewController.xib */; };
-		9F4F7F4E2088498B0066A2B2 /* QHVCEditMainNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7E8E2088498B0066A2B2 /* QHVCEditMainNavView.xib */; };
-		9F4F7F4F2088498B0066A2B2 /* QHVCEditMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E8F2088498B0066A2B2 /* QHVCEditMainViewController.m */; };
 		9F4F7F502088498B0066A2B2 /* QHVCEditQualityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7E912088498B0066A2B2 /* QHVCEditQualityView.xib */; };
 		9F4F7F512088498B0066A2B2 /* QHVCEditQualityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E922088498B0066A2B2 /* QHVCEditQualityViewController.m */; };
 		9F4F7F522088498B0066A2B2 /* QHVCEditQualityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7E932088498B0066A2B2 /* QHVCEditQualityView.m */; };
@@ -86,7 +110,6 @@
 		9F4F7F6F2088498B0066A2B2 /* QHVCEditAddAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7ED02088498B0066A2B2 /* QHVCEditAddAudioCell.m */; };
 		9F4F7F702088498B0066A2B2 /* Forever.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7ED22088498B0066A2B2 /* Forever.mp3 */; };
 		9F4F7F712088498B0066A2B2 /* Disco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F7ED32088498B0066A2B2 /* Disco.mp3 */; };
-		9F4F7F722088498B0066A2B2 /* QHVCEditMainNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7ED42088498B0066A2B2 /* QHVCEditMainNavView.m */; };
 		9F4F7F732088498B0066A2B2 /* QHVCEditSubtitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7ED72088498B0066A2B2 /* QHVCEditSubtitleViewController.m */; };
 		9F4F7F742088498B0066A2B2 /* QHVCEditSubtitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7EDA2088498B0066A2B2 /* QHVCEditSubtitleItem.m */; };
 		9F4F7F752088498B0066A2B2 /* QHVCEditSubtitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F7EDB2088498B0066A2B2 /* QHVCEditSubtitleView.m */; };
@@ -152,6 +175,64 @@
 		9F4F7FB520884AAD0066A2B2 /* QHVCEditKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4F7FB420884AAC0066A2B2 /* QHVCEditKit.framework */; };
 		9F4F7FB620884AB00066A2B2 /* QHVCEditKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4F7FB420884AAC0066A2B2 /* QHVCEditKit.framework */; };
 		9F4F7FB720884AB00066A2B2 /* QHVCEditKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4F7FB420884AAC0066A2B2 /* QHVCEditKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F943743210EE94100C68267 /* QHVCEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F94373C210EE94000C68267 /* QHVCEditVC.m */; };
+		9F943744210EE94100C68267 /* QHVCEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F94373D210EE94000C68267 /* QHVCEditVC.xib */; };
+		9F94374E210EE95B00C68267 /* QHVCEditMosaicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F94374A210EE95B00C68267 /* QHVCEditMosaicView.xib */; };
+		9F94374F210EE95B00C68267 /* QHVCEditMosaicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F94374B210EE95B00C68267 /* QHVCEditMosaicVC.m */; };
+		9F943750210EE95B00C68267 /* QHVCEditMosaicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F94374C210EE95B00C68267 /* QHVCEditMosaicView.m */; };
+		9FAFD4DF20D0C87F00F8BD35 /* EZAudioFloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4CE20D0C87F00F8BD35 /* EZAudioFloatData.m */; };
+		9FAFD4E020D0C87F00F8BD35 /* AudioWaveForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4D320D0C87F00F8BD35 /* AudioWaveForm.m */; };
+		9FAFD4E120D0C87F00F8BD35 /* EZPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4D520D0C87F00F8BD35 /* EZPlot.m */; };
+		9FAFD4E220D0C87F00F8BD35 /* EZAudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4D620D0C87F00F8BD35 /* EZAudioPlot.m */; };
+		9FAFD4E320D0C87F00F8BD35 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4D720D0C87F00F8BD35 /* TPCircularBuffer.c */; };
+		9FAFD4E420D0C87F00F8BD35 /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4D920D0C87F00F8BD35 /* EZAudio.m */; };
+		9FAFD4E520D0C87F00F8BD35 /* EZAudioUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4DA20D0C87F00F8BD35 /* EZAudioUtilities.m */; };
+		9FAFD4E620D0C87F00F8BD35 /* EZAudioFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4DB20D0C87F00F8BD35 /* EZAudioFloatConverter.m */; };
+		9FAFD4E720D0C87F00F8BD35 /* EZAudioDisplayLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4DC20D0C87F00F8BD35 /* EZAudioDisplayLink.m */; };
+		9FAFD4E820D0C87F00F8BD35 /* EZAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4DE20D0C87F00F8BD35 /* EZAudioFile.m */; };
+		9FAFD50120D0C8F200F8BD35 /* QHVCEditAlterSoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD4FE20D0C8F200F8BD35 /* QHVCEditAlterSoundView.xib */; };
+		9FAFD50220D0C8F200F8BD35 /* QHVCEditAlterSoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD4FF20D0C8F200F8BD35 /* QHVCEditAlterSoundView.m */; };
+		9FAFD50620D0C98E00F8BD35 /* QHVCEditOverlayBlendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD50420D0C98E00F8BD35 /* QHVCEditOverlayBlendView.m */; };
+		9FAFD50720D0C98E00F8BD35 /* QHVCEditOverlayBlendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD50520D0C98E00F8BD35 /* QHVCEditOverlayBlendView.xib */; };
+		9FAFD50E20D0C9A600F8BD35 /* QHVCEditCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD50820D0C9A500F8BD35 /* QHVCEditCommonCell.m */; };
+		9FAFD50F20D0C9A600F8BD35 /* QHVCEditEffectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD50920D0C9A600F8BD35 /* QHVCEditEffectCell.xib */; };
+		9FAFD51020D0C9A600F8BD35 /* QHVCEditEffectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD50A20D0C9A600F8BD35 /* QHVCEditEffectCell.m */; };
+		9FAFD51120D0C9A600F8BD35 /* QHVCEditCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD50C20D0C9A600F8BD35 /* QHVCEditCommonCell.xib */; };
+		9FAFD59420D0CD2900F8BD35 /* QHVCEditEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD58820D0CD2900F8BD35 /* QHVCEditEffectView.m */; };
+		9FAFD59520D0CD2900F8BD35 /* QHVCEditEffectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD58920D0CD2900F8BD35 /* QHVCEditEffectView.xib */; };
+		9FAFD59620D0CD2900F8BD35 /* QHVCEditEffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD58A20D0CD2900F8BD35 /* QHVCEditEffectViewController.m */; };
+		9FAFD59720D0CD2900F8BD35 /* QHVCEditEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD58C20D0CD2900F8BD35 /* QHVCEditEffectViewController.xib */; };
+		9FAFD59820D0CD2900F8BD35 /* QHVCEditBeautifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD58E20D0CD2900F8BD35 /* QHVCEditBeautifyView.m */; };
+		9FAFD59920D0CD2900F8BD35 /* QHVCEditBeautifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD58F20D0CD2900F8BD35 /* QHVCEditBeautifyViewController.m */; };
+		9FAFD59A20D0CD2900F8BD35 /* QHVCEditBeautifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD59020D0CD2900F8BD35 /* QHVCEditBeautifyViewController.xib */; };
+		9FAFD59B20D0CD2900F8BD35 /* QHVCEditBeautifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD59320D0CD2900F8BD35 /* QHVCEditBeautifyView.xib */; };
+		9FAFD5B620D0CD4700F8BD35 /* Fade.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD59D20D0CD4700F8BD35 /* Fade.png */; };
+		9FAFD5B720D0CD4700F8BD35 /* Sepia.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD59E20D0CD4700F8BD35 /* Sepia.png */; };
+		9FAFD5B820D0CD4700F8BD35 /* Vista.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD59F20D0CD4700F8BD35 /* Vista.png */; };
+		9FAFD5B920D0CD4700F8BD35 /* Retro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A020D0CD4700F8BD35 /* Retro.png */; };
+		9FAFD5BA20D0CD4700F8BD35 /* Cyberpunk.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A120D0CD4700F8BD35 /* Cyberpunk.png */; };
+		9FAFD5BB20D0CD4700F8BD35 /* Action.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A220D0CD4700F8BD35 /* Action.png */; };
+		9FAFD5BC20D0CD4700F8BD35 /* Terra.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A320D0CD4700F8BD35 /* Terra.png */; };
+		9FAFD5BD20D0CD4700F8BD35 /* Darkness.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A420D0CD4700F8BD35 /* Darkness.png */; };
+		9FAFD5BE20D0CD4700F8BD35 /* Winter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A520D0CD4700F8BD35 /* Winter.png */; };
+		9FAFD5BF20D0CD4700F8BD35 /* B&W.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A620D0CD4700F8BD35 /* B&W.png */; };
+		9FAFD5C020D0CD4700F8BD35 /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A720D0CD4700F8BD35 /* test2.jpg */; };
+		9FAFD5C120D0CD4700F8BD35 /* 番荔枝.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A820D0CD4700F8BD35 /* 番荔枝.png */; };
+		9FAFD5C220D0CD4700F8BD35 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5A920D0CD4700F8BD35 /* test.jpg */; };
+		9FAFD5C320D0CD4700F8BD35 /* LovelyDay.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AA20D0CD4700F8BD35 /* LovelyDay.png */; };
+		9FAFD5C420D0CD4700F8BD35 /* 可可树.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AB20D0CD4700F8BD35 /* 可可树.png */; };
+		9FAFD5C520D0CD4700F8BD35 /* 罗汉果.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AC20D0CD4700F8BD35 /* 罗汉果.png */; };
+		9FAFD5C620D0CD4700F8BD35 /* Negative.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AD20D0CD4700F8BD35 /* Negative.png */; };
+		9FAFD5C720D0CD4700F8BD35 /* NightVision.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AE20D0CD4700F8BD35 /* NightVision.png */; };
+		9FAFD5C820D0CD4700F8BD35 /* Ultra.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5AF20D0CD4700F8BD35 /* Ultra.png */; };
+		9FAFD5C920D0CD4700F8BD35 /* PurpleRain.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B020D0CD4700F8BD35 /* PurpleRain.png */; };
+		9FAFD5CA20D0CD4700F8BD35 /* HighNoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B120D0CD4700F8BD35 /* HighNoon.png */; };
+		9FAFD5CB20D0CD4700F8BD35 /* Mist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B220D0CD4700F8BD35 /* Mist.png */; };
+		9FAFD5CC20D0CD4700F8BD35 /* Steel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B320D0CD4700F8BD35 /* Steel.png */; };
+		9FAFD5CD20D0CD4700F8BD35 /* Vivid.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B420D0CD4700F8BD35 /* Vivid.png */; };
+		9FAFD5CE20D0CD4700F8BD35 /* Enchanted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5B520D0CD4700F8BD35 /* Enchanted.png */; };
+		9FAFD5D220D0CD7000F8BD35 /* QHVCEditQualityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFD5D020D0CD6F00F8BD35 /* QHVCEditQualityItem.m */; };
+		9FAFD5D320D0CD7000F8BD35 /* QHVCEditQualityItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD5D120D0CD7000F8BD35 /* QHVCEditQualityItem.xib */; };
 		BB09BF1720735FD000AE9BE9 /* QHVCIMKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF1620735FCF00AE9BE9 /* QHVCIMKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB09BF182073602000AE9BE9 /* QHVCIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF1620735FCF00AE9BE9 /* QHVCIMKit.framework */; };
 		BB09BF1C2073614900AE9BE9 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF1B2073614800AE9BE9 /* libc++abi.tbd */; };
@@ -167,52 +248,7 @@
 		BB09BF3420736D6800AE9BE9 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF3320736D6700AE9BE9 /* MediaPlayer.framework */; };
 		BB09BF3620736D7700AE9BE9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF3520736D7700AE9BE9 /* CoreVideo.framework */; };
 		BB09BF3820736D8F00AE9BE9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB09BF3720736D8F00AE9BE9 /* CoreTelephony.framework */; };
-		BB09BF8A2073700B00AE9BE9 /* QHVCITSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF3D2073700A00AE9BE9 /* QHVCITSConfig.m */; };
-		BB09BF8B2073700B00AE9BE9 /* QHVCITLFunction.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF422073700A00AE9BE9 /* QHVCITLFunction.plist */; };
-		BB09BF8C2073700B00AE9BE9 /* QHVCITLMain.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF432073700A00AE9BE9 /* QHVCITLMain.plist */; };
-		BB09BF8D2073700B00AE9BE9 /* QHVCITSCreateRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF472073700A00AE9BE9 /* QHVCITSCreateRoomViewController.m */; };
-		BB09BF8E2073700B00AE9BE9 /* QHVCITSCreateRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF482073700A00AE9BE9 /* QHVCITSCreateRoomViewController.xib */; };
-		BB09BF8F2073700B00AE9BE9 /* QHVCITSChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF4C2073700A00AE9BE9 /* QHVCITSChatManager.m */; };
-		BB09BF902073700B00AE9BE9 /* QHVCITSLinkMicViewController+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF4E2073700A00AE9BE9 /* QHVCITSLinkMicViewController+Control.m */; };
-		BB09BF912073700B00AE9BE9 /* QHVCITSLinkMicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF502073700A00AE9BE9 /* QHVCITSLinkMicViewController.m */; };
-		BB09BF922073700B00AE9BE9 /* QHVCITSLinkMicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF512073700A00AE9BE9 /* QHVCITSLinkMicViewController.xib */; };
-		BB09BF932073700B00AE9BE9 /* QHVCITSVideoSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF532073700A00AE9BE9 /* QHVCITSVideoSession.m */; };
-		BB09BF942073700B00AE9BE9 /* QHVCITSActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF572073700A00AE9BE9 /* QHVCITSActionCell.m */; };
-		BB09BF952073700B00AE9BE9 /* QHVCITSActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF582073700A00AE9BE9 /* QHVCITSActionCell.xib */; };
-		BB09BF962073700B00AE9BE9 /* QHVCITSGuestUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF5A2073700A00AE9BE9 /* QHVCITSGuestUserCell.m */; };
-		BB09BF972073700B00AE9BE9 /* QHVCITSGuestUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF5B2073700A00AE9BE9 /* QHVCITSGuestUserCell.xib */; };
-		BB09BF982073700B00AE9BE9 /* QHVCITRoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF5D2073700A00AE9BE9 /* QHVCITRoleView.m */; };
-		BB09BF992073700B00AE9BE9 /* QHVCITSRoomUserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF5F2073700A00AE9BE9 /* QHVCITSRoomUserListView.m */; };
-		BB09BF9A2073700B00AE9BE9 /* QHVCITSRoomUserListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF602073700A00AE9BE9 /* QHVCITSRoomUserListView.xib */; };
-		BB09BF9B2073700B00AE9BE9 /* QHVCITSModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF632073700A00AE9BE9 /* QHVCITSModelListViewController.m */; };
-		BB09BF9C2073700B00AE9BE9 /* QHVCITSModelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF642073700A00AE9BE9 /* QHVCITSModelListViewController.xib */; };
-		BB09BF9D2073700B00AE9BE9 /* QHVCITSRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF682073700A00AE9BE9 /* QHVCITSRoomListCell.m */; };
-		BB09BF9E2073700B00AE9BE9 /* QHVCITSRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF692073700A00AE9BE9 /* QHVCITSRoomListCell.xib */; };
-		BB09BF9F2073700B00AE9BE9 /* QHVCITSRoomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF6B2073700A00AE9BE9 /* QHVCITSRoomListViewController.m */; };
-		BB09BFA02073700B00AE9BE9 /* QHVCITSRoomListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF6C2073700A00AE9BE9 /* QHVCITSRoomListViewController.xib */; };
-		BB09BFA12073700B00AE9BE9 /* QHVCITSSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF6F2073700A00AE9BE9 /* QHVCITSSettingViewController.m */; };
-		BB09BFA22073700B00AE9BE9 /* QHVCITSSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF702073700A00AE9BE9 /* QHVCITSSettingViewController.xib */; };
-		BB09BFA32073700B00AE9BE9 /* InteractiveSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF722073700A00AE9BE9 /* InteractiveSetting.plist */; };
-		BB09BFA42073700B00AE9BE9 /* QHVCITSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF752073700A00AE9BE9 /* QHVCITSLog.m */; };
-		BB09BFA52073700B00AE9BE9 /* QHVCITSRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF782073700A00AE9BE9 /* QHVCITSRoomModel.m */; };
-		BB09BFA62073700B00AE9BE9 /* QHVCITSUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF7A2073700A00AE9BE9 /* QHVCITSUserModel.m */; };
-		BB09BFA72073700B00AE9BE9 /* QHVCITSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF7D2073700A00AE9BE9 /* QHVCITSHTTPSessionManager.m */; };
-		BB09BFA82073700B00AE9BE9 /* QHVCITSProtocolMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF7F2073700A00AE9BE9 /* QHVCITSProtocolMonitor.m */; };
-		BB09BFA92073700B00AE9BE9 /* QHVCInteractiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF812073700A00AE9BE9 /* QHVCInteractiveViewController.m */; };
-		BB09BFAA2073700B00AE9BE9 /* QHVCInteractiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BF822073700A00AE9BE9 /* QHVCInteractiveViewController.xib */; };
-		BB09BFAB2073700B00AE9BE9 /* QHVCITSChatSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF862073700A00AE9BE9 /* QHVCITSChatSystem.m */; };
-		BB09BFAC2073700B00AE9BE9 /* QHVCITSUserSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BF892073700A00AE9BE9 /* QHVCITSUserSystem.m */; };
-		BB09BFB22073738400AE9BE9 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFAF2073738400AE9BE9 /* UIView+Toast.m */; };
-		BB09BFB32073738400AE9BE9 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFB12073738400AE9BE9 /* UIViewAdditions.m */; };
 		BB09BFB72073743A00AE9BE9 /* QHVCConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFB62073743900AE9BE9 /* QHVCConfig.m */; };
-		BB09BFC52073748100AE9BE9 /* QHVCLiveMainCellOne.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFBA2073748100AE9BE9 /* QHVCLiveMainCellOne.m */; };
-		BB09BFC62073748100AE9BE9 /* QHVCLiveMainCellOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BFBB2073748100AE9BE9 /* QHVCLiveMainCellOne.xib */; };
-		BB09BFC72073748100AE9BE9 /* QHVCLiveMainCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFBD2073748100AE9BE9 /* QHVCLiveMainCellTwo.m */; };
-		BB09BFC82073748100AE9BE9 /* QHVCLiveMainCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BFBE2073748100AE9BE9 /* QHVCLiveMainCellTwo.xib */; };
-		BB09BFC92073748100AE9BE9 /* QHVCLiveSettingCellOne.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFC02073748100AE9BE9 /* QHVCLiveSettingCellOne.m */; };
-		BB09BFCA2073748100AE9BE9 /* QHVCLiveSettingCellOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BFC12073748100AE9BE9 /* QHVCLiveSettingCellOne.xib */; };
-		BB09BFCB2073748100AE9BE9 /* QHVCLiveSettingCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = BB09BFC32073748100AE9BE9 /* QHVCLiveSettingCellTwo.m */; };
-		BB09BFCC2073748100AE9BE9 /* QHVCLiveSettingCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB09BFC42073748100AE9BE9 /* QHVCLiveSettingCellTwo.xib */; };
 		BB8976021F90983A00D5E3BE /* QHVCUploadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8976011F90983A00D5E3BE /* QHVCUploadKit.framework */; };
 		BB8976111F90993300D5E3BE /* QHVCUploadingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB8976051F90993300D5E3BE /* QHVCUploadingViewController.mm */; };
 		BB8976121F90993300D5E3BE /* QHVCUploadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8976061F90993300D5E3BE /* QHVCUploadingViewController.xib */; };
@@ -223,12 +259,53 @@
 		BB8976171F90993300D5E3BE /* QHVCUploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB89760F1F90993300D5E3BE /* QHVCUploadProgressView.xib */; };
 		BB8976181F90993300D5E3BE /* uploadMain.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB8976101F90993300D5E3BE /* uploadMain.plist */; };
 		BB8976241F909AC000D5E3BE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8976231F909AC000D5E3BE /* libz.tbd */; };
+		BBB4F65320E4ED27006B69E9 /* QHVCITSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F5FC20E4ED27006B69E9 /* QHVCITSConfig.m */; };
+		BBB4F65420E4ED27006B69E9 /* QHVCITLFunction.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F60120E4ED27006B69E9 /* QHVCITLFunction.plist */; };
+		BBB4F65520E4ED27006B69E9 /* QHVCITLMain.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F60220E4ED27006B69E9 /* QHVCITLMain.plist */; };
+		BBB4F65620E4ED27006B69E9 /* QHVCITSCreateRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F60620E4ED27006B69E9 /* QHVCITSCreateRoomViewController.m */; };
+		BBB4F65720E4ED27006B69E9 /* QHVCITSCreateRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F60720E4ED27006B69E9 /* QHVCITSCreateRoomViewController.xib */; };
+		BBB4F65820E4ED27006B69E9 /* QHVCITSChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F60B20E4ED27006B69E9 /* QHVCITSChatManager.m */; };
+		BBB4F65920E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F60D20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.m */; };
+		BBB4F65A20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F60F20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.m */; };
+		BBB4F65B20E4ED27006B69E9 /* QHVCITSLinkMicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F61120E4ED27006B69E9 /* QHVCITSLinkMicViewController.m */; };
+		BBB4F65C20E4ED27006B69E9 /* QHVCITSLinkMicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F61220E4ED27006B69E9 /* QHVCITSLinkMicViewController.xib */; };
+		BBB4F65D20E4ED27006B69E9 /* QHVCITSVideoSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F61420E4ED27006B69E9 /* QHVCITSVideoSession.m */; };
+		BBB4F65E20E4ED27006B69E9 /* QHVCITSActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F61820E4ED27006B69E9 /* QHVCITSActionCell.m */; };
+		BBB4F65F20E4ED27006B69E9 /* QHVCITSActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F61920E4ED27006B69E9 /* QHVCITSActionCell.xib */; };
+		BBB4F66020E4ED27006B69E9 /* QHVCITSGuestUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F61B20E4ED27006B69E9 /* QHVCITSGuestUserCell.m */; };
+		BBB4F66120E4ED27006B69E9 /* QHVCITSGuestUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F61C20E4ED27006B69E9 /* QHVCITSGuestUserCell.xib */; };
+		BBB4F66220E4ED27006B69E9 /* QHVCITSHongpaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F61E20E4ED27006B69E9 /* QHVCITSHongpaCell.m */; };
+		BBB4F66320E4ED27006B69E9 /* QHVCITSHongpaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F61F20E4ED27006B69E9 /* QHVCITSHongpaCell.xib */; };
+		BBB4F66420E4ED27006B69E9 /* QHVCITRoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F62120E4ED27006B69E9 /* QHVCITRoleView.m */; };
+		BBB4F66520E4ED27006B69E9 /* QHVCITSRoomUserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F62320E4ED27006B69E9 /* QHVCITSRoomUserListView.m */; };
+		BBB4F66620E4ED27006B69E9 /* QHVCITSRoomUserListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F62420E4ED27006B69E9 /* QHVCITSRoomUserListView.xib */; };
+		BBB4F66720E4ED27006B69E9 /* QHVCITSModelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F62720E4ED27006B69E9 /* QHVCITSModelListViewController.m */; };
+		BBB4F66820E4ED27006B69E9 /* QHVCITSModelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F62820E4ED27006B69E9 /* QHVCITSModelListViewController.xib */; };
+		BBB4F66920E4ED27006B69E9 /* QHVCITSRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F62C20E4ED27006B69E9 /* QHVCITSRoomListCell.m */; };
+		BBB4F66A20E4ED27006B69E9 /* QHVCITSRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F62D20E4ED27006B69E9 /* QHVCITSRoomListCell.xib */; };
+		BBB4F66B20E4ED27006B69E9 /* QHVCITSRoomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F62F20E4ED27006B69E9 /* QHVCITSRoomListViewController.m */; };
+		BBB4F66C20E4ED27006B69E9 /* QHVCITSRoomListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F63020E4ED27006B69E9 /* QHVCITSRoomListViewController.xib */; };
+		BBB4F66D20E4ED27006B69E9 /* QHVCSettingCellStyleThree.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F63420E4ED27006B69E9 /* QHVCSettingCellStyleThree.m */; };
+		BBB4F66E20E4ED27006B69E9 /* QHVCSettingCellStyleThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F63520E4ED27006B69E9 /* QHVCSettingCellStyleThree.xib */; };
+		BBB4F66F20E4ED27006B69E9 /* QHVCITSSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F63720E4ED27006B69E9 /* QHVCITSSettingViewController.m */; };
+		BBB4F67020E4ED27006B69E9 /* QHVCITSSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F63820E4ED27006B69E9 /* QHVCITSSettingViewController.xib */; };
+		BBB4F67120E4ED27006B69E9 /* InteractiveSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F63A20E4ED27006B69E9 /* InteractiveSetting.plist */; };
+		BBB4F67220E4ED27006B69E9 /* InteractiveVideoProfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F63B20E4ED27006B69E9 /* InteractiveVideoProfile.plist */; };
+		BBB4F67320E4ED27006B69E9 /* QHVCITSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F63E20E4ED27006B69E9 /* QHVCITSLog.m */; };
+		BBB4F67420E4ED27006B69E9 /* QHVCITSRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64120E4ED27006B69E9 /* QHVCITSRoomModel.m */; };
+		BBB4F67520E4ED27006B69E9 /* QHVCITSUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64320E4ED27006B69E9 /* QHVCITSUserModel.m */; };
+		BBB4F67620E4ED27006B69E9 /* QHVCITSHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64620E4ED27006B69E9 /* QHVCITSHTTPSessionManager.m */; };
+		BBB4F67720E4ED27006B69E9 /* QHVCITSProtocolMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64820E4ED27006B69E9 /* QHVCITSProtocolMonitor.m */; };
+		BBB4F67820E4ED27006B69E9 /* QHVCInteractiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64A20E4ED27006B69E9 /* QHVCInteractiveViewController.m */; };
+		BBB4F67920E4ED27006B69E9 /* QHVCInteractiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4F64B20E4ED27006B69E9 /* QHVCInteractiveViewController.xib */; };
+		BBB4F67A20E4ED27006B69E9 /* QHVCITSChatSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F64F20E4ED27006B69E9 /* QHVCITSChatSystem.m */; };
+		BBB4F67B20E4ED27006B69E9 /* QHVCITSUserSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4F65220E4ED27006B69E9 /* QHVCITSUserSystem.m */; };
+		BBB4F67D20E4EE98006B69E9 /* QHVCLiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB4F67C20E4EE98006B69E9 /* QHVCLiveKit.framework */; };
+		BBB4F67E20E4EEA6006B69E9 /* QHVCLiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBB4F67C20E4EE98006B69E9 /* QHVCLiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BBB9954020EF5D4E00D5E8B8 /* ZegoAVKit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB9953F20EF5D4E00D5E8B8 /* ZegoAVKit2.framework */; };
+		BBB9954120EF5D5500D5E8B8 /* ZegoAVKit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBB9953F20EF5D4E00D5E8B8 /* ZegoAVKit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BBE45B1620889D06006875ED /* QHVCCommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE45B1520889D05006875ED /* QHVCCommonKit.framework */; };
 		BBE45B1720889D0E006875ED /* QHVCCommonKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBE45B1520889D05006875ED /* QHVCCommonKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BBE45B1A20889DD6006875ED /* QHVCToast.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE45B1820889DD6006875ED /* QHVCToast.m */; };
-		BBE45B1C20889E37006875ED /* InteractiveVideoProfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBE45B1B20889E37006875ED /* InteractiveVideoProfile.plist */; };
-		BBE45B2120889E40006875ED /* QHVCSettingCellStyleThree.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE45B1F20889E40006875ED /* QHVCSettingCellStyleThree.m */; };
-		BBE45B2220889E40006875ED /* QHVCSettingCellStyleThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE45B2020889E40006875ED /* QHVCSettingCellStyleThree.xib */; };
 		BBE45B2420889EDD006875ED /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE45B2320889EDD006875ED /* libcrypto.a */; };
 		BBE45B2620889EE1006875ED /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE45B2520889EE1006875ED /* libssl.a */; };
 		E3A83D9042DC4A1B2017DF9F /* libPods-QHVideoCloudDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B62BEB1FE908424C1BB457 /* libPods-QHVideoCloudDemo.a */; };
@@ -245,6 +322,8 @@
 				0D5AE0721F5425CE002C4812 /* QHVCPlayerKit.framework in Embed Frameworks */,
 				BBE45B1720889D0E006875ED /* QHVCCommonKit.framework in Embed Frameworks */,
 				BB09BF1720735FD000AE9BE9 /* QHVCIMKit.framework in Embed Frameworks */,
+				BBB4F67E20E4EEA6006B69E9 /* QHVCLiveKit.framework in Embed Frameworks */,
+				BBB9954120EF5D5500D5E8B8 /* ZegoAVKit2.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,8 +353,6 @@
 		0D090D031FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLocalServerSettingViewController.m; sourceTree = "<group>"; };
 		0D090D041FB05019004D8EE4 /* QHVCLocalServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLocalServerViewController.h; sourceTree = "<group>"; };
 		0D090D051FB05019004D8EE4 /* QHVCLocalServerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QHVCLocalServerViewController.mm; sourceTree = "<group>"; };
-		0D13BD791F8CBE5F0076CDE3 /* QHVCHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCHUDManager.m; sourceTree = "<group>"; };
-		0D13BD7A1F8CBE5F0076CDE3 /* QHVCHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCHUDManager.h; sourceTree = "<group>"; };
 		0D13BD7C1F8CBECB0076CDE3 /* QHVCLiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveListViewController.h; sourceTree = "<group>"; };
 		0D13BD7D1F8CBECC0076CDE3 /* QHVCLiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveListViewController.m; sourceTree = "<group>"; };
 		0D13BDA01F8CC3460076CDE3 /* QHVCLocalServerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCLocalServerKit.framework; path = QHVideoCloudDemo/Framework/QHVCLocalServerKit.framework; sourceTree = "<group>"; };
@@ -313,19 +390,66 @@
 		0D5AE0921F542798002C4812 /* QHVCPlayerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCPlayerServiceViewController.h; sourceTree = "<group>"; };
 		0D5AE0931F542798002C4812 /* QHVCPlayerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCPlayerServiceViewController.m; sourceTree = "<group>"; };
 		0D5AE0941F542798002C4812 /* QHVCPlayerServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCPlayerServiceViewController.xib; sourceTree = "<group>"; };
-		0D5AE0961F542798002C4812 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
-		0D5AE0971F542798002C4812 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		0D5AE0981F542798002C4812 /* QHVCHTTPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCHTTPSession.h; sourceTree = "<group>"; };
-		0D5AE0991F542798002C4812 /* QHVCHTTPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCHTTPSession.m; sourceTree = "<group>"; };
-		0D5AE09A1F542798002C4812 /* QHVCInterfaceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCInterfaceRequest.h; sourceTree = "<group>"; };
-		0D5AE09B1F542798002C4812 /* QHVCInterfaceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCInterfaceRequest.m; sourceTree = "<group>"; };
-		0D5AE09C1F542798002C4812 /* QHVCSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCSessionManager.h; sourceTree = "<group>"; };
-		0D5AE09D1F542798002C4812 /* QHVCSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCSessionManager.m; sourceTree = "<group>"; };
 		0D5AE0B51F54299C002C4812 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0D5AE0B61F54299C002C4812 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4459D8E4E43FFA7C4D60952A /* Pods-QHVideoCloudDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QHVideoCloudDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QHVideoCloudDemo/Pods-QHVideoCloudDemo.release.xcconfig"; sourceTree = "<group>"; };
 		47B62BEB1FE908424C1BB457 /* libPods-QHVideoCloudDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QHVideoCloudDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E07FDE447B8B248679997E1 /* Pods-QHVideoCloudDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QHVideoCloudDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QHVideoCloudDemo/Pods-QHVideoCloudDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9F1BB19F21918E140083BFAA /* QHVCEditMainNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditMainNavView.xib; sourceTree = "<group>"; };
+		9F1BB1A021918E140083BFAA /* QHVCEditMainNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMainNavView.h; sourceTree = "<group>"; };
+		9F1BB1A121918E140083BFAA /* QHVCEditMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMainViewController.m; sourceTree = "<group>"; };
+		9F1BB1A221918E150083BFAA /* QHVCEditMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMainViewController.h; sourceTree = "<group>"; };
+		9F1BB1A321918E150083BFAA /* QHVCEditMainNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMainNavView.m; sourceTree = "<group>"; };
+		9F1BB1AD219195070083BFAA /* test.ass */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.ass; sourceTree = "<group>"; };
+		9F1BB1AE219195070083BFAA /* QHVCEditDynamicSubtitleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditDynamicSubtitleVC.m; sourceTree = "<group>"; };
+		9F1BB1AF219195070083BFAA /* QHVCEditDynamicSubtitleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditDynamicSubtitleVC.h; sourceTree = "<group>"; };
+		9F1BB1B1219195070083BFAA /* QHVCEditKenburnsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditKenburnsVC.m; sourceTree = "<group>"; };
+		9F1BB1B2219195070083BFAA /* QHVCEditKenburnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditKenburnsView.m; sourceTree = "<group>"; };
+		9F1BB1B3219195070083BFAA /* QHVCEditKenburnsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditKenburnsView.xib; sourceTree = "<group>"; };
+		9F1BB1B4219195070083BFAA /* QHVCEditKenburnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditKenburnsView.h; sourceTree = "<group>"; };
+		9F1BB1B5219195070083BFAA /* QHVCEditKenburnsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditKenburnsVC.h; sourceTree = "<group>"; };
+		9F1BB1B7219195070083BFAA /* QHVCEditReverseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditReverseManager.m; sourceTree = "<group>"; };
+		9F1BB1B8219195070083BFAA /* QHVCEditReverseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditReverseManager.h; sourceTree = "<group>"; };
+		9F1BB1D8219195AD0083BFAA /* QHVCSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCSessionManager.m; sourceTree = "<group>"; };
+		9F1BB1D9219195AD0083BFAA /* QHVCInterfaceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCInterfaceRequest.h; sourceTree = "<group>"; };
+		9F1BB1DB219195AD0083BFAA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		9F1BB1DC219195AD0083BFAA /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		9F1BB1DD219195AD0083BFAA /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		9F1BB1DE219195AD0083BFAA /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		9F1BB1DF219195AD0083BFAA /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		9F1BB1E0219195AD0083BFAA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		9F1BB1E1219195AD0083BFAA /* QHVCHTTPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCHTTPSession.m; sourceTree = "<group>"; };
+		9F1BB1E2219195AD0083BFAA /* QHVCSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCSessionManager.h; sourceTree = "<group>"; };
+		9F1BB1E3219195AD0083BFAA /* QHVCHTTPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCHTTPSession.h; sourceTree = "<group>"; };
+		9F1BB1E4219195AD0083BFAA /* QHVCInterfaceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCInterfaceRequest.m; sourceTree = "<group>"; };
+		9F1BB1E6219195AD0083BFAA /* QHVCLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLogger.m; sourceTree = "<group>"; };
+		9F1BB1E7219195AD0083BFAA /* QHVCLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLogger.h; sourceTree = "<group>"; };
+		9F1BB1E9219195AD0083BFAA /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
+		9F1BB1EA219195AD0083BFAA /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		9F1BB1EB219195AD0083BFAA /* QHVCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCTool.m; sourceTree = "<group>"; };
+		9F1BB1EC219195AD0083BFAA /* QHVCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCTool.h; sourceTree = "<group>"; };
+		9F1BB1EE219195AD0083BFAA /* QHVCToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCToast.m; sourceTree = "<group>"; };
+		9F1BB1EF219195AD0083BFAA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		9F1BB1F0219195AD0083BFAA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		9F1BB1F2219195AD0083BFAA /* QHVCLiveSettingCellOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveSettingCellOne.xib; sourceTree = "<group>"; };
+		9F1BB1F3219195AD0083BFAA /* QHVCLiveMainCellOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveMainCellOne.xib; sourceTree = "<group>"; };
+		9F1BB1F4219195AD0083BFAA /* QHVCLiveMainCellOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveMainCellOne.m; sourceTree = "<group>"; };
+		9F1BB1F5219195AD0083BFAA /* QHVCLiveSettingCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveSettingCellTwo.h; sourceTree = "<group>"; };
+		9F1BB1F6219195AD0083BFAA /* QHVCLiveSettingCellOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveSettingCellOne.m; sourceTree = "<group>"; };
+		9F1BB1F7219195AD0083BFAA /* QHVCLiveMainCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveMainCellTwo.h; sourceTree = "<group>"; };
+		9F1BB1F8219195AD0083BFAA /* QHVCLiveSettingCellTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveSettingCellTwo.m; sourceTree = "<group>"; };
+		9F1BB1F9219195AD0083BFAA /* QHVCLiveMainCellOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveMainCellOne.h; sourceTree = "<group>"; };
+		9F1BB1FA219195AD0083BFAA /* QHVCLiveMainCellTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveMainCellTwo.m; sourceTree = "<group>"; };
+		9F1BB1FB219195AD0083BFAA /* QHVCLiveSettingCellOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveSettingCellOne.h; sourceTree = "<group>"; };
+		9F1BB1FC219195AD0083BFAA /* QHVCLiveMainCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveMainCellTwo.xib; sourceTree = "<group>"; };
+		9F1BB1FD219195AD0083BFAA /* QHVCLiveSettingCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveSettingCellTwo.xib; sourceTree = "<group>"; };
+		9F1BB1FE219195AD0083BFAA /* QHVCToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCToast.h; sourceTree = "<group>"; };
+		9F1BB1FF219195AD0083BFAA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		9F1BB200219195AD0083BFAA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		9F1BB202219195AD0083BFAA /* QHVCHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCHUDManager.h; sourceTree = "<group>"; };
+		9F1BB203219195AD0083BFAA /* QHVCHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCHUDManager.m; sourceTree = "<group>"; };
+		9F1BB2382191AFC90083BFAA /* QHVCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCFileManager.m; sourceTree = "<group>"; };
+		9F1BB2392191AFC90083BFAA /* QHVCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCFileManager.h; sourceTree = "<group>"; };
 		9F4F7E842088498A0066A2B2 /* QHVCEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditViewController.m; sourceTree = "<group>"; };
 		9F4F7E862088498A0066A2B2 /* QHVCEditReorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditReorderViewController.m; sourceTree = "<group>"; };
 		9F4F7E872088498A0066A2B2 /* QHVCEditReorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditReorderViewController.xib; sourceTree = "<group>"; };
@@ -333,14 +457,11 @@
 		9F4F7E8A2088498B0066A2B2 /* QHVCEditClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditClipView.m; sourceTree = "<group>"; };
 		9F4F7E8B2088498B0066A2B2 /* QHVCEditClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditClipView.h; sourceTree = "<group>"; };
 		9F4F7E8C2088498B0066A2B2 /* QHVCEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditViewController.xib; sourceTree = "<group>"; };
-		9F4F7E8E2088498B0066A2B2 /* QHVCEditMainNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditMainNavView.xib; sourceTree = "<group>"; };
-		9F4F7E8F2088498B0066A2B2 /* QHVCEditMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMainViewController.m; sourceTree = "<group>"; };
 		9F4F7E912088498B0066A2B2 /* QHVCEditQualityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditQualityView.xib; sourceTree = "<group>"; };
 		9F4F7E922088498B0066A2B2 /* QHVCEditQualityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditQualityViewController.m; sourceTree = "<group>"; };
 		9F4F7E932088498B0066A2B2 /* QHVCEditQualityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditQualityView.m; sourceTree = "<group>"; };
 		9F4F7E942088498B0066A2B2 /* QHVCEditQualityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditQualityViewController.h; sourceTree = "<group>"; };
 		9F4F7E952088498B0066A2B2 /* QHVCEditQualityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditQualityView.h; sourceTree = "<group>"; };
-		9F4F7E962088498B0066A2B2 /* QHVCEditMainNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMainNavView.h; sourceTree = "<group>"; };
 		9F4F7E982088498B0066A2B2 /* QHVCEditSpeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditSpeedViewController.h; sourceTree = "<group>"; };
 		9F4F7E992088498B0066A2B2 /* QHVCEditSpeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditSpeedView.h; sourceTree = "<group>"; };
 		9F4F7E9A2088498B0066A2B2 /* QHVCEditSpeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditSpeedViewController.m; sourceTree = "<group>"; };
@@ -391,7 +512,6 @@
 		9F4F7ED02088498B0066A2B2 /* QHVCEditAddAudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditAddAudioCell.m; sourceTree = "<group>"; };
 		9F4F7ED22088498B0066A2B2 /* Forever.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Forever.mp3; sourceTree = "<group>"; };
 		9F4F7ED32088498B0066A2B2 /* Disco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Disco.mp3; sourceTree = "<group>"; };
-		9F4F7ED42088498B0066A2B2 /* QHVCEditMainNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMainNavView.m; sourceTree = "<group>"; };
 		9F4F7ED62088498B0066A2B2 /* QHVCEditSubtitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditSubtitleView.h; sourceTree = "<group>"; };
 		9F4F7ED72088498B0066A2B2 /* QHVCEditSubtitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditSubtitleViewController.m; sourceTree = "<group>"; };
 		9F4F7ED92088498B0066A2B2 /* QHVCEditSubtitleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditSubtitleItem.h; sourceTree = "<group>"; };
@@ -399,7 +519,6 @@
 		9F4F7EDB2088498B0066A2B2 /* QHVCEditSubtitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditSubtitleView.m; sourceTree = "<group>"; };
 		9F4F7EDC2088498B0066A2B2 /* QHVCEditSubtitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditSubtitleView.xib; sourceTree = "<group>"; };
 		9F4F7EDD2088498B0066A2B2 /* QHVCEditSubtitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditSubtitleViewController.h; sourceTree = "<group>"; };
-		9F4F7EDE2088498B0066A2B2 /* QHVCEditMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMainViewController.h; sourceTree = "<group>"; };
 		9F4F7EE02088498B0066A2B2 /* QHVCEditCutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditCutViewController.h; sourceTree = "<group>"; };
 		9F4F7EE12088498B0066A2B2 /* QHVCEditCutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditCutView.h; sourceTree = "<group>"; };
 		9F4F7EE22088498B0066A2B2 /* QHVCEditCutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditCutView.xib; sourceTree = "<group>"; };
@@ -494,6 +613,86 @@
 		9F4F7F472088498B0066A2B2 /* QHVCEditPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditPlayerViewController.m; sourceTree = "<group>"; };
 		9F4F7F482088498B0066A2B2 /* QHVCEditPlayerMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditPlayerMainViewController.xib; sourceTree = "<group>"; };
 		9F4F7FB420884AAC0066A2B2 /* QHVCEditKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCEditKit.framework; path = QHVideoCloudDemo/Framework/QHVCEditKit.framework; sourceTree = "<group>"; };
+		9F94373C210EE94000C68267 /* QHVCEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditVC.m; sourceTree = "<group>"; };
+		9F94373D210EE94000C68267 /* QHVCEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditVC.xib; sourceTree = "<group>"; };
+		9F943740210EE94100C68267 /* QHVCEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditVC.h; sourceTree = "<group>"; };
+		9F943749210EE95B00C68267 /* QHVCEditMosaicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMosaicView.h; sourceTree = "<group>"; };
+		9F94374A210EE95B00C68267 /* QHVCEditMosaicView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditMosaicView.xib; sourceTree = "<group>"; };
+		9F94374B210EE95B00C68267 /* QHVCEditMosaicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMosaicVC.m; sourceTree = "<group>"; };
+		9F94374C210EE95B00C68267 /* QHVCEditMosaicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditMosaicView.m; sourceTree = "<group>"; };
+		9F94374D210EE95B00C68267 /* QHVCEditMosaicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditMosaicVC.h; sourceTree = "<group>"; };
+		9FAFD4CB20D0C87F00F8BD35 /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlot.h; sourceTree = "<group>"; };
+		9FAFD4CC20D0C87F00F8BD35 /* EZAudioUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioUtilities.h; sourceTree = "<group>"; };
+		9FAFD4CD20D0C87F00F8BD35 /* EZAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudio.h; sourceTree = "<group>"; };
+		9FAFD4CE20D0C87F00F8BD35 /* EZAudioFloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioFloatData.m; sourceTree = "<group>"; };
+		9FAFD4CF20D0C87F00F8BD35 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		9FAFD4D020D0C87F00F8BD35 /* EZAudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioPlot.h; sourceTree = "<group>"; };
+		9FAFD4D120D0C87F00F8BD35 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioFloatConverter.h; sourceTree = "<group>"; };
+		9FAFD4D220D0C87F00F8BD35 /* EZAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioFile.h; sourceTree = "<group>"; };
+		9FAFD4D320D0C87F00F8BD35 /* AudioWaveForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWaveForm.m; sourceTree = "<group>"; };
+		9FAFD4D420D0C87F00F8BD35 /* EZAudioDisplayLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioDisplayLink.h; sourceTree = "<group>"; };
+		9FAFD4D520D0C87F00F8BD35 /* EZPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPlot.m; sourceTree = "<group>"; };
+		9FAFD4D620D0C87F00F8BD35 /* EZAudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioPlot.m; sourceTree = "<group>"; };
+		9FAFD4D720D0C87F00F8BD35 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		9FAFD4D820D0C87F00F8BD35 /* EZAudioFloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioFloatData.h; sourceTree = "<group>"; };
+		9FAFD4D920D0C87F00F8BD35 /* EZAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudio.m; sourceTree = "<group>"; };
+		9FAFD4DA20D0C87F00F8BD35 /* EZAudioUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioUtilities.m; sourceTree = "<group>"; };
+		9FAFD4DB20D0C87F00F8BD35 /* EZAudioFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioFloatConverter.m; sourceTree = "<group>"; };
+		9FAFD4DC20D0C87F00F8BD35 /* EZAudioDisplayLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioDisplayLink.m; sourceTree = "<group>"; };
+		9FAFD4DD20D0C87F00F8BD35 /* AudioWaveForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWaveForm.h; sourceTree = "<group>"; };
+		9FAFD4DE20D0C87F00F8BD35 /* EZAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioFile.m; sourceTree = "<group>"; };
+		9FAFD4FE20D0C8F200F8BD35 /* QHVCEditAlterSoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditAlterSoundView.xib; sourceTree = "<group>"; };
+		9FAFD4FF20D0C8F200F8BD35 /* QHVCEditAlterSoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditAlterSoundView.m; sourceTree = "<group>"; };
+		9FAFD50020D0C8F200F8BD35 /* QHVCEditAlterSoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditAlterSoundView.h; sourceTree = "<group>"; };
+		9FAFD50320D0C98E00F8BD35 /* QHVCEditOverlayBlendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditOverlayBlendView.h; sourceTree = "<group>"; };
+		9FAFD50420D0C98E00F8BD35 /* QHVCEditOverlayBlendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditOverlayBlendView.m; sourceTree = "<group>"; };
+		9FAFD50520D0C98E00F8BD35 /* QHVCEditOverlayBlendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditOverlayBlendView.xib; sourceTree = "<group>"; };
+		9FAFD50820D0C9A500F8BD35 /* QHVCEditCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditCommonCell.m; sourceTree = "<group>"; };
+		9FAFD50920D0C9A600F8BD35 /* QHVCEditEffectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditEffectCell.xib; sourceTree = "<group>"; };
+		9FAFD50A20D0C9A600F8BD35 /* QHVCEditEffectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditEffectCell.m; sourceTree = "<group>"; };
+		9FAFD50B20D0C9A600F8BD35 /* QHVCEditCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditCommonCell.h; sourceTree = "<group>"; };
+		9FAFD50C20D0C9A600F8BD35 /* QHVCEditCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditCommonCell.xib; sourceTree = "<group>"; };
+		9FAFD50D20D0C9A600F8BD35 /* QHVCEditEffectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditEffectCell.h; sourceTree = "<group>"; };
+		9FAFD58720D0CD2900F8BD35 /* QHVCEditEffectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditEffectViewController.h; sourceTree = "<group>"; };
+		9FAFD58820D0CD2900F8BD35 /* QHVCEditEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditEffectView.m; sourceTree = "<group>"; };
+		9FAFD58920D0CD2900F8BD35 /* QHVCEditEffectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditEffectView.xib; sourceTree = "<group>"; };
+		9FAFD58A20D0CD2900F8BD35 /* QHVCEditEffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditEffectViewController.m; sourceTree = "<group>"; };
+		9FAFD58B20D0CD2900F8BD35 /* QHVCEditEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditEffectView.h; sourceTree = "<group>"; };
+		9FAFD58C20D0CD2900F8BD35 /* QHVCEditEffectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditEffectViewController.xib; sourceTree = "<group>"; };
+		9FAFD58E20D0CD2900F8BD35 /* QHVCEditBeautifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditBeautifyView.m; sourceTree = "<group>"; };
+		9FAFD58F20D0CD2900F8BD35 /* QHVCEditBeautifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditBeautifyViewController.m; sourceTree = "<group>"; };
+		9FAFD59020D0CD2900F8BD35 /* QHVCEditBeautifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditBeautifyViewController.xib; sourceTree = "<group>"; };
+		9FAFD59120D0CD2900F8BD35 /* QHVCEditBeautifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditBeautifyViewController.h; sourceTree = "<group>"; };
+		9FAFD59220D0CD2900F8BD35 /* QHVCEditBeautifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditBeautifyView.h; sourceTree = "<group>"; };
+		9FAFD59320D0CD2900F8BD35 /* QHVCEditBeautifyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditBeautifyView.xib; sourceTree = "<group>"; };
+		9FAFD59D20D0CD4700F8BD35 /* Fade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fade.png; sourceTree = "<group>"; };
+		9FAFD59E20D0CD4700F8BD35 /* Sepia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sepia.png; sourceTree = "<group>"; };
+		9FAFD59F20D0CD4700F8BD35 /* Vista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vista.png; sourceTree = "<group>"; };
+		9FAFD5A020D0CD4700F8BD35 /* Retro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Retro.png; sourceTree = "<group>"; };
+		9FAFD5A120D0CD4700F8BD35 /* Cyberpunk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cyberpunk.png; sourceTree = "<group>"; };
+		9FAFD5A220D0CD4700F8BD35 /* Action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Action.png; sourceTree = "<group>"; };
+		9FAFD5A320D0CD4700F8BD35 /* Terra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Terra.png; sourceTree = "<group>"; };
+		9FAFD5A420D0CD4700F8BD35 /* Darkness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Darkness.png; sourceTree = "<group>"; };
+		9FAFD5A520D0CD4700F8BD35 /* Winter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Winter.png; sourceTree = "<group>"; };
+		9FAFD5A620D0CD4700F8BD35 /* B&W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "B&W.png"; sourceTree = "<group>"; };
+		9FAFD5A720D0CD4700F8BD35 /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpg; sourceTree = "<group>"; };
+		9FAFD5A820D0CD4700F8BD35 /* 番荔枝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "番荔枝.png"; sourceTree = "<group>"; };
+		9FAFD5A920D0CD4700F8BD35 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		9FAFD5AA20D0CD4700F8BD35 /* LovelyDay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LovelyDay.png; sourceTree = "<group>"; };
+		9FAFD5AB20D0CD4700F8BD35 /* 可可树.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "可可树.png"; sourceTree = "<group>"; };
+		9FAFD5AC20D0CD4700F8BD35 /* 罗汉果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "罗汉果.png"; sourceTree = "<group>"; };
+		9FAFD5AD20D0CD4700F8BD35 /* Negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Negative.png; sourceTree = "<group>"; };
+		9FAFD5AE20D0CD4700F8BD35 /* NightVision.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NightVision.png; sourceTree = "<group>"; };
+		9FAFD5AF20D0CD4700F8BD35 /* Ultra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ultra.png; sourceTree = "<group>"; };
+		9FAFD5B020D0CD4700F8BD35 /* PurpleRain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PurpleRain.png; sourceTree = "<group>"; };
+		9FAFD5B120D0CD4700F8BD35 /* HighNoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighNoon.png; sourceTree = "<group>"; };
+		9FAFD5B220D0CD4700F8BD35 /* Mist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mist.png; sourceTree = "<group>"; };
+		9FAFD5B320D0CD4700F8BD35 /* Steel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Steel.png; sourceTree = "<group>"; };
+		9FAFD5B420D0CD4700F8BD35 /* Vivid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vivid.png; sourceTree = "<group>"; };
+		9FAFD5B520D0CD4700F8BD35 /* Enchanted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enchanted.png; sourceTree = "<group>"; };
+		9FAFD5CF20D0CD6F00F8BD35 /* QHVCEditQualityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCEditQualityItem.h; sourceTree = "<group>"; };
+		9FAFD5D020D0CD6F00F8BD35 /* QHVCEditQualityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCEditQualityItem.m; sourceTree = "<group>"; };
+		9FAFD5D120D0CD7000F8BD35 /* QHVCEditQualityItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCEditQualityItem.xib; sourceTree = "<group>"; };
 		BB09BF1620735FCF00AE9BE9 /* QHVCIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCIMKit.framework; path = QHVideoCloudDemo/Framework/QHVCIMKit.framework; sourceTree = "<group>"; };
 		BB09BF1B2073614800AE9BE9 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		BB09BF1D2073615200AE9BE9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -508,83 +707,8 @@
 		BB09BF3320736D6700AE9BE9 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		BB09BF3520736D7700AE9BE9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		BB09BF3720736D8F00AE9BE9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		BB09BF3C2073700A00AE9BE9 /* QHVCITSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSConfig.h; sourceTree = "<group>"; };
-		BB09BF3D2073700A00AE9BE9 /* QHVCITSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSConfig.m; sourceTree = "<group>"; };
-		BB09BF3E2073700A00AE9BE9 /* QHVCITSDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSDefine.h; sourceTree = "<group>"; };
-		BB09BF3F2073700A00AE9BE9 /* QHVCITSProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSProtocol.h; sourceTree = "<group>"; };
-		BB09BF422073700A00AE9BE9 /* QHVCITLFunction.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHVCITLFunction.plist; sourceTree = "<group>"; };
-		BB09BF432073700A00AE9BE9 /* QHVCITLMain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHVCITLMain.plist; sourceTree = "<group>"; };
-		BB09BF462073700A00AE9BE9 /* QHVCITSCreateRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSCreateRoomViewController.h; sourceTree = "<group>"; };
-		BB09BF472073700A00AE9BE9 /* QHVCITSCreateRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSCreateRoomViewController.m; sourceTree = "<group>"; };
-		BB09BF482073700A00AE9BE9 /* QHVCITSCreateRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSCreateRoomViewController.xib; sourceTree = "<group>"; };
-		BB09BF4B2073700A00AE9BE9 /* QHVCITSChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSChatManager.h; sourceTree = "<group>"; };
-		BB09BF4C2073700A00AE9BE9 /* QHVCITSChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSChatManager.m; sourceTree = "<group>"; };
-		BB09BF4D2073700A00AE9BE9 /* QHVCITSLinkMicViewController+Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QHVCITSLinkMicViewController+Control.h"; sourceTree = "<group>"; };
-		BB09BF4E2073700A00AE9BE9 /* QHVCITSLinkMicViewController+Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QHVCITSLinkMicViewController+Control.m"; sourceTree = "<group>"; };
-		BB09BF4F2073700A00AE9BE9 /* QHVCITSLinkMicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSLinkMicViewController.h; sourceTree = "<group>"; };
-		BB09BF502073700A00AE9BE9 /* QHVCITSLinkMicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSLinkMicViewController.m; sourceTree = "<group>"; };
-		BB09BF512073700A00AE9BE9 /* QHVCITSLinkMicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSLinkMicViewController.xib; sourceTree = "<group>"; };
-		BB09BF522073700A00AE9BE9 /* QHVCITSVideoSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSVideoSession.h; sourceTree = "<group>"; };
-		BB09BF532073700A00AE9BE9 /* QHVCITSVideoSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSVideoSession.m; sourceTree = "<group>"; };
-		BB09BF562073700A00AE9BE9 /* QHVCITSActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSActionCell.h; sourceTree = "<group>"; };
-		BB09BF572073700A00AE9BE9 /* QHVCITSActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSActionCell.m; sourceTree = "<group>"; };
-		BB09BF582073700A00AE9BE9 /* QHVCITSActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSActionCell.xib; sourceTree = "<group>"; };
-		BB09BF592073700A00AE9BE9 /* QHVCITSGuestUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSGuestUserCell.h; sourceTree = "<group>"; };
-		BB09BF5A2073700A00AE9BE9 /* QHVCITSGuestUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSGuestUserCell.m; sourceTree = "<group>"; };
-		BB09BF5B2073700A00AE9BE9 /* QHVCITSGuestUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSGuestUserCell.xib; sourceTree = "<group>"; };
-		BB09BF5C2073700A00AE9BE9 /* QHVCITRoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITRoleView.h; sourceTree = "<group>"; };
-		BB09BF5D2073700A00AE9BE9 /* QHVCITRoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITRoleView.m; sourceTree = "<group>"; };
-		BB09BF5E2073700A00AE9BE9 /* QHVCITSRoomUserListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomUserListView.h; sourceTree = "<group>"; };
-		BB09BF5F2073700A00AE9BE9 /* QHVCITSRoomUserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomUserListView.m; sourceTree = "<group>"; };
-		BB09BF602073700A00AE9BE9 /* QHVCITSRoomUserListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomUserListView.xib; sourceTree = "<group>"; };
-		BB09BF622073700A00AE9BE9 /* QHVCITSModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSModelListViewController.h; sourceTree = "<group>"; };
-		BB09BF632073700A00AE9BE9 /* QHVCITSModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSModelListViewController.m; sourceTree = "<group>"; };
-		BB09BF642073700A00AE9BE9 /* QHVCITSModelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSModelListViewController.xib; sourceTree = "<group>"; };
-		BB09BF672073700A00AE9BE9 /* QHVCITSRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomListCell.h; sourceTree = "<group>"; };
-		BB09BF682073700A00AE9BE9 /* QHVCITSRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomListCell.m; sourceTree = "<group>"; };
-		BB09BF692073700A00AE9BE9 /* QHVCITSRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomListCell.xib; sourceTree = "<group>"; };
-		BB09BF6A2073700A00AE9BE9 /* QHVCITSRoomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomListViewController.h; sourceTree = "<group>"; };
-		BB09BF6B2073700A00AE9BE9 /* QHVCITSRoomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomListViewController.m; sourceTree = "<group>"; };
-		BB09BF6C2073700A00AE9BE9 /* QHVCITSRoomListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomListViewController.xib; sourceTree = "<group>"; };
-		BB09BF6E2073700A00AE9BE9 /* QHVCITSSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSSettingViewController.h; sourceTree = "<group>"; };
-		BB09BF6F2073700A00AE9BE9 /* QHVCITSSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSSettingViewController.m; sourceTree = "<group>"; };
-		BB09BF702073700A00AE9BE9 /* QHVCITSSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSSettingViewController.xib; sourceTree = "<group>"; };
-		BB09BF722073700A00AE9BE9 /* InteractiveSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InteractiveSetting.plist; sourceTree = "<group>"; };
-		BB09BF742073700A00AE9BE9 /* QHVCITSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSLog.h; sourceTree = "<group>"; };
-		BB09BF752073700A00AE9BE9 /* QHVCITSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSLog.m; sourceTree = "<group>"; };
-		BB09BF772073700A00AE9BE9 /* QHVCITSRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomModel.h; sourceTree = "<group>"; };
-		BB09BF782073700A00AE9BE9 /* QHVCITSRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomModel.m; sourceTree = "<group>"; };
-		BB09BF792073700A00AE9BE9 /* QHVCITSUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSUserModel.h; sourceTree = "<group>"; };
-		BB09BF7A2073700A00AE9BE9 /* QHVCITSUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSUserModel.m; sourceTree = "<group>"; };
-		BB09BF7C2073700A00AE9BE9 /* QHVCITSHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSHTTPSessionManager.h; sourceTree = "<group>"; };
-		BB09BF7D2073700A00AE9BE9 /* QHVCITSHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSHTTPSessionManager.m; sourceTree = "<group>"; };
-		BB09BF7E2073700A00AE9BE9 /* QHVCITSProtocolMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSProtocolMonitor.h; sourceTree = "<group>"; };
-		BB09BF7F2073700A00AE9BE9 /* QHVCITSProtocolMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSProtocolMonitor.m; sourceTree = "<group>"; };
-		BB09BF802073700A00AE9BE9 /* QHVCInteractiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCInteractiveViewController.h; sourceTree = "<group>"; };
-		BB09BF812073700A00AE9BE9 /* QHVCInteractiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCInteractiveViewController.m; sourceTree = "<group>"; };
-		BB09BF822073700A00AE9BE9 /* QHVCInteractiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCInteractiveViewController.xib; sourceTree = "<group>"; };
-		BB09BF852073700A00AE9BE9 /* QHVCITSChatSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSChatSystem.h; sourceTree = "<group>"; };
-		BB09BF862073700A00AE9BE9 /* QHVCITSChatSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSChatSystem.m; sourceTree = "<group>"; };
-		BB09BF882073700A00AE9BE9 /* QHVCITSUserSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSUserSystem.h; sourceTree = "<group>"; };
-		BB09BF892073700A00AE9BE9 /* QHVCITSUserSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSUserSystem.m; sourceTree = "<group>"; };
-		BB09BFAE2073738400AE9BE9 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
-		BB09BFAF2073738400AE9BE9 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		BB09BFB02073738400AE9BE9 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
-		BB09BFB12073738400AE9BE9 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		BB09BFB52073743900AE9BE9 /* QHVCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCConfig.h; sourceTree = "<group>"; };
 		BB09BFB62073743900AE9BE9 /* QHVCConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCConfig.m; sourceTree = "<group>"; };
-		BB09BFB92073748100AE9BE9 /* QHVCLiveMainCellOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveMainCellOne.h; sourceTree = "<group>"; };
-		BB09BFBA2073748100AE9BE9 /* QHVCLiveMainCellOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveMainCellOne.m; sourceTree = "<group>"; };
-		BB09BFBB2073748100AE9BE9 /* QHVCLiveMainCellOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveMainCellOne.xib; sourceTree = "<group>"; };
-		BB09BFBC2073748100AE9BE9 /* QHVCLiveMainCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveMainCellTwo.h; sourceTree = "<group>"; };
-		BB09BFBD2073748100AE9BE9 /* QHVCLiveMainCellTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveMainCellTwo.m; sourceTree = "<group>"; };
-		BB09BFBE2073748100AE9BE9 /* QHVCLiveMainCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveMainCellTwo.xib; sourceTree = "<group>"; };
-		BB09BFBF2073748100AE9BE9 /* QHVCLiveSettingCellOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveSettingCellOne.h; sourceTree = "<group>"; };
-		BB09BFC02073748100AE9BE9 /* QHVCLiveSettingCellOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveSettingCellOne.m; sourceTree = "<group>"; };
-		BB09BFC12073748100AE9BE9 /* QHVCLiveSettingCellOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveSettingCellOne.xib; sourceTree = "<group>"; };
-		BB09BFC22073748100AE9BE9 /* QHVCLiveSettingCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCLiveSettingCellTwo.h; sourceTree = "<group>"; };
-		BB09BFC32073748100AE9BE9 /* QHVCLiveSettingCellTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCLiveSettingCellTwo.m; sourceTree = "<group>"; };
-		BB09BFC42073748100AE9BE9 /* QHVCLiveSettingCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCLiveSettingCellTwo.xib; sourceTree = "<group>"; };
 		BB8976011F90983A00D5E3BE /* QHVCUploadKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCUploadKit.framework; path = QHVideoCloudDemo/Framework/QHVCUploadKit.framework; sourceTree = "<group>"; };
 		BB8976041F90993300D5E3BE /* QHVCUploadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCUploadingViewController.h; sourceTree = "<group>"; };
 		BB8976051F90993300D5E3BE /* QHVCUploadingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QHVCUploadingViewController.mm; sourceTree = "<group>"; };
@@ -598,13 +722,77 @@
 		BB89760F1F90993300D5E3BE /* QHVCUploadProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCUploadProgressView.xib; sourceTree = "<group>"; };
 		BB8976101F90993300D5E3BE /* uploadMain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = uploadMain.plist; sourceTree = "<group>"; };
 		BB8976231F909AC000D5E3BE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		BBB4F5FB20E4ED27006B69E9 /* QHVCITSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSConfig.h; sourceTree = "<group>"; };
+		BBB4F5FC20E4ED27006B69E9 /* QHVCITSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSConfig.m; sourceTree = "<group>"; };
+		BBB4F5FD20E4ED27006B69E9 /* QHVCITSDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSDefine.h; sourceTree = "<group>"; };
+		BBB4F5FE20E4ED27006B69E9 /* QHVCITSProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSProtocol.h; sourceTree = "<group>"; };
+		BBB4F60120E4ED27006B69E9 /* QHVCITLFunction.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHVCITLFunction.plist; sourceTree = "<group>"; };
+		BBB4F60220E4ED27006B69E9 /* QHVCITLMain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHVCITLMain.plist; sourceTree = "<group>"; };
+		BBB4F60520E4ED27006B69E9 /* QHVCITSCreateRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSCreateRoomViewController.h; sourceTree = "<group>"; };
+		BBB4F60620E4ED27006B69E9 /* QHVCITSCreateRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSCreateRoomViewController.m; sourceTree = "<group>"; };
+		BBB4F60720E4ED27006B69E9 /* QHVCITSCreateRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSCreateRoomViewController.xib; sourceTree = "<group>"; };
+		BBB4F60A20E4ED27006B69E9 /* QHVCITSChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSChatManager.h; sourceTree = "<group>"; };
+		BBB4F60B20E4ED27006B69E9 /* QHVCITSChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSChatManager.m; sourceTree = "<group>"; };
+		BBB4F60C20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QHVCITSLinkMicViewController+Control.h"; sourceTree = "<group>"; };
+		BBB4F60D20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QHVCITSLinkMicViewController+Control.m"; sourceTree = "<group>"; };
+		BBB4F60E20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QHVCITSLinkMicViewController+Hongpa.h"; sourceTree = "<group>"; };
+		BBB4F60F20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "QHVCITSLinkMicViewController+Hongpa.m"; sourceTree = "<group>"; };
+		BBB4F61020E4ED27006B69E9 /* QHVCITSLinkMicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSLinkMicViewController.h; sourceTree = "<group>"; };
+		BBB4F61120E4ED27006B69E9 /* QHVCITSLinkMicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSLinkMicViewController.m; sourceTree = "<group>"; };
+		BBB4F61220E4ED27006B69E9 /* QHVCITSLinkMicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSLinkMicViewController.xib; sourceTree = "<group>"; };
+		BBB4F61320E4ED27006B69E9 /* QHVCITSVideoSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSVideoSession.h; sourceTree = "<group>"; };
+		BBB4F61420E4ED27006B69E9 /* QHVCITSVideoSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSVideoSession.m; sourceTree = "<group>"; };
+		BBB4F61720E4ED27006B69E9 /* QHVCITSActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSActionCell.h; sourceTree = "<group>"; };
+		BBB4F61820E4ED27006B69E9 /* QHVCITSActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSActionCell.m; sourceTree = "<group>"; };
+		BBB4F61920E4ED27006B69E9 /* QHVCITSActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSActionCell.xib; sourceTree = "<group>"; };
+		BBB4F61A20E4ED27006B69E9 /* QHVCITSGuestUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSGuestUserCell.h; sourceTree = "<group>"; };
+		BBB4F61B20E4ED27006B69E9 /* QHVCITSGuestUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSGuestUserCell.m; sourceTree = "<group>"; };
+		BBB4F61C20E4ED27006B69E9 /* QHVCITSGuestUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSGuestUserCell.xib; sourceTree = "<group>"; };
+		BBB4F61D20E4ED27006B69E9 /* QHVCITSHongpaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSHongpaCell.h; sourceTree = "<group>"; };
+		BBB4F61E20E4ED27006B69E9 /* QHVCITSHongpaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSHongpaCell.m; sourceTree = "<group>"; };
+		BBB4F61F20E4ED27006B69E9 /* QHVCITSHongpaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSHongpaCell.xib; sourceTree = "<group>"; };
+		BBB4F62020E4ED27006B69E9 /* QHVCITRoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITRoleView.h; sourceTree = "<group>"; };
+		BBB4F62120E4ED27006B69E9 /* QHVCITRoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITRoleView.m; sourceTree = "<group>"; };
+		BBB4F62220E4ED27006B69E9 /* QHVCITSRoomUserListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomUserListView.h; sourceTree = "<group>"; };
+		BBB4F62320E4ED27006B69E9 /* QHVCITSRoomUserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomUserListView.m; sourceTree = "<group>"; };
+		BBB4F62420E4ED27006B69E9 /* QHVCITSRoomUserListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomUserListView.xib; sourceTree = "<group>"; };
+		BBB4F62620E4ED27006B69E9 /* QHVCITSModelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSModelListViewController.h; sourceTree = "<group>"; };
+		BBB4F62720E4ED27006B69E9 /* QHVCITSModelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSModelListViewController.m; sourceTree = "<group>"; };
+		BBB4F62820E4ED27006B69E9 /* QHVCITSModelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSModelListViewController.xib; sourceTree = "<group>"; };
+		BBB4F62B20E4ED27006B69E9 /* QHVCITSRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomListCell.h; sourceTree = "<group>"; };
+		BBB4F62C20E4ED27006B69E9 /* QHVCITSRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomListCell.m; sourceTree = "<group>"; };
+		BBB4F62D20E4ED27006B69E9 /* QHVCITSRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomListCell.xib; sourceTree = "<group>"; };
+		BBB4F62E20E4ED27006B69E9 /* QHVCITSRoomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomListViewController.h; sourceTree = "<group>"; };
+		BBB4F62F20E4ED27006B69E9 /* QHVCITSRoomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomListViewController.m; sourceTree = "<group>"; };
+		BBB4F63020E4ED27006B69E9 /* QHVCITSRoomListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSRoomListViewController.xib; sourceTree = "<group>"; };
+		BBB4F63320E4ED27006B69E9 /* QHVCSettingCellStyleThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCSettingCellStyleThree.h; sourceTree = "<group>"; };
+		BBB4F63420E4ED27006B69E9 /* QHVCSettingCellStyleThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCSettingCellStyleThree.m; sourceTree = "<group>"; };
+		BBB4F63520E4ED27006B69E9 /* QHVCSettingCellStyleThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCSettingCellStyleThree.xib; sourceTree = "<group>"; };
+		BBB4F63620E4ED27006B69E9 /* QHVCITSSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSSettingViewController.h; sourceTree = "<group>"; };
+		BBB4F63720E4ED27006B69E9 /* QHVCITSSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSSettingViewController.m; sourceTree = "<group>"; };
+		BBB4F63820E4ED27006B69E9 /* QHVCITSSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCITSSettingViewController.xib; sourceTree = "<group>"; };
+		BBB4F63A20E4ED27006B69E9 /* InteractiveSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InteractiveSetting.plist; sourceTree = "<group>"; };
+		BBB4F63B20E4ED27006B69E9 /* InteractiveVideoProfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InteractiveVideoProfile.plist; sourceTree = "<group>"; };
+		BBB4F63D20E4ED27006B69E9 /* QHVCITSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSLog.h; sourceTree = "<group>"; };
+		BBB4F63E20E4ED27006B69E9 /* QHVCITSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSLog.m; sourceTree = "<group>"; };
+		BBB4F64020E4ED27006B69E9 /* QHVCITSRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSRoomModel.h; sourceTree = "<group>"; };
+		BBB4F64120E4ED27006B69E9 /* QHVCITSRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSRoomModel.m; sourceTree = "<group>"; };
+		BBB4F64220E4ED27006B69E9 /* QHVCITSUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSUserModel.h; sourceTree = "<group>"; };
+		BBB4F64320E4ED27006B69E9 /* QHVCITSUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSUserModel.m; sourceTree = "<group>"; };
+		BBB4F64520E4ED27006B69E9 /* QHVCITSHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSHTTPSessionManager.h; sourceTree = "<group>"; };
+		BBB4F64620E4ED27006B69E9 /* QHVCITSHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSHTTPSessionManager.m; sourceTree = "<group>"; };
+		BBB4F64720E4ED27006B69E9 /* QHVCITSProtocolMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSProtocolMonitor.h; sourceTree = "<group>"; };
+		BBB4F64820E4ED27006B69E9 /* QHVCITSProtocolMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSProtocolMonitor.m; sourceTree = "<group>"; };
+		BBB4F64920E4ED27006B69E9 /* QHVCInteractiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCInteractiveViewController.h; sourceTree = "<group>"; };
+		BBB4F64A20E4ED27006B69E9 /* QHVCInteractiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCInteractiveViewController.m; sourceTree = "<group>"; };
+		BBB4F64B20E4ED27006B69E9 /* QHVCInteractiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCInteractiveViewController.xib; sourceTree = "<group>"; };
+		BBB4F64E20E4ED27006B69E9 /* QHVCITSChatSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSChatSystem.h; sourceTree = "<group>"; };
+		BBB4F64F20E4ED27006B69E9 /* QHVCITSChatSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSChatSystem.m; sourceTree = "<group>"; };
+		BBB4F65120E4ED27006B69E9 /* QHVCITSUserSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCITSUserSystem.h; sourceTree = "<group>"; };
+		BBB4F65220E4ED27006B69E9 /* QHVCITSUserSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCITSUserSystem.m; sourceTree = "<group>"; };
+		BBB4F67C20E4EE98006B69E9 /* QHVCLiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCLiveKit.framework; path = QHVideoCloudDemo/Framework/QHVCLiveKit.framework; sourceTree = "<group>"; };
+		BBB9953F20EF5D4E00D5E8B8 /* ZegoAVKit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZegoAVKit2.framework; path = QHVideoCloudDemo/Framework/ZegoAVKit2.framework; sourceTree = "<group>"; };
 		BBE45B1520889D05006875ED /* QHVCCommonKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QHVCCommonKit.framework; path = QHVideoCloudDemo/Framework/QHVCCommonKit.framework; sourceTree = "<group>"; };
-		BBE45B1820889DD6006875ED /* QHVCToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCToast.m; sourceTree = "<group>"; };
-		BBE45B1920889DD6006875ED /* QHVCToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCToast.h; sourceTree = "<group>"; };
-		BBE45B1B20889E37006875ED /* InteractiveVideoProfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InteractiveVideoProfile.plist; sourceTree = "<group>"; };
-		BBE45B1E20889E40006875ED /* QHVCSettingCellStyleThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHVCSettingCellStyleThree.h; sourceTree = "<group>"; };
-		BBE45B1F20889E40006875ED /* QHVCSettingCellStyleThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHVCSettingCellStyleThree.m; sourceTree = "<group>"; };
-		BBE45B2020889E40006875ED /* QHVCSettingCellStyleThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHVCSettingCellStyleThree.xib; sourceTree = "<group>"; };
 		BBE45B2320889EDD006875ED /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = QHVideoCloudDemo/Framework/libcrypto.a; sourceTree = "<group>"; };
 		BBE45B2520889EE1006875ED /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = QHVideoCloudDemo/Framework/libssl.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -614,11 +802,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB9954020EF5D4E00D5E8B8 /* ZegoAVKit2.framework in Frameworks */,
 				BB09BF3820736D8F00AE9BE9 /* CoreTelephony.framework in Frameworks */,
 				9F4F7FB620884AB00066A2B2 /* QHVCEditKit.framework in Frameworks */,
 				BB09BF3620736D7700AE9BE9 /* CoreVideo.framework in Frameworks */,
 				BB09BF3420736D6800AE9BE9 /* MediaPlayer.framework in Frameworks */,
 				BB09BF3220736D5B00AE9BE9 /* AudioToolbox.framework in Frameworks */,
+				BBB4F67D20E4EE98006B69E9 /* QHVCLiveKit.framework in Frameworks */,
 				BB09BF3020736D4C00AE9BE9 /* VideoToolbox.framework in Frameworks */,
 				BB09BF2E20736D1F00AE9BE9 /* AgoraRtcEngineKit.framework in Frameworks */,
 				BB09BF262073619900AE9BE9 /* libresolv.tbd in Frameworks */,
@@ -716,18 +906,18 @@
 		0D5AE0551F54247D002C4812 /* QHVideoCloudDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9F1BB1D6219195AD0083BFAA /* UtilsSet */,
 				9F4F7E832088498A0066A2B2 /* EditService */,
 				0D090CEE1FB05019004D8EE4 /* LocalServerService */,
 				0D5AE0781F542798002C4812 /* PlayerService */,
 				BB8976031F90993300D5E3BE /* UploadingService */,
-				BB09BF392073700A00AE9BE9 /* InteractiveService */,
+				BBB4F5F920E4ED27006B69E9 /* InteractiveService */,
 				0D5AE0591F54247D002C4812 /* AppDelegate.h */,
 				0D5AE05A1F54247D002C4812 /* AppDelegate.m */,
 				0D5AE0B51F54299C002C4812 /* ViewController.h */,
 				0D5AE0B61F54299C002C4812 /* ViewController.m */,
 				0D5AE0741F5426A6002C4812 /* QHVCNavigationController.h */,
 				0D5AE0751F5426A6002C4812 /* QHVCNavigationController.m */,
-				0D5AE0951F542798002C4812 /* Tool */,
 				BB09BFB42073743900AE9BE9 /* Config */,
 				0D5AE0561F54247D002C4812 /* Supporting Files */,
 			);
@@ -820,24 +1010,6 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		0D5AE0951F542798002C4812 /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BFAD2073738400AE9BE9 /* View */,
-				0D5AE0961F542798002C4812 /* md5.cpp */,
-				0D5AE0971F542798002C4812 /* md5.h */,
-				0D13BD7A1F8CBE5F0076CDE3 /* QHVCHUDManager.h */,
-				0D13BD791F8CBE5F0076CDE3 /* QHVCHUDManager.m */,
-				0D5AE0981F542798002C4812 /* QHVCHTTPSession.h */,
-				0D5AE0991F542798002C4812 /* QHVCHTTPSession.m */,
-				0D5AE09A1F542798002C4812 /* QHVCInterfaceRequest.h */,
-				0D5AE09B1F542798002C4812 /* QHVCInterfaceRequest.m */,
-				0D5AE09C1F542798002C4812 /* QHVCSessionManager.h */,
-				0D5AE09D1F542798002C4812 /* QHVCSessionManager.m */,
-			);
-			path = Tool;
-			sourceTree = "<group>";
-		};
 		54AF577C1202A6B2CC35ACC1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,18 +1019,160 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9F1BB1AC219195070083BFAA /* DynamicSubtitle */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1AD219195070083BFAA /* test.ass */,
+				9F1BB1AE219195070083BFAA /* QHVCEditDynamicSubtitleVC.m */,
+				9F1BB1AF219195070083BFAA /* QHVCEditDynamicSubtitleVC.h */,
+			);
+			path = DynamicSubtitle;
+			sourceTree = "<group>";
+		};
+		9F1BB1B0219195070083BFAA /* Kenburns */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1B1219195070083BFAA /* QHVCEditKenburnsVC.m */,
+				9F1BB1B2219195070083BFAA /* QHVCEditKenburnsView.m */,
+				9F1BB1B3219195070083BFAA /* QHVCEditKenburnsView.xib */,
+				9F1BB1B4219195070083BFAA /* QHVCEditKenburnsView.h */,
+				9F1BB1B5219195070083BFAA /* QHVCEditKenburnsVC.h */,
+			);
+			path = Kenburns;
+			sourceTree = "<group>";
+		};
+		9F1BB1B6219195070083BFAA /* Reverse */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1B7219195070083BFAA /* QHVCEditReverseManager.m */,
+				9F1BB1B8219195070083BFAA /* QHVCEditReverseManager.h */,
+			);
+			path = Reverse;
+			sourceTree = "<group>";
+		};
+		9F1BB1D6219195AD0083BFAA /* UtilsSet */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1D7219195AD0083BFAA /* Net */,
+				9F1BB1E5219195AD0083BFAA /* Logger */,
+				9F1BB1E8219195AD0083BFAA /* Utils */,
+				9F1BB1ED219195AD0083BFAA /* View */,
+				9F1BB201219195AD0083BFAA /* HUD */,
+			);
+			path = UtilsSet;
+			sourceTree = "<group>";
+		};
+		9F1BB1D7219195AD0083BFAA /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1D8219195AD0083BFAA /* QHVCSessionManager.m */,
+				9F1BB1D9219195AD0083BFAA /* QHVCInterfaceRequest.h */,
+				9F1BB1DA219195AD0083BFAA /* AFN2.0 */,
+				9F1BB1E1219195AD0083BFAA /* QHVCHTTPSession.m */,
+				9F1BB1E2219195AD0083BFAA /* QHVCSessionManager.h */,
+				9F1BB1E3219195AD0083BFAA /* QHVCHTTPSession.h */,
+				9F1BB1E4219195AD0083BFAA /* QHVCInterfaceRequest.m */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		9F1BB1DA219195AD0083BFAA /* AFN2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1DB219195AD0083BFAA /* AFHTTPRequestOperation.h */,
+				9F1BB1DC219195AD0083BFAA /* AFHTTPRequestOperationManager.h */,
+				9F1BB1DD219195AD0083BFAA /* AFURLConnectionOperation.h */,
+				9F1BB1DE219195AD0083BFAA /* AFURLConnectionOperation.m */,
+				9F1BB1DF219195AD0083BFAA /* AFHTTPRequestOperationManager.m */,
+				9F1BB1E0219195AD0083BFAA /* AFHTTPRequestOperation.m */,
+			);
+			path = AFN2.0;
+			sourceTree = "<group>";
+		};
+		9F1BB1E5219195AD0083BFAA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1E6219195AD0083BFAA /* QHVCLogger.m */,
+				9F1BB1E7219195AD0083BFAA /* QHVCLogger.h */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		9F1BB1E8219195AD0083BFAA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB2392191AFC90083BFAA /* QHVCFileManager.h */,
+				9F1BB2382191AFC90083BFAA /* QHVCFileManager.m */,
+				9F1BB1E9219195AD0083BFAA /* md5.cpp */,
+				9F1BB1EA219195AD0083BFAA /* md5.h */,
+				9F1BB1EB219195AD0083BFAA /* QHVCTool.m */,
+				9F1BB1EC219195AD0083BFAA /* QHVCTool.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9F1BB1ED219195AD0083BFAA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1EE219195AD0083BFAA /* QHVCToast.m */,
+				9F1BB1EF219195AD0083BFAA /* UIView+Toast.h */,
+				9F1BB1F0219195AD0083BFAA /* UIViewAdditions.h */,
+				9F1BB1F1219195AD0083BFAA /* Cell */,
+				9F1BB1FE219195AD0083BFAA /* QHVCToast.h */,
+				9F1BB1FF219195AD0083BFAA /* UIViewAdditions.m */,
+				9F1BB200219195AD0083BFAA /* UIView+Toast.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9F1BB1F1219195AD0083BFAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB1F2219195AD0083BFAA /* QHVCLiveSettingCellOne.xib */,
+				9F1BB1F3219195AD0083BFAA /* QHVCLiveMainCellOne.xib */,
+				9F1BB1F4219195AD0083BFAA /* QHVCLiveMainCellOne.m */,
+				9F1BB1F5219195AD0083BFAA /* QHVCLiveSettingCellTwo.h */,
+				9F1BB1F6219195AD0083BFAA /* QHVCLiveSettingCellOne.m */,
+				9F1BB1F7219195AD0083BFAA /* QHVCLiveMainCellTwo.h */,
+				9F1BB1F8219195AD0083BFAA /* QHVCLiveSettingCellTwo.m */,
+				9F1BB1F9219195AD0083BFAA /* QHVCLiveMainCellOne.h */,
+				9F1BB1FA219195AD0083BFAA /* QHVCLiveMainCellTwo.m */,
+				9F1BB1FB219195AD0083BFAA /* QHVCLiveSettingCellOne.h */,
+				9F1BB1FC219195AD0083BFAA /* QHVCLiveMainCellTwo.xib */,
+				9F1BB1FD219195AD0083BFAA /* QHVCLiveSettingCellTwo.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9F1BB201219195AD0083BFAA /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				9F1BB202219195AD0083BFAA /* QHVCHUDManager.h */,
+				9F1BB203219195AD0083BFAA /* QHVCHUDManager.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		9F4F7E832088498A0066A2B2 /* EditService */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7E842088498A0066A2B2 /* QHVCEditViewController.m */,
-				9F4F7E852088498A0066A2B2 /* Reorder */,
-				9F4F7E8C2088498B0066A2B2 /* QHVCEditViewController.xib */,
-				9F4F7E8D2088498B0066A2B2 /* Edit */,
+				9F4F7F3F2088498B0066A2B2 /* Base */,
 				9F4F7F2B2088498B0066A2B2 /* Common */,
-				9F4F7F2E2088498B0066A2B2 /* QHVCEditViewController.h */,
+				9F4F7E8D2088498B0066A2B2 /* Edit */,
 				9F4F7F2F2088498B0066A2B2 /* Make */,
 				9F4F7F332088498B0066A2B2 /* Photo */,
-				9F4F7F3F2088498B0066A2B2 /* Base */,
+				9F4F7F2E2088498B0066A2B2 /* QHVCEditViewController.h */,
+				9F4F7E842088498A0066A2B2 /* QHVCEditViewController.m */,
+				9F4F7E8C2088498B0066A2B2 /* QHVCEditViewController.xib */,
+				9F943740210EE94100C68267 /* QHVCEditVC.h */,
+				9F94373C210EE94000C68267 /* QHVCEditVC.m */,
+				9F94373D210EE94000C68267 /* QHVCEditVC.xib */,
+				9F1BB1A021918E140083BFAA /* QHVCEditMainNavView.h */,
+				9F1BB1A321918E150083BFAA /* QHVCEditMainNavView.m */,
+				9F1BB19F21918E140083BFAA /* QHVCEditMainNavView.xib */,
+				9F1BB1A221918E150083BFAA /* QHVCEditMainViewController.h */,
+				9F1BB1A121918E140083BFAA /* QHVCEditMainViewController.m */,
+				9F4F7E852088498A0066A2B2 /* Reorder */,
 			);
 			path = EditService;
 			sourceTree = "<group>";
@@ -886,24 +1200,26 @@
 		9F4F7E8D2088498B0066A2B2 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7E8E2088498B0066A2B2 /* QHVCEditMainNavView.xib */,
-				9F4F7E8F2088498B0066A2B2 /* QHVCEditMainViewController.m */,
-				9F4F7E902088498B0066A2B2 /* Quality */,
-				9F4F7E962088498B0066A2B2 /* QHVCEditMainNavView.h */,
-				9F4F7E972088498B0066A2B2 /* Speed */,
-				9F4F7E9D2088498B0066A2B2 /* Watermask */,
-				9F4F7EA02088498B0066A2B2 /* Transfer */,
-				9F4F7EAB2088498B0066A2B2 /* Tailor */,
-				9F4F7EBD2088498B0066A2B2 /* Sticker */,
-				9F4F7EC02088498B0066A2B2 /* Cell */,
+				9F1BB1AC219195070083BFAA /* DynamicSubtitle */,
+				9F1BB1B0219195070083BFAA /* Kenburns */,
+				9F1BB1B6219195070083BFAA /* Reverse */,
+				9F943748210EE95B00C68267 /* Mosaic */,
+				9FAFD58D20D0CD2900F8BD35 /* Beautify */,
+				9FAFD58620D0CD2900F8BD35 /* Effect */,
+				9FAFD4FD20D0C8F200F8BD35 /* AlterSound */,
 				9F4F7EC42088498B0066A2B2 /* Audio */,
-				9F4F7ED42088498B0066A2B2 /* QHVCEditMainNavView.m */,
-				9F4F7ED52088498B0066A2B2 /* Subtitle */,
-				9F4F7EDE2088498B0066A2B2 /* QHVCEditMainViewController.h */,
+				9F4F7EC02088498B0066A2B2 /* Cell */,
 				9F4F7EDF2088498B0066A2B2 /* Cut */,
-				9F4F7EE52088498B0066A2B2 /* View */,
 				9F4F7EF02088498B0066A2B2 /* Filter */,
 				9F4F7EF92088498B0066A2B2 /* Overlay */,
+				9F4F7E902088498B0066A2B2 /* Quality */,
+				9F4F7E972088498B0066A2B2 /* Speed */,
+				9F4F7EBD2088498B0066A2B2 /* Sticker */,
+				9F4F7ED52088498B0066A2B2 /* Subtitle */,
+				9F4F7EAB2088498B0066A2B2 /* Tailor */,
+				9F4F7EA02088498B0066A2B2 /* Transfer */,
+				9F4F7EE52088498B0066A2B2 /* View */,
+				9F4F7E9D2088498B0066A2B2 /* Watermask */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -911,6 +1227,9 @@
 		9F4F7E902088498B0066A2B2 /* Quality */ = {
 			isa = PBXGroup;
 			children = (
+				9FAFD5CF20D0CD6F00F8BD35 /* QHVCEditQualityItem.h */,
+				9FAFD5D020D0CD6F00F8BD35 /* QHVCEditQualityItem.m */,
+				9FAFD5D120D0CD7000F8BD35 /* QHVCEditQualityItem.xib */,
 				9F4F7E912088498B0066A2B2 /* QHVCEditQualityView.xib */,
 				9F4F7E922088498B0066A2B2 /* QHVCEditQualityViewController.m */,
 				9F4F7E932088498B0066A2B2 /* QHVCEditQualityView.m */,
@@ -944,16 +1263,16 @@
 		9F4F7EA02088498B0066A2B2 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7EA12088498B0066A2B2 /* QHVCEditTransferView.xib */,
-				9F4F7EA22088498B0066A2B2 /* QHVCEditSegmentCell.m */,
-				9F4F7EA32088498B0066A2B2 /* QHVCEditSegmentItem.m */,
-				9F4F7EA42088498B0066A2B2 /* QHVCEditTransferViewController.h */,
-				9F4F7EA52088498B0066A2B2 /* QHVCEditTransferView.m */,
-				9F4F7EA62088498B0066A2B2 /* QHVCEditTransferViewController.m */,
-				9F4F7EA72088498B0066A2B2 /* QHVCEditSegmentItem.h */,
 				9F4F7EA82088498B0066A2B2 /* QHVCEditSegmentCell.h */,
-				9F4F7EA92088498B0066A2B2 /* QHVCEditTransferView.h */,
+				9F4F7EA22088498B0066A2B2 /* QHVCEditSegmentCell.m */,
 				9F4F7EAA2088498B0066A2B2 /* QHVCEditSegmentCell.xib */,
+				9F4F7EA72088498B0066A2B2 /* QHVCEditSegmentItem.h */,
+				9F4F7EA32088498B0066A2B2 /* QHVCEditSegmentItem.m */,
+				9F4F7EA92088498B0066A2B2 /* QHVCEditTransferView.h */,
+				9F4F7EA52088498B0066A2B2 /* QHVCEditTransferView.m */,
+				9F4F7EA12088498B0066A2B2 /* QHVCEditTransferView.xib */,
+				9F4F7EA42088498B0066A2B2 /* QHVCEditTransferViewController.h */,
+				9F4F7EA62088498B0066A2B2 /* QHVCEditTransferViewController.m */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -961,20 +1280,20 @@
 		9F4F7EAB2088498B0066A2B2 /* Tailor */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7EAC2088498B0066A2B2 /* QHVCEditTailorMainView.m */,
-				9F4F7EAD2088498B0066A2B2 /* QHVCEditTailorRateVC.h */,
-				9F4F7EAE2088498B0066A2B2 /* QHVCEditMatrixItem.h */,
-				9F4F7EAF2088498B0066A2B2 /* QHVCEditTailorRateVC.xib */,
-				9F4F7EB02088498B0066A2B2 /* QHVCEditTailorViewController.m */,
-				9F4F7EB12088498B0066A2B2 /* QHVCEditTailorFormatView.m */,
-				9F4F7EB22088498B0066A2B2 /* QHVCEditTailorFormatView.xib */,
-				9F4F7EB32088498B0066A2B2 /* QHVCEditTailorMainView.xib */,
-				9F4F7EB42088498B0066A2B2 /* QHVCEditTailorRateVC.m */,
 				9F4F7EB52088498B0066A2B2 /* Cell */,
-				9F4F7EB92088498B0066A2B2 /* QHVCEditTailorMainView.h */,
-				9F4F7EBA2088498B0066A2B2 /* QHVCEditTailorViewController.h */,
+				9F4F7EAE2088498B0066A2B2 /* QHVCEditMatrixItem.h */,
 				9F4F7EBB2088498B0066A2B2 /* QHVCEditMatrixItem.m */,
 				9F4F7EBC2088498B0066A2B2 /* QHVCEditTailorFormatView.h */,
+				9F4F7EB12088498B0066A2B2 /* QHVCEditTailorFormatView.m */,
+				9F4F7EB22088498B0066A2B2 /* QHVCEditTailorFormatView.xib */,
+				9F4F7EB92088498B0066A2B2 /* QHVCEditTailorMainView.h */,
+				9F4F7EAC2088498B0066A2B2 /* QHVCEditTailorMainView.m */,
+				9F4F7EB32088498B0066A2B2 /* QHVCEditTailorMainView.xib */,
+				9F4F7EAD2088498B0066A2B2 /* QHVCEditTailorRateVC.h */,
+				9F4F7EB42088498B0066A2B2 /* QHVCEditTailorRateVC.m */,
+				9F4F7EAF2088498B0066A2B2 /* QHVCEditTailorRateVC.xib */,
+				9F4F7EBA2088498B0066A2B2 /* QHVCEditTailorViewController.h */,
+				9F4F7EB02088498B0066A2B2 /* QHVCEditTailorViewController.m */,
 			);
 			path = Tailor;
 			sourceTree = "<group>";
@@ -1001,6 +1320,12 @@
 		9F4F7EC02088498B0066A2B2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				9FAFD50B20D0C9A600F8BD35 /* QHVCEditCommonCell.h */,
+				9FAFD50820D0C9A500F8BD35 /* QHVCEditCommonCell.m */,
+				9FAFD50C20D0C9A600F8BD35 /* QHVCEditCommonCell.xib */,
+				9FAFD50D20D0C9A600F8BD35 /* QHVCEditEffectCell.h */,
+				9FAFD50A20D0C9A600F8BD35 /* QHVCEditEffectCell.m */,
+				9FAFD50920D0C9A600F8BD35 /* QHVCEditEffectCell.xib */,
 				9F4F7EC12088498B0066A2B2 /* QHVCEditMainFunctionCell.xib */,
 				9F4F7EC22088498B0066A2B2 /* QHVCEditMainFunctionCell.h */,
 				9F4F7EC32088498B0066A2B2 /* QHVCEditMainFunctionCell.m */,
@@ -1011,6 +1336,7 @@
 		9F4F7EC42088498B0066A2B2 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				9FAFD4CA20D0C87F00F8BD35 /* EZAudio */,
 				9F4F7EC52088498B0066A2B2 /* QHVCEditAudioViewController.h */,
 				9F4F7EC62088498B0066A2B2 /* QHVCEditAudioViewController.m */,
 				9F4F7EC72088498B0066A2B2 /* Model */,
@@ -1054,12 +1380,12 @@
 		9F4F7ED52088498B0066A2B2 /* Subtitle */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7ED62088498B0066A2B2 /* QHVCEditSubtitleView.h */,
-				9F4F7ED72088498B0066A2B2 /* QHVCEditSubtitleViewController.m */,
 				9F4F7ED82088498B0066A2B2 /* Model */,
+				9F4F7ED62088498B0066A2B2 /* QHVCEditSubtitleView.h */,
 				9F4F7EDB2088498B0066A2B2 /* QHVCEditSubtitleView.m */,
 				9F4F7EDC2088498B0066A2B2 /* QHVCEditSubtitleView.xib */,
 				9F4F7EDD2088498B0066A2B2 /* QHVCEditSubtitleViewController.h */,
+				9F4F7ED72088498B0066A2B2 /* QHVCEditSubtitleViewController.m */,
 			);
 			path = Subtitle;
 			sourceTree = "<group>";
@@ -1088,15 +1414,15 @@
 		9F4F7EE52088498B0066A2B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7EE62088498B0066A2B2 /* QHVCEditFrameView.h */,
-				9F4F7EE72088498B0066A2B2 /* QHVCEditFrameCell.h */,
 				9F4F7EE82088498B0066A2B2 /* QHVCEditCropRectControl.h */,
+				9F4F7EEE2088498B0066A2B2 /* QHVCEditCropRectControl.m */,
+				9F4F7EED2088498B0066A2B2 /* QHVCEditCropRectView.h */,
 				9F4F7EE92088498B0066A2B2 /* QHVCEditCropRectView.m */,
-				9F4F7EEA2088498B0066A2B2 /* QHVCEditFrameView.m */,
+				9F4F7EE72088498B0066A2B2 /* QHVCEditFrameCell.h */,
 				9F4F7EEB2088498B0066A2B2 /* QHVCEditFrameCell.m */,
 				9F4F7EEC2088498B0066A2B2 /* QHVCEditFrameCell.xib */,
-				9F4F7EED2088498B0066A2B2 /* QHVCEditCropRectView.h */,
-				9F4F7EEE2088498B0066A2B2 /* QHVCEditCropRectControl.m */,
+				9F4F7EE62088498B0066A2B2 /* QHVCEditFrameView.h */,
+				9F4F7EEA2088498B0066A2B2 /* QHVCEditFrameView.m */,
 				9F4F7EEF2088498B0066A2B2 /* QHVCEditFrameView.xib */,
 			);
 			path = View;
@@ -1105,6 +1431,7 @@
 		9F4F7EF02088498B0066A2B2 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				9FAFD59C20D0CD4700F8BD35 /* Filters */,
 				9F4F7EF12088498B0066A2B2 /* QHVCEditAuxFilterView.h */,
 				9F4F7EF22088498B0066A2B2 /* QHVCEditAuxFilterView.xib */,
 				9F4F7EF32088498B0066A2B2 /* QHVCEditAuxFilterCell.xib */,
@@ -1120,21 +1447,21 @@
 		9F4F7EF92088498B0066A2B2 /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
+				9F4F7F1F2088498B0066A2B2 /* BgColorView */,
+				9F4F7F062088498B0066A2B2 /* OverlayToolsView */,
+				9F4F7F262088498B0066A2B2 /* QHVCEditOverlayBottomView.h */,
 				9F4F7EFA2088498B0066A2B2 /* QHVCEditOverlayBottomView.m */,
 				9F4F7EFB2088498B0066A2B2 /* QHVCEditOverlayBottomView.xib */,
-				9F4F7EFC2088498B0066A2B2 /* TemplateView */,
-				9F4F7F032088498B0066A2B2 /* QHVCEditOverlayVC.m */,
-				9F4F7F042088498B0066A2B2 /* QHVCEditOverlayResourceVC.m */,
-				9F4F7F052088498B0066A2B2 /* QHVCEditOverlayContentView.m */,
-				9F4F7F062088498B0066A2B2 /* OverlayToolsView */,
-				9F4F7F1D2088498B0066A2B2 /* QHVCEditOverlayItemPreview.h */,
-				9F4F7F1E2088498B0066A2B2 /* QHVCEditOverlayVC.xib */,
-				9F4F7F1F2088498B0066A2B2 /* BgColorView */,
-				9F4F7F262088498B0066A2B2 /* QHVCEditOverlayBottomView.h */,
-				9F4F7F272088498B0066A2B2 /* QHVCEditOverlayResourceVC.h */,
-				9F4F7F282088498B0066A2B2 /* QHVCEditOverlayVC.h */,
-				9F4F7F292088498B0066A2B2 /* QHVCEditOverlayItemPreview.m */,
 				9F4F7F2A2088498B0066A2B2 /* QHVCEditOverlayContentView.h */,
+				9F4F7F052088498B0066A2B2 /* QHVCEditOverlayContentView.m */,
+				9F4F7F1D2088498B0066A2B2 /* QHVCEditOverlayItemPreview.h */,
+				9F4F7F292088498B0066A2B2 /* QHVCEditOverlayItemPreview.m */,
+				9F4F7F272088498B0066A2B2 /* QHVCEditOverlayResourceVC.h */,
+				9F4F7F042088498B0066A2B2 /* QHVCEditOverlayResourceVC.m */,
+				9F4F7F282088498B0066A2B2 /* QHVCEditOverlayVC.h */,
+				9F4F7F032088498B0066A2B2 /* QHVCEditOverlayVC.m */,
+				9F4F7F1E2088498B0066A2B2 /* QHVCEditOverlayVC.xib */,
+				9F4F7EFC2088498B0066A2B2 /* TemplateView */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -1155,24 +1482,27 @@
 		9F4F7F062088498B0066A2B2 /* OverlayToolsView */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7F072088498B0066A2B2 /* QHVCEditOverlayChangeResourceVC.h */,
-				9F4F7F082088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.xib */,
 				9F4F7F092088498B0066A2B2 /* AlphaMov */,
 				9F4F7F0E2088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.h */,
-				9F4F7F0F2088498B0066A2B2 /* QHVCEditOverlayToolsView.h */,
-				9F4F7F102088498B0066A2B2 /* QHVCEditOverlayVolumeView.xib */,
-				9F4F7F112088498B0066A2B2 /* QHVCEditOverlayChromakeyView.h */,
-				9F4F7F122088498B0066A2B2 /* QHVCEditOverlaySpeedView.h */,
-				9F4F7F132088498B0066A2B2 /* QHVCEditOverlayVolumeView.h */,
-				9F4F7F142088498B0066A2B2 /* QHVCEditOverlaySpeedView.xib */,
-				9F4F7F152088498B0066A2B2 /* QHVCEditOverlayToolsView.xib */,
-				9F4F7F162088498B0066A2B2 /* QHVCEditOverlayChangeResourceVC.m */,
-				9F4F7F172088498B0066A2B2 /* QHVCEditOverlayChromakeyView.xib */,
-				9F4F7F182088498B0066A2B2 /* QHVCEditOverlaySpeedView.m */,
-				9F4F7F192088498B0066A2B2 /* QHVCEditOverlayChromakeyView.m */,
-				9F4F7F1A2088498B0066A2B2 /* QHVCEditOverlayToolsView.m */,
 				9F4F7F1B2088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.m */,
+				9F4F7F082088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.xib */,
+				9FAFD50320D0C98E00F8BD35 /* QHVCEditOverlayBlendView.h */,
+				9FAFD50420D0C98E00F8BD35 /* QHVCEditOverlayBlendView.m */,
+				9FAFD50520D0C98E00F8BD35 /* QHVCEditOverlayBlendView.xib */,
+				9F4F7F072088498B0066A2B2 /* QHVCEditOverlayChangeResourceVC.h */,
+				9F4F7F162088498B0066A2B2 /* QHVCEditOverlayChangeResourceVC.m */,
+				9F4F7F112088498B0066A2B2 /* QHVCEditOverlayChromakeyView.h */,
+				9F4F7F192088498B0066A2B2 /* QHVCEditOverlayChromakeyView.m */,
+				9F4F7F172088498B0066A2B2 /* QHVCEditOverlayChromakeyView.xib */,
+				9F4F7F122088498B0066A2B2 /* QHVCEditOverlaySpeedView.h */,
+				9F4F7F182088498B0066A2B2 /* QHVCEditOverlaySpeedView.m */,
+				9F4F7F142088498B0066A2B2 /* QHVCEditOverlaySpeedView.xib */,
+				9F4F7F0F2088498B0066A2B2 /* QHVCEditOverlayToolsView.h */,
+				9F4F7F1A2088498B0066A2B2 /* QHVCEditOverlayToolsView.m */,
+				9F4F7F152088498B0066A2B2 /* QHVCEditOverlayToolsView.xib */,
+				9F4F7F132088498B0066A2B2 /* QHVCEditOverlayVolumeView.h */,
 				9F4F7F1C2088498B0066A2B2 /* QHVCEditOverlayVolumeView.m */,
+				9F4F7F102088498B0066A2B2 /* QHVCEditOverlayVolumeView.xib */,
 			);
 			path = OverlayToolsView;
 			sourceTree = "<group>";
@@ -1248,259 +1578,124 @@
 		9F4F7F3F2088498B0066A2B2 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				9F4F7F402088498B0066A2B2 /* QHVCEditPlayerMainViewController.m */,
-				9F4F7F412088498B0066A2B2 /* QHVCEditBaseViewController.m */,
-				9F4F7F422088498B0066A2B2 /* QHVCEditCommandManager.m */,
-				9F4F7F432088498B0066A2B2 /* QHVCEditPlayerViewController.h */,
 				9F4F7F442088498B0066A2B2 /* QHVCEditBaseViewController.h */,
-				9F4F7F452088498B0066A2B2 /* QHVCEditPlayerMainViewController.h */,
+				9F4F7F412088498B0066A2B2 /* QHVCEditBaseViewController.m */,
 				9F4F7F462088498B0066A2B2 /* QHVCEditCommandManager.h */,
-				9F4F7F472088498B0066A2B2 /* QHVCEditPlayerViewController.m */,
+				9F4F7F422088498B0066A2B2 /* QHVCEditCommandManager.m */,
+				9F4F7F452088498B0066A2B2 /* QHVCEditPlayerMainViewController.h */,
+				9F4F7F402088498B0066A2B2 /* QHVCEditPlayerMainViewController.m */,
 				9F4F7F482088498B0066A2B2 /* QHVCEditPlayerMainViewController.xib */,
+				9F4F7F432088498B0066A2B2 /* QHVCEditPlayerViewController.h */,
+				9F4F7F472088498B0066A2B2 /* QHVCEditPlayerViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		BB09BF392073700A00AE9BE9 /* InteractiveService */ = {
+		9F943748210EE95B00C68267 /* Mosaic */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF832073700A00AE9BE9 /* SubSystem */,
-				BB09BF3B2073700A00AE9BE9 /* Config */,
-				BB09BF442073700A00AE9BE9 /* Controllers */,
-				BB09BF732073700A00AE9BE9 /* Log */,
-				BB09BF762073700A00AE9BE9 /* Models */,
-				BB09BF7B2073700A00AE9BE9 /* Network */,
-				BB09BF802073700A00AE9BE9 /* QHVCInteractiveViewController.h */,
-				BB09BF812073700A00AE9BE9 /* QHVCInteractiveViewController.m */,
-				BB09BF822073700A00AE9BE9 /* QHVCInteractiveViewController.xib */,
+				9F943749210EE95B00C68267 /* QHVCEditMosaicView.h */,
+				9F94374A210EE95B00C68267 /* QHVCEditMosaicView.xib */,
+				9F94374B210EE95B00C68267 /* QHVCEditMosaicVC.m */,
+				9F94374C210EE95B00C68267 /* QHVCEditMosaicView.m */,
+				9F94374D210EE95B00C68267 /* QHVCEditMosaicVC.h */,
 			);
-			path = InteractiveService;
+			path = Mosaic;
 			sourceTree = "<group>";
 		};
-		BB09BF3B2073700A00AE9BE9 /* Config */ = {
+		9FAFD4CA20D0C87F00F8BD35 /* EZAudio */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF3C2073700A00AE9BE9 /* QHVCITSConfig.h */,
-				BB09BF3D2073700A00AE9BE9 /* QHVCITSConfig.m */,
-				BB09BF3E2073700A00AE9BE9 /* QHVCITSDefine.h */,
-				BB09BF3F2073700A00AE9BE9 /* QHVCITSProtocol.h */,
-				BB09BF402073700A00AE9BE9 /* Resource */,
+				9FAFD4CB20D0C87F00F8BD35 /* EZPlot.h */,
+				9FAFD4CC20D0C87F00F8BD35 /* EZAudioUtilities.h */,
+				9FAFD4CD20D0C87F00F8BD35 /* EZAudio.h */,
+				9FAFD4CE20D0C87F00F8BD35 /* EZAudioFloatData.m */,
+				9FAFD4CF20D0C87F00F8BD35 /* TPCircularBuffer.h */,
+				9FAFD4D020D0C87F00F8BD35 /* EZAudioPlot.h */,
+				9FAFD4D120D0C87F00F8BD35 /* EZAudioFloatConverter.h */,
+				9FAFD4D220D0C87F00F8BD35 /* EZAudioFile.h */,
+				9FAFD4D320D0C87F00F8BD35 /* AudioWaveForm.m */,
+				9FAFD4D420D0C87F00F8BD35 /* EZAudioDisplayLink.h */,
+				9FAFD4D520D0C87F00F8BD35 /* EZPlot.m */,
+				9FAFD4D620D0C87F00F8BD35 /* EZAudioPlot.m */,
+				9FAFD4D720D0C87F00F8BD35 /* TPCircularBuffer.c */,
+				9FAFD4D820D0C87F00F8BD35 /* EZAudioFloatData.h */,
+				9FAFD4D920D0C87F00F8BD35 /* EZAudio.m */,
+				9FAFD4DA20D0C87F00F8BD35 /* EZAudioUtilities.m */,
+				9FAFD4DB20D0C87F00F8BD35 /* EZAudioFloatConverter.m */,
+				9FAFD4DC20D0C87F00F8BD35 /* EZAudioDisplayLink.m */,
+				9FAFD4DD20D0C87F00F8BD35 /* AudioWaveForm.h */,
+				9FAFD4DE20D0C87F00F8BD35 /* EZAudioFile.m */,
 			);
-			path = Config;
+			path = EZAudio;
 			sourceTree = "<group>";
 		};
-		BB09BF402073700A00AE9BE9 /* Resource */ = {
+		9FAFD4FD20D0C8F200F8BD35 /* AlterSound */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF412073700A00AE9BE9 /* plist */,
+				9FAFD4FE20D0C8F200F8BD35 /* QHVCEditAlterSoundView.xib */,
+				9FAFD4FF20D0C8F200F8BD35 /* QHVCEditAlterSoundView.m */,
+				9FAFD50020D0C8F200F8BD35 /* QHVCEditAlterSoundView.h */,
 			);
-			path = Resource;
+			path = AlterSound;
 			sourceTree = "<group>";
 		};
-		BB09BF412073700A00AE9BE9 /* plist */ = {
+		9FAFD58620D0CD2900F8BD35 /* Effect */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF422073700A00AE9BE9 /* QHVCITLFunction.plist */,
-				BB09BF432073700A00AE9BE9 /* QHVCITLMain.plist */,
+				9FAFD58720D0CD2900F8BD35 /* QHVCEditEffectViewController.h */,
+				9FAFD58820D0CD2900F8BD35 /* QHVCEditEffectView.m */,
+				9FAFD58920D0CD2900F8BD35 /* QHVCEditEffectView.xib */,
+				9FAFD58A20D0CD2900F8BD35 /* QHVCEditEffectViewController.m */,
+				9FAFD58B20D0CD2900F8BD35 /* QHVCEditEffectView.h */,
+				9FAFD58C20D0CD2900F8BD35 /* QHVCEditEffectViewController.xib */,
 			);
-			path = plist;
+			path = Effect;
 			sourceTree = "<group>";
 		};
-		BB09BF442073700A00AE9BE9 /* Controllers */ = {
+		9FAFD58D20D0CD2900F8BD35 /* Beautify */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF452073700A00AE9BE9 /* CreateRoom */,
-				BB09BF492073700A00AE9BE9 /* LinkMic */,
-				BB09BF612073700A00AE9BE9 /* ModelList */,
-				BB09BF652073700A00AE9BE9 /* RoomList */,
-				BB09BF6D2073700A00AE9BE9 /* Setting */,
+				9FAFD58E20D0CD2900F8BD35 /* QHVCEditBeautifyView.m */,
+				9FAFD58F20D0CD2900F8BD35 /* QHVCEditBeautifyViewController.m */,
+				9FAFD59020D0CD2900F8BD35 /* QHVCEditBeautifyViewController.xib */,
+				9FAFD59120D0CD2900F8BD35 /* QHVCEditBeautifyViewController.h */,
+				9FAFD59220D0CD2900F8BD35 /* QHVCEditBeautifyView.h */,
+				9FAFD59320D0CD2900F8BD35 /* QHVCEditBeautifyView.xib */,
 			);
-			path = Controllers;
+			path = Beautify;
 			sourceTree = "<group>";
 		};
-		BB09BF452073700A00AE9BE9 /* CreateRoom */ = {
+		9FAFD59C20D0CD4700F8BD35 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
-				BB09BF462073700A00AE9BE9 /* QHVCITSCreateRoomViewController.h */,
-				BB09BF472073700A00AE9BE9 /* QHVCITSCreateRoomViewController.m */,
-				BB09BF482073700A00AE9BE9 /* QHVCITSCreateRoomViewController.xib */,
+				9FAFD59D20D0CD4700F8BD35 /* Fade.png */,
+				9FAFD59E20D0CD4700F8BD35 /* Sepia.png */,
+				9FAFD59F20D0CD4700F8BD35 /* Vista.png */,
+				9FAFD5A020D0CD4700F8BD35 /* Retro.png */,
+				9FAFD5A120D0CD4700F8BD35 /* Cyberpunk.png */,
+				9FAFD5A220D0CD4700F8BD35 /* Action.png */,
+				9FAFD5A320D0CD4700F8BD35 /* Terra.png */,
+				9FAFD5A420D0CD4700F8BD35 /* Darkness.png */,
+				9FAFD5A520D0CD4700F8BD35 /* Winter.png */,
+				9FAFD5A620D0CD4700F8BD35 /* B&W.png */,
+				9FAFD5A720D0CD4700F8BD35 /* test2.jpg */,
+				9FAFD5A820D0CD4700F8BD35 /* 番荔枝.png */,
+				9FAFD5A920D0CD4700F8BD35 /* test.jpg */,
+				9FAFD5AA20D0CD4700F8BD35 /* LovelyDay.png */,
+				9FAFD5AB20D0CD4700F8BD35 /* 可可树.png */,
+				9FAFD5AC20D0CD4700F8BD35 /* 罗汉果.png */,
+				9FAFD5AD20D0CD4700F8BD35 /* Negative.png */,
+				9FAFD5AE20D0CD4700F8BD35 /* NightVision.png */,
+				9FAFD5AF20D0CD4700F8BD35 /* Ultra.png */,
+				9FAFD5B020D0CD4700F8BD35 /* PurpleRain.png */,
+				9FAFD5B120D0CD4700F8BD35 /* HighNoon.png */,
+				9FAFD5B220D0CD4700F8BD35 /* Mist.png */,
+				9FAFD5B320D0CD4700F8BD35 /* Steel.png */,
+				9FAFD5B420D0CD4700F8BD35 /* Vivid.png */,
+				9FAFD5B520D0CD4700F8BD35 /* Enchanted.png */,
 			);
-			path = CreateRoom;
-			sourceTree = "<group>";
-		};
-		BB09BF492073700A00AE9BE9 /* LinkMic */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF4A2073700A00AE9BE9 /* Chat */,
-				BB09BF4D2073700A00AE9BE9 /* QHVCITSLinkMicViewController+Control.h */,
-				BB09BF4E2073700A00AE9BE9 /* QHVCITSLinkMicViewController+Control.m */,
-				BB09BF4F2073700A00AE9BE9 /* QHVCITSLinkMicViewController.h */,
-				BB09BF502073700A00AE9BE9 /* QHVCITSLinkMicViewController.m */,
-				BB09BF512073700A00AE9BE9 /* QHVCITSLinkMicViewController.xib */,
-				BB09BF522073700A00AE9BE9 /* QHVCITSVideoSession.h */,
-				BB09BF532073700A00AE9BE9 /* QHVCITSVideoSession.m */,
-				BB09BF542073700A00AE9BE9 /* View */,
-			);
-			path = LinkMic;
-			sourceTree = "<group>";
-		};
-		BB09BF4A2073700A00AE9BE9 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF4B2073700A00AE9BE9 /* QHVCITSChatManager.h */,
-				BB09BF4C2073700A00AE9BE9 /* QHVCITSChatManager.m */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		BB09BF542073700A00AE9BE9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF552073700A00AE9BE9 /* Cell */,
-				BB09BF5C2073700A00AE9BE9 /* QHVCITRoleView.h */,
-				BB09BF5D2073700A00AE9BE9 /* QHVCITRoleView.m */,
-				BB09BF5E2073700A00AE9BE9 /* QHVCITSRoomUserListView.h */,
-				BB09BF5F2073700A00AE9BE9 /* QHVCITSRoomUserListView.m */,
-				BB09BF602073700A00AE9BE9 /* QHVCITSRoomUserListView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BB09BF552073700A00AE9BE9 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF562073700A00AE9BE9 /* QHVCITSActionCell.h */,
-				BB09BF572073700A00AE9BE9 /* QHVCITSActionCell.m */,
-				BB09BF582073700A00AE9BE9 /* QHVCITSActionCell.xib */,
-				BB09BF592073700A00AE9BE9 /* QHVCITSGuestUserCell.h */,
-				BB09BF5A2073700A00AE9BE9 /* QHVCITSGuestUserCell.m */,
-				BB09BF5B2073700A00AE9BE9 /* QHVCITSGuestUserCell.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		BB09BF612073700A00AE9BE9 /* ModelList */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF622073700A00AE9BE9 /* QHVCITSModelListViewController.h */,
-				BB09BF632073700A00AE9BE9 /* QHVCITSModelListViewController.m */,
-				BB09BF642073700A00AE9BE9 /* QHVCITSModelListViewController.xib */,
-			);
-			path = ModelList;
-			sourceTree = "<group>";
-		};
-		BB09BF652073700A00AE9BE9 /* RoomList */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF662073700A00AE9BE9 /* Cell */,
-				BB09BF6A2073700A00AE9BE9 /* QHVCITSRoomListViewController.h */,
-				BB09BF6B2073700A00AE9BE9 /* QHVCITSRoomListViewController.m */,
-				BB09BF6C2073700A00AE9BE9 /* QHVCITSRoomListViewController.xib */,
-			);
-			path = RoomList;
-			sourceTree = "<group>";
-		};
-		BB09BF662073700A00AE9BE9 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF672073700A00AE9BE9 /* QHVCITSRoomListCell.h */,
-				BB09BF682073700A00AE9BE9 /* QHVCITSRoomListCell.m */,
-				BB09BF692073700A00AE9BE9 /* QHVCITSRoomListCell.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		BB09BF6D2073700A00AE9BE9 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF6E2073700A00AE9BE9 /* QHVCITSSettingViewController.h */,
-				BB09BF6F2073700A00AE9BE9 /* QHVCITSSettingViewController.m */,
-				BB09BF702073700A00AE9BE9 /* QHVCITSSettingViewController.xib */,
-				BBE45B1D20889E40006875ED /* Cell */,
-				BB09BF712073700A00AE9BE9 /* Resource */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
-		BB09BF712073700A00AE9BE9 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF722073700A00AE9BE9 /* InteractiveSetting.plist */,
-				BBE45B1B20889E37006875ED /* InteractiveVideoProfile.plist */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		BB09BF732073700A00AE9BE9 /* Log */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF742073700A00AE9BE9 /* QHVCITSLog.h */,
-				BB09BF752073700A00AE9BE9 /* QHVCITSLog.m */,
-			);
-			path = Log;
-			sourceTree = "<group>";
-		};
-		BB09BF762073700A00AE9BE9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF772073700A00AE9BE9 /* QHVCITSRoomModel.h */,
-				BB09BF782073700A00AE9BE9 /* QHVCITSRoomModel.m */,
-				BB09BF792073700A00AE9BE9 /* QHVCITSUserModel.h */,
-				BB09BF7A2073700A00AE9BE9 /* QHVCITSUserModel.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BB09BF7B2073700A00AE9BE9 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF7C2073700A00AE9BE9 /* QHVCITSHTTPSessionManager.h */,
-				BB09BF7D2073700A00AE9BE9 /* QHVCITSHTTPSessionManager.m */,
-				BB09BF7E2073700A00AE9BE9 /* QHVCITSProtocolMonitor.h */,
-				BB09BF7F2073700A00AE9BE9 /* QHVCITSProtocolMonitor.m */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		BB09BF832073700A00AE9BE9 /* SubSystem */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF842073700A00AE9BE9 /* Chat */,
-				BB09BF872073700A00AE9BE9 /* User */,
-			);
-			path = SubSystem;
-			sourceTree = "<group>";
-		};
-		BB09BF842073700A00AE9BE9 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF852073700A00AE9BE9 /* QHVCITSChatSystem.h */,
-				BB09BF862073700A00AE9BE9 /* QHVCITSChatSystem.m */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		BB09BF872073700A00AE9BE9 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BF882073700A00AE9BE9 /* QHVCITSUserSystem.h */,
-				BB09BF892073700A00AE9BE9 /* QHVCITSUserSystem.m */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		BB09BFAD2073738400AE9BE9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BFB82073748100AE9BE9 /* Cell */,
-				BB09BFAE2073738400AE9BE9 /* UIView+Toast.h */,
-				BB09BFAF2073738400AE9BE9 /* UIView+Toast.m */,
-				BB09BFB02073738400AE9BE9 /* UIViewAdditions.h */,
-				BB09BFB12073738400AE9BE9 /* UIViewAdditions.m */,
-				BBE45B1920889DD6006875ED /* QHVCToast.h */,
-				BBE45B1820889DD6006875ED /* QHVCToast.m */,
-			);
-			path = View;
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		BB09BFB42073743900AE9BE9 /* Config */ = {
@@ -1510,25 +1705,6 @@
 				BB09BFB62073743900AE9BE9 /* QHVCConfig.m */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		BB09BFB82073748100AE9BE9 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BB09BFB92073748100AE9BE9 /* QHVCLiveMainCellOne.h */,
-				BB09BFBA2073748100AE9BE9 /* QHVCLiveMainCellOne.m */,
-				BB09BFBB2073748100AE9BE9 /* QHVCLiveMainCellOne.xib */,
-				BB09BFBC2073748100AE9BE9 /* QHVCLiveMainCellTwo.h */,
-				BB09BFBD2073748100AE9BE9 /* QHVCLiveMainCellTwo.m */,
-				BB09BFBE2073748100AE9BE9 /* QHVCLiveMainCellTwo.xib */,
-				BB09BFBF2073748100AE9BE9 /* QHVCLiveSettingCellOne.h */,
-				BB09BFC02073748100AE9BE9 /* QHVCLiveSettingCellOne.m */,
-				BB09BFC12073748100AE9BE9 /* QHVCLiveSettingCellOne.xib */,
-				BB09BFC22073748100AE9BE9 /* QHVCLiveSettingCellTwo.h */,
-				BB09BFC32073748100AE9BE9 /* QHVCLiveSettingCellTwo.m */,
-				BB09BFC42073748100AE9BE9 /* QHVCLiveSettingCellTwo.xib */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		BB8976031F90993300D5E3BE /* UploadingService */ = {
@@ -1565,21 +1741,256 @@
 			path = upload;
 			sourceTree = "<group>";
 		};
-		BBE45B1D20889E40006875ED /* Cell */ = {
+		BBB4F5F920E4ED27006B69E9 /* InteractiveService */ = {
 			isa = PBXGroup;
 			children = (
-				BBE45B1E20889E40006875ED /* QHVCSettingCellStyleThree.h */,
-				BBE45B1F20889E40006875ED /* QHVCSettingCellStyleThree.m */,
-				BBE45B2020889E40006875ED /* QHVCSettingCellStyleThree.xib */,
+				BBB4F5FA20E4ED27006B69E9 /* Config */,
+				BBB4F60320E4ED27006B69E9 /* Controllers */,
+				BBB4F63C20E4ED27006B69E9 /* Log */,
+				BBB4F63F20E4ED27006B69E9 /* Models */,
+				BBB4F64420E4ED27006B69E9 /* Network */,
+				BBB4F64920E4ED27006B69E9 /* QHVCInteractiveViewController.h */,
+				BBB4F64A20E4ED27006B69E9 /* QHVCInteractiveViewController.m */,
+				BBB4F64B20E4ED27006B69E9 /* QHVCInteractiveViewController.xib */,
+				BBB4F64C20E4ED27006B69E9 /* SubSystem */,
+			);
+			path = InteractiveService;
+			sourceTree = "<group>";
+		};
+		BBB4F5FA20E4ED27006B69E9 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F5FB20E4ED27006B69E9 /* QHVCITSConfig.h */,
+				BBB4F5FC20E4ED27006B69E9 /* QHVCITSConfig.m */,
+				BBB4F5FD20E4ED27006B69E9 /* QHVCITSDefine.h */,
+				BBB4F5FE20E4ED27006B69E9 /* QHVCITSProtocol.h */,
+				BBB4F5FF20E4ED27006B69E9 /* Resource */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		BBB4F5FF20E4ED27006B69E9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60020E4ED27006B69E9 /* plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		BBB4F60020E4ED27006B69E9 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60120E4ED27006B69E9 /* QHVCITLFunction.plist */,
+				BBB4F60220E4ED27006B69E9 /* QHVCITLMain.plist */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
+		BBB4F60320E4ED27006B69E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60420E4ED27006B69E9 /* CreateRoom */,
+				BBB4F60820E4ED27006B69E9 /* LinkMic */,
+				BBB4F62520E4ED27006B69E9 /* ModelList */,
+				BBB4F62920E4ED27006B69E9 /* RoomList */,
+				BBB4F63120E4ED27006B69E9 /* Setting */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BBB4F60420E4ED27006B69E9 /* CreateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60520E4ED27006B69E9 /* QHVCITSCreateRoomViewController.h */,
+				BBB4F60620E4ED27006B69E9 /* QHVCITSCreateRoomViewController.m */,
+				BBB4F60720E4ED27006B69E9 /* QHVCITSCreateRoomViewController.xib */,
+			);
+			path = CreateRoom;
+			sourceTree = "<group>";
+		};
+		BBB4F60820E4ED27006B69E9 /* LinkMic */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60920E4ED27006B69E9 /* Chat */,
+				BBB4F60C20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.h */,
+				BBB4F60D20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.m */,
+				BBB4F60E20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.h */,
+				BBB4F60F20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.m */,
+				BBB4F61020E4ED27006B69E9 /* QHVCITSLinkMicViewController.h */,
+				BBB4F61120E4ED27006B69E9 /* QHVCITSLinkMicViewController.m */,
+				BBB4F61220E4ED27006B69E9 /* QHVCITSLinkMicViewController.xib */,
+				BBB4F61320E4ED27006B69E9 /* QHVCITSVideoSession.h */,
+				BBB4F61420E4ED27006B69E9 /* QHVCITSVideoSession.m */,
+				BBB4F61520E4ED27006B69E9 /* View */,
+			);
+			path = LinkMic;
+			sourceTree = "<group>";
+		};
+		BBB4F60920E4ED27006B69E9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F60A20E4ED27006B69E9 /* QHVCITSChatManager.h */,
+				BBB4F60B20E4ED27006B69E9 /* QHVCITSChatManager.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BBB4F61520E4ED27006B69E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F61620E4ED27006B69E9 /* Cell */,
+				BBB4F62020E4ED27006B69E9 /* QHVCITRoleView.h */,
+				BBB4F62120E4ED27006B69E9 /* QHVCITRoleView.m */,
+				BBB4F62220E4ED27006B69E9 /* QHVCITSRoomUserListView.h */,
+				BBB4F62320E4ED27006B69E9 /* QHVCITSRoomUserListView.m */,
+				BBB4F62420E4ED27006B69E9 /* QHVCITSRoomUserListView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBB4F61620E4ED27006B69E9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F61720E4ED27006B69E9 /* QHVCITSActionCell.h */,
+				BBB4F61820E4ED27006B69E9 /* QHVCITSActionCell.m */,
+				BBB4F61920E4ED27006B69E9 /* QHVCITSActionCell.xib */,
+				BBB4F61A20E4ED27006B69E9 /* QHVCITSGuestUserCell.h */,
+				BBB4F61B20E4ED27006B69E9 /* QHVCITSGuestUserCell.m */,
+				BBB4F61C20E4ED27006B69E9 /* QHVCITSGuestUserCell.xib */,
+				BBB4F61D20E4ED27006B69E9 /* QHVCITSHongpaCell.h */,
+				BBB4F61E20E4ED27006B69E9 /* QHVCITSHongpaCell.m */,
+				BBB4F61F20E4ED27006B69E9 /* QHVCITSHongpaCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BBB4F62520E4ED27006B69E9 /* ModelList */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F62620E4ED27006B69E9 /* QHVCITSModelListViewController.h */,
+				BBB4F62720E4ED27006B69E9 /* QHVCITSModelListViewController.m */,
+				BBB4F62820E4ED27006B69E9 /* QHVCITSModelListViewController.xib */,
+			);
+			path = ModelList;
+			sourceTree = "<group>";
+		};
+		BBB4F62920E4ED27006B69E9 /* RoomList */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F62A20E4ED27006B69E9 /* Cell */,
+				BBB4F62E20E4ED27006B69E9 /* QHVCITSRoomListViewController.h */,
+				BBB4F62F20E4ED27006B69E9 /* QHVCITSRoomListViewController.m */,
+				BBB4F63020E4ED27006B69E9 /* QHVCITSRoomListViewController.xib */,
+			);
+			path = RoomList;
+			sourceTree = "<group>";
+		};
+		BBB4F62A20E4ED27006B69E9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F62B20E4ED27006B69E9 /* QHVCITSRoomListCell.h */,
+				BBB4F62C20E4ED27006B69E9 /* QHVCITSRoomListCell.m */,
+				BBB4F62D20E4ED27006B69E9 /* QHVCITSRoomListCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BBB4F63120E4ED27006B69E9 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F63220E4ED27006B69E9 /* Cell */,
+				BBB4F63620E4ED27006B69E9 /* QHVCITSSettingViewController.h */,
+				BBB4F63720E4ED27006B69E9 /* QHVCITSSettingViewController.m */,
+				BBB4F63820E4ED27006B69E9 /* QHVCITSSettingViewController.xib */,
+				BBB4F63920E4ED27006B69E9 /* Resource */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		BBB4F63220E4ED27006B69E9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F63320E4ED27006B69E9 /* QHVCSettingCellStyleThree.h */,
+				BBB4F63420E4ED27006B69E9 /* QHVCSettingCellStyleThree.m */,
+				BBB4F63520E4ED27006B69E9 /* QHVCSettingCellStyleThree.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BBB4F63920E4ED27006B69E9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F63A20E4ED27006B69E9 /* InteractiveSetting.plist */,
+				BBB4F63B20E4ED27006B69E9 /* InteractiveVideoProfile.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		BBB4F63C20E4ED27006B69E9 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F63D20E4ED27006B69E9 /* QHVCITSLog.h */,
+				BBB4F63E20E4ED27006B69E9 /* QHVCITSLog.m */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		BBB4F63F20E4ED27006B69E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F64020E4ED27006B69E9 /* QHVCITSRoomModel.h */,
+				BBB4F64120E4ED27006B69E9 /* QHVCITSRoomModel.m */,
+				BBB4F64220E4ED27006B69E9 /* QHVCITSUserModel.h */,
+				BBB4F64320E4ED27006B69E9 /* QHVCITSUserModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BBB4F64420E4ED27006B69E9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F64520E4ED27006B69E9 /* QHVCITSHTTPSessionManager.h */,
+				BBB4F64620E4ED27006B69E9 /* QHVCITSHTTPSessionManager.m */,
+				BBB4F64720E4ED27006B69E9 /* QHVCITSProtocolMonitor.h */,
+				BBB4F64820E4ED27006B69E9 /* QHVCITSProtocolMonitor.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BBB4F64C20E4ED27006B69E9 /* SubSystem */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F64D20E4ED27006B69E9 /* Chat */,
+				BBB4F65020E4ED27006B69E9 /* User */,
+			);
+			path = SubSystem;
+			sourceTree = "<group>";
+		};
+		BBB4F64D20E4ED27006B69E9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F64E20E4ED27006B69E9 /* QHVCITSChatSystem.h */,
+				BBB4F64F20E4ED27006B69E9 /* QHVCITSChatSystem.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BBB4F65020E4ED27006B69E9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4F65120E4ED27006B69E9 /* QHVCITSUserSystem.h */,
+				BBB4F65220E4ED27006B69E9 /* QHVCITSUserSystem.m */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		C004C847F49D30CE02375B1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBB9953F20EF5D4E00D5E8B8 /* ZegoAVKit2.framework */,
 				BBE45B2520889EE1006875ED /* libssl.a */,
 				BBE45B2320889EDD006875ED /* libcrypto.a */,
+				BBB4F67C20E4EE98006B69E9 /* QHVCLiveKit.framework */,
 				BBE45B1520889D05006875ED /* QHVCCommonKit.framework */,
 				9F4F7FB420884AAC0066A2B2 /* QHVCEditKit.framework */,
 				BB09BF3720736D8F00AE9BE9 /* CoreTelephony.framework */,
@@ -1641,7 +2052,7 @@
 					0D5AE0521F54247D002C4812 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9ZASTA83ZL;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1668,73 +2079,112 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB4F67020E4ED27006B69E9 /* QHVCITSSettingViewController.xib in Resources */,
+				9FAFD50120D0C8F200F8BD35 /* QHVCEditAlterSoundView.xib in Resources */,
 				9F4F7F682088498B0066A2B2 /* QHVCEditMainFunctionCell.xib in Resources */,
-				BB09BFA22073700B00AE9BE9 /* QHVCITSSettingViewController.xib in Resources */,
-				BBE45B1C20889E37006875ED /* InteractiveVideoProfile.plist in Resources */,
-				BB09BF9C2073700B00AE9BE9 /* QHVCITSModelListViewController.xib in Resources */,
-				BB09BFA02073700B00AE9BE9 /* QHVCITSRoomListViewController.xib in Resources */,
+				9FAFD5CD20D0CD4700F8BD35 /* Vivid.png in Resources */,
 				9F4F7F5E2088498B0066A2B2 /* QHVCEditTailorRateVC.xib in Resources */,
-				BB09BF9E2073700B00AE9BE9 /* QHVCITSRoomListCell.xib in Resources */,
+				9FAFD5B920D0CD4700F8BD35 /* Retro.png in Resources */,
+				BBB4F66820E4ED27006B69E9 /* QHVCITSModelListViewController.xib in Resources */,
 				9F4F7F502088498B0066A2B2 /* QHVCEditQualityView.xib in Resources */,
-				BB09BFC62073748100AE9BE9 /* QHVCLiveMainCellOne.xib in Resources */,
+				9FAFD59B20D0CD2900F8BD35 /* QHVCEditBeautifyView.xib in Resources */,
+				9F1BB214219195AD0083BFAA /* QHVCLiveMainCellTwo.xib in Resources */,
+				9FAFD59720D0CD2900F8BD35 /* QHVCEditEffectViewController.xib in Resources */,
 				9F4F7F552088498B0066A2B2 /* QHVCEditSpeedView.xib in Resources */,
 				9F4F7F9F2088498B0066A2B2 /* QHVCEditOverlayBgColorCell.xib in Resources */,
+				BBB4F66E20E4ED27006B69E9 /* QHVCSettingCellStyleThree.xib in Resources */,
+				BBB4F66320E4ED27006B69E9 /* QHVCITSHongpaCell.xib in Resources */,
 				9F4F7F9D2088498B0066A2B2 /* QHVCEditOverlayVC.xib in Resources */,
+				9F943744210EE94100C68267 /* QHVCEditVC.xib in Resources */,
+				BBB4F66A20E4ED27006B69E9 /* QHVCITSRoomListCell.xib in Resources */,
 				9F4F7F952088498B0066A2B2 /* QHVCEditOverlayToolsView.xib in Resources */,
+				9F1BB1B9219195080083BFAA /* test.ass in Resources */,
+				9FAFD5CC20D0CD4700F8BD35 /* Steel.png in Resources */,
+				9FAFD5B620D0CD4700F8BD35 /* Fade.png in Resources */,
 				9F4F7F622088498B0066A2B2 /* QHVCEditTailorMainView.xib in Resources */,
+				9FAFD5BA20D0CD4700F8BD35 /* Cyberpunk.png in Resources */,
 				9F4F7F912088498B0066A2B2 /* alpha_mov.mov in Resources */,
-				BB09BFCC2073748100AE9BE9 /* QHVCLiveSettingCellTwo.xib in Resources */,
+				9FAFD5BD20D0CD4700F8BD35 /* Darkness.png in Resources */,
+				9FAFD5C320D0CD4700F8BD35 /* LovelyDay.png in Resources */,
 				9F4F7F8F2088498B0066A2B2 /* alpha_webm2.webm in Resources */,
+				9FAFD5BC20D0CD4700F8BD35 /* Terra.png in Resources */,
+				BBB4F65C20E4ED27006B69E9 /* QHVCITSLinkMicViewController.xib in Resources */,
 				9F4F7F6C2088498B0066A2B2 /* QHVCEditAddAudioView.xib in Resources */,
 				BB8976151F90993300D5E3BE /* QHVCUploadFinishView.xib in Resources */,
-				BB09BF9A2073700B00AE9BE9 /* QHVCITSRoomUserListView.xib in Resources */,
 				9F4F7F892088498B0066A2B2 /* QHVCEditOverlayTemplateCell.xib in Resources */,
+				9FAFD5D320D0CD7000F8BD35 /* QHVCEditQualityItem.xib in Resources */,
 				9F4F7F922088498B0066A2B2 /* alpha_webm1.webm in Resources */,
 				BB8976121F90993300D5E3BE /* QHVCUploadingViewController.xib in Resources */,
 				9F4F7F642088498B0066A2B2 /* QHVCEditTailorFillCell.xib in Resources */,
-				BB09BF952073700B00AE9BE9 /* QHVCITSActionCell.xib in Resources */,
+				9FAFD5C020D0CD4700F8BD35 /* test2.jpg in Resources */,
+				9FAFD5C920D0CD4700F8BD35 /* PurpleRain.png in Resources */,
+				BBB4F65420E4ED27006B69E9 /* QHVCITLFunction.plist in Resources */,
+				9FAFD5BB20D0CD4700F8BD35 /* Action.png in Resources */,
+				9FAFD59520D0CD2900F8BD35 /* QHVCEditEffectView.xib in Resources */,
 				9F4F7F8E2088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.xib in Resources */,
+				9FAFD5CE20D0CD4700F8BD35 /* Enchanted.png in Resources */,
+				9FAFD5C620D0CD4700F8BD35 /* Negative.png in Resources */,
+				9F1BB215219195AD0083BFAA /* QHVCLiveSettingCellTwo.xib in Resources */,
+				9F94374E210EE95B00C68267 /* QHVCEditMosaicView.xib in Resources */,
 				BB8976171F90993300D5E3BE /* QHVCUploadProgressView.xib in Resources */,
 				9F4F7F6D2088498B0066A2B2 /* QHVCEditAddAudioCell.xib in Resources */,
+				9F1BB20E219195AD0083BFAA /* QHVCLiveSettingCellOne.xib in Resources */,
+				9F1BB1A421918E150083BFAA /* QHVCEditMainNavView.xib in Resources */,
+				9FAFD5CB20D0CD4700F8BD35 /* Mist.png in Resources */,
 				0D5AE0661F54247D002C4812 /* LaunchScreen.storyboard in Resources */,
 				BB8976181F90993300D5E3BE /* uploadMain.plist in Resources */,
+				BBB4F67220E4ED27006B69E9 /* InteractiveVideoProfile.plist in Resources */,
 				9F4F7F7F2088498B0066A2B2 /* QHVCEditFrameView.xib in Resources */,
+				9FAFD51120D0C9A600F8BD35 /* QHVCEditCommonCell.xib in Resources */,
+				9FAFD50F20D0C9A600F8BD35 /* QHVCEditEffectCell.xib in Resources */,
+				9FAFD5CA20D0CD4700F8BD35 /* HighNoon.png in Resources */,
+				9FAFD5C820D0CD4700F8BD35 /* Ultra.png in Resources */,
+				9FAFD5BF20D0CD4700F8BD35 /* B&W.png in Resources */,
+				9FAFD5C120D0CD4700F8BD35 /* 番荔枝.png in Resources */,
 				9F4F7F932088498B0066A2B2 /* QHVCEditOverlayVolumeView.xib in Resources */,
 				9F4F7F7D2088498B0066A2B2 /* QHVCEditFrameCell.xib in Resources */,
 				9F4F7FA52088498B0066A2B2 /* QHVCEditMakeViewController.xib in Resources */,
-				9F4F7F4E2088498B0066A2B2 /* QHVCEditMainNavView.xib in Resources */,
+				BBB4F66C20E4ED27006B69E9 /* QHVCITSRoomListViewController.xib in Resources */,
 				9F4F7F862088498B0066A2B2 /* QHVCEditOverlayBottomView.xib in Resources */,
 				9F4F7F9E2088498B0066A2B2 /* QHVCEditOverlayBgColorView.xib in Resources */,
-				BB09BFCA2073748100AE9BE9 /* QHVCLiveSettingCellOne.xib in Resources */,
+				BBB4F65520E4ED27006B69E9 /* QHVCITLMain.plist in Resources */,
+				BBB4F65F20E4ED27006B69E9 /* QHVCITSActionCell.xib in Resources */,
+				BBB4F66120E4ED27006B69E9 /* QHVCITSGuestUserCell.xib in Resources */,
+				BBB4F67120E4ED27006B69E9 /* InteractiveSetting.plist in Resources */,
 				9F4F7FAB2088498B0066A2B2 /* QHVCEditPhotoItemCell.xib in Resources */,
+				9FAFD5BE20D0CD4700F8BD35 /* Winter.png in Resources */,
+				BBB4F65720E4ED27006B69E9 /* QHVCITSCreateRoomViewController.xib in Resources */,
 				9F4F7F612088498B0066A2B2 /* QHVCEditTailorFormatView.xib in Resources */,
-				BB09BF8E2073700B00AE9BE9 /* QHVCITSCreateRoomViewController.xib in Resources */,
+				9FAFD5C520D0CD4700F8BD35 /* 罗汉果.png in Resources */,
+				9FAFD5C720D0CD4700F8BD35 /* NightVision.png in Resources */,
 				9F4F7F572088498B0066A2B2 /* QHVCEditTransferView.xib in Resources */,
+				9FAFD5C220D0CD4700F8BD35 /* test.jpg in Resources */,
 				9F4F7F5C2088498B0066A2B2 /* QHVCEditSegmentCell.xib in Resources */,
-				BB09BF8C2073700B00AE9BE9 /* QHVCITLMain.plist in Resources */,
+				9F1BB1BD219195080083BFAA /* QHVCEditKenburnsView.xib in Resources */,
 				9F4F7F4D2088498B0066A2B2 /* QHVCEditViewController.xib in Resources */,
+				9F1BB20F219195AD0083BFAA /* QHVCLiveMainCellOne.xib in Resources */,
 				9F4F7F772088498B0066A2B2 /* QHVCEditCutView.xib in Resources */,
+				9FAFD5C420D0CD4700F8BD35 /* 可可树.png in Resources */,
 				0D5AE0A91F542798002C4812 /* QHVCPlayerServiceViewController.xib in Resources */,
 				0D5AE0631F54247D002C4812 /* Assets.xcassets in Resources */,
+				9FAFD50720D0C98E00F8BD35 /* QHVCEditOverlayBlendView.xib in Resources */,
 				9F4F7F972088498B0066A2B2 /* QHVCEditOverlayChromakeyView.xib in Resources */,
-				BB09BFC82073748100AE9BE9 /* QHVCLiveMainCellTwo.xib in Resources */,
+				BBB4F66620E4ED27006B69E9 /* QHVCITSRoomUserListView.xib in Resources */,
+				9FAFD59A20D0CD2900F8BD35 /* QHVCEditBeautifyViewController.xib in Resources */,
 				9F4F7F902088498B0066A2B2 /* alpha_webm3.webm in Resources */,
 				9F4F7F812088498B0066A2B2 /* QHVCEditAuxFilterCell.xib in Resources */,
 				9F4F7F872088498B0066A2B2 /* QHVCEditOverlayTemplateView.xib in Resources */,
-				BB09BF972073700B00AE9BE9 /* QHVCITSGuestUserCell.xib in Resources */,
+				9FAFD5B720D0CD4700F8BD35 /* Sepia.png in Resources */,
+				BBB4F67920E4ED27006B69E9 /* QHVCInteractiveViewController.xib in Resources */,
 				9F4F7F4B2088498B0066A2B2 /* QHVCEditReorderViewController.xib in Resources */,
 				9F4F7F702088498B0066A2B2 /* Forever.mp3 in Resources */,
-				BB09BF922073700B00AE9BE9 /* QHVCITSLinkMicViewController.xib in Resources */,
 				9F4F7F762088498B0066A2B2 /* QHVCEditSubtitleView.xib in Resources */,
-				BB09BFA32073700B00AE9BE9 /* InteractiveSetting.plist in Resources */,
 				9F4F7FA82088498B0066A2B2 /* QHVCEditPhotoSelectedCell.xib in Resources */,
 				9F4F7F802088498B0066A2B2 /* QHVCEditAuxFilterView.xib in Resources */,
 				9F4F7FB02088498B0066A2B2 /* QHVCEditPlayerMainViewController.xib in Resources */,
-				BB09BFAA2073700B00AE9BE9 /* QHVCInteractiveViewController.xib in Resources */,
-				BBE45B2220889E40006875ED /* QHVCSettingCellStyleThree.xib in Resources */,
 				9F4F7F712088498B0066A2B2 /* Disco.mp3 in Resources */,
-				BB09BF8B2073700B00AE9BE9 /* QHVCITLFunction.plist in Resources */,
 				BB8976131F90993300D5E3BE /* upVideo.mp4 in Resources */,
+				9FAFD5B820D0CD4700F8BD35 /* Vista.png in Resources */,
 				9F4F7F942088498B0066A2B2 /* QHVCEditOverlaySpeedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1794,134 +2244,168 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB4F66F20E4ED27006B69E9 /* QHVCITSSettingViewController.m in Sources */,
 				0D5AE0761F5426A6002C4812 /* QHVCNavigationController.m in Sources */,
 				0D5AE0A01F542798002C4812 /* QHVCPlayingTableViewCellThree.m in Sources */,
+				BBB4F65920E4ED27006B69E9 /* QHVCITSLinkMicViewController+Control.m in Sources */,
 				9F4F7F542088498B0066A2B2 /* QHVCEditSpeedView.m in Sources */,
-				BB09BFA62073700B00AE9BE9 /* QHVCITSUserModel.m in Sources */,
 				0D090D0A1FB05019004D8EE4 /* QHVCLocalServerLocalFileManager.m in Sources */,
 				9F4F7F822088498B0066A2B2 /* QHVCEditAuxFilterViewController.m in Sources */,
 				BB8976111F90993300D5E3BE /* QHVCUploadingViewController.mm in Sources */,
 				9F4F7F6F2088498B0066A2B2 /* QHVCEditAddAudioCell.m in Sources */,
-				0D5AE0AD1F542798002C4812 /* QHVCSessionManager.m in Sources */,
+				BBB4F65B20E4ED27006B69E9 /* QHVCITSLinkMicViewController.m in Sources */,
 				9F4F7F4A2088498B0066A2B2 /* QHVCEditReorderViewController.m in Sources */,
-				BB09BFA52073700B00AE9BE9 /* QHVCITSRoomModel.m in Sources */,
-				BB09BFC72073748100AE9BE9 /* QHVCLiveMainCellTwo.m in Sources */,
+				9FAFD4E220D0C87F00F8BD35 /* EZAudioPlot.m in Sources */,
+				9FAFD50620D0C98E00F8BD35 /* QHVCEditOverlayBlendView.m in Sources */,
+				BBB4F65820E4ED27006B69E9 /* QHVCITSChatManager.m in Sources */,
 				9F4F7F492088498B0066A2B2 /* QHVCEditViewController.m in Sources */,
+				9FAFD59420D0CD2900F8BD35 /* QHVCEditEffectView.m in Sources */,
 				9F4F7F9C2088498B0066A2B2 /* QHVCEditOverlayVolumeView.m in Sources */,
-				0D5AE0AB1F542798002C4812 /* QHVCHTTPSession.m in Sources */,
-				BB09BF962073700B00AE9BE9 /* QHVCITSGuestUserCell.m in Sources */,
+				9FAFD4DF20D0C87F00F8BD35 /* EZAudioFloatData.m in Sources */,
+				9FAFD4E720D0C87F00F8BD35 /* EZAudioDisplayLink.m in Sources */,
+				9F1BB206219195AD0083BFAA /* AFHTTPRequestOperationManager.m in Sources */,
+				9FAFD4E520D0C87F00F8BD35 /* EZAudioUtilities.m in Sources */,
 				0D5AE05B1F54247D002C4812 /* AppDelegate.m in Sources */,
 				BB8976161F90993300D5E3BE /* QHVCUploadProgressView.m in Sources */,
+				9F94374F210EE95B00C68267 /* QHVCEditMosaicVC.m in Sources */,
+				BBB4F66720E4ED27006B69E9 /* QHVCITSModelListViewController.m in Sources */,
+				9F1BB209219195AD0083BFAA /* QHVCInterfaceRequest.m in Sources */,
 				9F4F7F562088498B0066A2B2 /* QHVCEditWatermaskViewController.m in Sources */,
 				9F4F7F9B2088498B0066A2B2 /* QHVCEditOverlayAlphaMovView.m in Sources */,
 				9F4F7FAF2088498B0066A2B2 /* QHVCEditPlayerViewController.m in Sources */,
-				BB09BF912073700B00AE9BE9 /* QHVCITSLinkMicViewController.m in Sources */,
-				BB09BF8A2073700B00AE9BE9 /* QHVCITSConfig.m in Sources */,
+				9F1BB1A621918E150083BFAA /* QHVCEditMainNavView.m in Sources */,
 				0D5AE0A61F542798002C4812 /* QHVCLivePlayingViewController.m in Sources */,
+				9FAFD4E820D0C87F00F8BD35 /* EZAudioFile.m in Sources */,
 				9F4F7F962088498B0066A2B2 /* QHVCEditOverlayChangeResourceVC.m in Sources */,
-				BB09BFAC2073700B00AE9BE9 /* QHVCITSUserSystem.m in Sources */,
+				9FAFD5D220D0CD7000F8BD35 /* QHVCEditQualityItem.m in Sources */,
+				BBB4F67A20E4ED27006B69E9 /* QHVCITSChatSystem.m in Sources */,
 				0D03804C1FDFECB600807DEA /* QHVCTabTableViewCell.m in Sources */,
+				9F1BB1BE219195080083BFAA /* QHVCEditReverseManager.m in Sources */,
 				0D090D0D1FB05019004D8EE4 /* QHVCLocalServerSettingCell.m in Sources */,
+				9FAFD4E020D0C87F00F8BD35 /* AudioWaveForm.m in Sources */,
 				9F4F7F632088498B0066A2B2 /* QHVCEditTailorRateVC.m in Sources */,
-				BB09BFCB2073748100AE9BE9 /* QHVCLiveSettingCellTwo.m in Sources */,
+				BBB4F67320E4ED27006B69E9 /* QHVCITSLog.m in Sources */,
+				9F1BB23A2191AFC90083BFAA /* QHVCFileManager.m in Sources */,
+				BBB4F67520E4ED27006B69E9 /* QHVCITSUserModel.m in Sources */,
 				0D5AE0A11F542798002C4812 /* QHVCPlayingTableViewCellTwo.m in Sources */,
 				9F4F7F732088498B0066A2B2 /* QHVCEditSubtitleViewController.m in Sources */,
 				9F4F7F5D2088498B0066A2B2 /* QHVCEditTailorMainView.m in Sources */,
-				BB09BFA92073700B00AE9BE9 /* QHVCInteractiveViewController.m in Sources */,
+				9F1BB207219195AD0083BFAA /* AFHTTPRequestOperation.m in Sources */,
 				9F4F7F5F2088498B0066A2B2 /* QHVCEditTailorViewController.m in Sources */,
+				9F1BB1BB219195080083BFAA /* QHVCEditKenburnsVC.m in Sources */,
+				9F1BB216219195AD0083BFAA /* UIViewAdditions.m in Sources */,
+				BBB4F67720E4ED27006B69E9 /* QHVCITSProtocolMonitor.m in Sources */,
 				0D5AE0A31F542798002C4812 /* QHVCSegmentView.m in Sources */,
 				9F4F7F752088498B0066A2B2 /* QHVCEditSubtitleView.m in Sources */,
 				9F4F7F602088498B0066A2B2 /* QHVCEditTailorFormatView.m in Sources */,
+				9F1BB1BC219195080083BFAA /* QHVCEditKenburnsView.m in Sources */,
 				9F4F7F992088498B0066A2B2 /* QHVCEditOverlayChromakeyView.m in Sources */,
-				BB09BF932073700B00AE9BE9 /* QHVCITSVideoSession.m in Sources */,
 				9F4F7F7B2088498B0066A2B2 /* QHVCEditFrameView.m in Sources */,
 				BB09BFB72073743A00AE9BE9 /* QHVCConfig.m in Sources */,
 				9F4F7F8B2088498B0066A2B2 /* QHVCEditOverlayVC.m in Sources */,
+				BBB4F66420E4ED27006B69E9 /* QHVCITRoleView.m in Sources */,
+				9FAFD4E120D0C87F00F8BD35 /* EZPlot.m in Sources */,
+				9F1BB212219195AD0083BFAA /* QHVCLiveSettingCellTwo.m in Sources */,
 				0D13BD7E1F8CBECC0076CDE3 /* QHVCLiveListViewController.m in Sources */,
 				9F4F7F6B2088498B0066A2B2 /* QHVCEditAudioItem.m in Sources */,
-				9F4F7F722088498B0066A2B2 /* QHVCEditMainNavView.m in Sources */,
+				BBB4F67820E4ED27006B69E9 /* QHVCInteractiveViewController.m in Sources */,
+				9F1BB20B219195AD0083BFAA /* md5.cpp in Sources */,
+				BBB4F66920E4ED27006B69E9 /* QHVCITSRoomListCell.m in Sources */,
 				0D090D061FB05019004D8EE4 /* QHVCLocalServerCachedCell.m in Sources */,
-				BB09BFA82073700B00AE9BE9 /* QHVCITSProtocolMonitor.m in Sources */,
+				9FAFD51020D0C9A600F8BD35 /* QHVCEditEffectCell.m in Sources */,
 				0D5AE0B71F54299C002C4812 /* ViewController.m in Sources */,
+				9F1BB218219195AD0083BFAA /* QHVCHUDManager.m in Sources */,
 				9F4F7FA12088498B0066A2B2 /* QHVCEditOverlayBgColorView.m in Sources */,
+				9F1BB1A521918E150083BFAA /* QHVCEditMainViewController.m in Sources */,
 				9F4F7FA62088498B0066A2B2 /* QHVCEditPhotoSelectedCell.m in Sources */,
 				0D090D081FB05019004D8EE4 /* QHVCLocalServerDownloadManager.m in Sources */,
-				0D5AE0AC1F542798002C4812 /* QHVCInterfaceRequest.m in Sources */,
-				BB09BF942073700B00AE9BE9 /* QHVCITSActionCell.m in Sources */,
+				BBB4F66220E4ED27006B69E9 /* QHVCITSHongpaCell.m in Sources */,
 				9F4F7F582088498B0066A2B2 /* QHVCEditSegmentCell.m in Sources */,
 				9F4F7FAC2088498B0066A2B2 /* QHVCEditPlayerMainViewController.m in Sources */,
-				0D13BD7B1F8CBE5F0076CDE3 /* QHVCHUDManager.m in Sources */,
 				0D090D0F1FB05019004D8EE4 /* QHVCLocalServerViewController.mm in Sources */,
-				0D5AE0AA1F542798002C4812 /* md5.cpp in Sources */,
+				9F1BB1BA219195080083BFAA /* QHVCEditDynamicSubtitleVC.m in Sources */,
+				9FAFD4E620D0C87F00F8BD35 /* EZAudioFloatConverter.m in Sources */,
+				BBB4F65E20E4ED27006B69E9 /* QHVCITSActionCell.m in Sources */,
 				9F4F7F8D2088498B0066A2B2 /* QHVCEditOverlayContentView.m in Sources */,
 				0D5AE09E1F542798002C4812 /* QHVCPlayerInfoTableViewCell.m in Sources */,
 				9F4F7F852088498B0066A2B2 /* QHVCEditOverlayBottomView.m in Sources */,
-				BB09BF9D2073700B00AE9BE9 /* QHVCITSRoomListCell.m in Sources */,
 				9F4F7F842088498B0066A2B2 /* QHVCEditAuxFilterCell.m in Sources */,
 				9F4F7FA22088498B0066A2B2 /* QHVCEditOverlayItemPreview.m in Sources */,
+				9F1BB20D219195AD0083BFAA /* QHVCToast.m in Sources */,
 				9F4F7F672088498B0066A2B2 /* QHVCEditStickerIconView.m in Sources */,
 				9F4F7F4C2088498B0066A2B2 /* QHVCEditClipView.m in Sources */,
 				9F4F7F832088498B0066A2B2 /* QHVCEditAuxFilterView.m in Sources */,
 				0D090D0E1FB05019004D8EE4 /* QHVCLocalServerSettingViewController.m in Sources */,
 				0D090D0C1FB05019004D8EE4 /* QHVCLocalServerPlayerView.m in Sources */,
 				0D5AE0581F54247D002C4812 /* main.m in Sources */,
-				BB09BF9F2073700B00AE9BE9 /* QHVCITSRoomListViewController.m in Sources */,
+				BBB4F65A20E4ED27006B69E9 /* QHVCITSLinkMicViewController+Hongpa.m in Sources */,
 				9F4F7F7E2088498B0066A2B2 /* QHVCEditCropRectControl.m in Sources */,
 				9F4F7F882088498B0066A2B2 /* QHVCEditOverlayTemplateCell.m in Sources */,
 				0D5AE0A21F542798002C4812 /* QHVCPlayerInfoTextView.m in Sources */,
-				BB09BFB22073738400AE9BE9 /* UIView+Toast.m in Sources */,
+				BBB4F66020E4ED27006B69E9 /* QHVCITSGuestUserCell.m in Sources */,
 				9F4F7F692088498B0066A2B2 /* QHVCEditMainFunctionCell.m in Sources */,
+				9F1BB217219195AD0083BFAA /* UIView+Toast.m in Sources */,
+				9F1BB20C219195AD0083BFAA /* QHVCTool.m in Sources */,
 				0D090D091FB05019004D8EE4 /* QHVCLocalServerDownloadViewController.m in Sources */,
+				BBB4F66B20E4ED27006B69E9 /* QHVCITSRoomListViewController.m in Sources */,
 				9F4F7F5A2088498B0066A2B2 /* QHVCEditTransferView.m in Sources */,
-				BB09BF902073700B00AE9BE9 /* QHVCITSLinkMicViewController+Control.m in Sources */,
-				BB09BFA12073700B00AE9BE9 /* QHVCITSSettingViewController.m in Sources */,
 				9F4F7F532088498B0066A2B2 /* QHVCEditSpeedViewController.m in Sources */,
+				9F1BB205219195AD0083BFAA /* AFURLConnectionOperation.m in Sources */,
 				9F4F7F9A2088498B0066A2B2 /* QHVCEditOverlayToolsView.m in Sources */,
 				0D090D0B1FB05019004D8EE4 /* QHVCLocalServerPlayerCell.m in Sources */,
-				BB09BFAB2073700B00AE9BE9 /* QHVCITSChatSystem.m in Sources */,
+				9FAFD59820D0CD2900F8BD35 /* QHVCEditBeautifyView.m in Sources */,
+				BBB4F67620E4ED27006B69E9 /* QHVCITSHTTPSessionManager.m in Sources */,
 				0D5AE0A41F542798002C4812 /* QHVCSlider.m in Sources */,
 				9F4F7F792088498B0066A2B2 /* QHVCEditCutView.m in Sources */,
+				9F1BB20A219195AD0083BFAA /* QHVCLogger.m in Sources */,
+				9F1BB208219195AD0083BFAA /* QHVCHTTPSession.m in Sources */,
 				9F4F7F6E2088498B0066A2B2 /* QHVCEditAddAudioView.m in Sources */,
 				9F4F7FA92088498B0066A2B2 /* QHVCEditPhotoManager.m in Sources */,
 				9F4F7F592088498B0066A2B2 /* QHVCEditSegmentItem.m in Sources */,
+				9F1BB210219195AD0083BFAA /* QHVCLiveMainCellOne.m in Sources */,
+				9FAFD59920D0CD2900F8BD35 /* QHVCEditBeautifyViewController.m in Sources */,
 				9F4F7F7A2088498B0066A2B2 /* QHVCEditCropRectView.m in Sources */,
 				9F4F7F662088498B0066A2B2 /* QHVCEditMatrixItem.m in Sources */,
+				9FAFD59620D0CD2900F8BD35 /* QHVCEditEffectViewController.m in Sources */,
+				BBB4F67B20E4ED27006B69E9 /* QHVCITSUserSystem.m in Sources */,
 				9F4F7FA32088498B0066A2B2 /* QHVCEditPrefs.m in Sources */,
 				0D5AE0A51F542798002C4812 /* QHVCGeneralPlayingViewController.m in Sources */,
-				BB09BF992073700B00AE9BE9 /* QHVCITSRoomUserListView.m in Sources */,
+				9F943743210EE94100C68267 /* QHVCEditVC.m in Sources */,
 				9F4F7F512088498B0066A2B2 /* QHVCEditQualityViewController.m in Sources */,
 				9F4F7FA72088498B0066A2B2 /* QHVCEditPhotoItemCell.m in Sources */,
+				BBB4F67420E4ED27006B69E9 /* QHVCITSRoomModel.m in Sources */,
 				9F4F7F742088498B0066A2B2 /* QHVCEditSubtitleItem.m in Sources */,
-				BB09BFC52073748100AE9BE9 /* QHVCLiveMainCellOne.m in Sources */,
-				BBE45B1A20889DD6006875ED /* QHVCToast.m in Sources */,
 				0D090D071FB05019004D8EE4 /* QHVCLocalServerDownloadingCell.m in Sources */,
 				BB8976141F90993300D5E3BE /* QHVCUploadFinishView.m in Sources */,
-				BB09BFC92073748100AE9BE9 /* QHVCLiveSettingCellOne.m in Sources */,
+				BBB4F65D20E4ED27006B69E9 /* QHVCITSVideoSession.m in Sources */,
 				0D5AE09F1F542798002C4812 /* QHVCPlayingTableViewCellOne.m in Sources */,
 				9F4F7F652088498B0066A2B2 /* QHVCEditTailorFillCell.m in Sources */,
 				9F4F7FAE2088498B0066A2B2 /* QHVCEditCommandManager.m in Sources */,
-				BB09BF8F2073700B00AE9BE9 /* QHVCITSChatManager.m in Sources */,
+				9FAFD50220D0C8F200F8BD35 /* QHVCEditAlterSoundView.m in Sources */,
 				9F4F7F5B2088498B0066A2B2 /* QHVCEditTransferViewController.m in Sources */,
-				BB09BFA72073700B00AE9BE9 /* QHVCITSHTTPSessionManager.m in Sources */,
 				9F4F7FA42088498B0066A2B2 /* QHVCEditMakeViewController.m in Sources */,
-				BBE45B2120889E40006875ED /* QHVCSettingCellStyleThree.m in Sources */,
-				BB09BF9B2073700B00AE9BE9 /* QHVCITSModelListViewController.m in Sources */,
 				9F4F7F8A2088498B0066A2B2 /* QHVCEditOverlayTemplateView.m in Sources */,
 				9F4F7FAD2088498B0066A2B2 /* QHVCEditBaseViewController.m in Sources */,
 				9F4F7F7C2088498B0066A2B2 /* QHVCEditFrameCell.m in Sources */,
-				BB09BFA42073700B00AE9BE9 /* QHVCITSLog.m in Sources */,
+				9F943750210EE95B00C68267 /* QHVCEditMosaicView.m in Sources */,
+				9F1BB211219195AD0083BFAA /* QHVCLiveSettingCellOne.m in Sources */,
 				9F4F7F982088498B0066A2B2 /* QHVCEditOverlaySpeedView.m in Sources */,
 				9F4F7F782088498B0066A2B2 /* QHVCEditCutViewController.m in Sources */,
+				9F1BB204219195AD0083BFAA /* QHVCSessionManager.m in Sources */,
+				9FAFD4E320D0C87F00F8BD35 /* TPCircularBuffer.c in Sources */,
+				BBB4F66520E4ED27006B69E9 /* QHVCITSRoomUserListView.m in Sources */,
+				BBB4F65320E4ED27006B69E9 /* QHVCITSConfig.m in Sources */,
 				0D5AE0A71F542798002C4812 /* QHVCPlayerViewController.mm in Sources */,
+				9FAFD50E20D0C9A600F8BD35 /* QHVCEditCommonCell.m in Sources */,
+				9F1BB213219195AD0083BFAA /* QHVCLiveMainCellTwo.m in Sources */,
 				9F4F7F522088498B0066A2B2 /* QHVCEditQualityView.m in Sources */,
-				9F4F7F4F2088498B0066A2B2 /* QHVCEditMainViewController.m in Sources */,
-				BB09BFB32073738400AE9BE9 /* UIViewAdditions.m in Sources */,
-				BB09BF8D2073700B00AE9BE9 /* QHVCITSCreateRoomViewController.m in Sources */,
+				BBB4F65620E4ED27006B69E9 /* QHVCITSCreateRoomViewController.m in Sources */,
 				9F4F7F8C2088498B0066A2B2 /* QHVCEditOverlayResourceVC.m in Sources */,
+				9FAFD4E420D0C87F00F8BD35 /* EZAudio.m in Sources */,
 				9F4F7F6A2088498B0066A2B2 /* QHVCEditAudioViewController.m in Sources */,
+				BBB4F66D20E4ED27006B69E9 /* QHVCSettingCellStyleThree.m in Sources */,
 				9F4F7FA02088498B0066A2B2 /* QHVCEditOverlayBgColorCell.m in Sources */,
 				9F4F7FAA2088498B0066A2B2 /* QHVCEditPhotoItem.m in Sources */,
-				BB09BF982073700B00AE9BE9 /* QHVCITRoleView.m in Sources */,
 				0D5AE0A81F542798002C4812 /* QHVCPlayerServiceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2035,11 +2519,13 @@
 			baseConfigurationReference = 5E07FDE447B8B248679997E1 /* Pods-QHVideoCloudDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9ZASTA83ZL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QHVideoCloudDemo/Framework",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "QHVideoCloudDemo/QHVideoCloudDemo-Prefix.pch";
 				INFOPLIST_FILE = QHVideoCloudDemo/Info.plist;
@@ -2049,8 +2535,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QHVideoCloudDemo/Framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qihoo.QHVideoCloudDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qhvideocloud.QHVideoCloudDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = QHVideoCloudDemo;
 			};
 			name = Debug;
 		};
@@ -2059,11 +2546,13 @@
 			baseConfigurationReference = 4459D8E4E43FFA7C4D60952A /* Pods-QHVideoCloudDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9ZASTA83ZL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QHVideoCloudDemo/Framework",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "QHVideoCloudDemo/QHVideoCloudDemo-Prefix.pch";
 				INFOPLIST_FILE = QHVideoCloudDemo/Info.plist;
@@ -2073,8 +2562,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/QHVideoCloudDemo/Framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qihoo.QHVideoCloudDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qhvideocloud.QHVideoCloudDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = QHVideoCloudDemo;
 			};
 			name = Release;
 		};

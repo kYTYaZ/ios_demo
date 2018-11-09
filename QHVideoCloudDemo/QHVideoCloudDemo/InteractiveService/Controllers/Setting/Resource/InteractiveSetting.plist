@@ -18,7 +18,18 @@
 					<string>测试环境</string>
 				</array>
 				<key>index</key>
-				<string>1</string>
+				<string>0</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>视频采集方式</string>
+				<key>options</key>
+				<array>
+					<string>SDK采集</string>
+					<string>外部采集</string>
+				</array>
+				<key>index</key>
+				<string>0</string>
 			</dict>
 			<dict>
 				<key>title</key>

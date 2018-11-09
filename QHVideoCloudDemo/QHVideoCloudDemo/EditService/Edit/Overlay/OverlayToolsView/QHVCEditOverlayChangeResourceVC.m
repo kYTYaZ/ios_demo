@@ -36,20 +36,21 @@
 
 - (void)nextAction:(UIButton *)btn
 {
-    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:self.selectedLists];
-    WEAK_SELF
-    [self.selectedLists enumerateObjectsUsingBlock:^(QHVCEditPhotoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         STRONG_SELF
-         [[QHVCEditCommandManager manager] updateOverlayFile:obj overlayId:self.item.overlayCommandId];
-         self.item.startTimestampMs = obj.startMs;
-         self.item.endTiemstampMs = obj.endMs;
-         [[QHVCEditCommandManager manager] updateMatrix:self.item];
-     }];
-    
-    
-    SAFE_BLOCK(self.resetPlayerAction);
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[QHVCEditPhotoManager manager] writeAssetsToSandbox:self.selectedLists complete:^{
+        WEAK_SELF
+        [self.selectedLists enumerateObjectsUsingBlock:^(QHVCEditPhotoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+         {
+             STRONG_SELF
+             [[QHVCEditCommandManager manager] updateOverlayFile:obj overlayId:self.item.overlayCommandId];
+             self.item.startTimestampMs = obj.startMs;
+             self.item.endTiemstampMs = obj.endMs;
+             [[QHVCEditCommandManager manager] updateMatrix:self.item];
+         }];
+        
+        
+        SAFE_BLOCK(self.resetPlayerAction);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 @end

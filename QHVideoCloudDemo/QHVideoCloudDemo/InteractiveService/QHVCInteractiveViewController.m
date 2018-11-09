@@ -9,7 +9,6 @@
 #import "QHVCInteractiveViewController.h"
 #import "QHVCLiveMainCellOne.h"
 #import "QHVCITSRoomListViewController.h"
-
 #import <QHVCCommonKit/QHVCCommonKit.h>
 #import <QHVCInteractiveKit/QHVCInteractiveKit.h>
 
@@ -47,15 +46,16 @@ static NSString *mainCellIdenitifer = @"QHVCLiveMainCellOne";
     [super viewDidLoad];
     
     [QHVCITSLog setLoggerLevel:QHVCITS_LOG_LEVEL_DEBUG];
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"QHVCITLMain" ofType:@"plist"];
-    _configsArray = [NSMutableArray arrayWithContentsOfFile:path];
-    
-    [[QHVCITSConfig sharedInstance] setEnableTestEnvironment:YES];
     [[QHVCITSConfig sharedInstance] setSessionId:[NSString stringWithFormat:@"session_yk_test_%lld",[QHVCToolUtils getCurrentDateBySecond]]];
     [[QHVCITSConfig sharedInstance] setDeviceId:[QHVCToolDeviceModel getDeviceUUID]];
     
     _httpManager = [QHVCITSHTTPSessionManager new];
+    
+    //输入业务标识、服务标识、AK、SK等配置信息，请在QHVCITLMain.plist中配置
+    //优先读取本地保存的配置文件，如果有配置文件，优先读取本地保存文件；如果无配置文件，读取默认配置文件。该处文件包括QHVCITLMain和InteractiveSetting的内容
+    [[QHVCITSConfig sharedInstance] readAccountSetting];
+    [[QHVCITSConfig sharedInstance] readUserSetting];
+    _configsArray = [[QHVCITSConfig sharedInstance] accountSettings];
 }
 
 #pragma mark UITableView
@@ -125,9 +125,8 @@ static NSString *mainCellIdenitifer = @"QHVCLiveMainCellOne";
             user.nickName = user.userId;
         }
         user.portraint = data[@"portraint"];
-        
+        user.imContext = data[@"imContext"];
         [QHVCITSUserSystem sharedInstance].userInfo = user;
-        user.userSign = [[QHVCITSUserSystem sharedInstance] getUserSign];
         
         [self gotoModelListViewController];
     }
@@ -141,6 +140,12 @@ static NSString *mainCellIdenitifer = @"QHVCLiveMainCellOne";
 - (void)gotoModelListViewController
 {
     QHVCITSModelListViewController *vc = [[QHVCITSModelListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)setting:(id)sender
+{
+    QHVCITSSettingViewController *vc = [[QHVCITSSettingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -24,7 +24,7 @@
                 appVer:(NSString *)appVer
               deviceId:(NSString *)deviceId
                  model:(NSString *)model
-        optionalParams:(const OptionalParams *)ops;
+        optionalParams:(OptionalParams *)ops;
 /**
  * 网络变化时通知传输层进行相应处理
  * @param type 网络变化类型

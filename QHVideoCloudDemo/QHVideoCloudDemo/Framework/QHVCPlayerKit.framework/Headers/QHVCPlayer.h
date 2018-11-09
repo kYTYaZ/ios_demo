@@ -37,6 +37,17 @@ typedef NS_ENUM(NSInteger, QHVCPlayerRenderMode)
 };
 
 /**
+ 播放器声音权限
+ */
+typedef NS_ENUM(NSInteger, QHVCAudioSessionCategory)
+{
+    QHVCAudioSessionCategoryPlayback   = 0,     //默认
+    QHVCAudioSessionCategoryAmbient  = 1,       //混音
+    QHVCAudioSessionCategorySoloAmbient = 2,    //声音独占
+    QHVCAudioSessionCategoryPlayAndRecord = 3,  //播放录制
+};
+
+/**
  定义播放器错误信息
  */
 typedef NS_ENUM(NSInteger, QHVCPlayerError)
@@ -206,6 +217,18 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (void)onPlayerSystemVolume:(float)volume;
 
+/**
+ 音频音高回调
+ @param volume 大小
+ */
+- (void)audioPitch:(int)volume player:(QHVCPlayer *_Nonnull)player;
+
+/**
+ 接收自定义透传数据
+ @param data 自定义数据
+ */
+- (void)onUserData:(NSData *_Nullable)data;
+
 @end
 
 @interface QHVCPlayer : NSObject
@@ -255,7 +278,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue"}
+ @param options @{@"streamType":@"intValue",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"playMode":@"intValue"，@"audioSessionCategory"：@"intValue",@"setPreferredIOBufferDuration"：@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithURL:(NSString * _Nonnull)URL
@@ -273,7 +296,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  @param channelId 渠道ID，使用者从平台申请，eg:live_huajiao_v2
  @param userId 用户ID，用户标识，唯一标识（需要详细说明）
  @param playType 播放类型，直播、点播、本地
- @param options @{@"streamType":@"streamType",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue"}
+ @param options @{@"streamType":@"intValue",@"hardDecode":@"boolValue",@"position":@"longValue",@"mute":@"boolValue",@"forceP2p":@"boolValue",@"playMode":@"intValue",@"audioSessionCategory"：@"intValue",@"setPreferredIOBufferDuration"：@"boolValue"}
  @return 成功：播放器对象, 失败：nil
  */
 - (QHVCPlayer * _Nullable)initWithUrlArray:(NSArray<NSString *> *_Nullable)urlArray
@@ -307,14 +330,18 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 
 /**
  创建播放器渲染playerView
-
  @return playerView
  */
 - (UIView *_Nonnull)createPlayerViewWithFrame:(CGRect)frame;
 
 /**
- 创建播放器渲染playerView(add在传入的view上)
+ 创建播放器渲染playerView 透明
+ @return playerView
+ */
+- (UIView *_Nonnull)createPlayerTransparentViewWithFrame:(CGRect)frame;
 
+/**
+ 创建播放器渲染playerView(add在传入的view上)
  @param view playerView
  */
 - (void)createPlayerView:(UIView *_Nonnull)view;
@@ -326,11 +353,36 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (void)createPlayerConstraintView:(UIView *_Nonnull)view;
 
 /**
+ 创建播放器渲染playerView(add在传入的view上)透明
+ @param view playerView
+ */
+- (void)createPlayerTransparentView:(UIView *_Nonnull)view;
+
+/**
+ 创建播放器渲染playerView(add在传入的view上)透明
+ @param view playerView
+ */
+- (void)createPlayerConstraintTransparentView:(UIView *_Nonnull)view;
+
+/**
  释放player时候是否移除playerView
 
  @param remove 默认移除
  */
 - (void)removePlayerViewWhenPlayerRelease:(BOOL)remove;
+
+/**
+ 重置画布（GLView大小变化之后调用，如果不调用画面可能变虚：注意不能频繁调用，如果有动画，建议在动画结束时候调用。否则可能出现绿屏）
+ */
+- (void)resetCanvas;
+
+/**
+ 渲染位置偏移
+ 
+ @param offset 偏移量
+ @param heigth 画布高度
+ */
+- (void)playerViewTranslate:(int)offset canvasHeight:(int)heigth;
 
 /**
  播放器准备播放，准备完毕后回调onPrepared
@@ -354,10 +406,17 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 
 /**
  播放过程中改变进度操作,直播场景无效
- *  @param positionByMS 点播视频位置，单位秒(millisecond)
+ *  @param positionByS 点播视频位置，单位秒(second)
  *  @return 成功：YES，失败：NO
  */
-- (BOOL)seekTo:(NSTimeInterval)positionByMS;
+- (BOOL)seekTo:(NSTimeInterval)positionByS;
+
+/**
+ 精确seek
+ @param positionByS 单位秒
+ @return 成功：YES，失败：NO
+ */
+- (BOOL)preciseSeekTo:(NSTimeInterval)positionByS;
 
 /**
  点播视频当前播放时间
@@ -380,6 +439,18 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
  */
 - (double)getDownloadProgress;
 
+/**
+ 获取相对时间
+ 
+ @return return 时间
+ */
+- (unsigned long long)getCurrentStreamTime;
+
+/**
+ 获取p2p信息
+
+ @return 详情
+ */
 - (nullable NSDictionary *)getP2pInfo;
 
 /**
@@ -412,11 +483,28 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (float)getVolume;
 
 /**
+ 设置音高回调间隔
+ 
+ @param amount 间隔大小
+ */
+- (void)setAudioPitchCallbackInterval:(uint)amount;
+
+/**
  设置静音
 
  @param mute 是否静音
  */
 - (void)setMute:(BOOL)mute;
+
+/**
+ 销毁音频模块
+ */
+- (void)destroyAudioModule;
+
+/**
+ 重启音频模块
+ */
+- (void)reStartAudioModule;
 
 /**
  是否静音
@@ -441,7 +529,7 @@ typedef NS_ENUM(NSInteger, QHVCPlayerLogLevel)
 - (BOOL)snapshotImage:(void (^_Nonnull)(UIImage * _Nullable image))callback;
 
 /**
- 设置p2p上传开关是否打开
+ 设置p2p上传开关是否打开(已弃用，使用云控配置该功能)
  
  @param enableUpload yes:允许上传 or no:禁止上传 默认值为no
  */

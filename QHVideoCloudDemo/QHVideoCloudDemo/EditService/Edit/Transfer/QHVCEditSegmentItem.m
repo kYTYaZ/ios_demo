@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        _transferType = QHVCEditTransferTypeNone;
+        _transferIndex = 0;
     }
     return self;
 }

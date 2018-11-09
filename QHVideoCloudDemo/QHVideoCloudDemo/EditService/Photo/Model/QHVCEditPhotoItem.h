@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import <QHVCEditKit/QHVCEditCommand.h>
 
 @class QHVCEditThumbnailItem;
-
 @interface QHVCEditPhotoItem : NSObject<NSMutableCopying>
 
 @property (nonatomic, strong) UIImage *thumbImage;
@@ -19,6 +19,8 @@
 @property (nonatomic, assign) CGSize thumbImageCacheSize;
 @property (nonatomic, assign) BOOL isSelected;
 @property (nonatomic, strong) NSString *filePath;
+@property (nonatomic, strong) NSString* photoFileIdentifier;   //相册中的文件标识符，用于直接从相册读取数据的场景
+@property (nonatomic, strong) NSArray<QHVCEditSlowMotionVideoInfo *>* slowMotionVideoInfos;
 
 @property (nonatomic, strong) NSMutableArray<QHVCEditThumbnailItem *> *thumbs;
 @property (nonatomic, assign) NSTimeInterval startMs;

@@ -40,12 +40,6 @@ static NSString *functionCellIdentifier = @"functionCellIdentifier";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)setting:(id)sender
-{
-    QHVCITSSettingViewController *vc = [[QHVCITSSettingViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark UITableView
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

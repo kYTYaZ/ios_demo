@@ -10,10 +10,13 @@
 #import "QHVCITSDefine.h"
 #import "QHVCITSConfig.h"
 #import "QHVCITSRoomModel.h"
+#import "QHVCITSVideoSession.h"
 
 @interface QHVCITSLinkMicViewController : UIViewController
 {
     IBOutlet UICollectionView *_actionCollectionView;
+    IBOutlet UITableView *_hongpaTableView;
+    
     IBOutlet UIButton *_existFullScreenBtn;
     IBOutlet UIView *_controlView;
     
@@ -27,5 +30,7 @@
     
     BOOL _isFullScreen;
 }
+
+@property (nonatomic, strong) NSMutableArray<QHVCITSVideoSession *> *videoSessionArray;//连麦会话数组，存放参与连麦的主播、嘉宾会话对象
 
 @end

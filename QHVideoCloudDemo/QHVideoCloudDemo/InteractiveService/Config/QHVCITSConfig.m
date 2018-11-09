@@ -42,7 +42,7 @@
     _mergeVideoCanvasWidth = QHVCITS_VIDEO_WIDTH;
     _mergeVideoCanvasHeight = QHVCITS_VIDEO_HEIGHT;
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"InteractiveVideoProfile" ofType:@"plist"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:QHVCITS_INTERACTIVE_VIDEO_PROFILE_FILE ofType:@"plist"];
     _videoProfiles = [NSMutableArray arrayWithContentsOfFile:path];
     
     return self;
@@ -50,6 +50,7 @@
 
 - (void) setEnableTestEnvironment:(BOOL)enableTestEnvironment
 {
+    _enableTestEnvironment = enableTestEnvironment;
     if (enableTestEnvironment)
     {
         [self setInteractiveServerUrl:QHVCITS_TEST_ENV_INTERACTIVE_SERVER_URL];
@@ -57,7 +58,71 @@
     {
         [self setInteractiveServerUrl:QHVCITS_RELEASE_ENV_INTERACTIVE_SERVER_URL];
     }
-    _enableTestEnvironment = enableTestEnvironment;
+}
+
+- (void) readAccountSetting
+{
+    NSURL *path = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    NSString* accountSettingCachePath = [path.relativePath stringByAppendingString:QHVCITS_INTERACTIVE_ACCOUNT_SAVE_PATH];
+    NSMutableArray<NSMutableDictionary *> *accountSettings = [NSMutableArray arrayWithContentsOfFile:accountSettingCachePath];
+    if (accountSettings.count <= 0) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"QHVCITLMain" ofType:@"plist"];
+        accountSettings = [NSMutableArray arrayWithContentsOfFile:path];
+    }
+    [self setAccountSettings:accountSettings];
+}
+
+- (void) setAccountSettings:(NSMutableArray<NSMutableDictionary *> *)accountSettings
+{
+    _accountSettings = accountSettings;
+    if (accountSettings == nil)
+    {
+        _businessId = nil;
+        _channelId = nil;
+        _appKey = nil;
+        _appSecret = nil;
+        return;
+    }
+    _businessId = accountSettings[0][@"value"];
+    _channelId = accountSettings[1][@"value"];
+    _appKey = accountSettings[2][@"value"];
+    _appSecret = accountSettings[3][@"value"];
+}
+
+- (void) readUserSetting
+{
+    NSURL *path = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    NSString* userSettingCachePath = [path.relativePath stringByAppendingString:QHVCITS_INTERACTIVE_USER_SETTING_SAVE_PATH];
+    NSMutableArray<NSMutableDictionary *> *userSettings = [NSMutableArray arrayWithContentsOfFile:userSettingCachePath];
+    if (userSettings.count <= 0) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"InteractiveSetting" ofType:@"plist"];
+        userSettings = [NSMutableArray arrayWithContentsOfFile:path];
+    }
+    [self setUserSettings:userSettings];
+}
+
+- (void) setUserSettings:(NSMutableArray<NSMutableDictionary *> *)userSettings
+{
+    _userSettings = userSettings;
+    if (userSettings == nil)
+    {
+        return;
+    }
+    NSArray *publicConfig = userSettings[0][@"config"];
+    NSString *debugEnv = [publicConfig[0] objectForKey:@"index"];
+    [self setEnableTestEnvironment:[debugEnv boolValue]];
+    
+    NSString *dataCollect = [publicConfig[1] objectForKey:@"index"];
+    [self setDataCollectMode:(QHVCITLDataCollectMode)(dataCollect.integerValue+1)];
+    
+    
+    NSString *anchorVideoProfile = userSettings[1][@"index"];
+    NSString *anchorProfileIndex = _videoProfiles[anchorVideoProfile.integerValue][@"profileIndex"];
+    _videoEncoderProfile = anchorProfileIndex.integerValue;
+
+    NSString *guestVideoProfile = userSettings[2][@"index"];
+    NSString *guestProfileIndex = _videoProfiles[guestVideoProfile.integerValue][@"profileIndex"];
+    _videoEncoderProfileForGuest = guestProfileIndex.integerValue;
 }
 
 @end

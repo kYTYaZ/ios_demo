@@ -29,7 +29,7 @@
 - (id)init
 {
     self = [super init];
-    
+ 
     return self;
 }
 
@@ -37,12 +37,13 @@
 {
     NSString* channelId = [[QHVCITSConfig sharedInstance] channelId];
     NSString* userId = [self userInfo].userId;
+    NSString* roomId = [_roomInfo roomId];
     NSString* appSecret = [[QHVCITSConfig sharedInstance] appSecret];
-    if([QHVCToolUtils isNullString:userId])
+    if([QHVCToolUtils isNullString:userId] || [QHVCToolUtils isNullString:roomId] || [QHVCToolUtils isNullString:channelId] || [QHVCToolUtils isNullString:appSecret])
     {
         return nil;
     }
-    NSString* temp = [NSString stringWithFormat:@"sname__%@uid__%@%@",channelId,userId,appSecret];
+    NSString* temp = [NSString stringWithFormat:@"sname__%@room_id__%@uid__%@%@",channelId,roomId,userId,appSecret];
     NSString* md5 = [QHVCToolUtils getMD5String:temp];
     return md5;
 }

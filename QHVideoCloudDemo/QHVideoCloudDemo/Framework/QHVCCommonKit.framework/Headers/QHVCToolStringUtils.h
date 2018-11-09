@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "QHVCToolUtils.h"
 
+@class UIColor;
 @interface QHVCToolUtils(QHVCToolStringUtils)
 
 
@@ -67,5 +68,22 @@
  */
 + (NSData *) getRC4Data:(NSData *)aInput key:(NSString*)aKey;
 
+
+/**
+ UIColor转换为字符串对象
+
+ @param color 待转换的颜色
+ @return 转换后的字符串值
+ */
++ (NSString *)hexStringFromColor:(UIColor *)color;
+
+
+/**
+ 字符串转换为UIColor对象
+
+ @param hexString 待转换的字符串
+ @return 转换后的UIColor对象
+ */
++ (UIColor *) colorWithHexString: (NSString *) hexString;
 
 @end

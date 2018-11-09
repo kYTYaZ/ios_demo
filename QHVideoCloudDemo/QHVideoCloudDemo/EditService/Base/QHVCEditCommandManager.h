@@ -23,15 +23,23 @@ typedef NS_ENUM(NSInteger, QHVCEditCommandStatus) {
 
 typedef NS_ENUM(NSInteger, QHVCEditCommandOperation) {
     QHVCEditCommandOperationAddFile = 1,
-    QHVCEditCommandOperationAddWatermask,
     QHVCEditCommandOperationAdjustQuality,
+    QHVCEditCommandOperationAddImage,
     QHVCEditCommandOperationAddFilter,
     QHVCEditCommandOperationAddMatrix,
     QHVCEditCommandOperationAddAudio,
-    QHVCEditCommandOperationAddSubtitle,
     QHVCEditCommandOperationAddOverlay,
     QHVCEditCommandOperationAddChromakey,
+    QHVCEditCommandOperationAddFade,
+    QHVCEditCommandOperationAddBeauty,
+    QHVCEditCommandOperationAddEffect,
+    QHVCEditCommandOperationAddMosaic,
+    QHVCEditCommandOperationAddDelogo,
+    QHVCEditCommandOperationAddKenburns,
+    QHVCEditCommandOperationAddDynamicSubtitle,
 };
+
+typedef void(^QHVCEditSegmentInfoBlock)(NSArray<QHVCEditSegmentInfo *>* segments, NSInteger totalDuration);
 
 @interface QHVCEditCommandManager : NSObject
 
@@ -49,18 +57,39 @@ typedef NS_ENUM(NSInteger, QHVCEditCommandOperation) {
 - (NSArray<NSDictionary *> *)fetchFiles;
 
 - (void)fetchThumbs:(NSString *)filePath start:(NSTimeInterval)startMs end:(NSTimeInterval)endMs frameCnt:(int)count thumbSize:(CGSize)size completion:(void (^)(NSArray<QHVCEditThumbnailItem *> *thumbnails))completion;
-- (void)fetchSegmentInfo:(QHVCEditSegmentInfoBlock)complete;
 
-- (void)addWatermask:(UIImage *)watermask;
-- (void)deleteWatermask;
+- (void)fetchPhotoFileThumbs:(NSString *)photoFileIdentifier start:(NSTimeInterval)startMs end:(NSTimeInterval)endMs frameCnt:(int)count thumbSize:(CGSize)size completion:(void (^)(NSArray<QHVCEditThumbnailItem *> *thumbnails))completion;
+
+- (QHVCEditSegmentInfo *)getOverlaySegmentInfo:(NSInteger)overlayCommandId;
+- (void)fetchSegmentInfo:(QHVCEditSegmentInfoBlock)complete;
+- (NSArray<QHVCEditCommandAddFileSegment *>*)getFileSegments;
 
 - (BOOL)adjustQuality:(NSInteger)type value:(float)value;
 
 - (void)adjustSpeed:(float)speed;
 
+//需resetplayer
+- (void)adjustPitch:(float)pitch;
+//需resetplayer
+- (void)adjustVolume:(float)volume;
+//需resetplayer,调节主轴物理文件音量
+- (void)adjustMainVolume:(float)volume;
+
+- (void)audioFadeInFadeOut:(BOOL)onFadeInOut;
+
 - (void)addFilter:(NSDictionary *)item;
 
-- (void)addSticker:(NSArray<QHVCEditStickerIconView *> *)stickers;
+- (QHVCEditCommandImageFilter *)addImageFilter:(UIImage *)image
+                                    renderRect:(CGRect)renderRect
+                                        radian:(CGFloat)radian;
+- (void)updateImageFilter:(QHVCEditCommandImageFilter *)filterCommand
+               renderRect:(CGRect)renderRect
+                   radian:(CGFloat)radian;
+- (void)deleteImageFilter:(QHVCEditCommandImageFilter *)filterCommand;
+- (void)addImageFadeInOut:(QHVCEditCommandImageFilter *)filterCommand;
+- (void)addImageMoveInOut:(QHVCEditCommandImageFilter *)filterCommand;
+- (void)addImageJumpInOut:(QHVCEditCommandImageFilter *)filterCommand;
+- (void)addImageRotateInOut:(QHVCEditCommandImageFilter *)filterCommand;
 
 - (void)addAudios:(NSArray<QHVCEditAudioItem *> *)audios;
 - (void)updateAudios;
@@ -72,15 +101,16 @@ typedef NS_ENUM(NSInteger, QHVCEditCommandOperation) {
 - (void)updateOutputRenderMode:(QHVCEditOutputRenderMode)renderMode;
 - (void)updateOutputBackgroudMode:(NSString *)colorHex;
 
-- (void)addSubtitles:(NSArray<QHVCEditSubtitleItem *> *)subtitles views:(NSArray<QHVCEditStickerIconView *> *)views;
-- (void)updateSubtitles;
-- (void)deleteSubtitles;
-
 - (NSInteger)addOverlayFile:(QHVCEditPhotoItem *)file;
 - (void)updateOverlayFile:(QHVCEditPhotoItem *)file overlayId:(NSInteger)overlayId;
 - (void)deleteOverlayFile:(NSInteger)overlayId;
 - (void)updateOverlaySpeed:(CGFloat)speed overlayId:(NSInteger)overlayId;
 - (void)updateOverlayVolume:(CGFloat)volume overlayId:(NSInteger)overlayId;
+- (void)addOverlayFadeInOut:(NSInteger)overlayId;
+- (void)addOverlayMoveInOut:(NSInteger)overlayId;
+- (void)addOverlayJumpInOut:(NSInteger)overlayId;
+- (void)addOverlayRotateInOut:(NSInteger)overlayId;
+- (void)addOverlayBlendMode:(NSInteger)overlayId blendMode:(NSInteger)blendMode progres:(CGFloat)progress;
 
 - (void)addMatrix:(QHVCEditMatrixItem *)item;
 - (void)updateMatrix:(QHVCEditMatrixItem *)item;
@@ -92,12 +122,29 @@ typedef NS_ENUM(NSInteger, QHVCEditCommandOperation) {
              overlayCommandId:(NSInteger)overlayCommandId
              startTimestampMs:(int)startTimestampMs
                endTimestampMs:(int)endTimestampMs;
-
 - (void)updateChromakeyWithColor:(NSString*)argb
                        threshold:(int)threshold
                           extend:(int)extend
                 overlayCommandId:(NSInteger)overlayCommandId;
-
 - (void)deleteChromakey:(NSInteger)overlayCommandId;
+
+- (NSArray *)getAudios;
+
+- (void)openBeauty:(float)softLevel white:(float)whiteLevel;
+- (void)adjustBeauty:(float)softLevel white:(float)whiteLevel;
+
+- (void)addEffect:(NSString *)effectName;
+- (void)adjustEffect:(NSString *)effectName;
+
+- (void)updateMosaic:(CGRect)region degree:(CGFloat)degree;
+- (void)updateDelogo:(CGRect)region;
+
+- (void)updateKenburnsEffect:(NSDictionary *)kenburnsInfo;
+- (void)deleteKenburnsEffect;
+
+- (void)addDynamicSubtitle:(NSString *)filePath;
+- (void)deleteDynamicSubtitle;
+
+- (void)removeAllCommands;
 
 @end

@@ -38,6 +38,8 @@
 
 - (void)initFilters
 {
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"Fade.png" ofType:@""];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"F1.png" ofType:@""];
     _filters = @[@{@"type":@0,@"title":@"原图",@"color":@"00000000"},
                   @{@"type":@0,@"title":@"自然",@"color":@"4CFFC0A5"},
                   @{@"type":@0,@"title":@"清新",@"color":@"4CB3CBE8"},
@@ -53,7 +55,8 @@
                   @{@"type":@0,@"title":@"都市",@"color":@"4C58DEE0"},
                   @{@"type":@0,@"title":@"新鲜",@"color":@"4C52CCBF"},
                   @{@"type":@0,@"title":@"海滨",@"color":@"4C2A84C8"},
-                  @{@"type":@0,@"title":@"酒红",@"color":@"4C881212"}];
+                  @{@"type":@0,@"title":@"酒红",@"color":@"4C881212"},
+                  @{@"type":@1,@"title":@"自定义",@"color":path}];
 }
 
 - (void)createFilterView
@@ -62,8 +65,22 @@
     _filterView.frame = CGRectMake(0, kScreenHeight - 80, kScreenWidth, 80);
     _filterView.filters = _filters;
     __weak typeof(self) weakSelf = self;
-    _filterView.selectedCompletion = ^(NSDictionary *value) {
+    _filterView.selectedCompletion = ^(NSDictionary *value)
+    {
         [weakSelf addFilter:value];
+
+        //播放器获取指定特效效果图临时测试入口
+//        NSString* str1 = [[NSBundle mainBundle] pathForResource:@"Vista" ofType:@"png"];
+//        NSString* str2 = [[NSBundle mainBundle] pathForResource:@"Retro" ofType:@"png"];
+//        NSString* str3 = [[NSBundle mainBundle] pathForResource:@"Negative" ofType:@"png"];
+//        NSString* str4 = [[NSBundle mainBundle] pathForResource:@"HighNoon" ofType:@"png"];
+//
+//        NSArray* arrs = @[str1,str2,str3,str4];
+//
+//        [_player generateCLUTFilterThumbnails:arrs toSize:CGSizeMake(100, 100) callback:^(NSArray<UIImage *>* thumbnails, NSArray<NSString *>* clutImagePaths)
+//         {
+//             NSLog(@"");
+//         }];
     };
     [self.view addSubview:_filterView];
 }

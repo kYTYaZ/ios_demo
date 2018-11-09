@@ -79,12 +79,32 @@ typedef void(^QHVCEditThumbnailCallback)(NSArray<QHVCEditThumbnailItem*>* thumbn
  @return 是否调用成功
  */
 - (QHVCEditThumbnailError)getVideoThumbnailFromFile:(NSString *)filePath
-                                     width:(int)width
-                                    height:(int)height
-                                 startTime:(NSTimeInterval)startTimestampMs
-                                   endTime:(NSTimeInterval)endTimestampMs
-                                     count:(int)count
-                                  callback:(QHVCEditThumbnailCallback)block;
+                                              width:(int)width
+                                             height:(int)height
+                                          startTime:(NSTimeInterval)startTimestampMs
+                                            endTime:(NSTimeInterval)endTimestampMs
+                                              count:(int)count
+                                           callback:(QHVCEditThumbnailCallback)block;
+
+/**
+ 获取缩略图
+ 
+ @param photoFileIdentifier 相册文件标识符
+ @param width 缩略图宽度
+ @param height 缩略图库高度
+ @param startTimestampMs 起始时间点，相对当前文件（单位：毫秒）
+ @param endTimestampMs 结束时间点，相对当前文件（单位：毫秒）
+ @param count 期望获取视频帧数，会根据视频fps做调整，可能实际拿到视频帧数小于期望值
+ @param block 获取缩略图回调
+ @return 是否调用成功
+ */
+- (QHVCEditThumbnailError)getVideoThumbnailFromPhotoAlbum:(NSString *)photoFileIdentifier
+                                                    width:(int)width
+                                                   height:(int)height
+                                                startTime:(NSTimeInterval)startTimestampMs
+                                                  endTime:(NSTimeInterval)endTimestampMs
+                                                    count:(int)count
+                                                 callback:(QHVCEditThumbnailCallback)block;
 
 
 /**

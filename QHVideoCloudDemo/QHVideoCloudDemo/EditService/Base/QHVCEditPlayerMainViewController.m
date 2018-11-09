@@ -13,6 +13,10 @@
 {
     QHVCEditPlayStatus _currentPlayerStatus;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previewRightConstraint;
+
 @end
 
 @implementation QHVCEditPlayerMainViewController
@@ -30,7 +34,23 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    CGFloat maxHeight = [[UIScreen mainScreen] bounds].size.height - 100 - 60 - 10;
+    CGFloat scale = [[QHVCEditPrefs sharedPrefs] outputSize].height/[[QHVCEditPrefs sharedPrefs] outputSize].width;
+    if (CGRectGetHeight(_preview.frame) > maxHeight)
+    {
+        CGFloat offsetX = ([[UIScreen mainScreen] bounds].size.width - maxHeight / scale) / 2.0;
+        [self.previewHeightConstraint setConstant:maxHeight];
+        [self.previewLeftConstraint setConstant:offsetX];
+        [self.previewRightConstraint setConstant:offsetX];
+    }
+    else
+    {
+        [self.previewHeightConstraint setConstant:CGRectGetWidth(_preview.frame)*scale];
+    }
+    
     [self resetPlayer:[self playerTime]];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,7 +97,6 @@
 - (void)progressTimer
 {
     NSTimeInterval timestamp = [_player getCurrentTimestamp];
-    NSLog(@"timestamp --- %@",@(timestamp));
     _currentPoint.text = [QHVCEditPrefs timeFormatMs:timestamp];
     _seek.value = timestamp;
 }

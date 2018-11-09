@@ -39,6 +39,8 @@ static QHVCITSChatManager *_sharedManager = nil;
           error:(void (^)(QHVCIMConnectErrorCode status))errorBlock
 {
     QHVCITSUserModel *model = [QHVCITSUserSystem sharedInstance].userInfo;
+    [[QHVCIM sharedInstance] setIMContexts:model.imContext];
+    
     NSDictionary *user = @{@"userId":model.userId,@"name":model.nickName,@"protraitUrl":model.portraint};
     [[QHVCIM sharedInstance] setUserInfos:user];
     

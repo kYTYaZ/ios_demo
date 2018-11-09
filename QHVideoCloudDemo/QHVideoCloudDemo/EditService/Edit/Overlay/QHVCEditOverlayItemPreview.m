@@ -17,6 +17,7 @@
 
 @interface QHVCEditOverlayItemPreview ()
 
+@property (nonatomic, readwrite, assign) NSInteger overlayCommandId;
 @property (nonatomic, retain) QHVCEditCropRectView* cropImageView;
 @property (nonatomic, assign) CGSize cropMaxSize;
 @property (nonatomic, assign) CGRect cropRect;
@@ -34,13 +35,14 @@
 
 @implementation QHVCEditOverlayItemPreview
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame overlayCommandId:(NSInteger)overlayCommandId
 {
     if (!(self = [super initWithFrame:frame]))
     {
         return nil;
     }
     
+    self.overlayCommandId = overlayCommandId;
     self.backgroundColor = [UIColor clearColor];
     [self initUIParams];
     [self addGesture];
@@ -69,6 +71,11 @@
         UIPanGestureRecognizer *moveGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(colorPickerMoveGesture:)];
         [self.colorPicker addGestureRecognizer:moveGesture];
     }
+    
+//    if (self.overlayCommandId != kMainTrackId)
+//    {
+//        self.layer.compositingFilter = @"overlayBlendMode";
+//    }
 }
 
 - (UIView *)overlay
@@ -119,6 +126,11 @@
         _radian += [recognizer rotation];
         [recognizer view].transform = CGAffineTransformRotate([[recognizer view] transform], [recognizer rotation]);
         [recognizer setRotation:0];
+        SAFE_BLOCK(self.rotateGestureAction, NO);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        SAFE_BLOCK(self.rotateGestureAction, YES);
     }
 }
 
@@ -162,6 +174,11 @@
         
         [piece setCenter:CGPointMake(x, y)];
         [recognizer setTranslation:CGPointZero inView:[piece superview]];
+        SAFE_BLOCK(self.moveGestureAction, NO);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        SAFE_BLOCK(self.moveGestureAction, YES);
     }
 }
 
@@ -186,6 +203,11 @@
         }
         
         self.contextImage = [QHVCEditPrefs convertViewToImage:self];
+        SAFE_BLOCK(self.pinchGestureAction, NO);
+    }
+    else if ([recognizer state] == UIGestureRecognizerStateEnded)
+    {
+        SAFE_BLOCK(self.pinchGestureAction, YES);
     }
 }
 
@@ -307,7 +329,7 @@
                                                   overlayCommandId:self.overlayCommandId];
     }
     
-    SAFE_BLOCK(self.playerNeedRefreshAction);
+    SAFE_BLOCK(self.playerNeedRefreshAction, YES);
 }
 
 -(void)colorPickerMoveGesture:(UIPanGestureRecognizer *)recognizer

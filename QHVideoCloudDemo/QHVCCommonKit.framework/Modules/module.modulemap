@@ -1,6 +1,0 @@
-framework module QHVCCommonKit {
-  umbrella header "QHVCCommonKit.h"
-
-  export *
-  module * { export * }
-}
